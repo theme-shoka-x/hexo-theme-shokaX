@@ -13,6 +13,7 @@ module.exports = {
   },
   rules: {
     camelcase: 'off',
-    'prefer-const': 'off'
+    'prefer-const': 'off',
+    'no-unused-vars': 'off'
   }
 }
