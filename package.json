@@ -1,0 +1,10 @@
+{
+  "name": "hexo-theme-traveler",
+  "version": "0.0.1",
+  "description": "a hexo theme",
+  "main": "index.js",
+  "repository": "https://github.com/zkz098/hexo-theme-traveler",
+  "author": "Chou kaitaku",
+  "license": "MIT",
+  "private": false
+}
