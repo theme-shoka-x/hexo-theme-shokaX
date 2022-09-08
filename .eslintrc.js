@@ -8,6 +8,9 @@ module.exports = {
   extends: [
     'standard'
   ],
+  plugins: [
+    'pug'
+  ],
   parserOptions: {
     ecmaVersion: 12
   },

@@ -1,1 +1,15 @@
+statics: "/"
+assets: "assets"
+css: "css"
+js: "js"
+
+icon:
+  favicon: "/favicon.ico"
+  apple_touch_icon: "/apple-touch-icon.png"
+
+seo:
+  bing: "bing-key"
+  google: "google-key"
+  yandex: "yandex-key"
+  baidu: "baidu-key"
 

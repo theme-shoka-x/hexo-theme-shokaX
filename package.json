@@ -12,8 +12,12 @@
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.5",
-    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.1",
+    "eslint-plugin-pug": "^1.2.4",
     "eslint-plugin-standard": "^5.0.0"
+  },
+  "dependencies": {
+    "hexo-renderer-pug": "^3.0.0",
+    "js-yaml": "^4.1.0"
   }
 }

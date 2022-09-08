@@ -20,7 +20,7 @@ $dom.each = (selector, callback, element) => {
   return $dom.all(selector, element).forEach(callback)
 }
 
-const storage = {
+const $storage = {
   set: (key, value) => {
     localStorage.setItem(key, value)
   },
