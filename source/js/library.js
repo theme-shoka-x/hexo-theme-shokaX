@@ -1,7 +1,7 @@
 /**
  * 通过选择器获取一个dom元素
  * @param {string} selector
- * @param {*} element
+ * @param {*} [element]
  */
 const $dom = (selector, element) => {
   element = element || document
@@ -23,9 +23,9 @@ $dom.all = (selector, element) => {
 
 /**
  * 获取具有此选择器的所有dom节点,并依次执行callback函数
- * @param {string} selector
- * @param {function} callback
- * @param {*} element
+ * @param {string} [selector]
+ * @param {function} [callback]
+ * @param {*} [element]
  * @returns {void}
  */
 $dom.each = (selector, callback, element) => {
@@ -37,7 +37,7 @@ Object.assign(HTMLElement.prototype, {
    * 创建一个子节点并放置
    * @param {string} tag html标签
    * @param obj assign的source
-   * @param {string} positon 放置位置
+   * @param {string} [positon]
    * @returns {HTMLElement}
    */
   createChild: function (tag, obj, positon) {
@@ -148,9 +148,166 @@ const $storage = {
     localStorage.setItem(key, value)
   },
   get: (key) => {
-    localStorage.getItem(key)
+    return localStorage.getItem(key)
   },
   del: (key) => {
     localStorage.removeItem(key)
   }
+}
+
+const getScript = function (url, callback, condition) {
+  if (condition) {
+    callback()
+  } else {
+    let script = document.createElement('script')
+    script.onload = script.onreadystatechange = function (_, isAbort) {
+      if (isAbort || !script.readyState || /loaded|complete/.test(script.readyState)) {
+        script.onload = script.onreadystatechange = null
+        script = undefined
+        if (!isAbort && callback) setTimeout(callback, 0)
+      }
+    }
+    script.src = url
+    document.head.appendChild(script)
+  }
+}
+
+const assetUrl = function (asset, type) {
+  const str = CONFIG[asset][type]
+  if (str.indexOf('npm') > -1) { return `https://unpkg.com/${str}` }
+  if (str.indexOf('gh') > -1 || str.indexOf('combine') > -1) { return `https://cdn.jsdelivr.net/${str}` }
+  if (str.indexOf('http') > -1) { return str }
+  return `/${str}`
+}
+
+const vendorJs = function (type, callback, condition) {
+  if (LOCAL[type]) {
+    getScript(assetUrl('js', type), callback || function () {
+      window[type] = true
+    }, condition || window[type])
+  }
+}
+
+const vendorCss = function (type, condition) {
+  if (window['css' + type]) { return }
+
+  if (LOCAL[type]) {
+    document.head.createChild('link', {
+      rel: 'stylesheet',
+      href: assetUrl('css', type)
+    })
+
+    window['css' + type] = true
+  }
+}
+
+const transition = function (target, type, complete) {
+  let animation
+  let display = 'none'
+  switch (type) {
+    case 0:
+      animation = { opacity: [1, 0] }
+      break
+    case 1:
+      animation = { opacity: [0, 1] }
+      display = 'block'
+      break
+    case 'bounceUpIn':
+      animation = {
+        begin: function (anim) {
+          target.display('block')
+        },
+        translateY: [
+          { value: -60, duration: 200 },
+          { value: 10, duration: 200 },
+          { value: -5, duration: 200 },
+          { value: 0, duration: 200 }
+        ],
+        opacity: [0, 1]
+      }
+      display = 'block'
+      break
+    case 'shrinkIn':
+      animation = {
+        begin: function (anim) {
+          target.display('block')
+        },
+        scale: [
+          { value: 1.1, duration: 300 },
+          { value: 1, duration: 200 }
+        ],
+        opacity: 1
+      }
+      display = 'block'
+      break
+    case 'slideRightIn':
+      animation = {
+        begin: function (anim) {
+          target.display('block')
+        },
+        translateX: [100, 0],
+        opacity: [0, 1]
+      }
+      display = 'block'
+      break
+    case 'slideRightOut':
+      animation = {
+        translateX: [0, 100],
+        opacity: [1, 0]
+      }
+      break
+    default:
+      animation = type
+      display = type.display
+      break
+  }
+  anime(Object.assign({
+    targets: target,
+    duration: 200,
+    easing: 'linear'
+  }, animation)).finished.then(function () {
+    target.display(display)
+    complete && complete()
+  })
+}
+
+const pjaxScript = function (element) {
+  const code = element.text || element.textContent || element.innerHTML || ''
+  const parent = element.parentNode
+  parent.removeChild(element)
+  const script = document.createElement('script')
+  if (element.id) {
+    script.id = element.id
+  }
+  if (element.className) {
+    script.className = element.className
+  }
+  if (element.type) {
+    script.type = element.type
+  }
+  if (element.src) {
+    script.src = element.src
+    // Force synchronous loading of peripheral JS.
+    script.async = false
+  }
+  if (element.dataset.pjax !== undefined) {
+    script.dataset.pjax = ''
+  }
+  if (code !== '') {
+    script.appendChild(document.createTextNode(code))
+  }
+  parent.appendChild(script)
+}
+
+const pageScroll = function (target, offset, complete) {
+  const opt = {
+    targets: typeof offset === 'number' ? target.parentNode : document.scrollingElement,
+    duration: 500,
+    easing: 'easeInOutQuad',
+    scrollTop: offset || (typeof target === 'number' ? target : (target ? target.top() + document.documentElement.scrollTop - siteNavHeight : 0)),
+    complete: function () {
+      complete && complete()
+    }
+  }
+  anime(opt)
 }

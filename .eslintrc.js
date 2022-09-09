@@ -17,6 +17,8 @@ module.exports = {
   rules: {
     camelcase: 'off',
     'prefer-const': 'off',
-    'no-unused-vars': 'off'
+    'no-unused-vars': 'off',
+    'no-undef': 'off',
+    'n/no-callback-literal': 'off'
   }
 }
