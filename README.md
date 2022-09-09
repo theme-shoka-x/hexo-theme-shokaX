@@ -1,4 +1,4 @@
-#hexo-theme-shokaX
+# hexo-theme-shokaX
 此项目是shoka的一个魔改版,致力于提高性能和优化魔改体验 \
 本项目处于高强度开发期,目前暂无测试用版本
 
