@@ -1,4 +1,5 @@
 module.exports = {
+  parser: '@typescript-eslint/parser',
   env: {
     browser: true,
     commonjs: true,
@@ -6,10 +7,12 @@ module.exports = {
     node: true
   },
   extends: [
-    'standard'
+    'standard',
+    'plugin:@typescript-eslint/recommended'
   ],
   plugins: [
-    'pug'
+    'pug',
+    '@typescript-eslint'
   ],
   parserOptions: {
     ecmaVersion: 12
@@ -19,6 +22,8 @@ module.exports = {
     'prefer-const': 'off',
     'no-unused-vars': 'off',
     'no-undef': 'off',
-    'n/no-callback-literal': 'off'
+    'n/no-callback-literal': 'off',
+    '@typescript-eslint/ban-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'off'
   }
 }

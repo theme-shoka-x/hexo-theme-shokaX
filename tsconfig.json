@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "commonjs",
+    "removeComments": true,
+    "alwaysStrict": true,
+    "pretty": false,
+    "allowJs": true
+  },
+  "typeAcquisition": {
+    "enable": true
+  }
+}

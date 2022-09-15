@@ -1,0 +1,89 @@
+// 变量区
+
+get_font_family(config) {
+  $custom-family = hexo-config('font.' + config + '.family');
+  return $custom-family is a 'string' ? $custom-family : null;
+}
+
+// Font families.
+$font-family-chinese      = -apple-system, "PingFang SC", "Microsoft YaHei";
+
+$font-family-base         = $font-family-chinese, sans-serif;
+$font-family-base       = get_font_family('global'), $font-family-base if get_font_family('global');
+
+$font-family-logo         = $font-family-base;
+$font-family-logo         = get_font_family('logo'), $font-family-base if get_font_family('title');
+
+$font-family-title         = $font-family-base;
+$font-family-title         = get_font_family('title'), $font-family-base if get_font_family('title');
+
+$font-family-headings     = $font-family-base;
+$font-family-headings     = get_font_family('headings'), $font-family-title if get_font_family('headings');
+$font-family-headings     = get_font_family('global'), $font-family-headings if get_font_family('global');
+$font-family-title         = get_font_family('title'), get_font_family('headings'), $font-family-base if get_font_family('headings');
+$font-family-title         = get_font_family('global'), $font-family-title if get_font_family('global');
+
+$font-family-posts        = $font-family-base;
+$font-family-posts        = get_font_family('posts'), $font-family-base if get_font_family('posts');
+
+$font-family-monospace    = consolas, Menlo, $font-family-chinese;
+$font-family-monospace    = get_font_family('codes'), consolas, Menlo, $font-family-chinese if get_font_family('codes');
+
+$iconfont = hexo-config('iconfont');
+
+// Font size
+$font-size-base           = (hexo-config('font.enable') and hexo-config('font.global.size') is a 'unit') ? unit(hexo-config('font.global.size'), em) : 1em;
+$font-size-smallest       = .75em;
+$font-size-smaller        = .8125em;
+$font-size-small          = .875em;
+$font-size-medium         = 1em;
+$font-size-large          = 1.125em;
+$font-size-larger         = 1.25em;
+$font-size-largest        = 1.5em;
+
+
+// Headings font size
+$font-size-headings-step  = .125em;
+$font-size-headings-base  = (hexo-config('font.enable') and hexo-config('font.headings.size') is a 'unit') ? unit(hexo-config('font.headings.size'), em) : 1.625em;
+
+
+// Global line height
+$line-height-base         = 2;
+$line-height-code-block   = 1.6; // Can't be less than 1.3;
+
+
+// Z-index master list
+// --------------------------------------------------
+$zindex-0       = -1;
+$zindex-1       = 1;
+$zindex-2       = 9;
+$zindex-3       = 99;
+$zindex-4       = 999;
+$zindex-5       = 9999;
+
+
+// Pagination
+// --------------------------------------------------
+
+
+// Layout sizes
+// --------------------------------------------------
+$sidebar-width                = 15;
+$sidebar-desktop              = unit($sidebar-width, 'rem');
+$content-offset               = .75rem;
+$content-wrap                 = 'calc(100% - %s)' % unit($sidebar-width + $content-offset, 'rem');
+
+$content-desktop-padding        = 1.25rem;
+$content-tablet-padding         = .625rem;
+$content-mobile-padding         = .5rem;
+
+$content-desktop              = 'calc(100% - %s)' % unit($content-desktop-padding / 2, 'rem');
+$content-desktop-large        = 72.5rem;
+$content-desktop-largest      = 73%;
+
+
+
+// Site Meta
+$font-size-title                = (hexo-config('font.enable') and hexo-config('font.title.size') is a 'unit') ? unit(hexo-config('font.title.size'), em) : 2em;
+$font-size-subtitle             = $font-size-small;
+$font-size-logo                = (hexo-config('font.enable') and hexo-config('font.logo.size') is a 'unit') ? unit(hexo-config('font.logo.size'), em) : 3.5em;
