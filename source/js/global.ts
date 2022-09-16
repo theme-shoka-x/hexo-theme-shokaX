@@ -1,6 +1,7 @@
 /* global CONFIG  */
+// @ts-ignore
 const statics = CONFIG.statics.indexOf('//') > 0 ? CONFIG.statics : CONFIG.root
-const scrollAction = { x: 'undefined', y: 'undefined' }
+const scrollAction:{x:number|string, y:number|string} = { x: undefined, y: undefined }
 let diffY = 0
 let originTitle, titleTime
 const BODY = document.getElementsByTagName('body')[0]
@@ -9,6 +10,7 @@ const Container = $dom('#container')
 const loadCat = $dom('#loading')
 const siteNav = $dom('#nav')
 const siteHeader = $dom('#header')
+// @ts-ignore
 const menuToggle = siteNav.child('.toggle')
 const quickBtn = $dom('#quick')
 const sideBar = $dom('#sidebar')
@@ -23,9 +25,8 @@ let pjax
 
 /**
  * 更改日夜模式
- * @param {string} [type]
  */
-const changeTheme = function (type) {
+const changeTheme = function (type?:string) {
   const btn = $dom('.theme .ic')
   if (type === 'dark') {
     HTML.attr('data-theme', type)
@@ -43,7 +44,9 @@ const changeTheme = function (type) {
  * 优先级: 手动选择>时间>跟随系统
  */
 const autoDarkmode = function () {
+  // @ts-ignore
   if (CONFIG.auto_dark.enable) {
+    // @ts-ignore
     if (new Date().getHours() >= CONFIG.auto_dark.start || new Date().getHours() <= CONFIG.auto_dark.end) {
       changeTheme('dark')
     } else {
@@ -60,7 +63,7 @@ const autoDarkmode = function () {
  * 懒加载图片
  */
 const lazyload = lozad('img, [data-background-image]', {
-  loaded: function (el) {
+  loaded: function (el:HTMLElement) {
     el.addClass('lozaded')
   }
 })
@@ -88,9 +91,8 @@ const Loader = {
 
 /**
  * 更改主题的meta表情
- * @param color
  */
-const changeMetaTheme = function (color) {
+const changeMetaTheme = function (color:string):void {
   if (HTML.attr('data-theme') === 'dark') { color = '#222' }
 
   $dom('meta[name="theme-color"]').attr('content', color)
@@ -116,7 +118,8 @@ const themeColorListener = function () {
 
   $dom('.theme').addEventListener('click', function (event) {
     let c
-    const btn = event.currentTarget.child('.ic')
+    const temp = <HTMLElement> event.currentTarget
+    const btn = temp.child('.ic')
 
     const neko = BODY.createChild('div', {
       id: 'neko',
@@ -176,7 +179,7 @@ const visibilityListener = function () {
   })
 }
 
-const showtip = function (msg) {
+const showtip = function (msg:string):void|never {
   if (!msg) { return }
 
   const tipbox = BODY.createChild('div', {
@@ -228,6 +231,7 @@ const scrollHandle = function (event) {
     // scrollAction.y = Container.scrollTop;
   }
   // var diffX = scrollAction.x - Container.scrollLeft;
+  // @ts-ignore
   diffY = scrollAction.y - window.scrollY
 
   // if (diffX < 0) {
@@ -255,7 +259,9 @@ const scrollHandle = function (event) {
 }
 
 const pagePosition = function () {
-  if (CONFIG.auto_scroll) { $storage.set(LOCAL_URL, scrollAction.y) }
+  if (CONFIG.auto_scroll) { // @ts-ignore
+    $storage.set(LOCAL_URL, scrollAction.y)
+  }
 }
 
 const positionInit = function (comment) {
@@ -289,7 +295,7 @@ const clipBoard = function (str, callback) {
       callback && callback(false)
     })
   } else {
-    const ta = BODY.createChild('textarea', {
+    const ta = <HTMLTextAreaElement> BODY.createChild('textarea', {
       style: {
         top: window.scrollY + 'px', // Prevent page scrolling
         position: 'absolute',

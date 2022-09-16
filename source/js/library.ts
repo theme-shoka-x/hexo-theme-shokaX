@@ -1,7 +1,75 @@
+/* global CONFIG */
+declare const anime:Function, lozad:Function
+declare const getDocHeight:Function
+declare interface Object {
+  innerText: string;
+  title: string;
+  dataset: {
+    backgroundImage: any;
+    url:string }
+  attr(type:string, value?:any):any
+  removeClass(className:string):any
+  addClass(className:string):any
+  createChild(tag:string, obj:Object, positon?: string | null):HTMLElement
+  child(selector:string):HTMLElement
+  hasClass(className:string):boolean
+  height(h?:number|string):number
+  toggleClass(className:string, display?:boolean):any
+  width(w?:number|string):number
+  insertAfter(element:HTMLElement):void
+  wrap(obj:Object)
+  find(selector:string):NodeListOf<Element>
+  display(d?:null|string):string|any
+}
+declare const LOCAL: {
+  search: any;
+  quiz: any;
+  nocopy: boolean;
+  copyright: string;
+  'favicon': {
+    hide:string
+    show:string
+  }
+}
+declare const CONFIG: {
+  version:number
+  root:string
+  statics:string
+  favicon: {
+    normal: string,
+    hidden: string
+  }
+  darkmode: boolean
+  auto_dark: boolean
+  auto_scroll: boolean
+  loader: {
+    start:boolean
+    switch:boolean
+  }
+  js: {
+    chart: string
+    copy_tex: string
+    fancybox: string
+    echarts: string
+  }
+  css: {
+    valine: string
+    katex: string
+    mermaid: string
+    fancybox: string
+  }
+  search: any,
+  valine: string
+  quicklink: {
+    timeout: number
+    priority: string
+  }
+}
+
 /**
  * 获取一个dom选择器对应的元素
  */
-const $dom = (selector:string, element:Document):HTMLElement|null => {
+const $dom = (selector:string, element?:Document):HTMLElement|null => {
   element = element || document
   if (selector.indexOf('#') === 0) {
     return element.getElementById(selector.replace('#', ''))
@@ -11,14 +79,14 @@ const $dom = (selector:string, element:Document):HTMLElement|null => {
 /**
  * 获取具有此选择器的所有dom节点
  */
-$dom.all = (selector:string, element:Document):NodeListOf<Element> => {
+$dom.all = (selector:string, element?:Document):NodeListOf<HTMLElement> => {
   element = element || document
   return element.querySelectorAll(selector)
 }
 /**
  * 获取具有此选择器的所有dom节点,并依次执行callback函数
  */
-$dom.each = (selector:string, callback:(value: Element, key: number, parent: NodeListOf<Element>) => void, element:Document):void => {
+$dom.each = (selector:string, callback?:(value: Element, key: number, parent: NodeListOf<Element>) => void, element?:Document):void => {
   return $dom.all(selector, element).forEach(callback)
 }
 
@@ -26,8 +94,7 @@ Object.assign(HTMLElement.prototype, {
   /**
      * 创建一个子节点并放置
      */
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  createChild: function (tag:string, obj:Object, positon: string | null):HTMLElement {
+  createChild: function (tag:string, obj:Object, positon?: string | null):HTMLElement {
     const child = document.createElement(tag)
     Object.assign(child, obj)
     switch (positon) {
@@ -50,13 +117,13 @@ Object.assign(HTMLElement.prototype, {
     this.parentNode.removeChild(this)
     box.appendChild(this)
   },
-  height: function (h:number|string):number {
+  height: function (h?:number|string):number {
     if (h) {
       this.style.height = typeof h === 'number' ? h + 'rem' : h
     }
     return this.getBoundingClientRect().height
   },
-  width: function (w:number|string):number {
+  width: function (w?:number|string):number {
     if (w) {
       this.style.width = typeof w === 'number' ? w + 'rem' : w
     }
@@ -68,7 +135,7 @@ Object.assign(HTMLElement.prototype, {
   left: function ():number {
     return this.getBoundingClientRect().left
   },
-  attr: function (type:string, value:null|string):void|null|string {
+  attr: function (type:string, value?:any):any {
     if (value === null) {
       return this.removeAttribute(type)
     }
@@ -88,7 +155,7 @@ Object.assign(HTMLElement.prototype, {
       parent.insertBefore(element, this.nextSibling)
     }
   },
-  display: function (d:null|string):string|any {
+  display: function (d?:null|string):string|any {
     if (d == null) {
       return this.style.display
     } else {
@@ -129,3 +196,175 @@ Object.assign(HTMLElement.prototype, {
     return this.classList.contains(className)
   }
 })
+
+const $storage = {
+  set: (key:string, value:string):void => {
+    localStorage.setItem(key, value)
+  },
+  get: (key:string):string => {
+    return localStorage.getItem(key)
+  },
+  del: (key:string):void => {
+    localStorage.removeItem(key)
+  }
+}
+
+const getScript = function (url:string, callback:Function, condition:string):void {
+  if (condition) {
+    callback()
+  } else {
+    let script = document.createElement('script')
+    // @ts-ignore
+    script.onload = function (_, isAbort: boolean) {
+      // @ts-ignore
+      if (isAbort || !script.readyState || /loaded|complete/.test(script.readyState)) {
+        script.onload = null
+        script = undefined
+        if (!isAbort && callback) setTimeout(callback, 0)
+      }
+    }
+    script.src = url
+    document.head.appendChild(script)
+  }
+}
+
+const assetUrl = function (asset:string, type:string):string {
+  const str = CONFIG[asset][type]
+  if (str.indexOf('npm') > -1) { return `https://unpkg.com/${str}` }
+  if (str.indexOf('gh') > -1 || str.indexOf('combine') > -1) { return `https://cdn.jsdelivr.net/${str}` }
+  if (str.indexOf('http') > -1) { return str }
+  return `/${str}`
+}
+
+const vendorJs = function (type:string, callback?:Function, condition?:string) {
+  if (LOCAL[type]) {
+    getScript(assetUrl('js', type), callback || function () {
+      window[type] = true
+    }, condition || window[type])
+  }
+}
+
+const vendorCss = function (type:string, condition?:string):void {
+  if (window['css' + type]) { return }
+
+  if (LOCAL[type]) {
+    // @ts-ignore
+    document.head.createChild('link', {
+      rel: 'stylesheet',
+      href: assetUrl('css', type)
+    })
+
+    window['css' + type] = true
+  }
+}
+
+const transition = (target:any, type:any, complete?:Function):void => {
+  let animation
+  let display = 'none'
+  switch (type) {
+    case 0:
+      animation = { opacity: [1, 0] }
+      break
+    case 1:
+      animation = { opacity: [0, 1] }
+      display = 'block'
+      break
+    case 'bounceUpIn':
+      animation = {
+        begin: function (anim) {
+          target.display('block')
+        },
+        translateY: [
+          { value: -60, duration: 200 },
+          { value: 10, duration: 200 },
+          { value: -5, duration: 200 },
+          { value: 0, duration: 200 }
+        ],
+        opacity: [0, 1]
+      }
+      display = 'block'
+      break
+    case 'shrinkIn':
+      animation = {
+        begin: function (anim) {
+          target.display('block')
+        },
+        scale: [
+          { value: 1.1, duration: 300 },
+          { value: 1, duration: 200 }
+        ],
+        opacity: 1
+      }
+      display = 'block'
+      break
+    case 'slideRightIn':
+      animation = {
+        begin: function (anim) {
+          target.display('block')
+        },
+        translateX: [100, 0],
+        opacity: [0, 1]
+      }
+      display = 'block'
+      break
+    case 'slideRightOut':
+      animation = {
+        translateX: [0, 100],
+        opacity: [1, 0]
+      }
+      break
+    default:
+      animation = type
+      display = type.display
+      break
+  }
+  anime(Object.assign({
+    targets: target,
+    duration: 200,
+    easing: 'linear'
+  }, animation)).finished.then(function () {
+    target.display(display)
+    complete && complete()
+  })
+}
+
+const pjaxScript = function (element:HTMLScriptElement) {
+  const code = element.text || element.textContent || element.innerHTML || ''
+  const parent = element.parentNode
+  parent.removeChild(element)
+  const script = document.createElement('script')
+  if (element.id) {
+    script.id = element.id
+  }
+  if (element.className) {
+    script.className = element.className
+  }
+  if (element.type) {
+    script.type = element.type
+  }
+  if (element.src) {
+    script.src = element.src
+    // Force synchronous loading of peripheral JS.
+    script.async = false
+  }
+  if (element.dataset.pjax !== undefined) {
+    script.dataset.pjax = ''
+  }
+  if (code !== '') {
+    script.appendChild(document.createTextNode(code))
+  }
+  parent.appendChild(script)
+}
+
+const pageScroll = function (target:any, offset?:number, complete?:Function) {
+  const opt = {
+    targets: typeof offset === 'number' ? target.parentNode : document.scrollingElement,
+    duration: 500,
+    easing: 'easeInOutQuad',
+    scrollTop: offset || (typeof target === 'number' ? target : (target ? target.top() + document.documentElement.scrollTop - siteNavHeight : 0)),
+    complete: function () {
+      complete && complete()
+    }
+  }
+  anime(opt)
+}
