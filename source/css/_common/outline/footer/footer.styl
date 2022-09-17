@@ -1,0 +1,69 @@
+// Footer Section
+// --------------------------------------------------
+#footer {
+  color: var(--grey-5);
+  font-size: $font-size-small;
+  background: var(--body-bg-shadow);
+
+  .inner {
+    margin: 0 auto;
+    width: $content-desktop;
+    position: relative;
+
+    if (hexo-config('sidebar.position') == 'left') {
+      padding-left: 16.25rem;
+    } else {
+      padding-right: 16.25rem;
+    }
+
+    +desktop-large() {
+      width: $content-desktop-large;
+    }
+
+    +desktop-largest() {
+      width: $content-desktop-largest;
+    }
+
+    +tablet-mobile() {
+      padding-left: 0;
+      padding-right: 0;
+      width: auto;
+    }
+  }
+}
+
+.status {
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.languages {
+  display: inline-block;
+  font-size: $font-size-large;
+  position: relative;
+
+  .lang-select-label span {
+    margin: 0 .5rem;
+  }
+
+  .lang-select {
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+.with-love {
+  color: unquote(hexo-config('footer.icon.color'));
+  display: inline-block;
+  margin: 0 .3125rem 0 .125rem;
+}
+
+.powered-by, .theme-info {
+  display: inline-block;
+  margin-bottom: .625rem;
+}

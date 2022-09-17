@@ -1,0 +1,39 @@
+.post .tags {
+  text-align: left;
+  margin-top: .625rem;
+  font-size: $font-size-smallest;
+
+  a {
+    display: inline-block;
+    position: relative;
+    padding: 0rem .3125rem;
+    border-radius: .3125rem;
+    background: var(--note-bg);
+    color: var(--note-text);
+
+    &:not(:last-child) {
+      margin-right: .625rem;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      height: 100%;
+      width: 0;
+      right: 0;
+      background: var(--color-red-a1);
+      border-radius: .25rem;
+      the-transition();
+    }
+
+    &:hover {
+      color: var(--primary-color);
+
+      &:before {
+        width: 104%;
+        left: -2%;
+      }
+    }
+  }
+}

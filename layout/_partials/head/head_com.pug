@@ -1,0 +1,33 @@
+//{% if page.keywords %}
+//<meta name="keywords" content="{{ page.keywords }}" />
+//{% elif page.tags and page.tags.length %}
+//<meta name="keywords" content="{% for tag in page.tags.toArray() %}{{ tag.name }}{% if not loop.last %},{% endif %}{% endfor %}" />
+//{% elif config.keywords %}
+//<meta name="keywords" content="{{ config.keywords }}" />
+//{% endif %}
+//
+//{{ canonical() }}
+//<meta http-equiv='content-language' content='zh-CN'>
+//
+//{% if theme.open_graph %}
+//{{ open_graph(theme.open_graph) }}
+//{% endif %}
+- let index=0;keywords=''
+- for tag in page.tags.toArray() {
+-   keywords += tag.name
+-   index++
+-   if (index < page.tags.toArray().length){
+-       keywords += ','
+-   }
+- }
+if page.keywords
+    meta(name="keywords" content=page.keywords)
+else if page.tags && page.tags.length
+    meta(name="keywords" content=keywords)
+else if config.keywords
+    meta(name="keywords" content=config.keywords)
+
+!= canonical()
+
+if theme.open_graph
+    != open_graph(theme.open_graph)

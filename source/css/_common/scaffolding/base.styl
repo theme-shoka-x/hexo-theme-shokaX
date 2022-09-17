@@ -1,0 +1,172 @@
+::selection {
+  background: var(--color-orange);
+  color: var(--grey-2);
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(to top, var(--body-bg-shadow) 0, var(--grey-1) 20%) no-repeat bottom;
+  color: var(--text-color);
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+
+  &.loaded {
+    overflow: auto;
+    @extend $big-scrollbar;
+
+    #main .wrap {
+      @extend .slide-up-big-in;
+    }
+
+    #sidebar .panel.active {
+      @extend .slide-up-big-in;
+      display: block;
+    }
+
+    #brand .pjax {
+      @extend .slide-down-in;
+    }
+  }
+
+  +tablet-mobile() {
+    // Remove the padding of body when the sidebar is open.
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  &.fullscreen {
+    overflow: hidden;
+
+    #tool, #sidebar>.inner {
+      z-index: 0;
+    }
+  }
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-headings;
+  font-weight: bold;
+  line-height: 1.5;
+  margin: 1.25rem 0 .9375rem;
+  &.title {
+    font-family: $font-family-title;
+  }
+}
+
+a {
+  border: none;
+  color: currentColor;
+  outline: 0;
+  text-decoration: none;
+  word-wrap();
+  the-transition();
+
+  &:hover {
+    border-bottom-color: var(--color-blue);
+    color: var(--color-blue);
+  }
+
+  &::before, &::after {
+    the-transition(.4s);
+  }
+
+  cursor: pointer;
+}
+
+a, li, div {
+  -webkit-tap-highlight-color: transparent;
+}
+
+li {
+  list-style: none;
+}
+
+iframe, img, video {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+}
+
+hr {
+  background-image: repeating-linear-gradient(-45deg, var(--grey-3), var(--grey-4) .25rem, transparent .25rem, transparent .5rem);
+  border: none;
+  height: .125rem;
+  margin: 1.5rem 0;
+}
+
+blockquote {
+  border-left: .25rem solid var(--grey-4);
+  color: var(--grey-6);
+  margin: 1.25rem 0;
+  padding: .625rem 1.25rem;
+
+  cite::before {
+    content: '-';
+    padding: 0 .3125rem;
+  }
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+input, textarea {
+  color: var(--text-color);
+}
+@font-face {
+  font-family: 'ic';
+  src: url('//at.alicdn.com/t/font_' + $iconfont + '.eot');
+  src: url('//at.alicdn.com/t/font_' + $iconfont + '.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_' + $iconfont + '.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_' + $iconfont + '.woff') format('woff'),
+  url('//at.alicdn.com/t/font_' + $iconfont + '.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_' + $iconfont + '.svg#ic') format('svg');
+}
+
+@font-face {
+    font-family: 'jetbrains-mono';
+    font-display: swap;
+    src: url("https://jsd.kaitaku.xyz/gh/JetBrains/JetBrainsMono@2.242/fonts/webfonts/JetBrainsMono-Regular.woff2") format("woff2");
+}
+
+.ic {
+  font-family: "ic" !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  width: 1.25em;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+}
+
+.ic em {
+  font-size: 0;
+}
+
+.ic-lg {
+  font-size: 1.33333em;
+  line-height: .75em;
+  vertical-align: -.0667em;
+}
+//.weather {
+//      color: var(--text-color) !important;
+//}

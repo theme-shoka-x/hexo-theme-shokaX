@@ -1,0 +1,43 @@
+#quick {
+  display: none;
+  align-items: center;
+  flex-wrap: wrap;
+  width: $sidebar-desktop;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  bottom: .125rem;
+
+  li {
+    width: 25%;
+    min-height: 1.875rem;
+    the-transition();
+
+    i {
+      cursor: pointer;
+    }
+
+    a {
+      width: 100%;
+      display: block;
+    }
+
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+
+  li.percent {
+    display: block;
+    background: var(--primary-color);
+    width: 0rem;
+    min-height: .125rem;
+  }
+}
+
+#sidebar.affix, #sidebar.on {
+  #quick {
+    display: flex;
+  }
+}
+

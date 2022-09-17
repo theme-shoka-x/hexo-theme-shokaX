@@ -1,0 +1,264 @@
+
+@keyframes rainbow {
+  to {
+    background-position: -2000vw;
+  }
+}
+
+.md {
+  p,
+  table,
+  pre,
+  blockquote,
+  img,
+  .tabs,
+  .links {
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ul, dd, ol {
+    ul, ol {
+      margin-top: 0;
+    }
+  }
+
+  a {
+    color: var(--primary-color); //原始链接颜色
+
+    &:hover {
+      color: var(--color-blue); //鼠标经过颜色
+    }
+  }
+
+  for headline in (1 .. 6) {
+    h{headline} {
+      font-size: $font-size-headings-base - $font-size-headings-step * headline;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    position: relative;
+    padding-top: .625rem;
+
+    &:hover .anchor {
+      &::before, &::after {
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  h1::after {
+    content: "";
+    display: block;
+    box-sizing: unset;
+    width: 100%;
+    height: .0625rem;
+    background: var(--grey-3);
+    padding-right: 1.25rem;
+    margin-left: -1.25rem;
+    margin-top: .3125rem;
+  }
+
+  .anchor {
+    border-bottom-style: none;
+    color: var(--grey-4);
+    float: right;
+    margin-left: .625rem;
+
+    &:hover {
+      color: inherit;
+    }
+  }
+
+  .anchor::before,
+  .anchor::after {
+    color: var(--grey-4);
+    position: absolute;
+    font-weight: normal;
+    the-transition(, ease-out);
+  }
+
+  .active .anchor::before,
+  .active .anchor::after {
+    color: var(--primary-color);
+  }
+
+  p {
+    margin: 0 0 .8rem;
+  }
+
+  blockquote {
+    font-size: 90%;
+    background-color: var(--grey-2);
+    margin: 1.25rem 0;
+    border-radius: .1875rem;
+
+    ul {
+      margin: .625rem 0 !important;
+    }
+
+    ul > li::before {
+      width: .375rem !important;
+      height: .375rem !important;
+      top: .6875rem !important;
+    }
+
+    p, ol, ul {
+      &:last-child {
+        margin-bottom: 0!important;
+      }
+    }
+  }
+
+  >blockquote {
+    border-left-color: var(--primary-color);
+  }
+
+  iframe {
+    margin-bottom: 1.25rem;
+  }
+
+  .image-info {
+    display: block;
+    text-align: center;
+    font-size: $font-size-smaller;
+    color: var(--grey-4);
+  }
+
+  .video-container {
+    height: 0;
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+    padding-top: 75%;
+    position: relative;
+    width: 100%;
+
+    iframe,
+    object,
+    embed {
+      height: 100%;
+      left: 0;
+      margin: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+
+  .kbd, kbd {
+    background-color: var(--grey-1);
+    background-image: linear-gradient(var(--grey-2), var(--grey-0), var(--grey-2));
+    border: .0625rem solid var(--grey-4);
+    border-radius: .2rem;
+    box-shadow: .1rem .1rem .2rem var(--grey-9-a1);
+    font-family: inherit;
+    padding: .1rem .3rem;
+    white-space: nowrap;
+  }
+
+  mark {
+    background-color: #dbfdad;
+  }
+
+  ins {
+    --line-color: var(--note-hover, var(--primary-color));
+    text-decoration: none;
+    border-bottom: .125rem solid var(--line-color);
+
+    &.wavy {
+      text-decoration-style: wavy;
+      text-decoration-line: underline;
+      text-decoration-color: var(--line-color);
+      border-bottom: none;
+    }
+
+    &.dot {
+      border-bottom: .2rem dotted var(--line-color);
+    }
+  }
+
+  s {
+    color: var(--grey-5);
+    text-decoration-color: var(--note-hover, var(--grey-5));
+  }
+
+  ruby {
+    padding: 0 .3125rem;
+  }
+
+  .katex-display {
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+
+  .spoiler:not(.bulr) {
+    background-color: var(--text-color);
+    color: var(--text-color);
+    text-shadow: none;
+    transition: color .3s;
+    padding:0 .1875rem;
+
+    &:hover {
+      color: #FFF;
+    }
+  }
+
+  .bulr {
+    text-shadow: rgba(0, 0, 0, .7) 0rem 0rem .625rem;
+    color: transparent;
+  }
+
+  .rainbow {
+    background-image: linear-gradient( to left, orangered, orange, gold, lightgreen, cyan, dodgerblue, mediumpurple, hotpink, orangered);
+    background-size: 110vw;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow 60s linear infinite;
+  }
+}
+
+
+.article .md {
+
+  .anchor::before,
+  .anchor::after {
+    content: "H";
+    font-family: $font-family-posts;
+    left: -1.875rem;
+    top: 1rem;
+    width: 1.25rem;
+    height: 1.5625rem;
+    text-align: right;
+    visibility: visible;
+    font-size: 80%;
+
+    +mobile-small() {
+      left: -.625rem;
+    }
+  }
+
+  .anchor::after {
+    font-size: 50%;
+    left: -1.375rem;
+    line-height: 3;
+
+    +mobile-small() {
+      left: -.1875rem;
+    }
+  }
+
+  for headline in (1 .. 6) {
+    h{headline} .anchor::after {
+      content: \"headline\";
+    }
+  }
+}
+

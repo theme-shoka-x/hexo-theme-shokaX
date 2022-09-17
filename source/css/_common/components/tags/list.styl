@@ -1,0 +1,131 @@
+.md {
+  li {
+    position: relative;
+    margin: .2rem 0;
+
+    &:before {
+      the-transition();
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  ul, ol, dl {
+    margin: .5em 0 .5em;
+    padding: .1em .2em .1em 1.4em;
+  }
+
+  ul > li,
+  dl dt {
+    &::before {
+      content: "";
+      position: absolute;
+      width: .4em;
+      height: .4em;
+      background: var(--primary-color);
+      border-radius: 50%;
+      top: .85em;
+      left: -1em;
+    }
+
+    &:hover::before {
+      background: var(--color-pink);
+    }
+  }
+
+  ol {
+    &:not([start]) {
+      counter-reset: counter;
+    }
+
+    >li {
+
+      &::before {
+        counter-increment: counter;
+        content: counter(counter);
+        position: absolute;
+        width: 1.4em;
+        height: 1.4em;
+        border-radius: 50%;
+        text-align: center;
+        font-size: .8em;
+        line-height: 1.4;
+        top: .5em;
+        left: -1.8em;
+        background: var(--primary-color);
+        color: var(--grey-1);
+        cursor: pointer;
+      }
+
+      &:hover::before {
+        color: var(--grey-1);
+        background: var(--color-pink);
+      }
+    }
+  }
+
+  dl {
+    dt {
+      position: relative;
+    }
+    dd {
+      padding-left: .9375em;
+    }
+  }
+
+  ul {
+    li.nodot {
+      &::before {
+        li-nodot();
+      }
+    }
+
+    li.task-list-item {
+      &::before {
+        li-nodot();
+      }
+
+      input[type='checkbox'] {
+        display: none;
+      }
+
+      input[type='checkbox']+label::before {
+        @extend .i-times-circle:before;
+        font-family-icons();
+        color: var(--grey-4);
+        display: inline-block;
+        margin-right: .625em;
+      }
+
+      input[type='checkbox']:checked+label::before {
+        @extend .i-check-circle:before;
+        color: var(--note-text, var(--primary-color));
+      }
+    }
+  }
+
+  li ul > li {
+    &::before {
+      background: var(--grey-1);
+      border: 1px solid var(--primary-color);
+    }
+  }
+
+  li ol > li, dd ol > li{
+    &::before {
+      content: counter(counter) ".";
+      background: none;
+      color: var(--primary-color);
+      font-size: 1em;
+      line-height: 1;
+      width: auto;
+    }
+
+    &:hover::before {
+      background: none;
+      color: var(--color-pink);
+    }
+  }
+}

@@ -1,0 +1,70 @@
+.md .note {
+  border-radius: .1875rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  position: relative;
+
+  background: var(--note-bg, var(--grey-2));
+  color: var(--grey-6);
+  border-left: .25rem solid var(--note-border, var(--grey-4));
+
+  font-size: $font-size-small;
+
+  padding-left: 2.5rem;
+
+  --primary-color: var(--note-text);
+
+  &::before {
+    position: absolute;
+    left: .5rem;
+    top: calc(50% - 1.5rem);
+    font-family-icons();
+    font-size: 1.5rem;
+    color: var(--note-text, var(--grey-6));
+  }
+
+  &.default {
+    &::before {
+      @extend .i-arrow-circle-right:before;
+    }
+  }
+
+  &.primary {
+    &::before {
+      @extend .i-plus-circle:before;
+    }
+  }
+
+  &.info {
+    &::before {
+      @extend .i-info-circle:before;
+    }
+  }
+
+  &.success {
+    &::before {
+      @extend .i-check-circle:before;
+    }
+
+  }
+
+  &.warning {
+    &::before {
+      @extend .i-exclamation-circle:before;
+    }
+  }
+
+  &.danger {
+    &::before {
+      @extend .i-minus-circle:before;
+    }
+  }
+
+  &.no-icon {
+    &::before {
+      content: none;
+    }
+
+    padding-left: 1rem;
+  }
+}
