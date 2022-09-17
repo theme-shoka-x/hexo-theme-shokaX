@@ -77,7 +77,7 @@ const Loader = {
     loadCat.attr('style', 'display:block')
     Loader.lock = false
   },
-  hide: function (sec) {
+  hide: function (sec?) {
     if (!CONFIG.loader.start) { sec = -1 }
     this.timer = setTimeout(this.vanish, sec || 3000)
   },
@@ -195,7 +195,7 @@ const showtip = function (msg:string):void|never {
   }, 3000)
 }
 
-const resizeHandle = function (event) {
+const resizeHandle = function (event?) {
   siteNavHeight = siteNav.height()
   headerHightInner = siteHeader.height()
   headerHight = headerHightInner + $dom('#waves').height()
@@ -264,7 +264,7 @@ const pagePosition = function () {
   }
 }
 
-const positionInit = function (comment) {
+const positionInit = function (comment?) {
   const anchor = window.location.hash
   let target = null
   if (LOCAL_HASH) {

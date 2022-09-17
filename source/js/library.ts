@@ -22,6 +22,8 @@ declare interface Object {
   display(d?:null|string):string|any
 }
 declare const LOCAL: {
+  ignores: any;
+  audio: any;
   search: any;
   quiz: any;
   nocopy: boolean;
@@ -32,6 +34,7 @@ declare const LOCAL: {
   }
 }
 declare const CONFIG: {
+  audio: any;
   version:number
   root:string
   statics:string
@@ -61,6 +64,7 @@ declare const CONFIG: {
   search: any,
   valine: string
   quicklink: {
+      ignores: any;
     timeout: number
     priority: string
   }

@@ -3,14 +3,12 @@ const isMobile = /mobile/i.test(window.navigator.userAgent)
 const mediaPlayer = function (t, config) {
   const buttons = {
     el: {},
-    create: function () {
+    create: () => {
       if (!t.player.options.btns) { return }
-
-      const that = this
       t.player.options.btns.forEach(function (item) {
-        if (that.el[item]) { return }
+        if (this.el[item]) { return }
 
-        that.el[item] = t.createChild('div', {
+        this.el[item] = t.createChild('div', {
           className: item + ' btn',
           onclick: function (event) {
             t.player.fetch().then(function () {
@@ -23,16 +21,20 @@ const mediaPlayer = function (t, config) {
   }
   const controller = {
     el: null,
-    btns: {},
+    btns: {
+      mode: undefined,
+      volume: undefined
+    },
     step: 'next',
-    create: function () {
+    create: () => {
       if (!t.player.options.controls) { return }
 
+      // eslint-disable-next-line @typescript-eslint/no-this-alias
       const that = this
       t.player.options.controls.forEach(function (item) {
         if (that.btns[item]) { return }
 
-        const opt = {
+        const opt = <HTMLElement> {
           onclick: function (event) {
             that.events[item] ? that.events[item](event) : t.player.options.events[item](event)
           }
@@ -206,8 +208,8 @@ const mediaPlayer = function (t, config) {
       const current = playlist.current()
 
       this.el.innerHTML = '<div class="cover"><div class="disc"><img src="' + (current.cover) + '" class="blur" /></div></div>' +
-        '<div class="info"><h4 class="title">' + current.name + '</h4><span>' + current.artist + '</span>' +
-        '<div class="lrc"></div></div>'
+                '<div class="info"><h4 class="title">' + current.name + '</h4><span>' + current.artist + '</span>' +
+                '<div class="lrc"></div></div>'
 
       this.el.child('.cover').addEventListener('click', t.player.options.events['play-pause'])
 
@@ -220,8 +222,7 @@ const mediaPlayer = function (t, config) {
     data: [],
     index: -1,
     errnum: 0,
-    add: function (group, list) {
-      const that = this
+    add: (group, list) => {
       list.forEach(function (item, i) {
         item.group = group
         item.name = item.name || item.title || 'Meida name'
@@ -229,7 +230,7 @@ const mediaPlayer = function (t, config) {
         item.cover = item.cover || item.pic
         item.type = item.type || 'normal'
 
-        that.data.push(item)
+        this.data.push(item)
       })
     },
     clear: function () {
@@ -400,7 +401,8 @@ const mediaPlayer = function (t, config) {
             const skey = JSON.stringify(meta)
             const playlist = $storage.get(skey)
             if (playlist) {
-              list.push.apply(list, JSON.parse(playlist))
+              // list.push.apply(list, JSON.parse(playlist))
+              list.push(...JSON.parse(playlist))
               resolve(list)
             } else {
               fetch('https://api.i-meto.com/meting/api?server=' + meta[0] + '&type=' + meta[1] + '&id=' + meta[2] + '&r=' + Math.random())
@@ -408,9 +410,11 @@ const mediaPlayer = function (t, config) {
                   return response.json()
                 }).then(function (json) {
                   $storage.set(skey, JSON.stringify(json))
-                  list.push.apply(list, json)
+                  // list.push.apply(list, json)
+                  list.push(...json)
                   resolve(list)
-                }).catch(function (ex) {
+                }).catch((ex) => {
+                  // (不)处理catch的异常
                 })
             }
           } else {
@@ -443,7 +447,7 @@ const mediaPlayer = function (t, config) {
     // 加载播放列表
     load: function (newList) {
       let d = ''
-      const that = this
+      // const that = this
 
       if (newList && newList.length > 0) {
         if (this.options.rawList !== newList) {
@@ -463,10 +467,11 @@ const mediaPlayer = function (t, config) {
       return this
     },
     fetch: function () {
+      // eslint-disable-next-line @typescript-eslint/no-this-alias
       const that = this
-      return new Promise(function (resolve, reject) {
+      return new Promise<any>(function (resolve, reject) {
         if (playlist.data.length > 0) {
-          resolve()
+          resolve(true)
         } else {
           if (that.options.rawList) {
             const promises = []
@@ -485,7 +490,7 @@ const mediaPlayer = function (t, config) {
                 }
                 utils.fetch(source).then(function (list) {
                   playlist.add(group, list)
-                  resolve()
+                  resolve(0)
                 })
               }))
             })
@@ -547,9 +552,9 @@ const mediaPlayer = function (t, config) {
     // 直接设置当前曲目index
     switch: function (index) {
       if (typeof index === 'number' &&
-        index !== playlist.index &&
-        playlist.current() &&
-        !playlist.current().error) {
+                index !== playlist.index &&
+                playlist.current() &&
+                !playlist.current().error) {
         playlist.index = index
         this.init()
       }
@@ -589,10 +594,11 @@ const mediaPlayer = function (t, config) {
         this.mode()
         return
       }
-      const that = this
+      // const that = this
       source.play().then(function () {
         playlist.scroll()
       }).catch(function (e) {
+        // 不处理错误
       })
     },
     pause: function () {
@@ -610,7 +616,7 @@ const mediaPlayer = function (t, config) {
       source.currentTime = time
       progress.update(time / source.duration)
     },
-    muted: function (status) {
+    muted: function (status?) {
       if (status === 'muted') {
         source.muted = status
         $storage.set('_PlayerMuted', status)
@@ -637,27 +643,27 @@ const mediaPlayer = function (t, config) {
     el: null,
     data: null,
     index: 0,
-    create: function (box) {
+    create: (box) => {
       const current = playlist.index
-      const that = this
+      // const that = this
       const raw = playlist.current().lrc
 
       const callback = function (body) {
         if (current !== playlist.index) { return }
 
-        that.data = that.parse(body)
+        this.data = this.parse(body)
 
         let lrc = ''
-        that.data.forEach(function (line, index) {
+        this.data.forEach(function (line, index) {
           lrc += '<p' + (index === 0 ? ' class="current"' : '') + '>' + line[1] + '</p>'
         })
 
-        that.el = box.createChild('div', {
+        this.el = box.createChild('div', {
           className: 'inner',
           innerHTML: lrc
         }, 'replace')
 
-        that.index = 0
+        this.index = 0
       }
 
       if (raw.startsWith('http')) { this.fetch(raw, callback) } else { callback(raw) }
@@ -700,7 +706,7 @@ const mediaPlayer = function (t, config) {
             const timeLen = lrcTimes.length
             for (let j = 0; j < timeLen; j++) {
               const oneTime = /\[(\d{2}):(\d{2})(\.(\d{2,3}))?]/.exec(lrcTimes[j])
-              const min2sec = oneTime[1] * 60
+              const min2sec = <number><unknown> oneTime[1] * 60
               const sec2sec = parseInt(oneTime[2])
               const msec2sec = oneTime[4] ? parseInt(oneTime[4]) / ((oneTime[4] + '').length === 2 ? 100 : 1000) : 0
               const lrcTime = min2sec + sec2sec + msec2sec
@@ -727,6 +733,7 @@ const mediaPlayer = function (t, config) {
         }).then(function (body) {
           callback(body)
         }).catch(function (ex) {
+          // 不处理错误
         })
     }
   }
