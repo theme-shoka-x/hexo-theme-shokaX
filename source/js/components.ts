@@ -279,7 +279,7 @@ const sidebarTOC = function () {
       }
       parent = parent.parentNode
     }
-    // Scrolling to center active TOC element if TOC content is taller then viewport.
+    // Scrolling to center active TOC element if TOC content is taller than viewport.
     if (getComputedStyle(sideBar).display !== 'none' && tocElement.hasClass('active')) {
       pageScroll(tocElement, target.offsetTop - (tocElement.offsetHeight / 4))
     }
