@@ -1,12 +1,40 @@
 /*
 *  烟花分区
 */
-function updateCoords (e) {
+declare interface fireworksP {
+  x: number,
+  y: number,
+  color: string,
+  radius: any,
+  endPos: any,
+  alpha?: number,
+  lineWidth?: number,
+  draw: any
+}
+
+const canvasEl = document.createElement('canvas')
+canvasEl.style.cssText = 'position:fixed;top:0;left:0;pointer-events:none;z-index:9999999'
+document.body.appendChild(canvasEl)
+const ctx = canvasEl.getContext('2d')
+const numberOfParticules = 30
+let pointerX = 0
+let pointerY = 0
+const tap = 'click' // ('ontouchstart' in window || navigator.msMaxTouchPoints) ? 'touchstart' : 'mousedown'
+const colors = CONFIG.fireworks
+
+function setCanvasSize ():void {
+  canvasEl.width = window.innerWidth * 2
+  canvasEl.height = window.innerHeight * 2
+  canvasEl.style.width = window.innerWidth + 'px'
+  canvasEl.style.height = window.innerHeight + 'px'
+  canvasEl.getContext('2d').scale(2, 2)
+}
+function updateCoords (e: any):void {
   pointerX = e.clientX || (e.touches && e.touches[0].clientX)
   pointerY = e.clientY || (e.touches && e.touches[0].clientY)
 }
 
-function setParticuleDirection (p) {
+function setParticuleDirection (p:fireworksP):Object {
   const angle = anime.random(0, 360) * Math.PI / 180
   const value = anime.random(50, 180)
   const radius = [-1, 1][anime.random(0, 1)] * value
@@ -16,8 +44,15 @@ function setParticuleDirection (p) {
   }
 }
 
-function createParticule (x, y) {
-  const p = {}
+function createParticule (x:number, y:number):fireworksP {
+  const p = {
+    x: undefined,
+    y: undefined,
+    color: undefined,
+    radius: undefined,
+    endPos: undefined,
+    draw: undefined
+  }
   p.x = x
   p.y = y
   p.color = colors[anime.random(0, colors.length - 1)]
@@ -32,8 +67,17 @@ function createParticule (x, y) {
   return p
 }
 
-function createCircle (x, y) {
-  const p = {}
+function createCircle (x:number, y:number):fireworksP {
+  const p = {
+    x: undefined,
+    y: undefined,
+    color: undefined,
+    radius: undefined,
+    endPos: undefined,
+    alpha: undefined,
+    lineWidth: undefined,
+    draw: undefined
+  }
   p.x = x
   p.y = y
   p.color = '#FFF'
@@ -52,13 +96,13 @@ function createCircle (x, y) {
   return p
 }
 
-function renderParticule (anim) {
+function renderParticule (anim:any):void {
   for (let i = 0; i < anim.animatables.length; i++) {
     anim.animatables[i].target.draw()
   }
 }
 
-function animateParticules (x, y) {
+function animateParticules (x:number, y:number):void {
   const circle = createCircle(x, y)
   const particules = []
   for (let i = 0; i < numberOfParticules; i++) {
@@ -109,17 +153,21 @@ window.addEventListener('resize', setCanvasSize, false)
 
 /* 边栏分区 */
 
-const sideBarToggleHandle = function (event, force) {
+const sideBarToggleHandle = function (event:Event, force?:number) {
   if (sideBar.hasClass('on')) {
     sideBar.removeClass('on')
     menuToggle.removeClass('close')
     if (force) {
+      // @ts-ignore
+      // noinspection JSConstantReassignment
       sideBar.style = ''
     } else {
       transition(sideBar, 'slideRightOut')
     }
   } else {
     if (force) {
+      // @ts-ignore
+      // noinspection JSConstantReassignment
       sideBar.style = ''
     } else {
       transition(sideBar, 'slideRightIn', function () {
@@ -138,7 +186,7 @@ const sideBarTab = function () {
     sideBarInner.removeChild(sideBar.child('.tab'))
   }
 
-  let list = document.createElement('ul'); let active = 'active'
+  const list = document.createElement('ul'); let active = 'active'
   list.className = 'tab';
 
   ['contents', 'related', 'overview'].forEach(function (item) {
@@ -170,7 +218,7 @@ const sideBarTab = function () {
     }
 
     tab.addEventListener('click', function (element) {
-      const target = event.currentTarget
+      const target = <HTMLElement> event.currentTarget
       if (target.hasClass('active')) return
 
       sideBar.find('.tab .item').forEach(function (element) {
@@ -199,7 +247,7 @@ const sideBarTab = function () {
 }
 
 const sidebarTOC = function () {
-  const activateNavByIndex = function (index, lock) {
+  const activateNavByIndex = function (index, lock?) {
     const target = navItems[index]
 
     if (!target) return
@@ -219,7 +267,7 @@ const sidebarTOC = function () {
     target.addClass('active current')
     sections[index] && sections[index].addClass('active')
 
-    let parent = target.parentNode
+    let parent = <any> target.parentNode
 
     while (!parent.matches('.contents')) {
       if (parent.matches('li')) {
@@ -317,6 +365,7 @@ const backToTopHandle = function () {
 }
 
 const goToBottomHandle = function () {
+  // @ts-ignore
   pageScroll(parseInt(Container.height()))
 }
 
@@ -326,7 +375,7 @@ const goToCommentHandle = function () {
 
 const menuActive = function () {
   $dom.each('.menu .item:not(.title)', function (element) {
-    const target = element.child('a[href]')
+    const target = <HTMLAnchorElement> element.child('a[href]')
     const parentItem = element.parentNode.parentNode
     if (!target) return
     const isSamePath = target.pathname === location.pathname || target.pathname === location.pathname.replace('index.html', '')

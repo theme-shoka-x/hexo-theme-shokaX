@@ -1,6 +1,5 @@
 /* global CONFIG */
-declare const anime:Function, lozad:Function
-declare const getDocHeight:Function
+declare const anime:any, lozad:Function
 declare interface Object {
   innerText: string;
   title: string;
@@ -22,6 +21,7 @@ declare interface Object {
   display(d?:null|string):string|any
 }
 declare const LOCAL: {
+  path: string;
   ignores: any;
   audio: any;
   search: any;
@@ -34,6 +34,8 @@ declare const LOCAL: {
   }
 }
 declare const CONFIG: {
+  hostname: string;
+  fireworks: any;
   audio: any;
   version:number
   root:string
@@ -70,6 +72,9 @@ declare const CONFIG: {
   }
 }
 
+const getDocHeight = function () {
+  return $dom('main > .inner').offsetHeight
+}
 /**
  * 获取一个dom选择器对应的元素
  */

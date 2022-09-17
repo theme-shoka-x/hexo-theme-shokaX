@@ -1,5 +1,4 @@
 /* global CONFIG  */
-// @ts-ignore
 const statics = CONFIG.statics.indexOf('//') > 0 ? CONFIG.statics : CONFIG.root
 const scrollAction:{x:number|string, y:number|string} = { x: undefined, y: undefined }
 let diffY = 0
@@ -10,7 +9,6 @@ const Container = $dom('#container')
 const loadCat = $dom('#loading')
 const siteNav = $dom('#nav')
 const siteHeader = $dom('#header')
-// @ts-ignore
 const menuToggle = siteNav.child('.toggle')
 const quickBtn = $dom('#quick')
 const sideBar = $dom('#sidebar')
@@ -287,7 +285,7 @@ const positionInit = function (comment?) {
   }
 }
 
-const clipBoard = function (str, callback) {
+const clipBoard = function (str, callback?) {
   if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(str).then(function () {
       callback && callback(true)

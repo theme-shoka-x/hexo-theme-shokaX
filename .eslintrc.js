@@ -19,6 +19,7 @@ module.exports = {
   },
   rules: {
     camelcase: 'off',
+    'no-var': 'off',
     'prefer-const': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
     'no-undef': 'off',
