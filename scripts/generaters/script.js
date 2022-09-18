@@ -71,7 +71,14 @@ hexo.extend.generator.register('script', function (locals) {
   return {
     path: theme.js + '/app.js',
     data: function () {
-      return hexo.render.renderSync({ text, engine: 'ts' })
+      return hexo.render.renderSync({ text, engine: 'ts' }, {
+        target: 'es2020',
+        removeComments: true,
+        newLine: 'Lf',
+        pretty: false,
+        alwaysStrict: true,
+        allowJs: true
+      })
     }
   }
 })
