@@ -1,0 +1,39 @@
+div(class="author" itemprop="author" itemscope itemtype="http://schema.org/Person")
+    img(class="image" itemprop="image" alt=author
+        data-src=url_for(theme.statics + theme.assets + '/'+ theme.sidebar.avatar))
+    p(class="name" itemprop="name")
+        != author
+    div(class="description" itemprop="description")
+        != description
+
+nav(class="state")
+    if config.archive_dir !== '/' && site.posts.length > 0
+        div(class="item posts")
+            a(href=url_for(config.archive_dir + '/'))
+                span(class="count")
+                    != site.posts.length
+                span(class="name")
+                    != __('state.posts')
+    if config.category_dir !== '/' && site.categories.length > 0
+        div(class="item categories")
+            a(href=url_for(config.category_dir + '/'))
+                span(class="count")
+                    != site.categories.length
+                span(class="name")
+                    != __('state.categories')
+    if config.tag_dir !== '/' && site.tags.length > 0
+        div(class="item tags")
+            a(href=url_for(config.tag_dir + '/'))
+                span(class="count")
+                    != site.tags.length
+                span(class="name")
+                    != __('state.tags')
+
+div(class="social")
+    each name, link in theme.social
+        - var sidebarURL = link.split('||')[0] | trim
+        - var sidebarIcon = '<i class="ic i-' + link.split('||')[1] | trim + '"></i>'
+        != _url(sidebarURL, sidebarIcon, {title: sidebarURL, class: 'item ' + name})
+
+div(class="menu")
+    != partial('_partials/sidebar/menu.pug', {}, {cache: true})

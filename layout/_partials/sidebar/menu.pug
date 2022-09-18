@@ -1,0 +1,28 @@
+mixin item(name, path, parent)
+    - var path = path.split('||')
+    - var itemURL = path[0] | trim
+    - if (!itemURL.startsWith('http')){ itemURL = itemURL | replace('//', '/') }
+    - var menuIcon = '<i class="ic i-' + path[1] | trim + '"></i>'
+    - var menuText = __('menu.' + name) | replace('menu.', '')
+    if parent
+        li(class="item dropdown")
+            if itemURL === '/'
+                a(href="javascript:void(0);")
+                    != menuIcon + menuText
+            else
+                != _url(itemURL, menuIcon + menuText, {rel: 'section'})
+            != '<ul class="submenu">'
+    else
+        li(class="item")
+            != _url(itemURL, menuIcon + menuText, {rel: 'section'})
+
+each name, value in theme.menu
+    if value == '[object Object]'
+        each subname, subvalue in value
+            if subname === 'default'
+                +item(name, subvalue, true)
+            else
+                +item(subname, subvalue)
+        != '</ul>'
+    else
+        +item(name, value)

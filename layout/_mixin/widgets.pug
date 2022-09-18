@@ -1,0 +1,23 @@
+mixin field(item)
+    if item.link
+        - var postTitleIcon = '<i class="ic i-link-alt"></i>'
+    li(class="item")
+        +BCRender(item, false)
+        - var postText = item.title || item.link || __('post.untitled')
+        span
+            != _url(item.link || item.path, postText + (postTitleIcon || ''))
+
+mixin WRender(item)
+    if theme.widgets.random_posts
+        div(class="rpost pjax")
+            h2
+                != __('index.random_posts')
+            ul
+                - var posts = site.posts.shuffle().limit(10).toArray()
+                each item in posts
+                    +field(item)
+    if theme.widgets.recent_comments
+        div(class="rpost pjax")
+            h2 最新评论
+                ul(class="leancloud-recent-comment" id="twikoo_comment")
+

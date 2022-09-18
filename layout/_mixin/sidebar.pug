@@ -1,0 +1,38 @@
+mixin sidebarRender(display_toc)
+    - var toc = toc(page.content)
+    - var display_toc = toc.length > 1 && display_toc
+    - var related = _category_posts(page)
+    if page && page.prev
+        -   var prevlink = page.prev_link
+        if is_page() || is_post()
+            - prevlink = page.next.path
+    if page && page.next
+        - var nextlink = page.next_link
+        if is_page() || is_post()
+            - nextlink = page.prev.path
+    div(class="inner")
+        div(class="panels")
+            div(class="inner")
+                div(class="contents panel pjax" data-title=__('sidebar.toc'))
+                    if display_toc
+                        != toc
+
+                div(class="related panel pjax" data-title=__('sidebar.related'))
+                    if related
+                        ul
+                            != related
+                div(class="overview panel" data-title=__('sidebar.overview'))
+                    != partial('_partials/sidebar/overview.pug', {}, {cache: true})
+        ul(class="quick")
+            li(class="prev pjax")
+                if page && page.prev
+                    if prevlink
+                        != _url(prevlink, '<i class="ic i-chevron-left"></i>', {rel: 'prev', title: __('post.prev')})
+            li(class="up")
+                i(class="ic i-arrow-up")
+            li(class="down")
+                i(class="ic i-arrow-down")
+            li(class="next pjax")
+                if nextlink
+                    != _url(nextlink, '<i class="ic i-chevron-right"></i>', {rel: 'next', title: __('post.next')})
+            li(class="percent")
