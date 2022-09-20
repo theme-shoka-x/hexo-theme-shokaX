@@ -62,7 +62,7 @@ html(lang=page.language?page.language:config.language)
             main
                 div(class="inner")
                     div(id="main" class="pjax")
-                        +content
+                        block content
                     div(id="sidebar")
                         block sidebar
                             +sidebarRender

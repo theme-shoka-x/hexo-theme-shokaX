@@ -1,0 +1,36 @@
+mixin CardRender(item)
+    - cover = url_for(theme.statics + item.slug + '/cover.jpg')
+    - itemname = item.name
+
+    section(class="item")
+        div(class="cover" data-background-image!=cover?cover:"")
+            h2(class="title")
+                != itemname
+            if item.top.name
+                span
+                    != item.top.name
+        div(class="info")
+            if item.link
+                - var postTitleIcon = '<i class="ic i-link-alt"></i>'
+            - var postText = itemname || item.link || __('post.untitled')
+            div(class="ribbon")
+                != _url(item.link || item.path, postText + (postTitleIcon || ''), {itemprop: 'url', title: postText})
+            div(class="inner")
+                - var len = ''
+                if item.child
+                    - len = _p('counter.index.category', item.child)
+                - len = len + _p('counter.index.post', item.length)
+                ul(class="posts")
+                    each sub in item.subs
+                        - var subname = sub.name || sub.title
+                        li
+                            a(title=subname href=url_for(sub.path))
+                                = subname
+                div(class="meta footer")
+                    if item.top
+                        span
+                            != _url(item.top.path, '<i class="ic i-flag"></i>'+item.top.name, {itemprop: 'url', title: item.top.name})
+                    span
+                        i(class="ic i-file")
+                        != len
+            != _url(item.path, 'more...', {itemprop: 'url', title: itemname, class: 'btn'})

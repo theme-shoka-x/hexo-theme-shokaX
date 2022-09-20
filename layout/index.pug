@@ -1,0 +1,32 @@
+extends _partials/layout.pug
+include _mixin/card.pug
+include _mixin/postmeta.pug
+include _mixin/segment.pug
+
+block content
+    div(class="index wrap")
+        if page.current == 1
+            if page.sticky.length > 0
+                h2(class="divider")
+                    != __('index.sticky')
+                - var sticky = page.sticky.toArray()
+                div(class="segments sticky")
+                    each post in sticky
+                        +SMRender(post)
+            if page.catlist.length > 0
+                h2(class="divider")
+                    != __('index.category')
+                div(class="cards")
+                    each cat in page.catlist
+                        +CardRender(cat)
+        if page.posts.length > 0
+            - var posts = page.posts.toArray()
+            if page.current == 1
+                h2(class="divider")
+                    != __('index.posts')
+            div(class="segments posts")
+                each post in posts
+                    +SMRender(post)
+    include _partials/pagination.pug
+    
+
