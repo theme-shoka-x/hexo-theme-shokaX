@@ -24,5 +24,5 @@
 因此需要更改编写的语言
 
 # 许可证
-许可证: Apache License 2.0
+许可证: Apache License 2.0 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fzkz098%2Fhexo-theme-shokaX.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fzkz098%2Fhexo-theme-shokaX?ref=badge_large)
