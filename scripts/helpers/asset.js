@@ -4,6 +4,10 @@
 const { htmlTag, url_for } = require('hexo-util')
 const theme_env = require('../../package.json')
 
+hexo.extend.helper.register('_safedump', (source) => {
+  return JSON.stringify(source)
+})
+
 hexo.extend.helper.register('hexo_env', function (type) {
   return this.env[type]
 })
@@ -59,7 +63,7 @@ hexo.extend.helper.register('_vendor_js', () => {
   vendorJs = vendorJs.filter(item => item !== '')
   vendorJs = [...new Set(vendorJs)]
   vendorJs = vendorJs.join(',')
-  return vendorJs ? htmlTag('script', { src: `https://jsd.kaitaku.xyz/combine/${vendorJs}` }, '') : ''
+  return vendorJs ? htmlTag('script', { src: `https://cdn.jsdelivr.net/combine/${vendorJs}` }, '') : ''
 })
 
 hexo.extend.helper.register('_css', function (...urls) {

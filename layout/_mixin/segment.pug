@@ -17,7 +17,7 @@ mixin SMRender(item)
                 else if item.excerpt
                     != item.excerpt
                 else
-                    != item.content.substring(0,300)
+                    != truncate(escape_html(item.content),300)
             if item.categories.length > 0
                 div(class="meta footer")
                     span

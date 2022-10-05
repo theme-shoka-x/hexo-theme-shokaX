@@ -1,0 +1,26 @@
+article(itemscope itemtype="http://schema.org/Article" class="post block" lang="{{ post.lang or config.language }}")
+    link(itemprop="mainEntityOfPage" href!=post.permalink)
+    span(hidden itemprop="author" itemscope itemtype="http://schema.org/Person")
+        meta(itemprop="image" content=url_for(theme.statics + theme.images + '/' + theme.sidebar.avatar))
+        meta(itemprop="name" content=author)
+        meta(itemprop="description" content=`${ subtitle }, ${ description }`)
+    span(hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization")
+        meta(itemprop="name" content=title)
+    div(class=`body md${post.direction && post.direction.toLowerCase() === 'rtl'? rtl:""}` itemprop="articleBody")
+        if post.photos && post.photos.length
+            div(class="gallery" itemscope itemtype="http://schema.org/ImageGallery")
+                each photo in post.photos
+                    img(data-src=_image_url(photo, post.path) itemprop="contentUrl")
+        != post.content
+        if post.tags && post.tags.length
+            div(class="tags")
+                each tag in post.tags.toArray()
+                    a(href!=url_for(tag.path) rel="tag")
+                        i(class="ic i-tag")
+                        != tag.name
+    footer
+        != partial('_partials/post/footer.pug')
+        if theme.reward.enable
+            != partial('_partials/post/reward.pug', {}, {cache: true})
+        if theme.creative_commons.license
+            != partial('_partials/post/copyright.pug')

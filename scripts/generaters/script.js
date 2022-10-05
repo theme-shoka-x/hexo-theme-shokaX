@@ -1,8 +1,10 @@
 'use strict'
 const fs = require('hexo-fs')
+const babel = require('@babel/core')
 // const url = require('url')
 
 hexo.extend.generator.register('script', function (locals) {
+  const log = hexo.log || console.log
   const config = hexo.config
   const theme = hexo.theme.config
 
@@ -67,18 +69,23 @@ hexo.extend.generator.register('script', function (locals) {
   }
 
   text = 'const CONFIG = ' + JSON.stringify(siteConfig) + ';' + text
-
+  const TsResults = hexo.render.renderSync({ text, engine: 'ts' }, {
+    target: 'es2020',
+    removeComments: true,
+    newLine: 'Lf',
+    pretty: false,
+    alwaysStrict: true,
+    allowJs: true
+  })
+  let Results = TsResults
+  if (theme.compatible.babel) {
+    Results = babel.transformSync(TsResults).code
+    log('Babel is enabled')
+  }
   return {
     path: theme.js + '/app.js',
     data: function () {
-      return hexo.render.renderSync({ text, engine: 'ts' }, {
-        target: 'es2020',
-        removeComments: true,
-        newLine: 'Lf',
-        pretty: false,
-        alwaysStrict: true,
-        allowJs: true
-      })
+      return Results
     }
   }
 })

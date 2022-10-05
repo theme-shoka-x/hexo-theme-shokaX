@@ -87,7 +87,7 @@ html(lang=page.language?page.language:config.language)
             |        stats: "{{ __('search.stats') }}"
             |    },
             if theme.widgets.recent_comments || page.comment !== false
-                != `valine: ${page.valine || page.valine ? safedump : 'true'},`
+                != `valine: ${page.valine ? _safedump(page.valine) : 'true'},`
             if page.chart
                 | chart: true,
             if page.math
@@ -96,7 +96,7 @@ html(lang=page.language?page.language:config.language)
             if page.mermaid
                 | mermaid: true,
             if page.audio
-                != `audio: ${page.audio||safedump},`
+                != `audio: ${_safedump(page.audio)},`
             if page.audio === false
                 | audio: {},
             if page.fancybox !== false
@@ -125,7 +125,7 @@ html(lang=page.language?page.language:config.language)
             | }
             if theme.quicklink.ignores
                 | ,
-                != theme.quicklink.ignores|safedump
+                != _safedump(theme.quicklink.ignores)
             | ]
             |};
         script(src="https://cdn.polyfill.io/v3/polyfill.js")
@@ -136,9 +136,9 @@ html(lang=page.language?page.language:config.language)
             != _vendor_js()
         != _js('app.js')
         != partial('_partials/third-party/baidu-analytics.pug', {}, {cache: true})
-        script(data-pjax).
+        <script data-pjax>
            twikoo.getRecentComments({
-           envId: "{{ theme.twikoo.envId }}",
+           envId: != theme.twikoo.envId,
            pageSize: 10
            }).then(function (res) {
                 res.forEach(function (item) {
@@ -162,6 +162,7 @@ html(lang=page.language?page.language:config.language)
             }).catch(function (err) {
                 console.log(err)
             })
+        </script>
 
 
 

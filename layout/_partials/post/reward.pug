@@ -1,0 +1,18 @@
+if page.reward !== false
+    div(class="reward")
+        button
+            i(class="ic i-heartbeat")
+            != __('reward.donate')
+        p
+            != __('reward.text')
+        div(id="qr")
+            each name, image in theme.reward.account
+                - var builtin = ['wechatpay', 'alipay', 'paypal', 'bitcoin']
+                if builtin.includes(name)
+                    - var translation = __('reward.' + name)
+                else
+                    - var translation = name
+                div
+                    img(data-src=`${url_for(theme.statics + theme.images + image) }` alt=`${ author } ${ translation }`)
+                    p
+                        != translation

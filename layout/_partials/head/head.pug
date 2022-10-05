@@ -1,7 +1,7 @@
 - var msValidate = theme.seo.bing,googleValid = theme.seo.google
 - var yandexValid = theme.seo.yandex,baiduValid = theme.seo.baidu
 - var siteTitle = config.title
-- var rssLink = full_url_for("/rss.xml"),atomLink = full_url_for("/atom.xml"),feedLink = full_url_for("/feed.json")
+- var feedLink = full_url_for("/feed.json")
 
 meta(charset="UTF-8")
 meta(name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2")
@@ -22,8 +22,8 @@ if yandexValid
 if baiduValid
     meta(name="baidu-site-verification" content=baiduValid)
 
-link(rel="alternate" type="application/rss+xml" title=siteTitle href=rssLink)
-link(rel="alternate" type="application/atom+xml" title=siteTitle href=atomLink)
+!= feed_tag('rss.xml')
+!= feed_tag('atom.xml')
 link(rel="alternate" type="application/json" title=siteTitle href=feedLink)
 
 
