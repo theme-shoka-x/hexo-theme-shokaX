@@ -2,3 +2,10 @@
 Thumbs.db
 node_modules/
 .idea
+/.pnp
+.pnp.js
+.pnp.cjs
+.yarn/cache
+.yarn/unplugged
+.yarn/install-state.gz
+yarn-error.log
