@@ -1,0 +1,56 @@
+extends _partials/layout.pug
+include _mixin/sidebar.pug
+include _mixin/comment.pug
+
+block title
+    if page.type === 'categories'
+        != __('title.all') + __('title.category')
+    else if page.type === 'tags'
+        != __('title.all') + __('title.tag')
+    else if page.type === '404'
+        != __('title.not_found')
+    else
+        != page.title
+    != "|"
+
+block header
+    h1(itemprop="name headline")
+        if page.link
+            - var postTitleIcon = '<i class="ic i-link-alt"></i>'
+            - var postText = page.title || page.link
+            != _url(page.link, postText + postTitleIcon, {class: 'link external', itemprop: 'url'})
+        else
+            if page.type === 'categories'
+                != __('title.all') + __('title.category')
+            else if page.type === 'tags'
+                != __('title.all') + __('title.tag')
+            else if page.type === '404'
+                != __('title.not_found')
+            else
+                != page.title
+            != "|"
+
+block content
+    if page.type === 'categories'
+        div(class="collapse wrap")
+            h2(class="item title")
+                a(href=url_for(site.path))
+                    != __('menu.home')
+                small
+                != _p('counter.categories', site.categories.length)
+    else if page.type === 'tags'
+        div(class="collapse wrap")
+            h2(class="item title")
+                a(href=url_for(site.path))
+                    != __('menu.home')
+                small
+                != _p('counter.tag_cloud', site.tags.length)
+            div(class="tag cloud")
+                != tagcloud({min_font: theme.tagcloud.min,max_font: theme.tagcloud.max,amount: theme.tagcloud.amount,color: true,start_color: theme.tagcloud.start,end_color: theme.tagcloud.end})
+    else
+        div(class="page wrap")
+            != partial('_partials/post/post.pug', {post: page})
+        +CommentRender
+
+block sidebar
+    +sidebarRender(true)

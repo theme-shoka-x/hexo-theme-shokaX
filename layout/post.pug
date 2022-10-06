@@ -1,0 +1,35 @@
+extends _partials/layout.pug
+include _mixin/sidebar.pug
+include _mixin/comment.pug
+include _mixin/postmeta.pug
+
+block title
+    - var page_title = page.title
+    if page.categories && page.categories.length
+        - var cat_list = ''
+        - var comma = ''
+        each cat in page.categories.toArray()
+            - var cat_list = cat.name + comma + cat_list
+            - var comma = ' - '
+        - var page_title = page.title + ' - ' + cat_list
+    != `${page_title} |`
+
+block header
+    h1(itemprop="name headline")
+        if page.link
+            - var postTitleIcon = '<i class="ic i-link-alt"></i>'
+            - var postText = page.title || page.link
+            != _url(page.link, postText + postTitleIcon, {class: 'link external', itemprop: 'url'})
+        else
+            != page.title
+    +PMRender(page, true)
+
+block content
+    div(class="article wrap")
+        +BCRender(page, true)
+        != partial('_partials/post/post.pug', {post: page})
+    != partial('_partials/post/nav.pug', {post: page})
+    +CommentRender
+
+block sidebar
+    +sidebarRender(true)

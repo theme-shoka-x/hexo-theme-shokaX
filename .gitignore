@@ -8,4 +8,4 @@ node_modules/
 .yarn/cache
 .yarn/unplugged
 .yarn/install-state.gz
-yarn-error.log
+yarn-error.log*

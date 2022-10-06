@@ -3,6 +3,57 @@
 'use strict'
 const { htmlTag, url_for } = require('hexo-util')
 const theme_env = require('../../package.json')
+hexo.extend.helper.register('_init_comments', (mode) => {
+  if (mode === 'twikoo') {
+    let options = {
+      envId: theme.twikoo.envId,
+      el: '#tcomments'
+    }
+    if (theme.twikoo.mode === 'tencent') {
+      options.region = theme.twikoo.region
+    }
+    return `
+        <script data-pjax>
+        setTimeout(function () {
+        twikoo.init(${options})
+        }, 1000)
+        </script>`
+  }
+})
+
+hexo.extend.helper.register('_new_comments', (mode) => {
+  if (mode === 'twikoo') {
+    return `<script data-pjax>
+           twikoo.getRecentComments({
+           envId: ${hexo.theme.config.twikoo.envId},
+           pageSize: 10
+           }).then(function (res) {
+                res.forEach(function (item) {
+                    let siteLink = item.url + "#" + item.id
+                    let commentList = document.getElementById("twikoo_comment")
+                    let commentElement = document.createElement("li");
+                    commentElement.className = "item"
+                    let commentLink = document.createElement("a")
+                    commentLink.setAttribute("href", siteLink)
+                    commentLink.setAttribute("data-pjax-state", "data-pjax-state")
+                    let commenterAndTime = document.createElement("span")
+                    commenterAndTime.innerText = item.nick + "@" + item.relativeTime
+                    commenterAndTime.className = "breadcrumb"
+                    let commentTextNode = document.createElement("span")
+                    commentTextNode.innerText = item.commentText
+                    commentLink.appendChild(commenterAndTime)
+                    commentLink.appendChild(commentTextNode)
+                    commentElement.appendChild(commentLink)
+                    commentList.appendChild(commentElement)
+                });
+            }).catch(function (err) {
+                console.log(err)
+            })
+        </script>`
+  } else {
+    // TODO waline
+  }
+})
 
 hexo.extend.helper.register('_safedump', (source) => {
   return JSON.stringify(source)
