@@ -8,6 +8,10 @@
   "license": "Apache-2.0",
   "packageManager": "yarn@3.2.3",
   "devDependencies": {
+    "@types/animejs": "^3.1.5",
+    "@types/fancybox": "^3.5.3",
+    "@types/jquery": "^3.5.14",
+    "@types/lozad": "^1.16.1",
     "@typescript-eslint/eslint-plugin": "^5.37.0",
     "@typescript-eslint/parser": "^5.37.0",
     "eslint": "^8.23.0",

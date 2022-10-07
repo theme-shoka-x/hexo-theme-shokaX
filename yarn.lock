@@ -402,6 +402,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/animejs@npm:^3.1.5":
+  version: 3.1.5
+  resolution: "@types/animejs@npm:3.1.5"
+  checksum: 412ef4b623c8584776acf131496ac515a1cd6b10c877525719c532f79de290637a947a682535b55175c4ada678cdc70120c7db0f79421416721a98377d401c62
+  languageName: node
+  linkType: hard
+
+"@types/fancybox@npm:^3.5.3":
+  version: 3.5.3
+  resolution: "@types/fancybox@npm:3.5.3"
+  dependencies:
+    "@types/jquery": "*"
+  checksum: 0f9ffd2d0d6828fafc6ff497219f697ebaaaf8fa56b0da7ce3ca1d415b4a40e4e30ad8def17f242d131e34801c7c9f5323ea135cabfe5d13c7d365bfca7fab60
+  languageName: node
+  linkType: hard
+
+"@types/jquery@npm:*, @types/jquery@npm:^3.5.14":
+  version: 3.5.14
+  resolution: "@types/jquery@npm:3.5.14"
+  dependencies:
+    "@types/sizzle": "*"
+  checksum: 159d6f804ed1a204b3f79f2d591a271d82e866bd45bd49fb6ef40561a25dbe0f47ec7815681b44cc2db5598425f72811e7e80ab0e983d980470998ac56feb375
+  languageName: node
+  linkType: hard
+
 "@types/json-schema@npm:^7.0.9":
   version: 7.0.11
   resolution: "@types/json-schema@npm:7.0.11"
@@ -413,6 +438,20 @@ __metadata:
   version: 0.0.29
   resolution: "@types/json5@npm:0.0.29"
   checksum: e60b153664572116dfea673c5bda7778dbff150498f44f998e34b5886d8afc47f16799280e4b6e241c0472aef1bc36add771c569c68fc5125fc2ae519a3eb9ac
+  languageName: node
+  linkType: hard
+
+"@types/lozad@npm:^1.16.1":
+  version: 1.16.1
+  resolution: "@types/lozad@npm:1.16.1"
+  checksum: 6cf6eef5751f851573ee185f54fbff03a9a004301ee03ed9ed30f0d04d05c757aad6e3ee79347ebaa56c990e9105c0e2ff86607df5e699330d7fbc282bff4e0e
+  languageName: node
+  linkType: hard
+
+"@types/sizzle@npm:*":
+  version: 2.3.3
+  resolution: "@types/sizzle@npm:2.3.3"
+  checksum: 586a9fb1f6ff3e325e0f2cc1596a460615f0bc8a28f6e276ac9b509401039dd242fa8b34496d3a30c52f5b495873922d09a9e76c50c2ab2bcc70ba3fb9c4e160
   languageName: node
   linkType: hard
 
@@ -2032,6 +2071,10 @@ __metadata:
   resolution: "hexo-theme-shokax@workspace:."
   dependencies:
     "@babel/core": ^7.19.1
+    "@types/animejs": ^3.1.5
+    "@types/fancybox": ^3.5.3
+    "@types/jquery": ^3.5.14
+    "@types/lozad": ^1.16.1
     "@typescript-eslint/eslint-plugin": ^5.37.0
     "@typescript-eslint/parser": ^5.37.0
     eslint: ^8.23.0

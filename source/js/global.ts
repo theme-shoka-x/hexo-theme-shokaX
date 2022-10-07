@@ -1,6 +1,6 @@
 /* global CONFIG  */
 const statics = CONFIG.statics.indexOf('//') > 0 ? CONFIG.statics : CONFIG.root
-const scrollAction:{x:number|string, y:number|string} = { x: undefined, y: undefined }
+const scrollAction:{x:number, y:number} = { x: undefined, y: undefined }
 let diffY = 0
 let originTitle, titleTime
 const BODY = document.getElementsByTagName('body')[0]
@@ -42,9 +42,7 @@ const changeTheme = function (type?:string) {
  * 优先级: 手动选择>时间>跟随系统
  */
 const autoDarkmode = function () {
-  // @ts-ignore
   if (CONFIG.auto_dark.enable) {
-    // @ts-ignore
     if (new Date().getHours() >= CONFIG.auto_dark.start || new Date().getHours() <= CONFIG.auto_dark.end) {
       changeTheme('dark')
     } else {
@@ -75,11 +73,11 @@ const Loader = {
     loadCat.attr('style', 'display:block')
     Loader.lock = false
   },
-  hide: function (sec?) {
+  hide: function (sec?:number) {
     if (!CONFIG.loader.start) { sec = -1 }
     this.timer = setTimeout(this.vanish, sec || 3000)
   },
-  vanish: function () {
+  vanish: function ():never|void {
     if (Loader.lock) { return }
     if (CONFIG.loader.start) { transition(loadCat, 0) }
     document.body.addClass('loaded')
@@ -88,7 +86,7 @@ const Loader = {
 }
 
 /**
- * 更改主题的meta表情
+ * 更改主题的meta
  */
 const changeMetaTheme = function (color:string):void {
   if (HTML.attr('data-theme') === 'dark') { color = '#222' }
@@ -229,7 +227,7 @@ const scrollHandle = function (event) {
     // scrollAction.y = Container.scrollTop;
   }
   // var diffX = scrollAction.x - Container.scrollLeft;
-  // @ts-ignore
+
   diffY = scrollAction.y - window.scrollY
 
   // if (diffX < 0) {
@@ -257,8 +255,8 @@ const scrollHandle = function (event) {
 }
 
 const pagePosition = function () {
-  if (CONFIG.auto_scroll) { // @ts-ignore
-    $storage.set(LOCAL_URL, scrollAction.y)
+  if (CONFIG.auto_scroll) {
+    $storage.set(LOCAL_URL, String(scrollAction.y))
   }
 }
 
@@ -285,7 +283,7 @@ const positionInit = function (comment?) {
   }
 }
 
-const clipBoard = function (str, callback?) {
+const clipBoard = function (str: string, callback?: (result) => void) {
   if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(str).then(function () {
       callback && callback(true)

@@ -36,7 +36,7 @@ function updateCoords (e: any):void {
 
 function setParticuleDirection (p:fireworksP):Object {
   const angle = anime.random(0, 360) * Math.PI / 180
-  const value = anime.random(50, 180)
+  const value:number = anime.random(50, 180)
   const radius = [-1, 1][anime.random(0, 1)] * value
   return {
     x: p.x + radius * Math.cos(angle),
@@ -216,8 +216,8 @@ const sideBarTab = function () {
     } else {
       element.removeClass('active')
     }
-
-    tab.addEventListener('click', function (element) {
+    // TODO 出现BUG把event去掉
+    tab.addEventListener('click', function (event) {
       const target = <HTMLElement> event.currentTarget
       if (target.hasClass('active')) return
 
@@ -296,7 +296,6 @@ const sidebarTOC = function () {
   sections = sections.map(function (element, index) {
     const link = element.child('a.toc-link')
     const anchor = $dom(decodeURI(link.attr('href')))
-    // eslint-disable-next-line array-callback-return
     if (!anchor) return
     const alink = anchor.child('a.anchor')
 
@@ -365,8 +364,7 @@ const backToTopHandle = function () {
 }
 
 const goToBottomHandle = function () {
-  // @ts-ignore
-  pageScroll(parseInt(Container.height()))
+  pageScroll(parseInt(String(Container.height())))
 }
 
 const goToCommentHandle = function () {

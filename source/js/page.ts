@@ -1,4 +1,4 @@
-declare const jQuery, showBtn, hideCode:Function, instantsearch:any, algoliasearch:any, quicklink:any, Pjax:any
+declare const showBtn, hideCode:Function, instantsearch:any, algoliasearch:any, quicklink:any, Pjax:any
 
 const cardActive = function () {
   if (!$dom('.index.wrap')) { return }
@@ -111,6 +111,7 @@ const postFancybox = function (p) {
       })
 
       $dom.each(p + ' div.gallery', function (el, i) {
+        // @ts-ignore
         q(el).justifiedGallery({
           rowHeight: q(el).data('height') || 120,
           rel: 'gallery-' + i
@@ -124,6 +125,7 @@ const postFancybox = function (p) {
       q.fancybox.defaults.hash = false
       q(p + ' .fancybox').fancybox({
         loop: true,
+        // @ts-ignore
         helpers: {
           overlay: {
             locked: false

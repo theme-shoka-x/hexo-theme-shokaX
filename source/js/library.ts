@@ -1,11 +1,5 @@
 /* global CONFIG */
-declare const anime:any, lozad:Function
 declare interface Object {
-  innerText: string;
-  title: string;
-  dataset: {
-    backgroundImage: any;
-    url:string }
   attr(type:string, value?:any):any
   removeClass(className:string):any
   addClass(className:string):any
@@ -17,7 +11,7 @@ declare interface Object {
   width(w?:number|string):number
   insertAfter(element:HTMLElement):void
   wrap(obj:Object)
-  find(selector:string):NodeListOf<Element>
+  find(selector:string):NodeListOf<HTMLElement>
   display(d?:null|string):string|any
 }
 declare const LOCAL: {
@@ -45,7 +39,11 @@ declare const CONFIG: {
     hidden: string
   }
   darkmode: boolean
-  auto_dark: boolean
+  auto_dark: {
+    enable: boolean
+    start: number
+    end: number
+  }
   auto_scroll: boolean
   loader: {
     start:boolean
@@ -72,9 +70,7 @@ declare const CONFIG: {
   }
 }
 
-const getDocHeight = function () {
-  return $dom('main > .inner').offsetHeight
-}
+const getDocHeight = () => $dom('main > .inner').offsetHeight
 /**
  * 获取一个dom选择器对应的元素
  */
@@ -95,7 +91,7 @@ $dom.all = (selector:string, element?:Document):NodeListOf<HTMLElement> => {
 /**
  * 获取具有此选择器的所有dom节点,并依次执行callback函数
  */
-$dom.each = (selector:string, callback?:(value: Element, key: number, parent: NodeListOf<Element>) => void, element?:Document):void => {
+$dom.each = (selector:string, callback?:(value: HTMLElement, key: number, parent: NodeListOf<Element>) => void, element?:Document):void => {
   return $dom.all(selector, element).forEach(callback)
 }
 
@@ -103,7 +99,7 @@ Object.assign(HTMLElement.prototype, {
   /**
      * 创建一个子节点并放置
      */
-  createChild: function (tag:string, obj:Object, positon?: string | null):HTMLElement {
+  createChild: function (tag:string, obj:Object, positon?: string):HTMLElement {
     const child = document.createElement(tag)
     Object.assign(child, obj)
     switch (positon) {
@@ -175,10 +171,10 @@ Object.assign(HTMLElement.prototype, {
   child: function (selector:string):HTMLElement {
     return $dom(selector, this)
   },
-  find: function (selector:string):NodeListOf<Element> {
+  find: function (selector:string):NodeListOf<HTMLElement> {
     return $dom.all(selector, this)
   },
-  _class: function (type:string, className:string, display?:boolean):void {
+  _class: (type: string, className: string, display?: boolean): void => {
     const classNames = className.indexOf(' ') ? className.split(' ') : [className]
     // const that = this
     classNames.forEach(function (name) {
@@ -206,6 +202,7 @@ Object.assign(HTMLElement.prototype, {
   }
 })
 
+// Html5LocalStorage的一个API
 const $storage = {
   set: (key:string, value:string):void => {
     localStorage.setItem(key, value)
@@ -223,9 +220,11 @@ const getScript = function (url:string, callback:Function, condition:string):voi
     callback()
   } else {
     let script = document.createElement('script')
+
     // @ts-ignore
     script.onload = function (_, isAbort: boolean) {
-      // @ts-ignore
+
+      // @ts-ignore TODO 此处代码在非ie下可能无效
       if (isAbort || !script.readyState || /loaded|complete/.test(script.readyState)) {
         script.onload = null
         script = undefined
@@ -257,7 +256,6 @@ const vendorCss = function (type:string, condition?:string):void {
   if (window['css' + type]) { return }
 
   if (LOCAL[type]) {
-    // @ts-ignore
     document.head.createChild('link', {
       rel: 'stylesheet',
       href: assetUrl('css', type)
@@ -267,9 +265,9 @@ const vendorCss = function (type:string, condition?:string):void {
   }
 }
 
-const transition = (target:any, type:any, complete?:Function):void => {
+const transition = (target:HTMLElement, type:Object, complete?:Function):void => {
   let animation
-  let display = 'none'
+  let display:any = 'none'
   switch (type) {
     case 0:
       animation = { opacity: [1, 0] }
