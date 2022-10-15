@@ -11,7 +11,6 @@ module.exports = {
     'plugin:@typescript-eslint/recommended'
   ],
   plugins: [
-    'pug',
     '@typescript-eslint'
   ],
   parserOptions: {
@@ -20,6 +19,7 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-unused-vars': 'off',
     'no-undef': 'off',
+    camelcase: 'off',
     'n/no-callback-literal': 'off',
     '@typescript-eslint/ban-types': 'off',
     // '@typescript-eslint/ban-ts-comment': 'off',

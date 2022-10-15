@@ -10,7 +10,9 @@
   "devDependencies": {
     "@types/animejs": "^3.1.5",
     "@types/fancybox": "^3.5.3",
+    "@types/hexo": "^3.8.8",
     "@types/jquery": "^3.5.14",
+    "@types/js-yaml": "^4.0.5",
     "@types/lozad": "^1.16.1",
     "@typescript-eslint/eslint-plugin": "^5.37.0",
     "@typescript-eslint/parser": "^5.37.0",
@@ -19,7 +21,6 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.5",
     "eslint-plugin-promise": "^6.0.1",
-    "eslint-plugin-pug": "^1.2.4",
     "eslint-plugin-standard": "^5.0.0"
   },
   "dependencies": {

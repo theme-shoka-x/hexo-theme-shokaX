@@ -5,7 +5,7 @@ const { htmlTag, url_for } = require('hexo-util')
 const theme_env = require('../../package.json')
 hexo.extend.helper.register('_init_comments', (mode) => {
   if (mode === 'twikoo') {
-    let options = {
+    const options = {
       envId: theme.twikoo.envId,
       el: '#tcomments'
     }
@@ -151,7 +151,7 @@ hexo.extend.helper.register('_adv_vendor_js', function (js_name) {
   } else {
     result = '/' + src
   }
-  let attr = { src: result }
+  const attr = { src: result }
   if (config.async) attr.async = 'async'
   if (config['data-pjax']) attr['data-pjax'] = 'data-pjax'
   if (config['hash-value']) attr.integrity = config['hash-value']

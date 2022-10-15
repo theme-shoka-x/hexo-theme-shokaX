@@ -64,7 +64,7 @@ declare const CONFIG: {
   search: any,
   valine: string
   quicklink: {
-      ignores: any;
+    ignores: any;
     timeout: number
     priority: string
   }

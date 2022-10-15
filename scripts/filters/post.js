@@ -1,5 +1,3 @@
-/* global hexo */
-
 'use strict'
 
 hexo.extend.filter.register('after_post_render', data => {
@@ -17,7 +15,7 @@ hexo.extend.filter.register('after_post_render', data => {
 
     // Exit if the url has same host with `config.url`, which means it's an internal link.
     // let link = url.parse(href)
-    let link = new URL(href)
+    const link = new URL(href)
     if (!link.protocol || link.hostname === siteHost) return match
 
     return `<span class="exturl" data-url="${Buffer.from(href).toString('base64')}">${html}</span>`

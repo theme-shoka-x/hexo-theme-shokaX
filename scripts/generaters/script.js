@@ -10,7 +10,7 @@ hexo.extend.generator.register('script', function (locals) {
 
   const env = require('../../package.json')
 
-  let siteConfig = {
+  const siteConfig = {
     version: env.version,
     hostname: config.url,
     root: config.root,

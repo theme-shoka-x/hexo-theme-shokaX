@@ -9,5 +9,6 @@
   },
   "typeAcquisition": {
     "enable": true
-  }
+  },
+  "include": ["source/js"]
 }
