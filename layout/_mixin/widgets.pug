@@ -5,7 +5,7 @@ mixin field(item)
         +BCRender(item, false)
         - var postText = item.title || item.link || __('post.untitled')
         span
-            != _url(item.link || item.path, postText + (postTitleIcon || ''))
+            != _url(item.link, postText + (postTitleIcon || ''))
 
 mixin WRender(item)
     if theme.widgets.random_posts
