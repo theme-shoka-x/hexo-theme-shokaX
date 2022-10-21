@@ -277,3 +277,27 @@ vendorsList:
     - fancybox
     - copy_tex
     - chart
+
+vendors:
+  css:
+    # katex: npm/katex@0.12.0/dist/katex.min.css
+    katex: npm/katex@0.12.0/dist/katex.min.css # ok
+    comment: css/comment.css
+    fancybox: combine/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css # notok
+    # fancybox: npm/fancybox/justifiedGallery.min.css
+
+  js:
+    pace: npm/pace-js@1.0.2/pace.min.js # ok
+    pjax: npm/pjax@0.2.8/pjax.min.js # ok
+    fetch: npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js # ok
+    anime: npm/animejs@3.2.0/lib/anime.min.js # ok
+    algolia: npm/algoliasearch@4/dist/algoliasearch-lite.umd.js # ok
+    instantsearch: npm/instantsearch.js@4/dist/instantsearch.production.min.js # ok
+    lazyload: npm/lozad@1/dist/lozad.min.js # ok
+    quicklink: npm/quicklink@2/dist/quicklink.umd.js # ok
+    fancybox: combine/npm/jquery@3.5.1/dist/jquery.min.js,npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js,npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js # notok
+    # fancybox: npm/fancybox/jquery.justifiedGallery.min.js
+    valine: gh/amehime/MiniValine@4.2.2-beta10/dist/MiniValine.min.js
+    copy_tex: npm/katex@0.12.0/dist/contrib/copy-tex.min.js # ok
+    chart: npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js # ok
+

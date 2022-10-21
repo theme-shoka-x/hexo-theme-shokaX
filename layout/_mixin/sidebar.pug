@@ -1,6 +1,4 @@
 mixin sidebarRender(display_toc)
-    - var toc = toc(page.content)
-    - var display_toc = toc.length > 1 && display_toc
     - var related = _category_posts(page)
     if page && page.prev
         -   var prevlink = page.prev_link
@@ -15,7 +13,7 @@ mixin sidebarRender(display_toc)
             div(class="inner")
                 div(class="contents panel pjax" data-title=__('sidebar.toc'))
                     if display_toc
-                        != toc
+                        != toc(page.content)
 
                 div(class="related panel pjax" data-title=__('sidebar.related'))
                     if related

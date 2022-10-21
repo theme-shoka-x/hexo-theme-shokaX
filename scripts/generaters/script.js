@@ -58,8 +58,8 @@ hexo.extend.generator.register('script', function (locals) {
 
   let text = '';
 
-  ['library', 'player', 'global', 'page', 'components'].forEach(function (item) {
-    text = fs.readFileSync('themes/traveler/source/js/' + item + '.ts').toString()
+  ['library', 'global', 'page', 'player', 'components'].forEach(function (item) {
+    text += fs.readFileSync('themes/traveler/source/js/' + item + '.js').toString()
   })
 
   if (theme.fireworks && theme.fireworks.enable) {
@@ -71,13 +71,7 @@ hexo.extend.generator.register('script', function (locals) {
   return {
     path: theme.js + '/app.js',
     data: function () {
-      return hexo.render.renderSync({text, engine: 'ts' }, {
-        target: 'es2020',
-        removeComments: true,
-        newLine: 'Lf',
-        pretty: false,
-        allowJs: true
-      })
+      return hexo.render.renderSync({ text, engine: 'js' })
     }
   }
 })
