@@ -6,11 +6,11 @@ mixin SMRender(item)
     - var postText = item.title || item.link || __('post.untitled')
     article(class="item")
         div(class="cover")
-            != _url(item.link || item.path, '<img data-src="'+ _cover(item) +'">', {itemprop: 'url', title: postText})
+            != _url(item.link, '<img data-src="'+ _cover(item) +'">', {itemprop: 'url', title: postText})
         div(class="info")
             +PMRender(item)
             h3
-                != _url(item.link || item.path, postText + (postTitleIcon || ''), {itemprop: 'url', title: postText})
+                != _url(item.link, postText + (postTitleIcon || ''), {itemprop: 'url', title: postText})
             div(class="excerpt")
                 if item.description
                     != item.description
@@ -23,5 +23,5 @@ mixin SMRender(item)
                     span
                         - var lastcat = item.categories.last()
                         != _url(lastcat.path, '<i class="ic i-flag"></i>' + lastcat.name, {itemprop: 'url', title: lastcat.name})
-            != _url(item.link || item.path, 'more...', {itemprop: 'url', title: postText, class: 'btn'})
+            != _url(item.link, 'more...', {itemprop: 'url', title: postText, class: 'btn'})
 
