@@ -1,0 +1,31 @@
+extends _partials/layout.pug
+
+block title
+    if is_month()
+        != `${page.year}${__('symbol.year')}/${page.month}${__('symbol.month')}`
+    else if is_year()
+        != `${page.year}${__('symbol.year')}`
+    != `${__('title.archive')}|`
+
+block header
+    h1(itemprop="name headline")
+        if is_month()
+            != _p('title.archive_in', page.year + __('symbol.year') + page.month + __('symbol.month'))
+        else if is_year()
+            != _p('title.archive_in', page.year + __('symbol.year'))
+        else
+            != __('title.archive')
+
+block content
+    div(class="collapse wrap")
+        h2(class="item header")
+            if is_month()
+                a(href=url_for(config.archive_dir))
+                    != __('title.all')
+                small /
+                a(href=url_for(config.archive_dir + '/' + page.year ))
+                    != `${page.year} ${__('symbol.year')}`
+                small /
+                != `${page.month}${__('symbol.month')}`
+                small
+                    != __('title.archive')

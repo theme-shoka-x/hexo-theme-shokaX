@@ -5,6 +5,14 @@ assets: "assets"
 css: "css"
 js: "js"
 
+# 出于易用性和兼容性准备的特性
+# 建议手动安装如下插件而非使用内置渲染器:
+# hexo-renderer-pug, hexo-renderer-ts
+compatibility:
+  useBuiltPugRenderer: true # 使用内置的pug渲染器(不推荐)
+  useBuiltTsRenderer: true # 使用内置的ts渲染器(不推荐)
+
+
 open_graph:
 #twitter_id:
 #google_plus:

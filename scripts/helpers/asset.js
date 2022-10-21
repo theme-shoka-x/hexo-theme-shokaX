@@ -142,7 +142,7 @@ hexo.extend.helper.register('_adv_vendor_js', function (js_name) {
   if (src.indexOf('http') !== -1) {
     result = src
   } else if (src.indexOf('combine') !== -1) {
-    console.log('The combine feature is not recommended!')
+    hexo.log.info('The combine feature is not recommended!')
     result = hexo.theme.config.advVendors.combine + src
   } else if (src.indexOf('npm') !== -1) {
     result = hexo.theme.config.advVendors.npm + src.slice(4)
