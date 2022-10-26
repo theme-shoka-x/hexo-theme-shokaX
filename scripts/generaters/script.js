@@ -58,10 +58,12 @@ hexo.extend.generator.register('script', function (locals) {
 
   let text = '';
 
-  ['library', 'global', 'page', 'player', 'components'].forEach(function (item) {
-    text += fs.readFileSync('themes/traveler/source/js/' + item + '.js').toString()
+  ['library', 'global', 'page', 'components'].forEach(function (item) {
+    text += fs.readFileSync(`themes/traveler/source/js/${item}.js`).toString()
   })
-
+  if (!theme.experiments.noPlayer) {
+    text += fs.readFileSync('themes/traveler/source/js/player.js').toString()
+  }
   if (theme.fireworks && theme.fireworks.enable) {
     // text += fs.readFileSync('themes/shoka/source/js/_app/fireworks.js').toString()
     siteConfig.fireworks = theme.fireworks.color || ['rgba(255,182,185,.9)', 'rgba(250,227,217,.9)', 'rgba(187,222,214,.9)', 'rgba(138,198,209,.9)']

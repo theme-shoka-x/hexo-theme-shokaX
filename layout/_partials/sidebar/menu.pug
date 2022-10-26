@@ -13,14 +13,15 @@ mixin item(name, path, parent)
                 a(href="javascript:void(0);")
                     != menuIcon + menuText
             else
+
                 != _url(full_url_for(itemURL), menuIcon + menuText, {rel: 'section'})
-            <ul class="submenu">
+                <ul class="submenu">
     else
         li(class="item")
             != _url(full_url_for(itemURL), menuIcon + menuText, {rel: 'section'})
 
 each value, name in theme.menu
-    if value.toString() == '[object Object]'
+    if value == '[object Object]'
         each subvalue, subname in value
             if subname === 'default'
                 +item(name, subvalue, true)

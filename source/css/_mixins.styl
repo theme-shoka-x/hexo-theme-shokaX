@@ -1,0 +1,146 @@
+the-transition(duration = .2s, function = ease-in-out, delay = 0s, property = all) {
+  transition:property duration function delay;
+}
+
+mobile-smallest() {
+  @media (max-width: 413px) {
+    {block};
+  }
+}
+
+mobile-small() {
+  @media (max-width: 567px) {
+    {block};
+  }
+}
+
+mobile() {
+  @media (max-width: 820px) {
+    {block};
+  }
+}
+
+tablet-mobile() {
+  @media (max-width: 991px) {
+    {block};
+  }
+}
+
+tablet-desktop() {
+  @media (min-width: 820px) {
+    {block};
+  }
+}
+
+tablet() {
+  @media (min-width: 820px) and (max-width: 1043px) {
+    {block};
+  }
+}
+
+desktop() {
+  @media (min-width: 1044px) {
+    {block};
+  }
+}
+
+desktop-large() {
+  @media (min-width: 1200px) {
+    {block};
+  }
+}
+
+desktop-largest() {
+  @media (min-width: 1600px) {
+    {block};
+  }
+}
+
+random-color($min, $max) {
+  return floor(math(0, 'random') * ($max - $min + 1) + $min);
+}
+
+word-wrap() {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+disable-user-select() {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+sidebar-inline-links-item() {
+  margin: .3125rem 0 0;
+
+  a {
+    box-sizing: border-box;
+    display: inline-block;
+    margin-bottom: 0;
+    margin-right: 0;
+    max-width: 13.5rem;
+    overflow: hidden;
+    padding: 0 .3125rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+the-flex(direction = column, justify = center, align = center) {
+  display: flex;
+  flex-direction: direction if direction == column;
+  justify-content: justify;
+  align-items: align;
+}
+
+font-family-icons() {
+  font-family: 'ic';
+  font-weight: normal;
+}
+
+shadow-box(border = true, radius = .5rem) {
+  border-radius: radius;
+  border: .0625rem solid var(--grey-2) if border == true;
+  box-shadow: 0 .625rem 1.875rem -.9375rem var(--box-bg-shadow);
+}
+
+li-nodot() {
+  width: auto;
+  height: auto;
+  background: none !important;
+  border: none !important;
+  position: relative;
+  top: 0 !important;
+  left: 0 !important;
+}
+
+$hover-underline {
+  &::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: .1875rem;
+    bottom: 0;
+    border-radius: .125rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: currentColor;
+  }
+}
+
+$color-btn {
+  color: var(--grey-0);
+  background-image: linear-gradient(to right,var(--color-pink) 0,var(--color-orange) 100%);
+  box-shadow: 0 0 .75rem var(--color-pink-a3);
+}
+
+$fix-fullscreen {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: $zindex-5;
+}

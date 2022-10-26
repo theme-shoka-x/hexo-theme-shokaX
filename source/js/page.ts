@@ -592,10 +592,13 @@ const domInit = function () {
   goToComment.addEventListener('click', goToCommentHandle)
   showContents.addEventListener('click', sideBarToggleHandle)
 
-  mediaPlayer(toolPlayer)
-  $dom('main').addEventListener('click', function () {
-    toolPlayer.player.mini()
-  })
+  if(typeof mediaPlayer !== 'undefined'){
+    mediaPlayer(toolPlayer)
+
+    $dom('main').addEventListener('click', function () {
+      toolPlayer.player.mini()
+    })
+  }
 }
 
 const pjaxReload = function () {

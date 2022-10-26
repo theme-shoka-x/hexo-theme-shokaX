@@ -21,7 +21,7 @@ mixin sidebarRender(display_toc)
                             != related
                 div(class="overview panel" data-title=__('sidebar.overview'))
                     != partial('_partials/sidebar/overview.pug', {}, {cache: true})
-        ul(class="quick")
+        ul(id="quick")
             li(class="prev pjax")
                 if page && page.prev
                     if prevlink
