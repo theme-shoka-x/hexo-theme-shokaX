@@ -1,6 +1,7 @@
 /* global hexo */
 
 'use strict'
+const { __ } = require('hexo-i18n')
 const { htmlTag, url_for } = require('hexo-util')
 const theme_env = require('../../package.json')
 hexo.extend.helper.register('_init_comments', (mode) => {
@@ -161,4 +162,28 @@ hexo.extend.helper.register('_adv_vendor_js', function (js_name) {
         `)
   }
   return htmlTag('script', attr, '')
+})
+
+hexo.extend.helper.register('_local_script', (page) => {
+  const theme = hexo.theme
+  const LOCAL = {
+    path: this._permapath(page.path),
+    favicon: {
+      show: __('favicon.show'),
+      hide: __('favicon.hide')
+    },
+    search: {
+      placeholder: __('search.placeholder'),
+      empty: __('search.empty'),
+      stats: __('search.stats')
+    }
+  }
+  if (theme.widgets.recent_comments || page.comment !== false) {
+    LOCAL.valine = page.valine ? JSON.stringify(page.valine) : 'true'
+  }
+  if (page.chart) LOCAL.chart = true
+  if (page.math) {
+    LOCAL.copy_tex = true; LOCAL.katex = true
+  }
+  return htmlTag('script', { 'data-config': true, type: 'text/javascript' }, JSON.stringify(LOCAL))
 })

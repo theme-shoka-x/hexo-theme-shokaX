@@ -74,18 +74,17 @@ html(lang=page.language?page.language:config.language)
                     != partial('_partials/footer.pug', {}, {cache: true})
         - var ccIcon = '<i class="ic i-creative-commons"></i>'
         - var ccText = theme.creative_commons.license | upper
-        script(data-config type="text/javascript")
-            // TODO helper函数解决
+        <script data-config type="text/javascript" >
             | var LOCAL = {
-            |    path: '{{ _permapath(page.path) }}',
-            |    favicon: {
-            |        show: "{{ __('favicon.show') }}",
-            |        hide: "{{ __('favicon.hide') }}"
+            != `path: \'${page.path}\',`
+            |   favicon: {
+            !=      `show: \'${__('favicon.show')}\',`
+            !=      `hide: \'${__('favicon.hide')}\'`
             |    },
             |    search: {
-            |        placeholder: "{{ __('search.placeholder') }}",
-            |        empty: "{{ __('search.empty') }}",
-            |        stats: "{{ __('search.stats') }}"
+            !=       `placeholder: \'${__('search.placeholder')}\',`
+            !=       `empty: \'${__('search.empty')}\',`
+            !=       `stats: \'${__('search.stats')}\'`
             |    },
             if theme.widgets.recent_comments || page.comment !== false
                 != `valine: ${page.valine ? _safedump(page.valine) : 'true'},`
@@ -105,30 +104,31 @@ html(lang=page.language?page.language:config.language)
             if page.copyright !== false
                 if page.copyright === true
                     | nocopy: true,
-                    != `copyright: ${__("tips.nocopy")},`
+                    != `copyright: \'${__("tips.nocopy")}\',`
                 else
-                    != `copyright: ${__("tips.copyright", ccIcon + ccText) },`
+                    != `copyright: \'${__("tips.copyright", ccIcon + ccText)}\',`
             if page.quiz
                 | quiz: {
-                != `choice: ${__('quiz.choice') },`
-                != `multiple: ${__('quiz.multiple') },`
-                != `true_false: ${__('quiz.true_false') },`
-                != `essay: ${__('quiz.essay') },`
-                != `gap_fill: ${__('quiz.gap_fill') },`
-                != `mistake: ${__('quiz.mistake') }`
+                != `choice: \'${__('quiz.choice')}\',`
+                != `multiple: \'${__('quiz.multiple')}\',`
+                != `true_false: \'${__('quiz.true_false')}\',`
+                != `essay: \'${__('quiz.essay')}\',`
+                != `gap_fill: \'${__('quiz.gap_fill')}\',`
+                != `mistake: \'${__('quiz.mistake')}\'`
                 | },
             | ignores : [
-            | function(uri) {
-            |    return uri.includes('#');
-            | },
-            | function(uri) {
-            |   return new RegExp(LOCAL.path+"$").test(uri);
-            | }
+            |   function(uri) {
+            |       return uri.includes('#');
+            |   },
+            |   function(uri) {
+            |       return new RegExp(LOCAL.path+"$").test(uri);
+            |   }
             if theme.quicklink.ignores
                 | ,
                 != _safedump(theme.quicklink.ignores)
             | ]
-            |};
+            | };
+        </script>
         script(src="https://cdn.polyfill.io/v3/polyfill.js")
         if theme.advVendors.enable
             each i in _list_vendor_js()

@@ -13,9 +13,8 @@ mixin item(name, path, parent)
                 a(href="javascript:void(0);")
                     != menuIcon + menuText
             else
-
                 != _url(full_url_for(itemURL), menuIcon + menuText, {rel: 'section'})
-                <ul class="submenu">
+            <ul class="submenu">
     else
         li(class="item")
             != _url(full_url_for(itemURL), menuIcon + menuText, {rel: 'section'})

@@ -1251,6 +1251,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hexo-i18n@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "hexo-i18n@npm:1.0.0"
+  dependencies:
+    sprintf-js: ^1.0.3
+  checksum: 92005d21193067528a7dcbe1ddfa9e0499d0675dd5b8af8e85c84dc9bb28d27c118a710c34a2e3d1317937f30e7ce3f234a429745bfba0dd72231626b80c89e3
+  languageName: node
+  linkType: hard
+
 "hexo-theme-shokax@workspace:.":
   version: 0.0.0-use.local
   resolution: "hexo-theme-shokax@workspace:."
@@ -1269,6 +1278,7 @@ __metadata:
     eslint-plugin-n: ^15.2.5
     eslint-plugin-promise: ^6.0.1
     eslint-plugin-standard: ^5.0.0
+    hexo-i18n: ^1.0.0
     js-yaml: ^4.1.0
     pug: ^3.0.2
     typescript: ^4.8.4
@@ -2067,6 +2077,13 @@ __metadata:
   version: 3.0.0
   resolution: "slash@npm:3.0.0"
   checksum: 94a93fff615f25a999ad4b83c9d5e257a7280c90a32a7cb8b4a87996e4babf322e469c42b7f649fd5796edd8687652f3fb452a86dc97a816f01113183393f11c
+  languageName: node
+  linkType: hard
+
+"sprintf-js@npm:^1.0.3":
+  version: 1.1.2
+  resolution: "sprintf-js@npm:1.1.2"
+  checksum: d4bb46464632b335e5faed381bd331157e0af64915a98ede833452663bc672823db49d7531c32d58798e85236581fb7342fd0270531ffc8f914e186187bf1c90
   languageName: node
   linkType: hard
 
