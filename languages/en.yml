@@ -1,0 +1,148 @@
+name: English
+
+favicon:
+  show: （●´3｀●）Goooood
+  hide: (´Д｀)Booooom
+
+title:
+  archive: Archive
+  category: Category
+  tag: Tag
+  all: All
+  not_found: Σ( ° △ °|||)︴404!
+  category_in: Posted in category "%s"
+  tag_in: Posted with tag "%s"
+  archive_in: Posted on "%s"
+
+menu:
+  home: Home
+  posts: Posts
+  archives: Archives
+  categories: Categories
+  tags: Tags
+  about: About
+  search: Search
+  aboutsite: About the Website
+  census: Blog access statistics
+  updata: Changelog
+  statistics: Article statistics
+  admiration: Appreciation to author
+
+sidebar:
+  overview: Overview
+  toc: Contents
+  related: Related
+
+index:
+  sticky: Sticky Posts
+  category: Categories
+  posts: Post List
+  random_posts: Random Posts
+  recent_comments: Recent Comments
+
+post:
+  posted: Posted on
+  edited: Edited on
+  created: Created
+  modified: Modified
+  edit: Edit this post
+  in: In
+  read_more: Read more
+  untitled: Untitled
+  sticky: Sticky
+  views: Views
+  related_posts: Related Posts
+  next: Next Post
+  prev: Previous Post
+  copyright:
+    author: Post author
+    link: Post link
+    license_title: Copyright Notice
+    license_content: "All articles in this blog are licensed under %s unless stating additionally."
+    nocopy: "<span class=\"red\">This page is prohibited reprint.</span>"
+
+footer:
+  powered: "Powered by %s"
+  total_views: Total Views
+  total_visitors: Total Visitors
+
+counter:
+  index:
+    post: "%d posts in total"
+    category:  "%d subcategories in total, "
+  tag_cloud:
+    zero: No tags
+    one: 1 tag in total
+    other: "%d tags in total"
+  categories:
+    zero: No categories
+    one: 1 category in total
+    other: "%d categories in total"
+  archive_posts:
+    zero: No posts.
+    one: 1 post.
+    other: "%d posts in total."
+
+state:
+  posts: posts
+  tags: tags
+  categories: categories
+
+search:
+  placeholder: Search for Posts
+  empty: "We didn't find any results for the search: ${query}"
+  stats: "${hits} results found in ${time} ms"
+
+cheers:
+  um: Um..
+  ok: OK
+  nice: Nice
+  good: Good
+  great: Great
+  excellent: Excellent
+
+keep_on: Keep on posting.
+
+symbol:
+  comma: ", "
+  period: ". "
+  colon: ": "
+  year: "Y"
+  month: "M"
+
+reward:
+  donate: Donate
+  text: Give me a cup of [coffee]~(￣▽￣)~*
+  wechatpay: WeChat Pay
+  alipay: Alipay
+  paypal: PayPal
+  bitcoin: Bitcoin
+
+follow_me:
+  welcome: Welcome to my other publishing channels
+
+accessibility:
+  nav_toggle: Toggle navigation bar
+  prev_page: Previous page
+  next_page: Next page
+
+symbols_count_time:
+  count: Symbols count in article
+  count_total: Symbols count total
+  time: Reading time
+  time_total: Reading time total
+  time_minutes: mins.
+  word: words
+  view: times
+
+tips:
+  copyright: "Copied to clipboard successfully! <br> All articles in this blog are licensed under %s."
+  nocopy: "Copied to clipboard failed! This page is prohibited reprint."
+
+quiz:
+  choice: Multiple Choice
+  multiple: Multiple Answer
+  true_false: True/False
+  essay: Questions
+  gap_fill: Gap Filling
+  mistake: Wrong Answer

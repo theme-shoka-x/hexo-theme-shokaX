@@ -75,6 +75,7 @@ html(lang=page.language?page.language:config.language)
         - var ccIcon = '<i class="ic i-creative-commons"></i>'
         - var ccText = theme.creative_commons.license | upper
         <script data-config type="text/javascript" >
+            //- TODO helper函数解决
             | var LOCAL = {
             != `path: \'${page.path}\',`
             |   favicon: {
@@ -82,9 +83,9 @@ html(lang=page.language?page.language:config.language)
             !=      `hide: \'${__('favicon.hide')}\'`
             |    },
             |    search: {
-            !=       `placeholder: \'${__('search.placeholder')}\',`
-            !=       `empty: \'${__('search.empty')}\',`
-            !=       `stats: \'${__('search.stats')}\'`
+            !=       `placeholder: \"${__('search.placeholder')}\",`
+            !=       `empty: \"${__('search.empty')}\",`
+            !=       `stats: \"${__('search.stats')}\"`
             |    },
             if theme.widgets.recent_comments || page.comment !== false
                 != `valine: ${page.valine ? _safedump(page.valine) : 'true'},`

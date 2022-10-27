@@ -174,15 +174,21 @@ Object.assign(HTMLElement.prototype, {
   find: function (selector:string):NodeListOf<HTMLElement> {
     return $dom.all(selector, this)
   },
-  _class: (type: string, className: string, display?: boolean): void => {
+  _class: function (type: string, className: string, display?: boolean): void {
     const classNames = className.indexOf(' ') ? className.split(' ') : [className]
-    // const that = this
+    const that = this
     classNames.forEach(function (name) {
-      if (type === 'toggle') {
-        this.classList.toggle(name, display)
-      } else {
-        this.classList[type](name)
-      }
+      try{
+        if (type === 'toggle') {
+          that.classList.toggle(name, display)
+        } else {
+          that.classList[type](name)
+        }
+        } catch (e){
+          console.log(that.classList)
+          console.log(type)
+          throw (e)
+        }
     })
   },
   addClass: function (className:string):any {

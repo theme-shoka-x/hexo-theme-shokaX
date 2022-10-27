@@ -658,9 +658,9 @@ const siteRefresh = function (reload) {
   registerExtURL()
   postBeauty()
   tabFormat()
-
-  toolPlayer.player.load(LOCAL.audio || CONFIG.audio || {})
-
+  if(typeof mediaPlayer !== 'undefined') {
+    toolPlayer.player.load(LOCAL.audio || CONFIG.audio || {})
+  }
   Loader.hide()
 
   setTimeout(function () {
