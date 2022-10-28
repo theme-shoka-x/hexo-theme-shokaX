@@ -1,31 +1,40 @@
-mixin item(name, path, parent)
-    - console.log(path)
+mixin item(name, path, parent, dropdown, sublist)
     - var trimn = (str)=>{if (str!=null) return str.trim(); else return ""}
     - var path = path.split('||')
     - var itemURL = path[0].trim()
-    - console.log(itemURL)
     - if (!itemURL.startsWith('http')){ itemURL = itemURL.replace('//', '/') }
     - var menuIcon = '<i class="ic i-' + trimn(path[1]) + '"></i>'
     - var menuText = __('menu.' + name).replace('menu.', '')
     if parent
         li(class="item dropdown")
-            if itemURL === '/'
+            if itemURL == '/'
                 a(href="javascript:void(0);")
                     != menuIcon + menuText
             else
-                != _url(full_url_for(itemURL), menuIcon + menuText, {rel: 'section'})
-            <ul class="submenu">
+                != _url(itemURL, menuIcon + menuText, {rel: 'section'})
+            if dropdown
+                ul(class="submenu")
+                    each subvalue, subname in sublist
+                        - var path = subvalue.split('||')
+                        - var itemURL = path[0].trim()
+                        - var menuText = __('menu.' + subname).replace('menu.', '')
+                        if subname == 'default'
+                            - var menuText = __('menu.' + name).replace('menu.', '')
+                        - var menuIcon = '<i class="ic i-' + trimn(path[1]) + '"></i>'
+                        li(class="item")
+                            != _url(itemURL, menuIcon + menuText, {rel: 'section'})
     else
+        //- TODO 大规模修改
         li(class="item")
-            != _url(full_url_for(itemURL), menuIcon + menuText, {rel: 'section'})
+            != _url(itemURL, menuIcon + menuText, {rel: 'section'})
 
 each value, name in theme.menu
     if value == '[object Object]'
         each subvalue, subname in value
-            if subname === 'default'
-                +item(name, subvalue, true)
-            else
-                +item(subname, subvalue)
+            if subname == 'default'
+                +item(name, subvalue, true, true, value)
+            //else
+            //    +item(subname, subvalue, false ,true, value)
         </ul>
     else
         +item(name, value)

@@ -36,4 +36,5 @@ div(class="social")
         != _url(sidebarURL, sidebarIcon, {title: sidebarURL, class: 'item ' + name})
 
 div(class="menu")
-    != partial('_partials/sidebar/menu.pug', {}, {cache: true})
+    //!= partial('_partials/sidebar/menu.pug', {}, {cache: true})
+    != partial('_partials/sidebar/menu.pug')

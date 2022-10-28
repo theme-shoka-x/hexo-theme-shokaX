@@ -167,7 +167,7 @@ hexo.extend.helper.register('_adv_vendor_js', function (js_name) {
 hexo.extend.helper.register('_local_script', (page) => {
   const theme = hexo.theme
   const LOCAL = {
-    path: this._permapath(page.path),
+    path: page.path,
     favicon: {
       show: __('favicon.show'),
       hide: __('favicon.hide')

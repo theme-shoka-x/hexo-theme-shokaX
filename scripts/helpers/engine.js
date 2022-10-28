@@ -56,10 +56,8 @@ hexo.extend.helper.register('_url', function (path, text, options = {}) {
   if (!path) { return }
 
   const { config } = this
-  // const data = url.parse(path)
-  const data = new URL(path)
-  // const siteHost = url.parse(config.url).hostname || config.url
-  const siteHost = new URL(config.url).hostname || config.url
+  const data = url.parse(path)
+  const siteHost = url.parse(config.url).hostname || config.url
 
   const theme = hexo.theme.config
   let exturl = ''
