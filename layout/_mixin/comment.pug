@@ -2,5 +2,4 @@ mixin CommentRender()
     if page.comment !== false
         //- TODO waline
         div(class="wrap" id="tcomments")
-        script(src=theme.twikoo.link)
         != _init_comments("twikoo")

@@ -1,16 +1,17 @@
 include postmeta.pug
 
 mixin SMRender(item)
+    - var link1 = item.link || item.path
     if item.link
         - var postTitleIcon = '<i class="ic i-link-alt"></i>'
     - var postText = item.title || item.link || __('post.untitled')
     article(class="item")
         div(class="cover")
-            != _url(item.link, '<img data-src="'+ _cover(item) +'">', {itemprop: 'url', title: postText})
+            != _url(link1, '<img data-src="'+ _cover(item) +'">', {itemprop: 'url', title: postText})
         div(class="info")
             +PMRender(item)
             h3
-                != _url(item.link, postText + (postTitleIcon || ''), {itemprop: 'url', title: postText})
+                != _url(link1, postText + (postTitleIcon || ''), {itemprop: 'url', title: postText})
             div(class="excerpt")
                 if item.description
                     != item.description

@@ -1,4 +1,3 @@
-- var safedump=""
 include ../_mixin/breadcrumb.pug
 include ../_mixin/sidebar.pug
 include ../_mixin/widgets.pug
@@ -7,7 +6,7 @@ doctype html
 html(lang=page.language?page.language:config.language)
     head
         != partial('_partials/head/head.pug', {}, {cache: true})
-        //!= partial('_partials/head/head_com.pug')
+        //- != partial('_partials/head/head_com.pug')
         title
             block title
                 != `${alternate?alternate + " = ":""}${title}${subtitle?" = "+subtitle:""}`

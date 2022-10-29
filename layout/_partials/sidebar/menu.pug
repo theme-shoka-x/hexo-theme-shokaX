@@ -24,7 +24,6 @@ mixin item(name, path, parent, dropdown, sublist)
                         li(class="item")
                             != _url(itemURL, menuIcon + menuText, {rel: 'section'})
     else
-        //- TODO 大规模修改
         li(class="item")
             != _url(itemURL, menuIcon + menuText, {rel: 'section'})
 
@@ -33,8 +32,5 @@ each value, name in theme.menu
         each subvalue, subname in value
             if subname == 'default'
                 +item(name, subvalue, true, true, value)
-            //else
-            //    +item(subname, subvalue, false ,true, value)
-        </ul>
     else
         +item(name, value)

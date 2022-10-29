@@ -1,32 +1,33 @@
 /* global hexo */
 
 'use strict'
-const { __ } = require('hexo-i18n')
 const { htmlTag, url_for } = require('hexo-util')
 const theme_env = require('../../package.json')
-hexo.extend.helper.register('_init_comments', (mode) => {
+hexo.extend.helper.register('_init_comments', function (mode) {
   if (mode === 'twikoo') {
     const options = {
-      envId: theme.twikoo.envId,
+      // eslint-disable-next-line no-useless-escape
+      envId: `${hexo.theme.config.twikoo.envId}`,
       el: '#tcomments'
     }
-    if (theme.twikoo.mode === 'tencent') {
-      options.region = theme.twikoo.region
+    if (hexo.theme.config.twikoo.mode === 'tencent') {
+      // eslint-disable-next-line no-useless-escape
+      options.region = `\'${hexo.theme.config.twikoo.region}\'`
     }
     return `
         <script data-pjax>
         setTimeout(function () {
-        twikoo.init(${options})
+            twikoo.init(${JSON.stringify(options)})
         }, 1000)
         </script>`
   }
 })
 
-hexo.extend.helper.register('_new_comments', (mode) => {
+hexo.extend.helper.register('_new_comments', function (mode) {
   if (mode === 'twikoo') {
     return `<script data-pjax>
            twikoo.getRecentComments({
-           envId: ${hexo.theme.config.twikoo.envId},
+           envId: "${hexo.theme.config.twikoo.envId}",
            pageSize: 10
            }).then(function (res) {
                 res.forEach(function (item) {
@@ -164,26 +165,3 @@ hexo.extend.helper.register('_adv_vendor_js', function (js_name) {
   return htmlTag('script', attr, '')
 })
 
-hexo.extend.helper.register('_local_script', (page) => {
-  const theme = hexo.theme
-  const LOCAL = {
-    path: page.path,
-    favicon: {
-      show: __('favicon.show'),
-      hide: __('favicon.hide')
-    },
-    search: {
-      placeholder: __('search.placeholder'),
-      empty: __('search.empty'),
-      stats: __('search.stats')
-    }
-  }
-  if (theme.widgets.recent_comments || page.comment !== false) {
-    LOCAL.valine = page.valine ? JSON.stringify(page.valine) : 'true'
-  }
-  if (page.chart) LOCAL.chart = true
-  if (page.math) {
-    LOCAL.copy_tex = true; LOCAL.katex = true
-  }
-  return htmlTag('script', { 'data-config': true, type: 'text/javascript' }, JSON.stringify(LOCAL))
-})
