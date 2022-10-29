@@ -2,15 +2,16 @@ mixin PMRender(item, full)
     - full = full||false
     div(class="meta")
         - var create_title = __('post.created') + __('symbol.colon') + full_date(item.date)
-        span(class="item" title!=create_title)
+        span(class="item" title=create_title)
             span(class="icon")
                 i(class="ic i-calendar")
             if full
                 span(class="text")
                     != __('post.posted')
             time(itemprop="dateCreated datePublished" datetime=moment(item.date).format())
+                != date(item.date)
         if theme.post.count
-            span(class="item" title!=__('symbols_count_time.count'))
+            span(class="item" title=__('symbols_count_time.count'))
                 span(class="icon")
                     i(class="ic i-pen")
                 if full
@@ -20,7 +21,7 @@ mixin PMRender(item, full)
                     != symbolsCount(item)
                 span(class="text")
                     != __('symbols_count_time.word')
-        span(class="item" title!=__('symbols_count_time.time'))
+        span(class="item" title=__('symbols_count_time.time'))
             span(class="icon")
                 i(class="ic i-clock")
             if full

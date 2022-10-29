@@ -2,6 +2,7 @@
 
 'use strict'
 const { htmlTag, url_for } = require('hexo-util')
+const striptags = require('striptags')
 const theme_env = require('../../package.json')
 hexo.extend.helper.register('_init_comments', function (mode) {
   if (mode === 'twikoo') {
@@ -165,3 +166,10 @@ hexo.extend.helper.register('_adv_vendor_js', function (js_name) {
   return htmlTag('script', attr, '')
 })
 
+hexo.extend.helper.register('_striptags', function (data) {
+  return striptags(data)
+})
+
+hexo.extend.helper.register('_truncate', function (data,end) {
+  return data.substring(0, end)
+})
