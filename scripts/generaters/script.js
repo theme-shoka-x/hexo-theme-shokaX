@@ -43,7 +43,7 @@ hexo.extend.generator.register('script', function (locals) {
     }
   }
 
-  if (config.algolia) {
+  if (config?.algolia) {
     siteConfig.search = {
       appID: config.algolia.appId,
       apiKey: config.algolia.apiKey,
@@ -52,7 +52,7 @@ hexo.extend.generator.register('script', function (locals) {
     }
   }
 
-  if (theme.audio) {
+  if (theme?.audio) {
     siteConfig.audio = theme.audio
   }
 
@@ -61,7 +61,7 @@ hexo.extend.generator.register('script', function (locals) {
   ['library', 'global', 'page', 'components'].forEach(function (item) {
     text += fs.readFileSync(`themes/traveler/source/js/${item}.js`).toString()
   })
-  if (!theme.experiments.noPlayer) {
+  if (!theme.experiments?.noPlayer) {
     text += fs.readFileSync('themes/traveler/source/js/player.js').toString()
   }
   if (theme.fireworks && theme.fireworks.enable) {

@@ -9,8 +9,8 @@ hexo.extend.generator.register('images', function (locals) {
 
   if (!fs.existsSync(dir)) { return }
 
-  let result = []
-  let files = fs.listDirSync(dir)
+  const result = []
+  const files = fs.listDirSync(dir)
 
   files.forEach(file => {
     result.push({

@@ -9,9 +9,9 @@ hexo.config.index_generator = Object.assign({
 }, hexo.config.index_generator)
 
 hexo.extend.generator.register('index', function (locals) {
-  let covers = []
-  let catlist = []
-  let pages = []
+  const covers = []
+  const catlist = []
+  let pages
   const config = hexo.config
   const theme = hexo.theme.config
   const sticky = locals.posts.find({ sticky: true }).sort(config.index_generator.order_by)
@@ -22,7 +22,7 @@ hexo.extend.generator.register('index', function (locals) {
 
   const getTopcat = function (cat) {
     if (cat.parent) {
-      let pCat = categories.findOne({ _id: cat.parent })
+      const pCat = categories.findOne({ _id: cat.parent })
       return getTopcat(pCat)
     } else {
       return cat
@@ -30,24 +30,26 @@ hexo.extend.generator.register('index', function (locals) {
   }
 
   if (categories && categories.length) {
+    const imageType = ['avif', 'webp', 'jpg', 'png']
     categories.forEach((cat) => {
-      let cover = 'source/_posts/' + cat.slug + '/cover.jpg'
+      imageType.forEach((imageFileType) => {
+        const cover = `source/_posts/${cat.slug}/cover.${imageFileType}`
 
-      if (fs.existsSync(cover)) {
-        covers.push({
-          path: cat.slug + '/cover.jpg',
-          data: function () {
-            return fs.createReadStream(cover)
-          }
-        })
-
-        let topcat = getTopcat(cat)
+        if (fs.existsSync(cover)) {
+          covers.push({
+            path: cat.slug + `/cover.${imageFileType}`,
+            data: function () {
+              return fs.createReadStream(cover)
+            }
+          })
+        }
+        const topcat = getTopcat(cat)
 
         if (topcat._id !== cat._id) {
           cat.top = topcat
         }
 
-        let child = categories.find({ parent: cat._id })
+        const child = categories.find({ parent: cat._id })
         let pl = 6
 
         if (child.length !== 0) {
@@ -65,7 +67,7 @@ hexo.extend.generator.register('index', function (locals) {
         }
 
         catlist.push(cat)
-      }
+      })
     })
   }
 
