@@ -218,7 +218,7 @@ const sideBarTab = function () {
     }
     // TODO 出现BUG把event去掉
     tab.addEventListener('click', function (event) {
-      const target = <HTMLElement> event.currentTarget
+      const target = event.currentTarget as HTMLElement
       if (target.hasClass('active')) return
 
       sideBar.find('.tab .item').forEach(function (element) {

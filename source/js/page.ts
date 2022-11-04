@@ -52,7 +52,7 @@ const cardActive = function () {
 
 const registerExtURL = function () {
   $dom.each('span.exturl', function (element) {
-    const link = <HTMLLinkElement><unknown> document.createElement('a')
+    const link = <HTMLAnchorElement> document.createElement('a')
     // https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
 
     link.href = decodeURIComponent(atob(element.dataset.url).split('').map(function (c) {

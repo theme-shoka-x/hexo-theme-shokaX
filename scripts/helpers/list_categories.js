@@ -16,7 +16,7 @@ const prepareQuery = (categories, parent) => {
 
 hexo.extend.helper.register('_list_categories', function (depth = 0) {
   // let hexo = this
-  let categories = this.site.categories
+  const categories = this.site.categories
 
   if (!categories || !categories.length) return ''
 
@@ -30,7 +30,7 @@ hexo.extend.helper.register('_list_categories', function (depth = 0) {
         child = hierarchicalList(level + 1, cat._id)
       }
 
-      let catname = `<a itemprop="url" href="${this.url_for(cat.path)}">${cat.name}</a><small>( ${cat.length} )</small>`
+      const catname = `<a itemprop="url" href="${this.url_for(cat.path)}">${cat.name}</a><small>( ${cat.length} )</small>`
 
       switch (level) {
         case 0:
@@ -63,7 +63,7 @@ hexo.extend.helper.register('_list_categories', function (depth = 0) {
 
 hexo.extend.helper.register('_categories', function () {
   // let hexo = this
-  let categories = this.site.categories
+  const categories = this.site.categories
   if (!categories || !categories.length) return ''
 
   const pangu = this.theme.pangu
@@ -74,14 +74,14 @@ hexo.extend.helper.register('_categories', function () {
         }
       }
 
-  let result = {}
+  const result = {}
 
   categories.forEach((cat, i) => {
-    let child = prepareQuery(categories, cat._id)
-    let cover = 'source/_posts' + cat.path.replace(this.config.category_dir, '') + 'cover.jpg'
+    const child = prepareQuery(categories, cat._id)
+    const cover = 'source/_posts' + cat.path.replace(this.config.category_dir, '') + 'cover.jpg'
 
     if (fs.existsSync(cover)) {
-      let className = cat.slug.split('/')
+      const className = cat.slug.split('/')
       className.pop()
       cat.class = className.join(' ')
       cat.name = pangu.spacing(cat.name)
@@ -99,7 +99,7 @@ hexo.extend.helper.register('_categories', function () {
 
 hexo.extend.helper.register('_category_prev', function (name) {
   // let hexo = this
-  let categories = this.site.categories
+  const categories = this.site.categories
   if (!categories || !categories.length) return ''
 
   let result = ''
@@ -117,11 +117,11 @@ hexo.extend.helper.register('_category_prev', function (name) {
 
 hexo.extend.helper.register('_category_posts', function (page) {
   // let hexo = this
-  let categories = this.site.categories
+  const categories = this.site.categories
   if (!categories || !categories.length || !page.categories || !page.categories.length) return ''
 
   let result = ''
-  let cat = page.categories.toArray()
+  const cat = page.categories.toArray()
 
   categories.find({ _id: cat[cat.length - 1]._id }).forEach((category) => {
     if (category.posts) {

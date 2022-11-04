@@ -1,5 +1,4 @@
-/* global hexo */
-
+'use strict'
 /*
 {% links %}
 - site: #main title
@@ -12,8 +11,6 @@
 
 {% linksfile [path] %}
 */
-
-'use strict'
 
 const fs = require('fs')
 const path = require('path')
@@ -44,7 +41,7 @@ function linkGrid (args, content) {
 
   let result = ''
 
-  list.forEach(item => {
+  list.forEach((item) => {
     if (!item.url || !item.site) {
       return
     }

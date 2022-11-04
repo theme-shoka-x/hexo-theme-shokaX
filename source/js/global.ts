@@ -260,7 +260,7 @@ const pagePosition = function () {
   }
 }
 
-const positionInit = function (comment?) {
+const positionInit = function (comment?:boolean) {
   const anchor = window.location.hash
   let target = null
   if (LOCAL_HASH) {
@@ -285,9 +285,9 @@ const positionInit = function (comment?) {
 
 const clipBoard = function (str: string, callback?: (result) => void) {
   if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(str).then(function () {
+    navigator.clipboard.writeText(str).then(() => {
       callback && callback(true)
-    }, function () {
+    }, () => {
       callback && callback(false)
     })
   } else {

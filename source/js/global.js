@@ -260,9 +260,9 @@ const positionInit = function (comment) {
 };
 const clipBoard = function (str, callback) {
     if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(str).then(function () {
+        navigator.clipboard.writeText(str).then(() => {
             callback && callback(true);
-        }, function () {
+        }, () => {
             callback && callback(false);
         });
     }

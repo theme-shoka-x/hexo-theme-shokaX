@@ -29,14 +29,14 @@ const randomBG = function (count = 1, image_server = null, image_list = []) {
     if (img.startsWith('//') || img.startsWith('http')) {
       return img
     } else {
-      return 'https://tva' + randomServer + '.sinaimg.cn/' + size + '/' + img
+      return `https://tva${randomServer}.sinaimg.cn/` + size + '/' + img
     }
   }
 
   if (count && count > 1) {
     const shuffled = image_list.slice(0)
     i = image_list.length
-    let min = i - count; let temp; let index
+    const min = i - count; let temp; let index
     while (i-- > min) {
       index = Math.floor((i + 1) * Math.random())
       temp = shuffled[index]
@@ -56,7 +56,9 @@ hexo.extend.helper.register('_url', function (path, text, options = {}) {
   if (!path) { return }
 
   const { config } = this
+  // eslint-disable-next-line n/no-deprecated-api
   const data = url.parse(path)
+  // eslint-disable-next-line n/no-deprecated-api
   const siteHost = url.parse(config.url).hostname || config.url
 
   const theme = hexo.theme.config
@@ -75,7 +77,7 @@ hexo.extend.helper.register('_url', function (path, text, options = {}) {
     }
   }
 
-  for (let key in options) {
+  for (const key in options) {
     /**
          * If option have `class` attribute, add it to
          * 'exturl' class if `exturl` option enabled.
@@ -132,7 +134,7 @@ hexo.extend.helper.register('_cover', function (item, num) {
 })
 
 hexo.extend.helper.register('_md5', function (path) {
-  let str = url_for.call(this, path)
+  const str = url_for.call(this, path)
   str.replace('index.html', '')
   return crypto.createHash('md5').update(str).digest('hex')
 })

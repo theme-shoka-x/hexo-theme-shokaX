@@ -1,13 +1,11 @@
 const getDocHeight = () => $dom('main > .inner').offsetHeight;
-const $dom = (selector, element) => {
-    element = element || document;
+const $dom = (selector, element = document) => {
     if (selector.indexOf('#') === 0) {
         return element.getElementById(selector.replace('#', ''));
     }
     return element.querySelector(selector);
 };
-$dom.all = (selector, element) => {
-    element = element || document;
+$dom.all = (selector, element = document) => {
     return element.querySelectorAll(selector);
 };
 $dom.each = (selector, callback, element) => {
@@ -95,18 +93,11 @@ Object.assign(HTMLElement.prototype, {
         const classNames = className.indexOf(' ') ? className.split(' ') : [className];
         const that = this;
         classNames.forEach(function (name) {
-            try {
-                if (type === 'toggle') {
-                    that.classList.toggle(name, display);
-                }
-                else {
-                    that.classList[type](name);
-                }
+            if (type === 'toggle') {
+                that.classList.toggle(name, display);
             }
-            catch (e) {
-                console.log(that.classList);
-                console.log(type);
-                throw (e);
+            else {
+                that.classList[type](name);
             }
         });
     },

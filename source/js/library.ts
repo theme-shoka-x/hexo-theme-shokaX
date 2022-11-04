@@ -74,8 +74,7 @@ const getDocHeight = () => $dom('main > .inner').offsetHeight
 /**
  * 获取一个dom选择器对应的元素
  */
-const $dom = (selector:string, element?:Document):HTMLElement|null => {
-  element = element || document
+const $dom = (selector:string, element:Document=document):HTMLElement|null => {
   if (selector.indexOf('#') === 0) {
     return element.getElementById(selector.replace('#', ''))
   }
@@ -84,8 +83,7 @@ const $dom = (selector:string, element?:Document):HTMLElement|null => {
 /**
  * 获取具有此选择器的所有dom节点
  */
-$dom.all = (selector:string, element?:Document):NodeListOf<HTMLElement> => {
-  element = element || document
+$dom.all = (selector:string, element:Document=document):NodeListOf<HTMLElement> => {
   return element.querySelectorAll(selector)
 }
 /**
@@ -178,16 +176,10 @@ Object.assign(HTMLElement.prototype, {
     const classNames = className.indexOf(' ') ? className.split(' ') : [className]
     const that = this
     classNames.forEach(function (name) {
-      try{
         if (type === 'toggle') {
           that.classList.toggle(name, display)
         } else {
           that.classList[type](name)
-        }
-        } catch (e){
-          console.log(that.classList)
-          console.log(type)
-          throw (e)
         }
     })
   },
@@ -227,7 +219,7 @@ const getScript = function (url:string, callback:Function, condition:string):voi
   } else {
     let script = document.createElement('script')
 
-    // @ts-ignore
+    // @ts-ignore TODO 有效性待验证
     script.onload = function (_, isAbort: boolean) {
 
       // @ts-ignore TODO 此处代码在非ie下可能无效
@@ -271,7 +263,7 @@ const vendorCss = function (type:string, condition?:string):void {
   }
 }
 
-const transition = (target:HTMLElement, type:Object, complete?:Function):void => {
+const transition = (target:HTMLElement, type:any, complete?:Function):void => {
   let animation
   let display:any = 'none'
   switch (type) {
@@ -331,6 +323,7 @@ const transition = (target:HTMLElement, type:Object, complete?:Function):void =>
       display = type.display
       break
   }
+  // @ts-ignore
   anime(Object.assign({
     targets: target,
     duration: 200,

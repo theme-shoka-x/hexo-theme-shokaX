@@ -17,6 +17,7 @@ mixin item(name, path, parent, dropdown, sublist)
                     each subvalue, subname in sublist
                         - var path = subvalue.split('||')
                         - var itemURL = path[0].trim()
+                        - if (itemURL==='/') itemURL='javascript:void(0)'
                         - var menuText = __('menu.' + subname).replace('menu.', '')
                         if subname == 'default'
                             - var menuText = __('menu.' + name).replace('menu.', '')

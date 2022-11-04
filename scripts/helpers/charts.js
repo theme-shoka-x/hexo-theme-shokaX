@@ -46,7 +46,7 @@ function postsCalendar () {
   const rangeArr = '["' + start_date.format('YYYY-MM-DD') + '", "' + end_date.format('YYYY-MM-DD') + '"]'
 
   // post and count map.
-  let dateMap = new Map()
+  const dateMap = new Map()
   hexo.locals.get('posts').forEach(function (post) {
     const date = post.date.format('YYYY-MM-DD')
     const count = dateMap.get(date)
@@ -56,9 +56,9 @@ function postsCalendar () {
   // loop the data for the current year, generating the number of post per day
   let i = 0
   let datePosts = '['
-  let day_time = 3600 * 24 * 1000
+  const day_time = 3600 * 24 * 1000
   for (let time = start_date; time <= end_date; time += day_time) {
-    let date = moment(time).format('YYYY-MM-DD')
+    const date = moment(time).format('YYYY-MM-DD')
     datePosts = (i === 0 ? datePosts + '["' : datePosts + ', ["') + date + '", ' +
             (dateMap.has(date) ? dateMap.get(date) : 0) + ']'
     i++
@@ -271,7 +271,7 @@ function tagsChart (len) {
     return b.value - a.value
   })
 
-  let dataLength = Math.min(tagArr.length, len) || tagArr.length
+  const dataLength = Math.min(tagArr.length, len) || tagArr.length
   const tagNameArr = []
   const tagCountArr = []
   for (let i = 0; i < dataLength; i++) {
