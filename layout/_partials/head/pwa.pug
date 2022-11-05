@@ -1,0 +1,19 @@
+//- TODO pwa
+//- https://blog.cyfan.top/p/c0af86bb.html#%E5%AE%89%E8%A3%85-Install
+if theme.pwa.enable
+    script(data-pjax async).
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register(`/${theme.pwa.serviceworker}?time=${new Date().getTime()}`)
+                .then(async (reg) => {
+                    if (window.localStorage.getItem('install') !== 'true') {
+                        window.localStorage.setItem('install', 'true');
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 500)
+                    }
+                }).catch(err => {
+                console.log(err)
+            })
+            ;
+        }
+    link(rel="manifest" href=`/${theme.pwa.manifest}`)

@@ -30,19 +30,30 @@ hexo.extend.generator.register('index', function (locals) {
   }
 
   if (categories && categories.length) {
-    const imageType = ['avif', 'webp', 'jpg', 'png']
     categories.forEach((cat) => {
-      imageType.forEach((imageFileType) => {
-        const cover = `source/_posts/${cat.slug}/cover.${imageFileType}`
+      const cover = `source/_posts/${cat.slug}`
+      if (fs.existsSync(cover + '/cover.avif')) {
+        covers.push({
+          path: cat.slug + '/cover.avif',
+          data: function () {
+            return fs.createReadStream(cover + '/cover.avif')
+          }
+        })
+      } else if (fs.existsSync(cover + '/cover.webp')) {
+        covers.push({
+          path: cat.slug + '/cover.webp',
+          data: function () {
+            return fs.createReadStream(cover + '/cover.webp')
+          }
+        })
+      } else if (fs.existsSync(cover + '/cover.jpg')) {
+        covers.push({
+          path: cat.slug + '/cover.jpg',
+          data: function () {
+            return fs.createReadStream(cover + '/cover.jpg')
+          }
+        })
 
-        if (fs.existsSync(cover)) {
-          covers.push({
-            path: cat.slug + `/cover.${imageFileType}`,
-            data: function () {
-              return fs.createReadStream(cover)
-            }
-          })
-        }
         const topcat = getTopcat(cat)
 
         if (topcat._id !== cat._id) {
@@ -58,7 +69,7 @@ hexo.extend.generator.register('index', function (locals) {
           pl = Math.max(0, pl - child.length)
           if (pl > 0) {
             // eslint-disable-next-line array-callback-return
-            cat.subs.push.apply(cat.subs, cat.posts.sort({ title: 1 }).filter((item, i) => {
+            cat.subs.push.apply(cat.subs, cat.posts.sort({ title: 1 }).filter(function (item, i) {
               if (item.categories.last()._id === cat._id) { return true }
             }).limit(pl).toArray())
           }
@@ -67,7 +78,7 @@ hexo.extend.generator.register('index', function (locals) {
         }
 
         catlist.push(cat)
-      })
+      }
     })
   }
 

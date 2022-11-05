@@ -18,6 +18,15 @@ open_graph:
 #fb_admins:
 #fb_app_id:
 
+# 请注意: 本主题的PWA功能只是一个装载器,需要自备js和manifest
+# 图片可通过https://lp-pwa.gitee.io/pwa-genicon/生成
+
+pwa:
+  enable: true # 开启PWA功能
+  serviceworker: sw.js #serviceworker脚本位置,使用以/为基准的绝对路径
+  manifest: manifest.json #manifest位置,使用以/为基准的绝对路径
+
+
 icon:
   favicon: "/favicon.ico"
   apple_touch_icon: "/apple-touch-icon.png"

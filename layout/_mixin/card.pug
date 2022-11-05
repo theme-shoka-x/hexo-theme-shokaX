@@ -6,7 +6,8 @@ mixin CardRender(item)
         div(class="cover" data-background-image!=cover?cover:"")
             h2(class="title")
                 != itemname
-            if item.top.name
+            - var temp = item?.top?.name
+            if temp
                 span
                     != item.top.name
         div(class="info")

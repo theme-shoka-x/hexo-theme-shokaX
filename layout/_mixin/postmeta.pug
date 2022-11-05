@@ -1,6 +1,5 @@
 mixin PMRender(item, full)
     - full ||= false
-    - console.log(item)
     //- 下方的_content为暴力修复法,在未来需要重写
     div(class="meta")
         - var create_title = __('post.created') + __('symbol.colon') + full_date(item.date)
@@ -19,7 +18,7 @@ mixin PMRender(item, full)
                 if full
                     span(class="text")
                         != __('symbols_count_time.count')
-                span= symbolsCount(item._content)
+                span= symbolsCount(item)
                 span(class="text")
                     != __('symbols_count_time.word')
         span(class="item" title=__('symbols_count_time.time'))
@@ -28,4 +27,4 @@ mixin PMRender(item, full)
             if full
                 span(class="text")
                     != __('symbols_count_time.time')
-            span= symbolsTime(item._content, config.symbols_count_time.awl, config.symbols_count_time.wpm, __('symbols_count_time.time_minutes'))
+            span= symbolsTime(item, config.symbols_count_time.awl, config.symbols_count_time.wpm, __('symbols_count_time.time_minutes'))

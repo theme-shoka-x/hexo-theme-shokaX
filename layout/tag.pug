@@ -1,5 +1,3 @@
-- var posts = page.posts
-
 extends ./_partials/layout.pug
 
 block title
@@ -18,6 +16,7 @@ block content
             != page.tag
             small
                 != __('title.tag')
+        - var posts = page.posts
         each post in posts.toArray()
             article(class="item normal" itemscope itemtype="http://schema.org/Article")
                 div(class="meta")

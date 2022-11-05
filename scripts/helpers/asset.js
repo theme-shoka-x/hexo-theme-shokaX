@@ -1,9 +1,9 @@
 /* global hexo */
 
 'use strict'
-const { htmlTag, url_for } = require('hexo-util')
-const striptags = require('striptags')
+const { htmlTag, url_for, stripHTML } = require('hexo-util')
 const theme_env = require('../../package.json')
+
 hexo.extend.helper.register('_init_comments', function (mode) {
   if (mode === 'twikoo') {
     const options = {
@@ -167,9 +167,9 @@ hexo.extend.helper.register('_adv_vendor_js', function (js_name) {
 })
 
 hexo.extend.helper.register('_striptags', function (data) {
-  return striptags(data)
+  return stripHTML(data)
 })
 
-hexo.extend.helper.register('_truncate', function (data,end) {
+hexo.extend.helper.register('_truncate', function (data, end) {
   return data.substring(0, end)
 })
