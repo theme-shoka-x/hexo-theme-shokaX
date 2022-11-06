@@ -31,3 +31,9 @@ link(rel="alternate" type="application/json" title=siteTitle href=feedLink)
 include pwa.pug
 if twikooLink
     script(src=twikooLink)
+if theme.qweather.enable
+    link(rel="stylesheet" href="https://widget.heweather.net/simple/static/css/he-simple.css?v=1.4.0" media="defer" onload="this.media='all'")
+style.
+    img[data-v-7d48daab] {
+        max-width: 2em !important;
+    }

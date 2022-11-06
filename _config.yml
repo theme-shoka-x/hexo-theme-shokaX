@@ -317,3 +317,6 @@ vendors:
     copy_tex: npm/katex@0.12.0/dist/contrib/copy-tex.min.js # ok
     chart: npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js # ok
 
+qweather:
+  enable: false
+  key: "114514"
