@@ -2,6 +2,7 @@
 - var yandexValid = theme.seo.yandex,baiduValid = theme.seo.baidu
 - var siteTitle = config.title
 - var feedLink = full_url_for("/feed.json")
+- var twikooLink = theme?.twikoo?.link
 
 meta(charset="UTF-8")
 meta(name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2")
@@ -28,4 +29,5 @@ link(rel="alternate" type="application/json" title=siteTitle href=feedLink)
 != _css('app.css')
 != _css("twikoo.css")
 include pwa.pug
-script(src=theme.twikoo.link)
+if twikooLink
+    script(src=twikooLink)

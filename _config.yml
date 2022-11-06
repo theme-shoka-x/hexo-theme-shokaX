@@ -26,7 +26,8 @@ pwa:
   serviceworker: sw.js #serviceworker脚本位置,使用以/为基准的绝对路径
   manifest: manifest.json #manifest位置,使用以/为基准的绝对路径
 
-
+experiments:
+  noPlayer: true
 icon:
   favicon: "/favicon.ico"
   apple_touch_icon: "/apple-touch-icon.png"
@@ -119,13 +120,20 @@ menu:
   statistics: /statistics/ || clock
   friends: /friends/ || heart
 
+twikoo:
+  enable: true
+  link: "https://cdn.staticfile.org/twikoo/1.6.6/twikoo.nocss.min.js"
+  integ: "sha384-JqH6BJQNmQcewnQi3qB4KpHn9zYI4qjaBZe7E7cEW1aNjmvofaN/2+/qEmX8Nzou"
+  mode: vercel # vercel或tencent
+  envId: "https://114514.foo.bar" # twikoo环境ID,vercel填地址
+  region: "none"
 # Social Links
 # Usage: `Key: permalink || icon || color`
 # Key is the link label showing to end users.
 # Value before `||` delimiter is the target permalink,
 # secend value is the name of Font icon.
 social:
-  #  github: https://github.com/name || github || "#191717"
+  github: https://github.com/name || github || "#191717"
   #google: https://plus.google.com/yourname || google
   #twitter: https://twitter.com/yourname || twitter || "#00aff0"
   #zhihu: https://www.zhihu.com/people/yourname || zhihu || "#1e88e5"
@@ -164,7 +172,7 @@ footer:
   count: true
   powered: true
   lantern:
-    enable: false  #是否开启
+    enable: true  #是否开启
     word1: 中   #第一个字
     word2: 秋   #第二个字
 

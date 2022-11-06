@@ -24,3 +24,26 @@ div(class="status")
     if theme.footer.powered
         div(class="powered-by")
             != __('footer.powered', _url('https://hexo.io', 'Hexo') + ' & Theme.' + _url('https://github.com/zkz098/hexo-theme-shokaX', 'ShokaX'))
+
+if theme.footer.lantern.enable
+    div(class="deng-box")
+        div(class="deng")
+            div(class="xian")
+            div(class="deng-a")
+                div(class="deng-b")
+                    div(class="deng-t")
+                        != theme.footer.lantern.word2
+            div(class="shui shui-a")
+                div(class="shui-c")
+                div(class="shui-b")
+    div(class="deng-box1")
+        div(class="deng")
+            div(class="xian")
+            div(class="deng-a")
+                div(class="deng-b")
+                    div(class="deng-t")
+                        != theme.footer.lantern.word1
+            div(class="shui shui-a")
+                div(class="shui-c")
+                div(class="shui-b")
+

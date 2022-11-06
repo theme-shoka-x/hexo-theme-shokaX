@@ -8,7 +8,7 @@ hexo.extend.helper.register('_init_comments', function (mode) {
   if (mode === 'twikoo') {
     const options = {
       // eslint-disable-next-line no-useless-escape
-      envId: `${hexo.theme.config.twikoo.envId}`,
+      envId: `${hexo.theme.config?.twikoo?.envId}`,
       el: '#tcomments'
     }
     if (hexo.theme.config.twikoo.mode === 'tencent') {
@@ -28,7 +28,7 @@ hexo.extend.helper.register('_new_comments', function (mode) {
   if (mode === 'twikoo') {
     return `<script data-pjax>
            twikoo.getRecentComments({
-           envId: "${hexo.theme.config.twikoo.envId}",
+           envId: "${hexo.theme.config?.twikoo?.envId}",
            pageSize: 10
            }).then(function (res) {
                 res.forEach(function (item) {

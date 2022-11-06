@@ -46,7 +46,7 @@ hexo.extend.helper.register('symbolsCount', function (post) {
   return symbolsResult
 })
 
-hexo.extend.helper.register('symbolsTime ', function (post, awl = config.awl, wpm = config.wpm, suffix = config.suffix) {
+hexo.extend.helper.register('symbolsTime', function (post, awl = config.awl, wpm = config.wpm, suffix = config.suffix) {
   const minutes = Math.round(getSymbols(post) / (awl * wpm))
   return getFormatTime(minutes, suffix)
 })
