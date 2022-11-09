@@ -1,5 +1,5 @@
-- var msValidate = theme.seo.bing,googleValid = theme.seo.google
-- var yandexValid = theme.seo.yandex,baiduValid = theme.seo.baidu
+- var msValidate = theme?.seo?.bing,googleValid = theme?.seo?.google
+- var yandexValid = theme?.seo?.yandex,baiduValid = theme?.seo?.baidu
 - var siteTitle = config.title
 - var feedLink = full_url_for("/feed.json")
 - var twikooLink = theme?.twikoo?.link
@@ -22,6 +22,9 @@ if yandexValid
     meta(name="yandex-verification" content=yandexValid)
 if baiduValid
     meta(name="baidu-site-verification" content=baiduValid)
+if theme.disable_baidu_transformation
+    meta(http-equiv="Cache-Control" content="no-transform")
+    meta(http-equiv="Cache-Control" content="no-siteapp")
 
 != feed_tag('rss.xml')
 != feed_tag('atom.xml')
@@ -33,7 +36,7 @@ if twikooLink
     script(src=twikooLink)
 if theme.qweather.enable
     link(rel="stylesheet" href="https://widget.heweather.net/simple/static/css/he-simple.css?v=1.4.0" media="defer" onload="this.media='all'")
-style.
-    img[data-v-7d48daab] {
-        max-width: 2em !important;
-    }
+    style.
+        img[data-v-7d48daab] {
+            max-width: 2em !important;
+        }

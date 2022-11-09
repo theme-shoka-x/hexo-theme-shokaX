@@ -1,9 +1,9 @@
-
-- let index=0;keywords=''
-for tag in page.tags.toArray()
-    -   keywords += tag.name
-    -   index++
-    -   if (index < page.tags.toArray().length) keywords += ','
+- var keywords='',tmp=page?.tags?.toArray()
+if tmp
+    each tag,index in tmp
+        -   keywords += tag.name
+        -   index++
+        -   if (index < tmp.length) keywords += ','
 if page.keywords
     meta(name="keywords" content=page.keywords)
 else if page.tags && page.tags.length

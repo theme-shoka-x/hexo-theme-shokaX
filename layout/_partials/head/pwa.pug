@@ -2,8 +2,7 @@
 if theme.pwa.enable
     script(data-pjax async)
         | if ('serviceWorker' in navigator) {
-        !=    `navigator.serviceWorker.register(/${theme.pwa.serviceworker}?time=${new Date().getTime()})`
-        |        .then(async (reg) => {
+        !=    `navigator.serviceWorker.register(\"/${theme.pwa.serviceworker}?time=${new Date().getTime()}\").then(async (reg) => {`
         |            if (window.localStorage.getItem('install') !== 'true') {
         |                window.localStorage.setItem('install', 'true');
         |                setTimeout(() => {
