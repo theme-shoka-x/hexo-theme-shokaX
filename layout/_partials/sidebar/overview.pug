@@ -30,9 +30,9 @@ nav(class="state")
                     != __('state.tags')
 
 div(class="social")
-    each name, link in theme.social
-        - var sidebarURL = link.split('||')[0] | trim
-        - var sidebarIcon = '<i class="ic i-' + link.split('||')[1] | trim + '"></i>'
+    each link, name  in theme.social
+        - var sidebarURL = link.split('||')[0].trim()
+        - var sidebarIcon = '<i class="ic i-' + link.split('||')[1].trim() + '"></i>'
         != _url(sidebarURL, sidebarIcon, {title: sidebarURL, class: 'item ' + name})
 
 div(class="menu")
