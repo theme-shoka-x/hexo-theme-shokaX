@@ -3,11 +3,11 @@ mixin sidebarRender(display_toc)
     if page && page.prev
         -   var prevlink = page?.prev_link
         if is_page() || is_post()
-            - prevlink = page.next?.path
+            - prevlink = page?.next?.path
     if page && page.next
         - var nextlink = page?.next_link
         if is_page() || is_post()
-            - nextlink = page?.prev.path
+            - nextlink = page?.prev?.path
     div(class="inner")
         div(class="panels")
             div(class="inner")
