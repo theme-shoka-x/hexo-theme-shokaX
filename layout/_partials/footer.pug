@@ -24,6 +24,18 @@ div(class="status")
     if theme.footer.powered
         div(class="powered-by")
             != __('footer.powered', _url('https://hexo.io', 'Hexo') + ' & Theme.' + _url('https://github.com/zkz098/hexo-theme-shokaX', 'ShokaX'))
+    if theme.footer.icp.enable
+        br
+        span(style="display:inline;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;")
+            a(href="https://beian.miit.gov.cn")
+                != theme.footer.icp.icpnumber
+            - var beianN = theme.footer.icp?.beian, RC=theme.footer.icp?.recordcode
+            if beianN && RC
+                br
+                a(target="_blank" href=`https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=${RC}`)
+                    img(src=theme.statics + theme.assets + '/' + theme.footer.icp.icon style="max-width: 2em;display:inline;")
+                    != beianN
+
 
 if theme.footer.lantern.enable
     div(class="deng-box")

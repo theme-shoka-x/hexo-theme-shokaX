@@ -175,6 +175,12 @@ footer:
     enable: true  #是否开启
     word1: 中   #第一个字
     word2: 秋   #第二个字
+  icp:
+    enable: false
+    icon: "beian.webp"
+    icpnumber: "xxx"
+    beian: "xxx"
+    recordcode: "xxx"
 
 post:
   # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
