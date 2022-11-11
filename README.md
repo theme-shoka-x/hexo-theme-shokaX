@@ -24,8 +24,23 @@
 这个比较难解决,因为shokaX对编写语言进行了更改:
 - javascript -> typescript
 - njk -> pug
-因此需要更改编写的语言
+  因此需要更改编写的语言
 
 # 许可证
 许可证: MIT \
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fzkz098%2Fhexo-theme-shokaX.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fzkz098%2Fhexo-theme-shokaX?ref=badge_large)
+
+# 致谢名单
+## 开源项目
+| 名称               | 作者                | 描述                 |
+|:-----------------|:------------------|:-------------------|
+| Hexo             | Hexo contributors | 为本项目提供了良好的基础       |
+| hexo-theme-shoka | amehime           | 本项目的父主题            |
+| 所有本项目依赖的开源项目     | 这些项目的作者           | 没有这些项目,shokaX就不会存在 |
+
+## 贡献者
+| 名称         | 站点                         | 描述                     |
+|:-----------|:---------------------------|:-----------------------|
+| Lavender   | https://www.lavenderdh.cn/ | 提供了大量shoka主题的魔改        |
+| AdminZhang | https://www.a9-9.top/      | 为本项目提供了大量想法并进行了DEBUG工作 |
+
