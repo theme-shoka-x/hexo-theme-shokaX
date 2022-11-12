@@ -2,8 +2,7 @@
 - var yandexValid = theme?.seo?.yandex,baiduValid = theme?.seo?.baidu
 - var siteTitle = config.title
 - var feedLink = full_url_for("/feed.json")
-- var twikooLink = theme?.twikoo?.link
-
+- var twikooLink = theme?.twikoo?.link;var jsInjects = theme?.inject?.head?.js,cssInjects = theme?.inject?.head?.css
 meta(charset="UTF-8")
 meta(name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2")
 meta(name="theme-color" content="#222")
@@ -40,3 +39,9 @@ if theme.qweather.enable
         img[data-v-7d48daab] {
             max-width: 2em !important;
         }
+
+if cssInjects
+    != css(cssInjects)
+
+if jsInjects
+    != js(jsInjects)

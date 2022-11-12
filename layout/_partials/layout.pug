@@ -163,7 +163,12 @@ html(lang=page.language?page.language:config.language)
                 |    }
                 | }
             script(async data-pjax src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0")
+        - var jsInjects = theme?.inject?.body?.js,cssInjects = theme?.inject?.body?.css
+        if cssInjects
+            != css(cssInjects)
 
+        if jsInjects
+            != js(jsInjects)
 
 
 
