@@ -5,8 +5,6 @@
 const { htmlTag, url_for } = require('hexo-util')
 const url = require('url')
 const crypto = require('crypto')
-const fs = require('fs')
-const path = require('path')
 
 const randomServer = parseInt(Math.random() * 4, 10) + 1
 

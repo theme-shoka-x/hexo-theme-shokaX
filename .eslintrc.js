@@ -17,8 +17,6 @@ module.exports = {
     ecmaVersion: 12
   },
   rules: {
-    '@typescript-eslint/no-unused-vars': 'off',
-    'no-undef': 'off',
     camelcase: 'off',
     'n/no-callback-literal': 'off',
     '@typescript-eslint/ban-types': 'off',

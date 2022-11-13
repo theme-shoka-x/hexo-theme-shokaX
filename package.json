@@ -27,7 +27,6 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
     "js-yaml": "^4.1.0",
-    "pug": "^3.0.2",
-    "striptags": "^3.2.0"
+    "pug": "^3.0.2"
   }
 }

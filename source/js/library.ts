@@ -224,6 +224,7 @@ const getScript = function (url:string, callback:Function, condition:string):voi
 
       // @ts-ignore TODO 此处代码在非ie下可能无效
       if (isAbort || !script.readyState || /loaded|complete/.test(script.readyState)) {
+        console.log("abort!")
         script.onload = null
         script = undefined
         if (!isAbort && callback) setTimeout(callback, 0)
