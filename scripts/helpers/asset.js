@@ -139,18 +139,31 @@ hexo.extend.helper.register('_list_vendor_js', () => {
 })
 
 hexo.extend.helper.register('_adv_vendor_js', function (js_name) {
+  const srcHelpers = (src) => { return src.endsWith('/') ? src : src + '/' }
   const config = hexo.theme.config.advVendors.js[js_name]
+  const themeConfig = hexo.theme.config
   const src = config.src
+  const publicCdns = {
+    npm: srcHelpers(themeConfig.advVendors.npm),
+    gh: srcHelpers(themeConfig.advVendors.github),
+    combine: srcHelpers(themeConfig.advVendors.combine),
+    bytedance: 'https://lf9-cdn-tos.bytecdntp.com/cdn/expire-6-M/',
+    baomitu: 'https://lib.baomitu.com/'
+  }
   let result
-  if (src.indexOf('http') !== -1) {
+  if (src.startsWith('http')) {
     result = src
-  } else if (src.indexOf('combine') !== -1) {
+  } else if (src.startsWith('combine:')) {
     hexo.log.info('The combine feature is not recommended!')
-    result = hexo.theme.config.advVendors.combine + src
-  } else if (src.indexOf('npm') !== -1) {
-    result = hexo.theme.config.advVendors.npm + src.slice(4)
-  } else if (src.indexOf('gh') !== -1) {
-    result = hexo.theme.config.advVendors.github + src.slice(3)
+    result = publicCdns.combine + src
+  } else if (src.startsWith('npm:')) {
+    result = publicCdns.npm + src.substring(4)
+  } else if (src.startsWith('gh:')) {
+    result = publicCdns.gh + src.substring(3)
+  } else if (src.startsWith('bytedance:')) {
+    result = publicCdns.bytedance + src.substring(10)
+  } else if (src.startsWith('baomitu:')) {
+    result = publicCdns.baomitu + src.substring(8)
   } else {
     result = '/' + src
   }

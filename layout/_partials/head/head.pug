@@ -1,6 +1,6 @@
 - var msValidate = theme?.seo?.bing,googleValid = theme?.seo?.google
 - var yandexValid = theme?.seo?.yandex,baiduValid = theme?.seo?.baidu
-- var siteTitle = config.title
+- var siteTitle = config.title,noBaiduT = theme?.seo?.disable_baidu_transformation
 - var feedLink = full_url_for("/feed.json")
 - var twikooLink = theme?.twikoo?.link;var jsInjects = theme?.inject?.head?.js,cssInjects = theme?.inject?.head?.css
 meta(charset="UTF-8")
@@ -21,13 +21,14 @@ if yandexValid
     meta(name="yandex-verification" content=yandexValid)
 if baiduValid
     meta(name="baidu-site-verification" content=baiduValid)
-if theme.disable_baidu_transformation
+if noBaiduT
     meta(http-equiv="Cache-Control" content="no-transform")
     meta(http-equiv="Cache-Control" content="no-siteapp")
 
 != feed_tag('rss.xml')
 != feed_tag('atom.xml')
 link(rel="alternate" type="application/json" title=siteTitle href=feedLink)
+!= _vendor_font()
 != _css('app.css')
 != _css("twikoo.css")
 include pwa.pug

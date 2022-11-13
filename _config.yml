@@ -262,29 +262,29 @@ advVendors:
   npm: "https://unpkg.com/"
   js:
     pace:
-      src: https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/pace/1.0.2/pace.min.js
+      src: bytedance:pace/1.0.2/pace.min.js
     pjax:
-      src: https://lib.baomitu.com/pjax/0.2.8/pjax.min.js
+      src: baomitu:pjax/0.2.8/pjax.min.js
     fetch:
-      src: npm/whatwg-fetch@3.4.0/dist/fetch.umd.js
+      src: npm:whatwg-fetch@3.4.0/dist/fetch.umd.js
     anime:
-      src: https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/animejs/3.2.0/anime.min.js
+      src: bytedance:animejs/3.2.0/anime.min.js
     algolia:
-      src: https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/algoliasearch/4.12.1/algoliasearch-lite.umd.min.js
+      src: bytedance:algoliasearch/4.12.1/algoliasearch-lite.umd.min.js
     instantsearch:
-      src: https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/instantsearch.js/4.39.0/instantsearch.production.min.js
+      src: bytedance:instantsearch.js/4.39.0/instantsearch.production.min.js
     lazyload:
-      src: https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/lozad.js/1.16.0/lozad.min.js
+      src: bytedance:lozad.js/1.16.0/lozad.min.js
     quicklink:
-      src: https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/quicklink/2.2.0/quicklink.umd.min.js
+      src: bytedance:quicklink/2.2.0/quicklink.umd.min.js
     fancybox:
-      src: https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/??jquery/3.5.1/jquery.min.js,fancybox/3.5.7/jquery.fancybox.min.js,justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js
+      src: bytedance:??jquery/3.5.1/jquery.min.js,fancybox/3.5.7/jquery.fancybox.min.js,justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js
       async: true
     copy_tex:
-      src: https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/KaTeX/0.12.0/contrib/copy-tex.min.js
+      src: bytedance:KaTeX/0.12.0/contrib/copy-tex.min.js
       async: true
     chart:
-      src: npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.js
+      src: npm:frappe-charts@1.5.0/dist/frappe-charts.min.iife.js
 
 vendorsList:
   js:
