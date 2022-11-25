@@ -9,3 +9,4 @@ node_modules/
 .yarn/unplugged
 .yarn/install-state.gz
 yarn-error.log*
+pnpm-lock.yaml
