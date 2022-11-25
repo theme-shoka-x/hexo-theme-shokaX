@@ -9,12 +9,12 @@
 
 ## 待办名单
 - [x] 推出一个可用的测试版
-- [ ] 支持twikoo和waline评论系统
+- [x] 支持twikoo和waline评论系统
 - [ ] 增加一个公告模块
 - [x] 优化部分html标签
 - [x] 原生PWA支持
 - [ ] 注入js和css支持
-- [ ] 自定义font
+- [x] 自定义font
 - [x] 部分功能调整为可关闭
 
 ## 已于从shoka迁移吗?

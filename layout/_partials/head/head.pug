@@ -30,6 +30,8 @@ if noBaiduT
 != feed_tag('atom.xml')
 link(rel="alternate" type="application/json" title=siteTitle href=feedLink)
 != _vendor_font()
+if theme.custom.enable
+    != _local_fonts()
 != _css('app.css')
 include pwa.pug
 if twikooLink && !wl

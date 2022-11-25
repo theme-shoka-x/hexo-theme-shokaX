@@ -62,43 +62,51 @@ fireworks:
 font:
   enable: true
   # 字体选项:
-  # `external`:从上方的`host`加载字体.
+  # `external`:从google字体库加载字体.
   # `family: 字体家族名,无需引号
-  # `size: x.x`. 用`em`代表一个单位. 默认: 1 (16px)
+  # `size: x.x`. 以`em`为单位. 默认: 1 (16px)
 
   # 适用于所有在body标签内的文字.
   global:
-    external: true
+    external: false
     family: HarmonyOS_Regular
     size:
 
   # 大标题字体.
   logo:
-    external: true
+    external: false
     family: HarmonyOS_Regular
     size: 3.5
 
   # 页面标题字体.
   title:
-    external: true
+    external: false
     family: HarmonyOS_Regular
     size: 2.5
 
   # 标题字体.
   headings:
-    external: true
+    external: false
     family: HarmonyOS_Regular
     size:
 
   # 文章字体.
   posts:
-    external: true
+    external: false
     family:
 
   # 代码块的字体
   codes:
-    external: true
+    external: false
     family: jetbrains-mono # Inconsolata
+
+# 自定义区域
+custom:
+  enable: false
+  font:
+#    - FamilyName: # 字体名(冒号后留空)
+#      FamilyName: # 家族名
+#      src: # 链接,遵循@font-face的url格式
 
 # project of https://www.iconfont.cn/
 # //at.alicdn.com/t/font_1832207_c8i9n1ulxlt.css => 1832207_c8i9n1ulxlt
