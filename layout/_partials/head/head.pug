@@ -3,6 +3,7 @@
 - var siteTitle = config.title,noBaiduT = theme?.seo?.disable_baidu_transformation
 - var feedLink = full_url_for("/feed.json")
 - var twikooLink = theme?.twikoo?.link;var jsInjects = theme?.inject?.head?.js,cssInjects = theme?.inject?.head?.css
+- var wl = theme.waline.enable
 meta(charset="UTF-8")
 meta(name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2")
 meta(name="theme-color" content="#222")
@@ -30,10 +31,13 @@ if noBaiduT
 link(rel="alternate" type="application/json" title=siteTitle href=feedLink)
 != _vendor_font()
 != _css('app.css')
-!= _css("twikoo.css")
 include pwa.pug
 if twikooLink
+    != _css("twikoo.css")
     script(src=twikooLink)
+else if wl
+    link(rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css")
+    <script nomodule src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
 if theme.qweather.enable
     link(rel="stylesheet" href="https://widget.heweather.net/simple/static/css/he-simple.css?v=1.4.0" media="defer" onload="this.media='all'")
     style.

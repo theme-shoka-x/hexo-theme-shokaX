@@ -1,5 +1,10 @@
 mixin CommentRender()
+    - var tk = theme?.twikoo?.enable,wl = theme?.waline?.enable
     if page.comment !== false
-        //- TODO waline
-        div(class="wrap" id="tcomments")
-        != _init_comments("twikoo")
+        if tk
+            div(class="wrap" id="tcomments")
+            != _init_comments("twikoo")
+        else if wl
+            div(class="warp" id="wcomments")
+            != _init_comments("waline")
+

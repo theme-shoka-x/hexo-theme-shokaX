@@ -21,6 +21,20 @@ hexo.extend.helper.register('_init_comments', function (mode) {
             twikoo.init(${JSON.stringify(options)})
         }, 1000)
         </script>`
+  } else if (mode === 'waline') {
+    const options = {
+      el: '#wcomments',
+      serverURL: hexo.theme.waline.serverURL
+    }
+    return `
+    <script type="module">
+        import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs'
+        init(${JSON.stringify(options)});
+    </script>
+    <script nomodule type="text/javascript">
+        Waline.init(${JSON.stringify(options)});
+    </script>
+    `
   }
 })
 
@@ -33,7 +47,7 @@ hexo.extend.helper.register('_new_comments', function (mode) {
            }).then(function (res) {
                 res.forEach(function (item) {
                     let siteLink = item.url + "#" + item.id
-                    let commentList = document.getElementById("twikoo_comment")
+                    let commentList = document.getElementById("new-comment")
                     let commentElement = document.createElement("li");
                     commentElement.className = "item"
                     let commentLink = document.createElement("a")
@@ -53,8 +67,24 @@ hexo.extend.helper.register('_new_comments', function (mode) {
                 console.log(err)
             })
         </script>`
-  } else {
-    // TODO waline
+  } else if (mode === 'waline') {
+    return `
+    <script type="module">
+        import { RecentComments } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs'
+        RecentComments({
+          el: '#new-comment',
+          serverURL: 'http://waline.vercel.app',
+          count: 10,
+        });
+    </script>
+    <script nomodule type="text/javascript">
+        Waline.RecentComments({
+          el: '#new-comment',
+          serverURL: '${hexo.theme.waline.serverURL}',
+          count: 10,
+        });
+    </script>
+    `
   }
 })
 

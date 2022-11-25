@@ -127,6 +127,11 @@ twikoo:
   mode: vercel # vercel或tencent
   envId: "https://114514.foo.bar" # twikoo环境ID,vercel填地址
   region: "none"
+
+waline:
+  enable: false
+  serverURL: ''
+
 # Social Links
 # Usage: `Key: permalink || icon || color`
 # Key is the link label showing to end users.
