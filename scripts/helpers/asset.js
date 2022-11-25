@@ -24,7 +24,7 @@ hexo.extend.helper.register('_init_comments', function (mode) {
   } else if (mode === 'waline') {
     const options = {
       el: '#wcomments',
-      serverURL: hexo.theme.waline.serverURL
+      serverURL: hexo.theme.config.waline.serverURL
     }
     return `
     <script type="module">
@@ -73,14 +73,14 @@ hexo.extend.helper.register('_new_comments', function (mode) {
         import { RecentComments } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs'
         RecentComments({
           el: '#new-comment',
-          serverURL: 'http://waline.vercel.app',
+          serverURL: '${hexo.theme.config.waline.serverURL}',
           count: 10,
         });
     </script>
     <script nomodule type="text/javascript">
         Waline.RecentComments({
           el: '#new-comment',
-          serverURL: '${hexo.theme.waline.serverURL}',
+          serverURL: '${hexo.theme.config.waline.serverURL}',
           count: 10,
         });
     </script>
