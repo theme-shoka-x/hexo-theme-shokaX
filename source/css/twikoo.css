@@ -652,6 +652,7 @@
 .twikoo .OwO-item img {
   width: 3em;
   height: auto;
+  display: inline-block;
 }
 
 /* element-ui overwrite */
