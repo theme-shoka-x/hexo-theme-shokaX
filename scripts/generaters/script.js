@@ -1,4 +1,4 @@
-
+/* global hexo */
 const fs = require('hexo-fs')
 // const url = require('url')
 
