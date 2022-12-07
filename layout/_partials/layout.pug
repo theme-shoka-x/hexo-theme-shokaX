@@ -3,7 +3,7 @@ include ../_mixin/sidebar.pug
 include ../_mixin/widgets.pug
 
 doctype html
-html(lang=page.language?page.language:config.language,style=theme.grayMode ? 'filter: grayscale(1);':'')
+html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'filter: grayscale(1);':'')
     head
         != partial('_partials/head/head.pug', {}, {cache: true})
         != partial('_partials/head/head_com.pug')

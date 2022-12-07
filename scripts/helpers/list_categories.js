@@ -130,7 +130,7 @@ hexo.extend.helper.register('_category_posts', function (page) {
         if (post.path === page.path) {
           current = ' class="active"'
         }
-        result += `<li${current}><a href="${this.url_for(post.path)}" rel="bookmark" title="${post.title}">${post.title}</a></li>`
+        result += `<li ${current}><a href="${this.url_for(post.path)}" rel="bookmark" title="${post.title}">${post.title}</a></li>`
       })
     }
   })

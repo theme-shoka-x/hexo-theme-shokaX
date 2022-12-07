@@ -7,7 +7,7 @@ mixin SMRender(item)
     - var postText = item.title || item.link || __('post.untitled')
     article(class="item")
         div(class="cover")
-            != _url(link1, '<img data-src="'+ _cover(item) +'">', {itemprop: 'url', title: postText})
+            != _url(link1, '<img data-src="'+ _cover(item) +'" alt="article cover">', {itemprop: 'url', title: postText})
         div(class="info")
             +PMRender(item)
             h3

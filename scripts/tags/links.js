@@ -1,3 +1,4 @@
+/* global hexo */
 'use strict'
 /*
 {% links %}
