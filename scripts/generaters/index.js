@@ -1,3 +1,4 @@
+/* global hexo */
 'use strict'
 
 const fs = require('hexo-fs')

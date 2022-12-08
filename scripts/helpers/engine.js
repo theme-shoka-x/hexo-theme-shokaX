@@ -131,6 +131,7 @@ hexo.extend.helper.register('_cover', function (item, num) {
   }
 })
 
+// TODO 此函数已被废弃
 hexo.extend.helper.register('_md5', function (path) {
   const str = url_for.call(this, path)
   str.replace('index.html', '')
@@ -166,4 +167,17 @@ hexo.extend.helper.register('i18n_path', function (language) {
 hexo.extend.helper.register('language_name', function (language) {
   const name = hexo.theme.i18n.__(language)('name')
   return name === 'name' ? language : name
+})
+
+hexo.extend.helper.register('random_color', function () {
+  const arr = []
+  for (let i = 0; i < 3; i++) {
+    arr.push(Math.floor(Math.random() * 128 + 128))
+  }
+  const [r, g, b] = arr
+  return `#${
+      r.toString(16).length > 1 ? r.toString(16) : '0' + r.toString(16)
+    }${g.toString(16).length > 1 ? g.toString(16) : '0' + g.toString(16)}${
+      b.toString(16).length > 1 ? b.toString(16) : '0' + b.toString(16)
+    }`
 })

@@ -1,4 +1,5 @@
 'use strict'
+/* global hexo */
 
 const merge = require('hexo-util').deepMerge || require('lodash/merge')
 const fs = require('hexo-fs')

@@ -243,6 +243,9 @@ audio:
 # random image api
 image_server: # "https://acg.xydwz.cn/api/api.php"
 
+# CSS渐变作为文章封面
+gradient: false
+
 # Algolia Search
 # For more information: https://www.algolia.com
 search:

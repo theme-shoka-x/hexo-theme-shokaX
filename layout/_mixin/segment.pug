@@ -2,12 +2,16 @@ include postmeta.pug
 
 mixin SMRender(item)
     - var link1 = item.link || item.path
+    - var gradient = theme?.gradient
     if item.link
         - var postTitleIcon = '<i class="ic i-link-alt"></i>'
     - var postText = item.title || item.link || __('post.untitled')
     article(class="item")
-        div(class="cover")
-            != _url(link1, '<img data-src="'+ _cover(item) +'" alt="article cover">', {itemprop: 'url', title: postText})
+        if gradient
+            div(class="cover" style=`background: linear-gradient(to bottom right, ${random_color()}, ${random_color()});`)
+        else
+            div(class="cover")
+                != _url(link1, '<img data-src="'+ _cover(item) +'" alt="article cover">', {itemprop: 'url', title: postText})
         div(class="info")
             +PMRender(item)
             h3

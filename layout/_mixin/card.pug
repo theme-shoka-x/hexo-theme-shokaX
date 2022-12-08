@@ -3,7 +3,7 @@ mixin CardRender(item)
     - itemname = item.name
 
     section(class="item")
-        div(class="cover" data-background-image!=cover?cover:"")
+        div(class="cover" data-background-image!=cover ? cover:"")
             h2(class="title")
                 != itemname
             - var temp = item?.top?.name
