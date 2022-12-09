@@ -1,11 +1,13 @@
 'use strict'
 /* global hexo */
+interface shokaXPlugin {
+  main: (hexo:object,that:object,tools:object)=>string
+}
 const themeConfig = hexo.theme.config
-const plugins = []
-const insertions = new Map()
+const plugins:shokaXPlugin[] = []
+const insertions = new Map<string,string[]>()
 const tools = {
   insert: function (type, text) {
-    // TODO 插入模板
     insertions.get(type).push(text)
   }
 }
@@ -36,7 +38,7 @@ if (themeConfig?.plugins) {
 
 hexo.extend.helper.register('insert_footer', () => {
   let res
-  insertionsFooter.forEach((item) => {
+  insertions.get('footer').forEach((item) => {
     res += item
   })
   return res

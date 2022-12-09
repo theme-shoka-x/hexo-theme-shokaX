@@ -196,7 +196,7 @@ const mediaPlayer = function (t, config) {
         el: null,
         create: function () {
             const current = playlist.current();
-            this.el.innerHTML = '<div class="cover"><div class="disc"><img src="' + (current.cover) + '" class="blur" /></div></div>' +
+            this.el.innerHTML = '<div class="cover"><div class="disc"><img src="' + (current.cover) + '" class="blur"  alt="music cover"/></div></div>' +
                 '<div class="info"><h4 class="title">' + current.name + '</h4><span>' + current.artist + '</span>' +
                 '<div class="lrc"></div></div>';
             this.el.child('.cover').addEventListener('click', t.player.options.events['play-pause']);
