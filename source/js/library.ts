@@ -1,5 +1,5 @@
 /* global CONFIG */
-declare interface Object {
+declare interface EventTarget {
   attr(type:string, value?:any):any
   removeClass(className:string):any
   addClass(className:string):any
@@ -22,7 +22,7 @@ declare const LOCAL: {
   quiz: any;
   nocopy: boolean;
   copyright: string;
-  'favicon': {
+  favicon: {
     hide:string
     show:string
   }
@@ -138,7 +138,7 @@ Object.assign(HTMLElement.prototype, {
   left: function ():number {
     return this.getBoundingClientRect().left
   },
-  attr: function (type:string, value?:any):any {
+  attr: function (type:string, value?:string):any {
     if (value === null) {
       return this.removeAttribute(type)
     }
@@ -158,7 +158,7 @@ Object.assign(HTMLElement.prototype, {
       parent.insertBefore(element, this.nextSibling)
     }
   },
-  display: function (d?:null|string):string|any {
+  display: function (d?:string):string|any {
     if (d == null) {
       return this.style.display
     } else {

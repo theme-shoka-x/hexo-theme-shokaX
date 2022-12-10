@@ -291,9 +291,9 @@ const clipBoard = function (str: string, callback?: (result) => void) {
       callback && callback(false)
     })
   } else {
-    const ta = <HTMLTextAreaElement> BODY.createChild('textarea', {
+    const ta = <HTMLTextAreaElement><unknown> BODY.createChild('textarea', {
       style: {
-        top: window.scrollY + 'px', // Prevent page scrolling
+        top: window.scrollY + 'px',
         position: 'absolute',
         opacity: '0'
       },
@@ -313,6 +313,7 @@ const clipBoard = function (str: string, callback?: (result) => void) {
       selection.removeAllRanges()
       selection.addRange(selected)
     }
+    // @ts-ignore
     BODY.removeChild(ta)
   }
 }

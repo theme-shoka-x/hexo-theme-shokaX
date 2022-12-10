@@ -14,6 +14,7 @@ declare interface fireworksP {
 
 const canvasEl = document.createElement('canvas')
 canvasEl.style.cssText = 'position:fixed;top:0;left:0;pointer-events:none;z-index:9999999'
+// @ts-ignore
 document.body.appendChild(canvasEl)
 const ctx = canvasEl.getContext('2d')
 const numberOfParticules = 30

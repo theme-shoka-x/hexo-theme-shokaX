@@ -450,7 +450,7 @@ const algoliaSearch = function (pjax) {
     indexName: CONFIG.search.indexName,
     searchClient: algoliasearch(CONFIG.search.appID, CONFIG.search.apiKey),
     searchFunction: function (helper) {
-      const searchInput = <HTMLInputElement> $dom('.search-input')
+      const searchInput = <HTMLInputElement><unknown>$dom('.search-input')
       if (searchInput.value) {
         helper.search()
       }
