@@ -3,15 +3,15 @@ const isMobile = /mobile/i.test(window.navigator.userAgent);
 const mediaPlayer = function (t, config) {
     const buttons = {
         el: {},
-        create: () => {
+        create: function () {
             if (!t.player.options.btns) {
                 return;
             }
             t.player.options.btns.forEach(function (item) {
-                if (this.el[item]) {
+                if (buttons.el[item]) {
                     return;
                 }
-                this.el[item] = t.createChild('div', {
+                buttons.el[item] = t.createChild('div', {
                     className: item + ' btn',
                     onclick: function (event) {
                         t.player.fetch().then(function () {
@@ -33,7 +33,7 @@ const mediaPlayer = function (t, config) {
             if (!t.player.options.controls) {
                 return;
             }
-            const that = this;
+            const that = controller;
             t.player.options.controls.forEach(function (item) {
                 if (that.btns[item]) {
                     return;
@@ -133,33 +133,33 @@ const mediaPlayer = function (t, config) {
         create: function () {
             const current = playlist.current().el;
             if (current) {
-                if (this.el) {
-                    this.el.parentNode.removeClass('current')
-                        .removeEventListener(utils.nameMap.dragStart, this.drag);
-                    this.el.remove();
+                if (progress.el) {
+                    progress.el.parentNode.removeClass('current')
+                        .removeEventListener(utils.nameMap.dragStart, progress.drag);
+                    progress.el.remove();
                 }
-                this.el = current.createChild('div', {
+                progress.el = current.createChild('div', {
                     className: 'progress'
                 });
-                this.el.attr('data-dtime', utils.secondToTime(0));
-                this.bar = this.el.createChild('div', {
+                progress.el.attr('data-dtime', utils.secondToTime(0));
+                progress.bar = progress.el.createChild('div', {
                     className: 'bar'
                 });
                 current.addClass('current');
-                current.addEventListener(utils.nameMap.dragStart, this.drag);
+                current.addEventListener(utils.nameMap.dragStart, progress.drag);
                 playlist.scroll();
             }
         },
         update: function (percent) {
-            this.bar.width(Math.floor(percent * 100) + '%');
-            this.el.attr('data-ptime', utils.secondToTime(percent * source.duration));
+            progress.bar.width(Math.floor(percent * 100) + '%');
+            progress.el.attr('data-ptime', utils.secondToTime(percent * source.duration));
         },
         seeking: function (type) {
             if (type) {
-                this.el.addClass('seeking');
+                progress.el.addClass('seeking');
             }
             else {
-                this.el.removeClass('seeking');
+                progress.el.removeClass('seeking');
             }
         },
         percent: function (e, el) {
@@ -196,11 +196,11 @@ const mediaPlayer = function (t, config) {
         el: null,
         create: function () {
             const current = playlist.current();
-            this.el.innerHTML = '<div class="cover"><div class="disc"><img src="' + (current.cover) + '" class="blur"  alt="music cover"/></div></div>' +
+            preview.el.innerHTML = '<div class="cover"><div class="disc"><img src="' + (current.cover) + '" class="blur"  alt="music cover"/></div></div>' +
                 '<div class="info"><h4 class="title">' + current.name + '</h4><span>' + current.artist + '</span>' +
                 '<div class="lrc"></div></div>';
-            this.el.child('.cover').addEventListener('click', t.player.options.events['play-pause']);
-            lyrics.create(this.el.child('.lrc'));
+            preview.el.child('.cover').addEventListener('click', t.player.options.events['play-pause']);
+            lyrics.create(preview.el.child('.lrc'));
         }
     };
     let source;
@@ -216,20 +216,20 @@ const mediaPlayer = function (t, config) {
                 item.artist = item.artist || item.author || 'Anonymous';
                 item.cover = item.cover || item.pic;
                 item.type = item.type || 'normal';
-                this.data.push(item);
+                playlist.data.push(item);
             });
         },
         clear: function () {
-            this.data = [];
-            this.el.innerHTML = '';
-            if (this.index !== -1) {
-                this.index = -1;
+            playlist.data = [];
+            playlist.el.innerHTML = '';
+            if (playlist.index !== -1) {
+                playlist.index = -1;
                 t.player.fetch();
             }
         },
         create: function () {
-            const el = this.el;
-            this.data.map(function (item, index) {
+            const el = playlist.el;
+            playlist.data.map(function (item, index) {
                 if (item.el) {
                     return;
                 }
@@ -713,7 +713,7 @@ const mediaPlayer = function (t, config) {
         },
         onplay: function () {
             t.parentNode.addClass('playing');
-            showtip(this.attr('title'));
+            showtip(events.attr('title'));
             NOWPLAYING = t;
         },
         onpause: function () {

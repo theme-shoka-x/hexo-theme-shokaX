@@ -3,12 +3,12 @@ const isMobile = /mobile/i.test(window.navigator.userAgent)
 const mediaPlayer = function (t, config?) {
   const buttons = {
     el: {},
-    create: () => {
+    create: function () {
       if (!t.player.options.btns) { return }
       t.player.options.btns.forEach(function (item) {
-        if (this.el[item]) { return }
+        if (buttons.el[item]) { return }
 
-        this.el[item] = t.createChild('div', {
+        buttons.el[item] = t.createChild('div', {
           className: item + ' btn',
           onclick: function (event) {
             t.player.fetch().then(function () {
@@ -29,8 +29,7 @@ const mediaPlayer = function (t, config?) {
     create: () => {
       if (!t.player.options.controls) { return }
 
-      // eslint-disable-next-line @typescript-eslint/no-this-alias
-      const that = this
+      const that = controller
       t.player.options.controls.forEach(function (item) {
         if (that.btns[item]) { return }
 
@@ -138,35 +137,35 @@ const mediaPlayer = function (t, config?) {
       const current = playlist.current().el
 
       if (current) {
-        if (this.el) {
-          this.el.parentNode.removeClass('current')
-            .removeEventListener(utils.nameMap.dragStart, this.drag)
-          this.el.remove()
+        if (progress.el) {
+          progress.el.parentNode.removeClass('current')
+            .removeEventListener(utils.nameMap.dragStart, progress.drag)
+          progress.el.remove()
         }
 
-        this.el = current.createChild('div', {
+        progress.el = current.createChild('div', {
           className: 'progress'
         })
 
-        this.el.attr('data-dtime', utils.secondToTime(0))
+        progress.el.attr('data-dtime', utils.secondToTime(0))
 
-        this.bar = this.el.createChild('div', {
+        progress.bar = progress.el.createChild('div', {
           className: 'bar'
         })
 
         current.addClass('current')
 
-        current.addEventListener(utils.nameMap.dragStart, this.drag)
+        current.addEventListener(utils.nameMap.dragStart, progress.drag)
 
         playlist.scroll()
       }
     },
     update: function (percent) {
-      this.bar.width(Math.floor(percent * 100) + '%')
-      this.el.attr('data-ptime', utils.secondToTime(percent * source.duration))
+      progress.bar.width(Math.floor(percent * 100) + '%')
+      progress.el.attr('data-ptime', utils.secondToTime(percent * source.duration))
     },
     seeking: function (type) {
-      if (type) { this.el.addClass('seeking') } else { this.el.removeClass('seeking') }
+      if (type) { progress.el.addClass('seeking') } else { progress.el.removeClass('seeking') }
     },
     percent: function (e, el) {
       let percentage = ((e.clientX || e.changedTouches[0].clientX) - el.left()) / el.width()
@@ -207,13 +206,13 @@ const mediaPlayer = function (t, config?) {
     create: function () {
       const current = playlist.current()
 
-      this.el.innerHTML = '<div class="cover"><div class="disc"><img src="' + (current.cover) + '" class="blur"  alt="music cover"/></div></div>' +
+      preview.el.innerHTML = '<div class="cover"><div class="disc"><img src="' + (current.cover) + '" class="blur"  alt="music cover"/></div></div>' +
                 '<div class="info"><h4 class="title">' + current.name + '</h4><span>' + current.artist + '</span>' +
                 '<div class="lrc"></div></div>'
 
-      this.el.child('.cover').addEventListener('click', t.player.options.events['play-pause'])
+      preview.el.child('.cover').addEventListener('click', t.player.options.events['play-pause'])
 
-      lyrics.create(this.el.child('.lrc'))
+      lyrics.create(preview.el.child('.lrc'))
     }
   }
   let source
@@ -230,22 +229,22 @@ const mediaPlayer = function (t, config?) {
         item.cover = item.cover || item.pic
         item.type = item.type || 'normal'
 
-        this.data.push(item)
+        playlist.data.push(item)
       })
     },
     clear: function () {
-      this.data = []
-      this.el.innerHTML = ''
+      playlist.data = []
+      playlist.el.innerHTML = ''
 
-      if (this.index !== -1) {
-        this.index = -1
+      if (playlist.index !== -1) {
+        playlist.index = -1
         t.player.fetch()
       }
     },
     create: function () {
-      const el = this.el
+      const el = playlist.el
 
-      this.data.map(function (item, index) {
+      playlist.data.map(function (item, index) {
         // eslint-disable-next-line array-callback-return
         if (item.el) { return }
 
