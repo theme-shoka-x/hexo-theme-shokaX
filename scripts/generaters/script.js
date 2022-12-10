@@ -22,11 +22,9 @@ hexo.extend.generator.register('script', function (locals) {
     auto_dark: theme.auto_dark,
     auto_scroll: theme.auto_scroll,
     js: {
-      // valine: theme.vendors.js.valine,
       chart: theme.vendors.js.chart,
       copy_tex: theme.vendors.js.copy_tex,
-      fancybox: theme.vendors.js.fancybox,
-      echarts: theme.vendors.js.echarts
+      fancybox: theme.vendors.js.fancybox
     },
     css: {
       valine: theme.css + '/comment.css',

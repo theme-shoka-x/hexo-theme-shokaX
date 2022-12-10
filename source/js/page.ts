@@ -626,21 +626,6 @@ const siteRefresh = function (reload) {
   vendorJs('copy_tex')
   vendorCss('mermaid')
   vendorJs('chart')
-  // vendorJs('valine', function() {
-  //   var options = Object.assign({}, CONFIG.valine);
-  //   options = Object.assign(options, LOCAL.valine||{});
-  //   options.el = '#comments';
-  //   options.pathname = LOCAL.path;
-  //   options.pjax = pjax;
-  //   options.lazyload = lazyload;
-  //
-  //   new MiniValine(options);
-  //
-  //   setTimeout(function(){
-  //     positionInit(1);
-  //     postFancybox('.v');
-  //   }, 1000);
-  // }, window.MiniValine);
 
   if (!reload) {
     $dom.each('script[data-pjax]', pjaxScript)
@@ -690,7 +675,7 @@ const siteInit = function () {
 
   CONFIG.quicklink.ignores = LOCAL.ignores
   quicklink.listen(CONFIG.quicklink)
-  autoDarkmode() // 新增
+  autoDarkmode()
 
   visibilityListener()
   themeColorListener()

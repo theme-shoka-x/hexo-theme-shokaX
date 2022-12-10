@@ -2,7 +2,7 @@ include postmeta.pug
 
 mixin SMRender(item)
     - var link1 = item.link || item.path
-    - var gradient = theme?.gradient
+    - var gradient = theme?.experiments?.gradient
     if item.link
         - var postTitleIcon = '<i class="ic i-link-alt"></i>'
     - var postText = item.title || item.link || __('post.untitled')

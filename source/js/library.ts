@@ -93,6 +93,15 @@ $dom.each = (selector:string, callback?:(value: HTMLElement, key: number, parent
   return $dom.all(selector, element).forEach(callback)
 }
 
+/* shokaX异步化计划 */
+$dom.asyncify = async (selector:string, element:Document=document):Promise<HTMLElement | null> => {
+  if (selector.indexOf('#') === 0) {
+    return element.getElementById(selector.replace('#', ''))
+  }
+  // @ts-ignore
+  return element.querySelector(selector)
+}
+
 Object.assign(HTMLElement.prototype, {
   /**
      * 创建一个子节点并放置

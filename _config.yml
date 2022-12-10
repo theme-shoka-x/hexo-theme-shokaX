@@ -5,13 +5,6 @@ assets: "assets"
 css: "css"
 js: "js"
 
-# 出于易用性和兼容性准备的特性
-# 建议手动安装如下插件而非使用内置渲染器:
-# hexo-renderer-pug
-compatibility:
-  useBuiltPugRenderer: true # 使用内置的pug渲染器(不推荐)
-
-
 open_graph:
 #twitter_id:
 #google_plus:
@@ -27,8 +20,11 @@ pwa:
   serviceworker: sw.js #serviceworker脚本位置,使用以/为基准的绝对路径
   manifest: manifest.json #manifest位置,使用以/为基准的绝对路径
 
+# 实验性特性
 experiments:
-  noPlayer: true
+  noPlayer: false # 禁用音乐播放器
+  gradient: false # 使用CSS渐变作为文章封面
+
 icon:
   favicon: "/favicon.ico"
   apple_touch_icon: "/apple-touch-icon.png"
@@ -40,7 +36,7 @@ seo:
   baidu: "baidu-key"
 
 darkmode: false
-auto_dark:
+auto_dark: # 自动亮/暗模式
   enable: true  #是否开启
   start: 20     #开始时间
   end: 7        #结束时间
@@ -243,9 +239,6 @@ audio:
 # random image api
 image_server: # "https://acg.xydwz.cn/api/api.php"
 
-# CSS渐变作为文章封面
-gradient: false
-
 # Algolia Search
 # For more information: https://www.algolia.com
 search:
@@ -302,7 +295,13 @@ advVendors:
       async: true
     chart:
       src: npm:frappe-charts@1.5.0/dist/frappe-charts.min.iife.js
-
+  css:
+    katex:
+      src: npm:katex@0.12.0/dist/katex.min.css
+    comment:
+      src: css/comment.css
+    fancybox:
+      src: combine/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css
 vendorsList:
   js:
     - pace
