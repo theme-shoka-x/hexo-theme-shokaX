@@ -24,9 +24,6 @@ pwa:
 experiments:
   noPlayer: false # 禁用音乐播放器
   gradient: false # 使用CSS渐变作为文章封面
-  performance:
-    gzip: true # 预处理资源文件为gz格式以减少TTFB时间(需要服务端支持)
-    br: true # 预处理资源文件为br格式以减少TTFB时间(需要服务端支持)
 
 icon:
   favicon: "/favicon.ico"
