@@ -713,7 +713,7 @@ const mediaPlayer = function (t, config) {
         },
         onplay: function () {
             t.parentNode.addClass('playing');
-            showtip(events.attr('title'));
+            showtip(this.attr('title'));
             NOWPLAYING = t;
         },
         onpause: function () {

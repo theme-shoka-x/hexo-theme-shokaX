@@ -1,4 +1,7 @@
 /* global CONFIG */
+/*
+对注释的说明: 部分注释为openai-chatgpt生成的注释,可能存在描述或语义的问题
+ */
 declare interface EventTarget {
   attr(type:string, value?:any):any
   removeClass(className:string):any
@@ -102,6 +105,15 @@ $dom.asyncify = async (selector:string, element:Document=document):Promise<HTMLE
   return element.querySelector(selector)
 }
 
+$dom.asyncifyAll = async (selector:string, element:Document=document):Promise<NodeListOf<HTMLElement>> => {
+  return element.querySelectorAll(selector)
+}
+
+$dom.asyncifyEach = async (selector:string, callback?:(value: HTMLElement, key: number, parent: NodeListOf<Element>) => void, element?:Document):Promise<void> => {
+  const tmp = await $dom.asyncifyAll(selector, element)
+  return tmp.forEach(callback)
+}
+
 Object.assign(HTMLElement.prototype, {
   /**
      * 创建一个子节点并放置
@@ -135,6 +147,10 @@ Object.assign(HTMLElement.prototype, {
     }
     return this.getBoundingClientRect().height
   },
+  /**
+   此函数将元素的宽度设置为指定值,如果未提供值,则返回元素的宽度.<br />
+   宽度可以作为数字提供(假定它以`rem`为单位).作为字符串提供则直接设置为元素宽度
+   */
   width: function (w?:number|string):number {
     if (w) {
       this.style.width = typeof w === 'number' ? w + 'rem' : w
@@ -147,7 +163,13 @@ Object.assign(HTMLElement.prototype, {
   left: function ():number {
     return this.getBoundingClientRect().left
   },
-  attr: function (type:string, value?:string):any {
+  /**
+   * 该函数接受两个参数：`type`字符串和 `value`字符串的可选参数。该函数具有基于参数值的三个主要逻辑分支。 <br />
+   * 1. `value`如果是`null`，则该函数从当前上下文中删除具有`type`函数名称的属性。 <br />
+   * 2. `value`如果为真，则该函数将使用`type`参数指定的名称将属性设置为当前上下文中`value`参数的值。然后，该函数返回当前上下文。 <br />
+   * 3. `value`如果不是真，则该函数返回属性的值，该值具有当前上下文中的参数指定的名称。
+   */
+  attr: function (type:string, value?:string):void|EventTarget|string {
     if (value === null) {
       return this.removeAttribute(type)
     }

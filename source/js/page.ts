@@ -144,7 +144,7 @@ const postBeauty = function () {
 
   postFancybox('.post.block')
 
-  $dom('.post.block').oncopy = function (event) {
+  $dom('.post.block').oncopy = async function (event) {
     showtip(LOCAL.copyright)
 
     if (LOCAL.nocopy) {
@@ -152,7 +152,7 @@ const postBeauty = function () {
       return
     }
 
-    const copyright = $dom('#copyright')
+    const copyright = await $dom.asyncify('#copyright')
     if (window.getSelection().toString().length > 30 && copyright) {
       event.preventDefault()
       const author = '# ' + copyright.child('.author').innerText

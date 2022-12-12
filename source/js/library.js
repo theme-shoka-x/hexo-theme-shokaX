@@ -11,6 +11,18 @@ $dom.all = (selector, element = document) => {
 $dom.each = (selector, callback, element) => {
     return $dom.all(selector, element).forEach(callback);
 };
+$dom.asyncify = async (selector, element = document) => {
+    if (selector.indexOf('#') === 0) {
+        return element.getElementById(selector.replace('#', ''));
+    }
+    return element.querySelector(selector);
+};
+$dom.asyncifyAll = async (selector, element = document) => {
+    return element.querySelectorAll(selector);
+};
+$dom.asyncifyEach = async (selector, callback, element) => {
+    return $dom.all(selector, element).forEach(callback);
+};
 Object.assign(HTMLElement.prototype, {
     createChild: function (tag, obj, positon) {
         const child = document.createElement(tag);
