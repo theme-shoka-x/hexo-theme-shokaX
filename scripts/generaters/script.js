@@ -1,5 +1,6 @@
 /* global hexo */
 const fs = require('hexo-fs')
+const zlib = require('zlib')
 // const url = require('url')
 
 hexo.extend.generator.register('script', function (locals) {
@@ -68,10 +69,25 @@ hexo.extend.generator.register('script', function (locals) {
   }
 
   text = 'const CONFIG = ' + JSON.stringify(siteConfig) + ';' + text
-  return {
+  const result = hexo.render.renderSync({ text, engine: 'js' })
+  return [{
     path: theme.js + '/app.js',
     data: function () {
-      return hexo.render.renderSync({ text, engine: 'js' })
+      return result
     }
-  }
+  },
+  {
+    path: theme.js + '/app.js.gz',
+    data: function () {
+      return zlib.gzipSync(result, {
+        level: 8
+      }).toString()
+    }
+  },
+  {
+    path: theme.js + '/app.js.br',
+    data: function () {
+      return zlib.brotliCompressSync(result).toString()
+    }
+  }]
 })
