@@ -36,7 +36,7 @@ if (themeConfig?.plugins) {
 
 hexo.extend.helper.register('insert_footer', () => {
   let res
-  insertionsFooter.forEach((item) => {
+  insertions.get('footer').forEach((item) => {
     res += item
   })
   return res
