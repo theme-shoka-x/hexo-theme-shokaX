@@ -289,7 +289,7 @@ const postBeauty = function () {
     }
   })
 
-  $dom.each('pre.mermaid > svg', function (element) {
+  $dom.asyncifyEach('pre.mermaid > svg', function (element) {
     const temp = <HTMLElement> element
     temp.style.maxWidth = ''
   })
@@ -309,7 +309,7 @@ const postBeauty = function () {
   })
 
   // quiz
-  $dom.each('.quiz > ul.options li', function (element) {
+  $dom.asyncifyEach('.quiz > ul.options li', function (element) {
     element.addEventListener('click', function (event) {
       if (element.hasClass('correct')) {
         element.toggleClass('right')
@@ -320,13 +320,13 @@ const postBeauty = function () {
     })
   })
 
-  $dom.each('.quiz > p', function (element) {
+  $dom.asyncifyEach('.quiz > p', function (element) {
     element.addEventListener('click', function (event) {
       element.parentNode.toggleClass('show')
     })
   })
 
-  $dom.each('.quiz > p:first-child', function (element) {
+  $dom.asyncifyEach('.quiz > p:first-child', function (element) {
     const quiz = element.parentNode
     let type = 'choice'
     if (quiz.hasClass('true') || quiz.hasClass('false')) { type = 'true_false' }
@@ -336,7 +336,7 @@ const postBeauty = function () {
     element.attr('data-type', LOCAL.quiz[type])
   })
 
-  $dom.each('.quiz .mistake', function (element) {
+  $dom.asyncifyEach('.quiz .mistake', function (element) {
     element.attr('data-type', LOCAL.quiz.mistake)
   })
 
@@ -344,7 +344,7 @@ const postBeauty = function () {
     element.className = ['primary', 'success', 'info', 'warning', 'danger'][Math.floor(Math.random() * 5)]
   })
 
-  $dom.each('.md div.player', function (element) {
+  $dom.asyncifyEach('.md div.player', function (element) {
     mediaPlayer(element, {
       type: element.attr('data-type'),
       mode: 'order',

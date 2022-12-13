@@ -101,17 +101,18 @@ $dom.asyncify = async (selector:string, element:Document=document):Promise<HTMLE
   if (selector.indexOf('#') === 0) {
     return element.getElementById(selector.replace('#', ''))
   }
-  // @ts-ignore
-  return element.querySelector(selector)
+
+  return element.querySelector(selector) as HTMLElement
 }
 
 $dom.asyncifyAll = async (selector:string, element:Document=document):Promise<NodeListOf<HTMLElement>> => {
   return element.querySelectorAll(selector)
 }
 
-$dom.asyncifyEach = async (selector:string, callback?:(value: HTMLElement, key: number, parent: NodeListOf<Element>) => void, element?:Document):Promise<void> => {
-  const tmp = await $dom.asyncifyAll(selector, element)
-  return tmp.forEach(callback)
+$dom.asyncifyEach = (selector:string, callback?:(value: HTMLElement, key: number, parent: NodeListOf<Element>) => void, element?:Document):void => {
+  $dom.asyncifyAll(selector, element).then((tmp)=>{
+    tmp.forEach(callback)
+  })
 }
 
 Object.assign(HTMLElement.prototype, {

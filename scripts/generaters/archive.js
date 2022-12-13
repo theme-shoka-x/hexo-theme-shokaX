@@ -1,3 +1,4 @@
+/* global hexo */
 'use strict'
 
 const pagination = require('hexo-pagination')
