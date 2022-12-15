@@ -29,6 +29,7 @@ icon:
   favicon: "/favicon.ico"
   apple_touch_icon: "/apple-touch-icon.png"
 
+baidu_analytics: ""
 seo:
   bing: "bing-key"
   google: "google-key"
