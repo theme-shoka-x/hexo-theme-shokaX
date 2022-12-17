@@ -70,24 +70,10 @@ hexo.extend.generator.register('script', function (locals) {
 
   text = 'const CONFIG = ' + JSON.stringify(siteConfig) + ';' + text
   const result = hexo.render.renderSync({ text, engine: 'js' })
-  return [{
+  return {
     path: theme.js + '/app.js',
     data: function () {
       return result
     }
-  },
-  {
-    path: theme.js + '/app.js.gz',
-    data: function () {
-      return zlib.gzipSync(result, {
-        level: 8
-      }).toString()
-    }
-  },
-  {
-    path: theme.js + '/app.js.br',
-    data: function () {
-      return zlib.brotliCompressSync(result).toString()
-    }
-  }]
+  }
 })

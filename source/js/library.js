@@ -20,8 +20,10 @@ $dom.asyncify = async (selector, element = document) => {
 $dom.asyncifyAll = async (selector, element = document) => {
     return element.querySelectorAll(selector);
 };
-$dom.asyncifyEach = async (selector, callback, element) => {
-    return $dom.all(selector, element).forEach(callback);
+$dom.asyncifyEach = (selector, callback, element) => {
+    $dom.asyncifyAll(selector, element).then((tmp) => {
+        tmp.forEach(callback);
+    });
 };
 Object.assign(HTMLElement.prototype, {
     createChild: function (tag, obj, positon) {

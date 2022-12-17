@@ -1,4 +1,4 @@
-declare const showBtn, hideCode:Function, instantsearch:any, algoliasearch:any, quicklink:any, Pjax:any
+declare const instantsearch:any, algoliasearch:any, quicklink:any, Pjax:any
 
 const cardActive = function () {
   if (!$dom('.index.wrap')) { return }
@@ -198,10 +198,6 @@ const postBeauty = function () {
   })
 
   $dom.each('figure.highlight', function (element) {
-    const showCode = function () {
-      code_container.style.maxHeight = ''
-      showBtn.addClass('open')
-    }
     const code_container = element.child('.code-container')
     const caption = element.child('figcaption')
 
@@ -255,13 +251,21 @@ const postBeauty = function () {
       const target = event.currentTarget
       if (element.hasClass('fullscreen')) {
         removeFullscreen()
-        hideCode && hideCode()
+        if (code_container && code_container.find('tr').length > 15){
+          const showBtn = code_container.child('.show-btn')
+          code_container.style.maxHeight = '300px'
+          showBtn.removeClass('open')
+        }
         pageScroll(element)
       } else {
         element.addClass('fullscreen')
         BODY.addClass('fullscreen')
         fullscreenBtn.child('.ic').className = 'ic i-compress'
-        showCode && showCode()
+        if (code_container && code_container.find('tr').length > 15){
+          const showBtn = code_container.child('.show-btn')
+          code_container.style.maxHeight = ''
+          showBtn.addClass('open')
+        }
       }
     }
     fullscreenBtn.addEventListener('click', fullscreenHandle)
@@ -275,6 +279,10 @@ const postBeauty = function () {
       const hideCode = function () {
         code_container.style.maxHeight = '300px'
         showBtn.removeClass('open')
+      }
+      const showCode = function () {
+        code_container.style.maxHeight = ''
+        showBtn.addClass('open')
       }
 
       showBtn.addEventListener('click', function (event) {

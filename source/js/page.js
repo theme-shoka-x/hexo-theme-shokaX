@@ -173,10 +173,6 @@ const postBeauty = function () {
         element.className = 'code-container';
     });
     $dom.each('figure.highlight', function (element) {
-        const showCode = function () {
-            code_container.style.maxHeight = '';
-            showBtn.addClass('open');
-        };
         const code_container = element.child('.code-container');
         const caption = element.child('figcaption');
         element.insertAdjacentHTML('beforeend', '<div class="operation"><span class="breakline-btn"><i class="ic i-align-left"></i></span><span class="copy-btn"><i class="ic i-clipboard"></i></span><span class="fullscreen-btn"><i class="ic i-expand"></i></span></div>');
@@ -228,14 +224,22 @@ const postBeauty = function () {
             const target = event.currentTarget;
             if (element.hasClass('fullscreen')) {
                 removeFullscreen();
-                hideCode && hideCode();
+                if (code_container && code_container.find('tr').length > 15) {
+                    const showBtn = code_container.child('.show-btn');
+                    code_container.style.maxHeight = '300px';
+                    showBtn.removeClass('open');
+                }
                 pageScroll(element);
             }
             else {
                 element.addClass('fullscreen');
                 BODY.addClass('fullscreen');
                 fullscreenBtn.child('.ic').className = 'ic i-compress';
-                showCode && showCode();
+                if (code_container && code_container.find('tr').length > 15) {
+                    const showBtn = code_container.child('.show-btn');
+                    code_container.style.maxHeight = '';
+                    showBtn.addClass('open');
+                }
             }
         };
         fullscreenBtn.addEventListener('click', fullscreenHandle);
@@ -247,6 +251,10 @@ const postBeauty = function () {
             const hideCode = function () {
                 code_container.style.maxHeight = '300px';
                 showBtn.removeClass('open');
+            };
+            const showCode = function () {
+                code_container.style.maxHeight = '';
+                showBtn.addClass('open');
             };
             showBtn.addEventListener('click', function (event) {
                 if (showBtn.hasClass('open')) {
@@ -260,7 +268,7 @@ const postBeauty = function () {
             });
         }
     });
-    $dom.each('pre.mermaid > svg', function (element) {
+    $dom.asyncifyEach('pre.mermaid > svg', function (element) {
         const temp = element;
         temp.style.maxWidth = '';
     });
@@ -278,7 +286,7 @@ const postBeauty = function () {
             }
         });
     });
-    $dom.each('.quiz > ul.options li', function (element) {
+    $dom.asyncifyEach('.quiz > ul.options li', function (element) {
         element.addEventListener('click', function (event) {
             if (element.hasClass('correct')) {
                 element.toggleClass('right');
@@ -289,12 +297,12 @@ const postBeauty = function () {
             }
         });
     });
-    $dom.each('.quiz > p', function (element) {
+    $dom.asyncifyEach('.quiz > p', function (element) {
         element.addEventListener('click', function (event) {
             element.parentNode.toggleClass('show');
         });
     });
-    $dom.each('.quiz > p:first-child', function (element) {
+    $dom.asyncifyEach('.quiz > p:first-child', function (element) {
         const quiz = element.parentNode;
         let type = 'choice';
         if (quiz.hasClass('true') || quiz.hasClass('false')) {
@@ -311,13 +319,13 @@ const postBeauty = function () {
         }
         element.attr('data-type', LOCAL.quiz[type]);
     });
-    $dom.each('.quiz .mistake', function (element) {
+    $dom.asyncifyEach('.quiz .mistake', function (element) {
         element.attr('data-type', LOCAL.quiz.mistake);
     });
     $dom.each('div.tags a', function (element) {
         element.className = ['primary', 'success', 'info', 'warning', 'danger'][Math.floor(Math.random() * 5)];
     });
-    $dom.each('.md div.player', function (element) {
+    $dom.asyncifyEach('.md div.player', function (element) {
         mediaPlayer(element, {
             type: element.attr('data-type'),
             mode: 'order',
