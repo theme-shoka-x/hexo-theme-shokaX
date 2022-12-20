@@ -36,6 +36,9 @@ seo:
   yandex: "yandex-key"
   baidu: "baidu-key"
 
+visitor:
+  clarity: false
+
 darkmode: false
 auto_dark: # 自动亮/暗模式
   enable: true  #是否开启
