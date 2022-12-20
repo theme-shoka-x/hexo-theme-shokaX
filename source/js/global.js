@@ -186,15 +186,15 @@ const showtip = function (msg) {
     }, 3000);
 };
 const resizeHandle = function (event) {
-    siteNavHeight = siteNav.height();
-    headerHightInner = siteHeader.height();
-    headerHight = headerHightInner + $dom('#waves').height();
+    siteNavHeight = siteNav.changeOrGetHeight();
+    headerHightInner = siteHeader.changeOrGetHeight();
+    headerHight = headerHightInner + $dom('#waves').changeOrGetHeight();
     if (oWinWidth !== window.innerWidth) {
         sideBarToggleHandle(null, 1);
     }
     oWinHeight = window.innerHeight;
     oWinWidth = window.innerWidth;
-    sideBar.child('.panels').height(oWinHeight + 'px');
+    sideBar.child('.panels').changeOrGetHeight(oWinHeight + 'px');
 };
 const scrollHandle = function (event) {
     const winHeight = window.innerHeight;
@@ -229,7 +229,7 @@ const scrollHandle = function (event) {
     scrollAction.y = window.scrollY;
     const scrollPercent = Math.round(Math.min(100 * window.scrollY / contentVisibilityHeight, 100)) + '%';
     backToTop.child('span').innerText = scrollPercent;
-    $dom('.percent').width(scrollPercent);
+    $dom('.percent').changeOrGetWidth(scrollPercent);
 };
 const pagePosition = function () {
     if (CONFIG.auto_scroll) {

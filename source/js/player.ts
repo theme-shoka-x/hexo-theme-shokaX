@@ -122,10 +122,10 @@ const mediaPlayer = function (t, config?) {
     },
     update: function (percent) {
       controller.btns.volume.className = 'volume ' + (!source.muted && percent > 0 ? 'on' : 'off') + ' btn'
-      controller.btns.volume.bar.width(Math.floor(percent * 100) + '%')
+      controller.btns.volume.bar.changeOrGetWidth(Math.floor(percent * 100) + '%')
     },
     percent: function (e, el) {
-      let percentage = ((e.clientX || e.changedTouches[0].clientX) - el.left()) / el.width()
+      let percentage = ((e.clientX || e.changedTouches[0].clientX) - el.left()) / el.changeOrGetWidth()
       percentage = Math.max(percentage, 0)
       return Math.min(percentage, 1)
     }
@@ -161,14 +161,14 @@ const mediaPlayer = function (t, config?) {
       }
     },
     update: function (percent) {
-      progress.bar.width(Math.floor(percent * 100) + '%')
+      progress.bar.changeOrGetWidth(Math.floor(percent * 100) + '%')
       progress.el.attr('data-ptime', utils.secondToTime(percent * source.duration))
     },
     seeking: function (type) {
       if (type) { progress.el.addClass('seeking') } else { progress.el.removeClass('seeking') }
     },
     percent: function (e, el) {
-      let percentage = ((e.clientX || e.changedTouches[0].clientX) - el.left()) / el.width()
+      let percentage = ((e.clientX || e.changedTouches[0].clientX) - el.left()) / el.changeOrGetWidth()
       percentage = Math.max(percentage, 0)
       return Math.min(percentage, 1)
     },

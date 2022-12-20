@@ -365,7 +365,7 @@ const backToTopHandle = function () {
 }
 
 const goToBottomHandle = function () {
-  pageScroll(parseInt(String(Container.height())))
+  pageScroll(parseInt(String(Container.changeOrGetHeight())))
 }
 
 const goToCommentHandle = function () {

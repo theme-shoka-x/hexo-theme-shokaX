@@ -188,7 +188,7 @@ const postBeauty = function () {
   })
 
   $dom.each('.md table', function (element) {
-    element.wrap({
+    element.wrapObject({
       className: 'table-container'
     })
   })
@@ -298,7 +298,7 @@ const postBeauty = function () {
   })
 
   $dom.asyncifyEach('pre.mermaid > svg', function (element) {
-    const temp = <HTMLElement> element
+    const temp = <SVGAElement><unknown>element
     temp.style.maxWidth = ''
   })
 

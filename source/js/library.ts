@@ -9,11 +9,11 @@ declare interface EventTarget {
   createChild(tag:string, obj:Object, positon?: string | null):HTMLElement
   child(selector:string):HTMLElement
   hasClass(className:string):boolean
-  height(h?:number|string):number
+  changeOrGetHeight(h?:number|string):number
   toggleClass(className:string, display?:boolean):any
-  width(w?:number|string):number
+  changeOrGetWidth(w?:number|string):number
   insertAfter(element:HTMLElement):void
-  wrap(obj:Object)
+  wrapObject(obj:Object)
   find(selector:string):NodeListOf<HTMLElement>
   display(d?:null|string):string|any
 }
@@ -135,14 +135,14 @@ Object.assign(HTMLElement.prototype, {
     }
     return child
   },
-  wrap: function (obj:Object) {
+  wrapObject: function (obj:Object) {
     const box = document.createElement('div')
     Object.assign(box, obj)
     this.parentNode.insertBefore(box, this)
     this.parentNode.removeChild(this)
     box.appendChild(this)
   },
-  height: function (h?:number|string):number {
+  changeOrGetHeight: function (h?:number|string):number {
     if (h) {
       this.style.height = typeof h === 'number' ? h + 'rem' : h
     }
@@ -152,7 +152,7 @@ Object.assign(HTMLElement.prototype, {
    此函数将元素的宽度设置为指定值,如果未提供值,则返回元素的宽度.<br />
    宽度可以作为数字提供(假定它以`rem`为单位).作为字符串提供则直接设置为元素宽度
    */
-  width: function (w?:number|string):number {
+  changeOrGetWidth: function (w?:number|string):number {
     if (w) {
       this.style.width = typeof w === 'number' ? w + 'rem' : w
     }

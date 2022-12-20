@@ -305,7 +305,7 @@ const backToTopHandle = function () {
     pageScroll(0);
 };
 const goToBottomHandle = function () {
-    pageScroll(parseInt(String(Container.height())));
+    pageScroll(parseInt(String(Container.changeOrGetHeight())));
 };
 const goToCommentHandle = function () {
     pageScroll($dom('#comments'));

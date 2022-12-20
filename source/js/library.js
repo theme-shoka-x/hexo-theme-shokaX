@@ -42,20 +42,20 @@ Object.assign(HTMLElement.prototype, {
         }
         return child;
     },
-    wrap: function (obj) {
+    wrapObject: function (obj) {
         const box = document.createElement('div');
         Object.assign(box, obj);
         this.parentNode.insertBefore(box, this);
         this.parentNode.removeChild(this);
         box.appendChild(this);
     },
-    height: function (h) {
+    changeOrGetHeight: function (h) {
         if (h) {
             this.style.height = typeof h === 'number' ? h + 'rem' : h;
         }
         return this.getBoundingClientRect().height;
     },
-    width: function (w) {
+    changeOrGetWidth: function (w) {
         if (w) {
             this.style.width = typeof w === 'number' ? w + 'rem' : w;
         }

@@ -165,7 +165,7 @@ const postBeauty = function () {
         element.style.counterReset = 'counter ' + parseInt(element.attr('start') - 1);
     });
     $dom.each('.md table', function (element) {
-        element.wrap({
+        element.wrapObject({
             className: 'table-container'
         });
     });
