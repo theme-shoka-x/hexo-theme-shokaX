@@ -1,26 +1,26 @@
-script
-    | WIDGET = {
-    |    "CONFIG": {
-    |        "modules": "012",
-    |        "background": "5",
-    |        "tmpColor": "var(--text-color);",
-    |        "tmpSize": "16",
-    |        "cityColor": "var(--text-color);",
-    |        "citySize": "16",
-    |        "aqiColor": "FFFFFF",
-    |        "aqiSize": "16",
-    |        "weatherIconSize": "24",
-    |        "alertIconSize": "18",
-    |        "padding": "10px 10px 10px 10px",
-    |        "shadow": "0",
-    |        "language": "auto",
-    |        "borderRadius": "5",
-    |        "fixed": "false",
-    |        "vertical": "top",
-    |        "horizontal": "left",
-    !=      `"key": \'${theme.qweather.key}\'`
-    |    }
-    | }
+script.
+     WIDGET = {
+        "CONFIG": {
+            "modules": "012",
+            "background": "5",
+            "tmpColor": "var(--text-color);",
+            "tmpSize": "16",
+            "cityColor": "var(--text-color);",
+            "citySize": "16",
+            "aqiColor": "FFFFFF",
+            "aqiSize": "16",
+            "weatherIconSize": "24",
+            "alertIconSize": "18",
+            "padding": "10px 10px 10px 10px",
+            "shadow": "0",
+            "language": "auto",
+            "borderRadius": "5",
+            "fixed": "false",
+            "vertical": "top",
+            "horizontal": "left",
+            "key": #{theme.qweather.key}
+        }
+     }
 
 script.
     (function (d) {

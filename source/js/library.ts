@@ -245,7 +245,7 @@ const $storage = {
   }
 }
 
-const getScript = function (url:string, callback:Function, condition:string):void {
+const getScript = function (url:string, callback?:Function, condition?:string):void {
   if (condition) {
     callback()
   } else {
