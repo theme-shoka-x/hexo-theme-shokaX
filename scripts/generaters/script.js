@@ -1,6 +1,5 @@
 /* global hexo */
 const fs = require('hexo-fs')
-const zlib = require('zlib')
 // const url = require('url')
 
 hexo.extend.generator.register('script', function (locals) {
@@ -64,30 +63,15 @@ hexo.extend.generator.register('script', function (locals) {
     text += fs.readFileSync('themes/shokaX/source/js/player.js').toString()
   }
   if (theme.fireworks && theme.fireworks.enable) {
-    // text += fs.readFileSync('themes/shoka/source/js/_app/fireworks.js').toString()
     siteConfig.fireworks = theme.fireworks.color || ['rgba(255,182,185,.9)', 'rgba(250,227,217,.9)', 'rgba(187,222,214,.9)', 'rgba(138,198,209,.9)']
   }
 
   text = 'const CONFIG = ' + JSON.stringify(siteConfig) + ';' + text
   const result = hexo.render.renderSync({ text, engine: 'js' })
-  return [
-    {
-      path: theme.js + '/app.js',
-      data: function () {
-        return result
-      }
-    },
-    {
-      path: theme.js + '/app.js.gz',
-      data: function () {
-        return zlib.gzipSync(result)
-      }
-    },
-    {
-      path: theme.js + '/app.js.br',
-      data: function () {
-        return zlib.brotliCompressSync(result)
-      }
+  return {
+    path: theme.js + '/app.js',
+    data: function () {
+      return result
     }
-  ]
+  }
 })
