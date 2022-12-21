@@ -1,4 +1,5 @@
 'use strict'
+/* global hexo */
 const path = require('path')
 const url = require('url')
 
@@ -28,7 +29,6 @@ hexo.extend.filter.register('template_locals', locals => {
   locals.languages = [...i18n.languages]
   locals.languages.splice(locals.languages.indexOf('default'), 1)
   locals.page.lang = locals.page.lang || locals.page.language
-  // locals.hostname = url.parse(config.url).hostname || config.url
   locals.hostname = new URL(config.url).hostname || config.url
 
   // Creative Commons
