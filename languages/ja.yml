@@ -141,3 +141,6 @@ quiz:
   essay: 問答
   gap_fill: 空欄
   mistake: 間違った答え
+
+outime:
+  template: "<div class=\"note warning\"><p><span class=\"label warning\">記事の適時性の警告</span><br> {{publish}} 日前に公開され、 {{updated}} 日前に最終更新された記事です。 一部情報が変更されている可能性がありますので、ご了承ください。</p></div>"

@@ -663,6 +663,7 @@ const siteRefresh = function (reload) {
   cardActive()
 
   lazyload.observe()
+  isOutime()
 }
 
 const siteInit = function () {

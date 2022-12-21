@@ -200,6 +200,11 @@ post:
   # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
   count: true
 
+# 文章是否失效
+outime:
+  enable: true
+  days: 30 # 超过 30 天文章失效
+
 reward:
   # If true, reward will be displayed in every article by default.
   enable: true

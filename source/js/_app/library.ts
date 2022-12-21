@@ -25,6 +25,8 @@ declare const LOCAL: {
   quiz: any;
   nocopy: boolean;
   copyright: string;
+  outime: any
+  template: string
   favicon: {
     hide:string
     show:string
@@ -37,6 +39,10 @@ declare const CONFIG: {
   version:number
   root:string
   statics:string
+  outime: {
+    enable: boolean
+    days: number
+  }
   favicon: {
     normal: string,
     hidden: string

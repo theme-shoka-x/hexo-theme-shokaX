@@ -149,3 +149,6 @@ quiz:
   essay: 问答题
   gap_fill: 填空题
   mistake: 错题备注
+
+outime:
+  template: "<div class=\"note warning\"><p><span class=\"label warning\">文章时效性提示</span><br>这是一篇发布于 {{publish}} 天前，最后一次更新在 {{updated}} 天前的文章，部分信息可能已经发生改变，请注意甄别。</p></div>"
