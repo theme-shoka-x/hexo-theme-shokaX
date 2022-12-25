@@ -45,26 +45,28 @@ hexo.extend.helper.register('_new_comments', function (mode) {
            envId: "${hexo.theme.config?.twikoo?.envId}",
            pageSize: 10
            }).then(function (res) {
+                const fragment = new DocumentFragment()
+                const commentList = document.getElementById("new-comment")
                 res.forEach(function (item) {
-                    let siteLink = item.url + "#" + item.id
-                    let commentList = document.getElementById("new-comment")
-                    let commentElement = document.createElement("li");
+                    const siteLink = item.url + "#" + item.id
+                    const commentElement = document.createElement("li");
                     commentElement.className = "item"
-                    let commentLink = document.createElement("a")
+                    const commentLink = document.createElement("a")
                     commentLink.setAttribute("href", siteLink)
                     commentLink.setAttribute("data-pjax-state", "data-pjax-state")
-                    let commenterAndTime = document.createElement("span")
+                    const commenterAndTime = document.createElement("span")
                     commenterAndTime.innerText = item.nick + "@" + item.relativeTime
                     commenterAndTime.className = "breadcrumb"
-                    let commentTextNode = document.createElement("span")
+                    const commentTextNode = document.createElement("span")
                     commentTextNode.innerText = item.commentText
                     commentLink.appendChild(commenterAndTime)
                     commentLink.appendChild(commentTextNode)
                     commentElement.appendChild(commentLink)
-                    commentList.appendChild(commentElement)
+                    fragment.appendChild(commentElement)
                 });
+                commentList.appendChild(fragment);
             }).catch(function (err) {
-                console.log(err)
+                console.error(err)
             })
         </script>`
   } else if (mode === 'waline') {

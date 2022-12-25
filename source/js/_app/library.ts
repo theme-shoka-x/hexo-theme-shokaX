@@ -188,6 +188,9 @@ Object.assign(HTMLElement.prototype, {
       return this.getAttribute(type)
     }
   },
+  /**
+   * 将此节点插入父节点的下一个节点之前
+   */
   insertAfter: function (element:HTMLElement):void {
     const parent = this.parentNode
     if (parent.lastChild === this) {
@@ -196,7 +199,11 @@ Object.assign(HTMLElement.prototype, {
       parent.insertBefore(element, this.nextSibling)
     }
   },
-  display: function (d?:string):string|any {
+  /**
+   * 当d为空时返回此节点的CSSStyle display属性 <br />
+   * 反之,将d设置为此节点的CSSStyle display属性
+   */
+  display: function (d?:string):string|EventTarget {
     if (d == null) {
       return this.style.display
     } else {
@@ -204,12 +211,22 @@ Object.assign(HTMLElement.prototype, {
       return this
     }
   },
+  /**
+   * 找到此节点第一个符合selector选择器的子节点
+   */
   child: function (selector:string):HTMLElement {
     return $dom(selector, this)
   },
+  /**
+   * 找到此节点所有符合selector选择器的子节点
+   */
   find: function (selector:string):NodeListOf<HTMLElement> {
     return $dom.all(selector, this)
   },
+  /**
+   * 当输入type为toggle时,对每个className执行toggle操作 <br />
+   * 反之,对每个className执行type操作
+   */
   _class: function (type: string, className: string, display?: boolean): void {
     const classNames = className.indexOf(' ') ? className.split(' ') : [className]
     const that = this
@@ -304,7 +321,7 @@ const vendorCss = function (type:string, condition?:string):void {
 
 const transition = (target:HTMLElement, type:any, complete?:Function):void => {
   let animation
-  let display:any = 'none'
+  let display = 'none'
   switch (type) {
     case 0:
       animation = { opacity: [1, 0] }

@@ -651,7 +651,7 @@ const siteRefresh = function (reload) {
   registerExtURL()
   postBeauty()
   tabFormat()
-  if(typeof mediaPlayer !== 'undefined') {
+  if (typeof mediaPlayer !== 'undefined') {
     toolPlayer.player.load(LOCAL.audio || CONFIG.audio || {})
   }
   Loader.hide()
@@ -702,7 +702,7 @@ const siteInit = function () {
   window.addEventListener('beforeunload', function () {
     pagePosition()
   })
-
+  // clickMenu() TODO 暂时禁用
   siteRefresh(1)
 }
 
