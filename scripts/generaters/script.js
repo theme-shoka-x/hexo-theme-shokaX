@@ -35,6 +35,10 @@ hexo.extend.generator.register('script', function (locals) {
     loader: theme.loader,
     search: null,
     valine: theme.valine,
+    outime: {
+      enable: theme.outime.enable,
+      days: theme.outime.days
+    },
     quicklink: {
       timeout: theme.quicklink.timeout,
       priority: theme.quicklink.priority
@@ -56,7 +60,7 @@ hexo.extend.generator.register('script', function (locals) {
 
   let text = '';
 
-  ['library', 'global', 'page', 'components'].forEach(function (item) {
+  ['library', 'global', 'vue', 'page', 'components'].forEach(function (item) {
     text += fs.readFileSync(`themes/shokaX/source/js/_app/${item}.js`).toString()
   })
   if (!theme.experiments?.noPlayer) {

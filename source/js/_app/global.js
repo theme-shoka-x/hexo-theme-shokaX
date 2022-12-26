@@ -107,43 +107,6 @@ const themeColorListener = function () {
             changeTheme('dark');
         }
     }
-    $dom('.theme').addEventListener('click', function (event) {
-        let c;
-        const temp = event.currentTarget;
-        const btn = temp.child('.ic');
-        const neko = BODY.createChild('div', {
-            id: 'neko',
-            innerHTML: '<div class="planet"><div class="sun"></div><div class="moon"></div></div><div class="body"><div class="face"><section class="eyes left"><span class="pupil"></span></section><section class="eyes right"><span class="pupil"></span></section><span class="nose"></span></div></div>'
-        });
-        const hideNeko = function () {
-            transition(neko, {
-                delay: 2500,
-                opacity: 0
-            }, function () {
-                BODY.removeChild(neko);
-            });
-        };
-        if (btn.hasClass('i-sun')) {
-            c = function () {
-                neko.addClass('dark');
-                changeTheme('dark');
-                $storage.set('theme', 'dark');
-                hideNeko();
-            };
-        }
-        else {
-            neko.addClass('dark');
-            c = function () {
-                neko.removeClass('dark');
-                changeTheme();
-                $storage.set('theme', 'light');
-                hideNeko();
-            };
-        }
-        transition(neko, 1, function () {
-            setTimeout(c, 210);
-        });
-    });
 };
 const visibilityListener = function () {
     let iconNode = $dom('[rel="icon"]');
@@ -290,4 +253,65 @@ const clipBoard = function (str, callback) {
         }
         BODY.removeChild(ta);
     }
+};
+const isOutime = function () {
+    let updateTime;
+    if (CONFIG.outime.enable && LOCAL.outime) {
+        const times = document.getElementsByTagName('time');
+        if (times.length === 0) {
+            return;
+        }
+        const posts = document.getElementsByClassName('body md');
+        if (posts.length === 0) {
+            return;
+        }
+        const now = Date.now();
+        const pubTime = new Date(times[0].dateTime);
+        if (times.length === 1) {
+            updateTime = pubTime;
+        }
+        else {
+            updateTime = new Date(times[1].dateTime);
+        }
+        const interval = parseInt(String(now - updateTime));
+        const days = parseInt(String(CONFIG.outime.days)) || 30;
+        if (interval > (days * 86400000)) {
+            const publish = parseInt(String((now - pubTime) / 86400000));
+            const updated = parseInt(String(interval / 86400000));
+            const template = LOCAL.template.replace('{{publish}}', String(publish)).replace('{{updated}}', String(updated));
+            posts[0].insertAdjacentHTML('afterbegin', template);
+        }
+    }
+};
+const clickMenu = function () {
+    const menuElement = $dom('#clickMenu');
+    window.oncontextmenu = function (event) {
+        if (event.ctrlKey) {
+            return;
+        }
+        event.preventDefault();
+        let x = event.offsetX;
+        let y = event.offsetY;
+        let winWidth = window.innerWidth;
+        let winHeight = window.innerHeight;
+        let menuWidth = menuElement.offsetWidth;
+        let menuHeight = menuElement.offsetHeight;
+        x = winWidth - menuWidth >= x ? x : winWidth - menuWidth;
+        y = winHeight - menuHeight >= y ? y : winHeight - menuHeight;
+        menuElement.style.top = y + 'px';
+        menuElement.style.left = x + 'px';
+        menuElement.classList.add('active');
+        $dom.each(".clickSubmenu", (submenu) => {
+            if (x > (winWidth - menuWidth - submenu.offsetWidth)) {
+                submenu.style.left = '-200px';
+            }
+            else {
+                submenu.style.left = '';
+                submenu.style.right = '-200px';
+            }
+        });
+    };
+    window.addEventListener('click', function () {
+        menuElement.classList.remove('active');
+    });
 };

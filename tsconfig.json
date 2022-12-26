@@ -1,14 +1,16 @@
 {
   "compilerOptions": {
     "target": "es2021",
-    "module": "commonjs",
+    "module": "es2022",
     "removeComments": true,
     "alwaysStrict": false,
     "pretty": false,
-    "allowJs": true
+    "allowJs": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node"
   },
   "typeAcquisition": {
     "enable": true
   },
-  "include": ["source/js"]
+  "include": ["source/js"],
 }

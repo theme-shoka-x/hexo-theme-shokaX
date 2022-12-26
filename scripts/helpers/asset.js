@@ -47,12 +47,16 @@ hexo.extend.helper.register('_new_comments', function (mode) {
            pageSize: 10
            }).then(function (res) {
                 res.forEach(function (item) {
+                    let cText = item.commentText
+                    if (item.commentText.length > 50) {
+                        cText = item.commentText.substring(0,50)+'...'
+                    }
                     const siteLink = item.url + "#" + item.id
                     comments.push({
-                        href: siteLink
-                        nick: item.nick
-                        time: item.relativeTime
-                        text: item.commentText
+                        href: siteLink,
+                        nick: item.nick,
+                        time: item.relativeTime,
+                        text: cText
                     })
                 });
                 Vue.createApp({

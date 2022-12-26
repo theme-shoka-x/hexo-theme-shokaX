@@ -268,7 +268,7 @@ const sidebarTOC = function () {
     target.addClass('active current')
     sections[index] && sections[index].addClass('active')
 
-    let parent = <any> target.parentNode
+    let parent = <Element> target.parentNode
 
     while (!parent.matches('.contents')) {
       if (parent.matches('li')) {
@@ -278,7 +278,7 @@ const sidebarTOC = function () {
           t.addClass('active')
         }
       }
-      parent = parent.parentNode
+      parent = <Element> parent.parentNode
     }
     // Scrolling to center active TOC element if TOC content is taller than viewport.
     if (getComputedStyle(sideBar).display !== 'none' && tocElement.hasClass('active')) {
