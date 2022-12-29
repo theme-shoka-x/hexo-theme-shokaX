@@ -24,6 +24,7 @@ pwa:
 experiments:
   noPlayer: false # 禁用音乐播放器
   gradient: false # 使用CSS渐变作为文章封面
+  debug: false # 使用debug模式启动
 
 icon:
   favicon: "/favicon.ico"

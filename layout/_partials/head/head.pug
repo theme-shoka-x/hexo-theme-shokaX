@@ -33,7 +33,11 @@ link(rel="alternate" type="application/json" title=siteTitle href=feedLink)
 if theme.custom.enable
     != _local_fonts()
 != _css('app.css')
-script(src="https://unpkg.com/vue@3/dist/vue.global.js")
+- var debugVue = theme?.experiments?.debug
+if debugVue
+    script(src="https://cdn.staticfile.org/vue/3.2.45/vue.global.js")
+else
+    script(src="https://cdn.staticfile.org/vue/3.2.45/vue.global.prod.js")
 include pwa.pug
 if twikooLink && !wl
     != _css("twikoo.css")
