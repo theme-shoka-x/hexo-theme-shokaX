@@ -587,6 +587,7 @@ const siteRefresh = function (reload) {
     }, 500);
     cardActive();
     lazyload.observe();
+    isOutime();
 };
 const siteInit = function () {
     domInit();
@@ -606,7 +607,6 @@ const siteInit = function () {
     quicklink.listen(CONFIG.quicklink);
     autoDarkmode();
     visibilityListener();
-    themeColorListener();
     algoliaSearch(pjax);
     window.addEventListener('scroll', scrollHandle);
     window.addEventListener('resize', resizeHandle);

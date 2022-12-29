@@ -8,10 +8,12 @@ module.exports = {
   },
   extends: [
     'standard',
-    'plugin:@typescript-eslint/recommended'
+    'plugin:@typescript-eslint/recommended',
+    'plugin:vue/vue3-recommended'
   ],
   plugins: [
-    '@typescript-eslint'
+    '@typescript-eslint',
+    'vue'
   ],
   parserOptions: {
     ecmaVersion: 12

@@ -40,31 +40,32 @@ hexo.extend.helper.register('_init_comments', function (mode) {
 
 hexo.extend.helper.register('_new_comments', function (mode) {
   if (mode === 'twikoo') {
-    return `<script data-pjax>
+    return `<script data-pjax type="module">
+            let comments = []
            twikoo.getRecentComments({
            envId: "${hexo.theme.config?.twikoo?.envId}",
            pageSize: 10
            }).then(function (res) {
-                const fragment = new DocumentFragment()
-                const commentList = document.getElementById("new-comment")
                 res.forEach(function (item) {
+                    let cText = item.commentText
+                    if (item.commentText.length > 50) {
+                        cText = item.commentText.substring(0,50)+'...'
+                    }
                     const siteLink = item.url + "#" + item.id
-                    const commentElement = document.createElement("li");
-                    commentElement.className = "item"
-                    const commentLink = document.createElement("a")
-                    commentLink.setAttribute("href", siteLink)
-                    commentLink.setAttribute("data-pjax-state", "data-pjax-state")
-                    const commenterAndTime = document.createElement("span")
-                    commenterAndTime.innerText = item.nick + "@" + item.relativeTime
-                    commenterAndTime.className = "breadcrumb"
-                    const commentTextNode = document.createElement("span")
-                    commentTextNode.innerText = item.commentText
-                    commentLink.appendChild(commenterAndTime)
-                    commentLink.appendChild(commentTextNode)
-                    commentElement.appendChild(commentLink)
-                    fragment.appendChild(commentElement)
+                    comments.push({
+                        href: siteLink,
+                        nick: item.nick,
+                        time: item.relativeTime,
+                        text: cText
+                    })
                 });
-                commentList.appendChild(fragment);
+                Vue.createApp({
+                  data() {
+                      return {
+                          coms: comments
+                      }
+                  }
+                  }).mount('#new-comment')
             }).catch(function (err) {
                 console.error(err)
             })
