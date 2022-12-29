@@ -60,7 +60,7 @@ hexo.extend.generator.register('script', function (locals) {
 
   let text = '';
 
-  ['library', 'global', 'vue', 'page', 'components'].forEach(function (item) {
+  ['library', 'global', 'page', 'vue', 'components'].forEach(function (item) {
     text += fs.readFileSync(`themes/shokaX/source/js/_app/${item}.js`).toString()
   })
   if (!theme.experiments?.noPlayer) {

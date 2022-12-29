@@ -19,7 +19,8 @@ block content
                 div(class="cards")
                     each cat in page.catlist
                         +CardRender(cat)
-        if page.posts.length > 0
+        - var pagePosts = page?.posts?.length
+        if pagePosts > 0
             - var posts = page.posts.toArray()
             if page.current == 1
                 h2(class="divider")

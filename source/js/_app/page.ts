@@ -687,7 +687,7 @@ const siteInit = function () {
   autoDarkmode()
 
   visibilityListener()
-  // themeColorListener()
+  themeColorListener()
 
   algoliaSearch(pjax)
 

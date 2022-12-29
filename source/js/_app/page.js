@@ -589,34 +589,5 @@ const siteRefresh = function (reload) {
     lazyload.observe();
     isOutime();
 };
-const siteInit = function () {
-    domInit();
-    pjax = new Pjax({
-        selectors: [
-            'head title',
-            '.languages',
-            '.twikoo',
-            '.pjax',
-            '.leancloud-recent-comment',
-            'script[data-config]'
-        ],
-        analytics: false,
-        cacheBust: false
-    });
-    CONFIG.quicklink.ignores = LOCAL.ignores;
-    quicklink.listen(CONFIG.quicklink);
-    autoDarkmode();
-    visibilityListener();
-    algoliaSearch(pjax);
-    window.addEventListener('scroll', scrollHandle);
-    window.addEventListener('resize', resizeHandle);
-    window.addEventListener('pjax:send', pjaxReload);
-    window.addEventListener('pjax:success', siteRefresh);
-    window.addEventListener('beforeunload', function () {
-        pagePosition();
-    });
-    siteRefresh(1);
-};
-window.addEventListener('DOMContentLoaded', siteInit);
 console.log('%c Theme.ShokaX v' + CONFIG.version + ' %c https://github.com/zkz098/hexo-theme-shokaX ', 'color: white; background: #e9546b; padding:5px 0;', 'padding:4px;border:1px solid #e9546b;');
 console.log('%c by kaitaku ' + '%c https://www.kaitaku.xyz', 'color: white; background: #00bfff; padding: 5px 3px;', 'padding: 4px;border:1px solid #00bfff');

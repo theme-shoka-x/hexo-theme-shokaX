@@ -1,9 +1,10 @@
-let themeStatus = 'day'
+
+
 Vue.createApp(
   {
     data() {
       return {
-        themeStatus: themeStatus
+
       }
     },
     methods: {

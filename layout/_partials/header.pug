@@ -11,7 +11,7 @@ nav(id="nav")
                     != alternate || title
         ul(class="right" id="rightNav")
             li(class="item theme" @click="changeThemeByBtn")
-                i(class="ic i-sun")
+                i(class="ic" :class="{'i-sun': !themeStatus,'i-moon': themeStatus}")
             li(class="item search")
                 i(class="ic i-search")
             li(class="item weather")
