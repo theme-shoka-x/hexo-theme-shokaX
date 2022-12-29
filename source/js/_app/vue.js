@@ -39,34 +39,5 @@ Vue.createApp({
                 setTimeout(c, 210);
             });
         }
-    },
-    mounted() {
-        domInit();
-        pjax = new Pjax({
-            selectors: [
-                'head title',
-                '.languages',
-                '.twikoo',
-                '.pjax',
-                '.leancloud-recent-comment',
-                'script[data-config]'
-            ],
-            analytics: false,
-            cacheBust: false
-        });
-        CONFIG.quicklink.ignores = LOCAL.ignores;
-        quicklink.listen(CONFIG.quicklink);
-        autoDarkmode();
-        visibilityListener();
-        themeColorListener();
-        algoliaSearch(pjax);
-        window.addEventListener('scroll', scrollHandle);
-        window.addEventListener('resize', resizeHandle);
-        window.addEventListener('pjax:send', pjaxReload);
-        window.addEventListener('pjax:success', siteRefresh);
-        window.addEventListener('beforeunload', function () {
-            pagePosition();
-        });
-        siteRefresh(1);
     }
-}).mount('#container');
+}).mount('#rightNav');

@@ -1,13 +1,13 @@
 {
   "name": "hexo-theme-shokax",
-  "version": "0.0.1",
-  "description": "a hexo theme",
+  "version": "0.0.1-alpha1",
+  "description": "a hexo theme based on shoka",
   "main": "index.js",
   "repository": "https://github.com/zkz098/hexo-theme-shokaX",
   "author": "Chou kaitaku",
   "license": "MIT",
   "scripts": {
-    "test": "cd ./source/js ;tsc"
+    "test": "cd ./source/js && tsc"
   },
   "devDependencies": {
     "@types/animejs": "^3.1.6",
