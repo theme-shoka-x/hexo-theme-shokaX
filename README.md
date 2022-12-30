@@ -2,7 +2,7 @@
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fzkz098%2Fhexo-theme-shokaX.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fzkz098%2Fhexo-theme-shokaX?ref=badge_shield)
 ![LICENSE](	https://img.shields.io/github/license/zkz098/hexo-theme-shokaX)
 ![stars](https://img.shields.io/github/stars/zkz098/hexo-theme-shokaX)
-
+![version](https://shields.io/npm/v/hexo-theme-shokax)
 
 此项目是shoka的一个魔改版,致力于提高性能和优化魔改体验 \
 本项目处于高强度开发期,但github仓库版本已基本可用 \s
