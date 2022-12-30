@@ -30,13 +30,17 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
 
                     != partial('_partials/header.pug', {}, {cache: true})
                 div(id="imgs" class="pjax")
-                    - var covers = _cover(page, 6)
-                    if covers.length === 6
+                    if theme.experiments.gradient
                         ul
-                            each image in covers
-                                li(class="item" data-background-image=image)
+                            li(class="item" data-background-image=theme.experiments.gradientCover)
                     else
-                        img(src=covers)
+                        - var covers = _cover(page, 6)
+                        if covers.length === 6
+                            ul
+                                each image in covers
+                                    li(class="item" data-background-image=image)
+                        else
+                            img(src=covers)
             div(id="waves")
                 svg(class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto")
                     defs
