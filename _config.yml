@@ -24,14 +24,13 @@ pwa:
 experiments:
   noPlayer: false # 禁用音乐播放器
   gradient: false # 使用CSS渐变作为文章封面
-  gradientCover: "" # 当gradient为true时使用的主页面cover
+  gradientCover: "" # 当gradient为true时使用的主页面cover(为空则使用bing随机图片)
   debug: false # 使用debug模式启动
 
 icon:
   favicon: "/favicon.ico"
   apple_touch_icon: "/apple-touch-icon.png"
 
-baidu_analytics: ""
 seo:
   bing: "bing-key"
   google: "google-key"
@@ -40,6 +39,7 @@ seo:
 
 visitor:
   clarity: false
+  baiduAnalytics: false
 
 darkmode: false
 auto_dark: # 自动亮/暗模式

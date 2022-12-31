@@ -1,5 +1,5 @@
-- var hmSrc = `https://hm.baidu.com/hm.js?${ theme.baidu_analytics }`
-if theme.baidu_analytics
+- var hmSrc = `https://hm.baidu.com/hm.js?${ theme.visitor.baiduAnalytics }`
+if theme.visitor.baiduAnalytics
     script(data-pjax=true).
         var _hmt = _hmt || [];
         (function () {
