@@ -1,21 +1,19 @@
 'use strict'
 /* global hexo */
-const path = require('path')
-const url = require('url')
 
 const fmtNum = num => {
   return num < 10 ? '0' + num : num
 }
 
 hexo.extend.filter.register('template_locals', locals => {
-  const { env, config } = hexo
+  const { config } = hexo
   const { __, theme } = locals
   const { i18n } = hexo.theme
 
   const pangu = theme.pangu
     ? require('pangu')
     : {
-        spacing: data => {
+        spacing: (data) => {
           return data
         }
       }
@@ -32,7 +30,11 @@ hexo.extend.filter.register('template_locals', locals => {
   locals.hostname = new URL(config.url).hostname || config.url
 
   // Creative Commons
-  locals.ccURL = 'https://creativecommons.org/' + (theme.creative_commons.license === 'zero' ? 'publicdomain/zero/1.0/' : 'licenses/' + theme.creative_commons.license + '/4.0/') + (theme.creative_commons.language || '')
+  if (theme.creative_commons.license === 'zero') {
+    locals.ccURL = 'https://creativecommons.org/' + 'publicdomain/zero/1.0/' + (theme.creative_commons.language || '')
+  } else {
+    locals.ccURL = 'https://creativecommons.org/' + 'licenses/' + theme.creative_commons.license + '/4.0/' + (theme.creative_commons.language || '')
+  }
 
   if (locals.page.title) {
     locals.page.title = pangu.spacing(locals.page.title)

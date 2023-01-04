@@ -49,7 +49,6 @@ hexo.extend.helper.register('insert_footer', () => {
 if (hexo.theme.config?.plugin?.enable) {
   hexo.theme.config.plugin.load.forEach((item) => {
     const p = require(item)
-    console.log(item)
     console.log(p)
     if (p.prepare) {
       p.prepare(hexo, this)

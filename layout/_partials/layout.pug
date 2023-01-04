@@ -134,6 +134,7 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
         != _js('app.js')
         != partial('_partials/third-party/baidu-analytics.pug', {}, {cache: true})
         != partial('_partials/third-party/qweather.pug', {}, {cache: true})
+        != partial('_partials/third-party/clarity.pug', {}, {cache: true})
         != _new_comments('twikoo')
         if theme.qweather.enable
 
