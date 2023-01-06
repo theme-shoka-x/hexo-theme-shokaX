@@ -4,8 +4,9 @@
 ![stars](https://img.shields.io/github/stars/zkz098/hexo-theme-shokaX)
 ![version](https://shields.io/npm/v/hexo-theme-shokax)
 
-此项目是shoka的一个魔改版,致力于提高性能和优化魔改体验 \
-本项目处于高强度开发期,但github仓库版本已基本可用 \s
+此项目是shoka的一个二次开发版(算精神续作),致力于提高性能和优化魔改体验 \
+诞生原因是目前shoka已经两年没有更新了,积压了大量BUG和功能请求。\
+本项目处于高强度开发期,但github仓库版本已基本可用 \
 二次开发与常见问题请看wiki
 
 ## 待办名单
@@ -19,14 +20,19 @@
 - [ ] 重构lib方法(长期计划)
 - [ ] 异步化js
 
-## 已于从shoka迁移吗?
-很容易,只需要调整shoka的部分配置,并重新安装渲染器就行
+## 和shoka的区别
+原先shoka使用了javascript+Native+nunjucks的技术 \
+而shokaX则使用了typescript+Vue 3+Pug的技术搭配 \
+图标库可能会更换为Font Awesome 6 \
+更改了大量难以访问的CDN链接
 
-## 以前的魔改呢?
-这个比较难解决,因为shokaX对编写语言进行了更改:
-- javascript -> typescript
-- njk -> pug
-  因此需要更改编写的语言
+## 如何安装?
+建议使用[ShokaX-CLI](https://github.com/zkz098/shokaX-CLI) ,执行下列命令即可:
+```bash
+npm i shokax-cli --location=global
+# hexo init 初始化环境
+SXC install shokaX
+```
 
 # 许可证
 许可证: MIT \

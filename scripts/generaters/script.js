@@ -61,10 +61,18 @@ hexo.extend.generator.register('script', function (locals) {
   let text = '';
 
   ['library', 'global', 'page', 'vue', 'components'].forEach(function (item) {
-    text += fs.readFileSync(`themes/shokaX/source/js/_app/${item}.js`).toString()
+    if (fs.existsSync(`themes/shokaX/source/js/_app/${item}.js`)) {
+      text += fs.readFileSync(`themes/shokaX/source/js/_app/${item}.js`).toString()
+    } else {
+      text += fs.readFileSync(`node_modules/hexo-theme-shokax/source/js/_app/${item}.js`).toString()
+    }
   })
   if (!theme.experiments?.noPlayer) {
-    text += fs.readFileSync('themes/shokaX/source/js/_app/player.js').toString()
+    if (fs.existsSync('themes/shokaX/source/js/_app/player.js')) {
+      text += fs.readFileSync('themes/shokaX/source/js/_app/player.js').toString()
+    } else {
+      text += fs.readFileSync('node_modules/hexo-theme-shokax/source/js/_app/player.js').toString()
+    }
   }
   if (theme.fireworks && theme.fireworks.enable) {
     siteConfig.fireworks = theme.fireworks.color || ['rgba(255,182,185,.9)', 'rgba(250,227,217,.9)', 'rgba(187,222,214,.9)', 'rgba(138,198,209,.9)']

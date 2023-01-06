@@ -11,15 +11,13 @@ block content
     div(class="collapse wrap")
         - var prev = _category_prev(page.category)
         h2(class="item header")
-            a(href=url_for(config.category_dir))
-                != __('title.all')
+            a(href=url_for(config.category_dir)) #{__('title.all')}
             if prev
                 small /
                 != prev
             small /
             != page.title
-            small
-                != __('title.category')
+            small #{__('title.category')}
         - var posts = page.posts
         - var current = "c"
         - var lastcat = ""
@@ -40,7 +38,7 @@ block content
                                 if index >= post.categories.toArray().length
                                     != cat.length
                                 else
-                                    != "/"
+                                    #{'/'}
                     - var lastcatslug = lastcatslug + cat.slug
             if lastcat && lastcatslug && lastcatslug !== current
                 h3(class="item section")
@@ -52,8 +50,7 @@ block content
                     itemprop="dateCreated"
                     datetime=moment(post.date).format()
                     content=date(post.date, config.date_format)
-                    )
-                        != date(post.date, 'MM-DD')
+                    ) #{date(post.date, 'MM-DD')}
                 div(class="title")
                     if post.link
                         - var postTitleIcon = '<i class="ic i-link-alt"></i>'
