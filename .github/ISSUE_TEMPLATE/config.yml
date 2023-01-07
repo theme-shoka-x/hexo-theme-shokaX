@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 问题讨论 & 主题魔改交流区
+    url: https://github.com/zkz098/hexo-theme-shokaX/discussions
+    about: 使用过程中遇到的疑惑或者主题魔改方面的疑惑请选此
