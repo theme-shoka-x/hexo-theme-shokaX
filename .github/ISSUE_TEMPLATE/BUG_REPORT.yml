@@ -17,29 +17,29 @@ body:
     validations:
       required: true
   - type: "textarea"
-      id: step
-      attributes:
-        label: 复现步骤
-        description: |
-          在问题发生时你做了什么
-      validations:
-        required: true
+    id: step
+    attributes:
+      label: 复现步骤
+      description: |
+        在问题发生时你做了什么
+    validations:
+      required: true
   - type: "textarea"
-      id: config
-      attributes:
-        label: 相关配置
-        description: |
-          请在此处描述你的环境配置,例如hexo和node版本或者浏览器版本(选填)
-      validations:
-        required: false
+    id: config
+    attributes:
+      label: 相关配置
+      description: |
+        请在此处描述你的环境配置,例如hexo和node版本或者浏览器版本(选填)
+    validations:
+      required: false
   - type: checkboxes
-      id: checkagain
-      attributes:
-        label: 注意事项
-        description: |
-          1. 请确保shokaX和HRMNMI版本均为最新版(shokaX以npm版本为准)
-          2. 请正确安装shokaX的依赖插件(SXC会自动安装)
-          3. 如果对主题进行了修改,请确保此错误不是修改部分引起的(修改部分应该去讨论区解决)
-        options:
-          - label: 我已确认以上事项
-            required: true
+    id: checkagain
+    attributes:
+      label: 注意事项
+      description: |
+        1. 请确保shokaX和HRMNMI版本均为最新版(shokaX以npm版本为准)
+        2. 请正确安装shokaX的依赖插件(SXC会自动安装)
+        3. 如果对主题进行了修改,请确保此错误不是修改部分引起的(修改部分应该去讨论区解决)
+      options:
+        - label: 我已确认以上事项
+          required: true
