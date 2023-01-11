@@ -8,6 +8,18 @@ body:
     attributes:
       value: |
         标题请简要描述问题
+  - type: dropdown
+    id: typequestion
+    attributes:
+      label: 问题发生位置
+      description: 这个问题发生在什么位置
+      options:
+        - Hexo渲染报错
+        - Hexo渲染不正确(文字undefine或空白等)
+        - 前端渲染不正确(CSS错位或JS报错等)
+        - 无法判断
+    validations:
+      required: true
   - type: "textarea"
     id: describe
     attributes:

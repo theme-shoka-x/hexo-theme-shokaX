@@ -1,0 +1,27 @@
+name: 请求功能
+description: 对shokaX的建议或功能请求
+labels: ["enhancement ✨"]
+assignees:
+  - zkz098
+body:
+  - type: "markdown"
+    attributes:
+      value: |
+        标题请简要描述功能
+  - type: "textarea"
+    id: describe
+    attributes:
+      label: 建议描述
+      description: |
+        详细描述建议,如有参考链接可粘贴于此
+    validations:
+      required: true
+  - type: checkboxes
+    id: checkagain
+    attributes:
+      label: 注意事项
+      description: |
+        1. 请确认此功能未与现有请求重复
+      options:
+        - label: 我已确认以上事项
+          required: true
