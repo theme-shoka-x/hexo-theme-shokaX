@@ -17,8 +17,7 @@
 - [x] 注入js和css支持
 - [x] 自定义font
 - [x] 部分功能调整为可关闭
-- [ ] 重构lib方法(长期计划)
-- [ ] 异步化js
+- [ ] 插件系统
 
 ## 和shoka的区别
 原先shoka使用了javascript+Native+nunjucks的技术 \
@@ -35,7 +34,8 @@ SXC install shokaX
 ```
 
 # 许可证
-许可证: MIT \
+许可证: BSD-3-Clause \
+请注意: `0.0.1-alpha6`版本开始,shokaX使用BSD协议,这意味着删除页脚处的shokaX标识是违反许可证的
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fzkz098%2Fhexo-theme-shokaX.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fzkz098%2Fhexo-theme-shokaX?ref=badge_large)
 
 # 致谢名单
