@@ -3,7 +3,6 @@
 module.exports = {
   views: [
     'head',
-    'header',
     'sidebar',
     'rightNav',
     'postMeta',

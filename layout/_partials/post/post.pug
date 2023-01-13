@@ -1,4 +1,5 @@
-article(itemscope itemtype="http://schema.org/Article" class="post block" lang="{{ post.lang or config.language }}")
+- var temp = post.lang || config.language
+article(itemscope itemtype="http://schema.org/Article" class="post block" lang=temp)
     link(itemprop="mainEntityOfPage" href!=post.permalink)
     span(hidden itemprop="author" itemscope itemtype="http://schema.org/Person")
         meta(itemprop="image" content=url_for(theme.statics + theme.images + '/' + theme.sidebar.avatar))
@@ -24,3 +25,4 @@ article(itemscope itemtype="http://schema.org/Article" class="post block" lang="
             != partial('_partials/post/reward.pug', {}, {cache: true})
         if theme.creative_commons.license
             != partial('_partials/post/copyright.pug')
+    != shokax_inject('postBodyEnd')

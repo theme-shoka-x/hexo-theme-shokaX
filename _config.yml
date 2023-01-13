@@ -47,11 +47,6 @@ auto_dark: # 自动亮/暗模式
   start: 20     #开始时间
   end: 7        #结束时间
 
-plugin:
-  enable: false
-  load:
-    # - example
-
 auto_scroll: true
 
 loader:

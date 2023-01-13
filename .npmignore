@@ -5,3 +5,4 @@
 tsconfig.json
 .idea
 .github
+pnpm-lock.yaml

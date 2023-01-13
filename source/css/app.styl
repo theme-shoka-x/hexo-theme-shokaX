@@ -1,6 +1,12 @@
 @import "_variables";
 
+for $inject_variable in hexo-config('injects.variable')
+  @import $inject_variable;
+
 @import "_mixins";
+
+for $inject_mixin in hexo-config('injects.mixin')
+  @import $inject_mixin;
 
 if $colors = hexo-config('style.colors')
   @import $colors;
@@ -25,3 +31,8 @@ if $custom = hexo-config('style.custom')
   @import $custom;
 
 @import "plugin.styl"
+
+for $inject_style in hexo-config('injects.style')
+  @import $inject_style;
+
+

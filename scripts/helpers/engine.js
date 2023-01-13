@@ -182,3 +182,9 @@ hexo.extend.helper.register('random_color', function () {
       b.toString(16).length > 1 ? b.toString(16) : '0' + b.toString(16)
     }`
 })
+
+hexo.extend.helper.register('shokax_inject', function (point) {
+  return hexo.theme.config.injects[point]
+    .map(item => this.partial(item.layout, item.locals, item.options))
+    .join('')
+})

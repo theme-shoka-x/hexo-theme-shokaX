@@ -1,4 +1,5 @@
 mixin CommentRender()
+    != shokax_inject('comment')
     - var tk = theme?.twikoo?.enable,wl = theme?.waline?.enable
     if page.comment !== false
         if tk
@@ -7,4 +8,5 @@ mixin CommentRender()
         else if wl
             div(class="warp" id="wcomments")
             != _init_comments("waline")
+
 

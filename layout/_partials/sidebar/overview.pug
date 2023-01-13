@@ -35,6 +35,8 @@ div(class="social")
         - var sidebarIcon = '<i class="ic i-' + link.split('||')[1].trim() + '"></i>'
         != _url(sidebarURL, sidebarIcon, {title: sidebarURL, class: 'item ' + name})
 
+!= shokax_inject('sidebar')
+
 div(class="menu")
     //!= partial('_partials/sidebar/menu.pug', {}, {cache: true})
     != partial('_partials/sidebar/menu.pug')

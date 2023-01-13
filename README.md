@@ -17,7 +17,7 @@
 - [x] 注入js和css支持
 - [x] 自定义font
 - [x] 部分功能调整为可关闭
-- [ ] 插件系统
+- [x] 插件系统
 
 ## 和shoka的区别
 原先shoka使用了javascript+Native+nunjucks的技术 \
