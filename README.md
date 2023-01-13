@@ -7,7 +7,9 @@
 此项目是shoka的一个二次开发版(算精神续作),致力于提高性能和优化魔改体验 \
 诞生原因是目前shoka已经两年没有更新了,积压了大量BUG和功能请求。\
 本项目处于高强度开发期,但github仓库版本已基本可用 \
-二次开发与常见问题请看wiki
+二次开发与常见问题请看wiki \
+`0.0.2-alpha2`开始,`lantern`和`qweather`已迁移为插件 \
+插件系统已完工,食用方法见[awesome-shokaX](https://github.com/zkz098/awesome-shokaX)
 
 ## 待办名单
 - [x] 推出一个可用的测试版

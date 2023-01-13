@@ -30,8 +30,6 @@ else
 if $custom = hexo-config('style.custom')
   @import $custom;
 
-@import "plugin.styl"
-
 for $inject_style in hexo-config('injects.style')
   @import $inject_style;
 
