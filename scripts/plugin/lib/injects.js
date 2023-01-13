@@ -1,5 +1,6 @@
 'use strict'
 
+// 插件部分参考自theme-next
 const fs = require('fs')
 const path = require('path')
 const points = require('./injects-point')
