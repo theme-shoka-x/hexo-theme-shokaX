@@ -4,6 +4,7 @@
 ![stars](https://img.shields.io/github/stars/zkz098/hexo-theme-shokaX)
 ![version](https://shields.io/npm/v/hexo-theme-shokax)
 
+语言(language): 简体中文 | [English](https://github.com/zkz098/hexo-theme-shokaX/blob/main/README_en.md) \
 此项目是shoka的一个二次开发版(算精神续作),致力于提高性能和优化魔改体验 \
 诞生原因是目前shoka已经两年没有更新了,积压了大量BUG和功能请求。\
 本项目处于高强度开发期,但github仓库版本已基本可用 \
