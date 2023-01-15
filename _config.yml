@@ -26,6 +26,7 @@ experiments:
   gradient: false # 使用CSS渐变作为文章封面
   gradientCover: "" # 当gradient为true时使用的主页面cover(为空则使用bing随机图片)
   debug: false # 使用debug模式启动
+  disableThemeComment: false # 禁用主题评论系统(一般用于关闭评论或让插件接管评论系统)
 
 icon:
   favicon: "/favicon.ico"
@@ -125,6 +126,7 @@ menu:
   statistics: /statistics/ || clock
   friends: /friends/ || heart
 
+# https://twikoo.js.org
 twikoo:
   enable: false
   link: "https://cdn.staticfile.org/twikoo/1.6.6/twikoo.nocss.min.js"
@@ -133,9 +135,28 @@ twikoo:
   envId: "https://114514.foo.bar" # twikoo环境ID,vercel填地址
   region: "none"
 
+# https://waline.js.org/
 waline:
   enable: false
   serverURL: ''
+  lang: "zh-CN"
+  locale: {} # https://waline.js.org/guide/features/i18n.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%AD%E8%A8%80
+  emoji: # 表情包
+    - https://unpkg.com/@waline/emojis@1.0.1/weibo
+    - https://unpkg.com/@waline/emojis@1.0.1/alus
+    - https://unpkg.com/@waline/emojis@1.0.1/bilibili
+    - https://unpkg.com/@waline/emojis@1.0.1/qq
+    - https://unpkg.com/@waline/emojis@1.0.1/tieba
+    - https://unpkg.com/@waline/emojis@1.0.1/tw-emoji
+  meta: # 可以填写的内容
+    - nick
+    - mail
+    - link
+  requiredMeta: # 必须填写的内容
+    - nick
+    - mail
+  wordLimit: 0 # 字数限制,0为不限制
+  pageSize: 10 # 每页评论条数
 
 # Social Links
 # Usage: `Key: permalink || icon || color`

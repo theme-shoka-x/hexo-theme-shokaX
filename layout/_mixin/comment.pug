@@ -1,7 +1,7 @@
 mixin CommentRender()
     != shokax_inject('comment')
     - var tk = theme?.twikoo?.enable,wl = theme?.waline?.enable
-    if page.comment !== false
+    if page.comment !== false && !theme.experiments.disableThemeComment
         if tk
             div(class="wrap" id="tcomments")
             != _init_comments("twikoo")

@@ -7,13 +7,11 @@ const theme_env = require('../../package.json')
 hexo.extend.helper.register('_init_comments', function (mode) {
   if (mode === 'twikoo') {
     const options = {
-      // eslint-disable-next-line no-useless-escape
       envId: `${hexo.theme.config?.twikoo?.envId}`,
       el: '#tcomments'
     }
     if (hexo.theme.config.twikoo.mode === 'tencent') {
-      // eslint-disable-next-line no-useless-escape
-      options.region = `\'${hexo.theme.config.twikoo.region}\'`
+      options.region = `'${hexo.theme.config.twikoo.region}'`
     }
     return `
         <script data-pjax>
@@ -24,7 +22,14 @@ hexo.extend.helper.register('_init_comments', function (mode) {
   } else if (mode === 'waline') {
     const options = {
       el: '#wcomments',
-      serverURL: hexo.theme.config.waline.serverURL
+      serverURL: hexo.theme.config.waline.serverURL,
+      lang: hexo.theme.config.waline?.lang || 'zh-CN',
+      locale: hexo.theme.config.waline?.locale || {},
+      emoji: hexo.theme.config.waline?.emoji || [],
+      meta: hexo.theme.config.waline?.meta ?? ['nick', 'mail', 'link'],
+      requiredMeta: hexo.theme.config.waline?.requiredMeta ?? ['nick', 'mail'],
+      wordLimit: hexo.theme.config.waline?.wordLimit ?? 0,
+      pageSize: hexo.theme.config.waline?.pageSize || 10
     }
     return `
     <script type="module">
@@ -134,6 +139,7 @@ hexo.extend.helper.register('_vendor_font', () => {
     : ''
 })
 
+// TODO 废弃方法
 hexo.extend.helper.register('_vendor_js', () => {
   const config = hexo.theme.config.vendors.js
 
