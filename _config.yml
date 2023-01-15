@@ -16,7 +16,7 @@ grayMode: false # 全站黑白滤镜
 # 请注意: 本主题的PWA功能只是一个装载器,需要自备js和manifest
 # 图片可通过https://lp-pwa.gitee.io/pwa-genicon/生成
 pwa:
-  enable: true # 开启PWA功能
+  enable: false # 开启PWA功能
   serviceworker: sw.js #serviceworker脚本位置,使用以/为基准的绝对路径
   manifest: manifest.json #manifest位置,使用以/为基准的绝对路径
 
@@ -64,6 +64,8 @@ fireworks:
 
 font:
   enable: true
+  # 从google字体库加载,如果自定义@font-face请关闭
+  loadFromGoogle: true
   # 字体选项:
   # `external`:从google字体库加载字体.
   # `family: 字体家族名,无需引号
@@ -71,26 +73,26 @@ font:
 
   # 适用于所有在body标签内的文字.
   global:
-    external: false
-    family: HarmonyOS_Regular
+    external: true
+    family: Mulish
     size:
 
   # 大标题字体.
   logo:
-    external: false
-    family: HarmonyOS_Regular
+    external: true
+    family: Fredericka the Great
     size: 3.5
 
   # 页面标题字体.
   title:
-    external: false
-    family: HarmonyOS_Regular
+    external: true
+    family: Noto Serif JP
     size: 2.5
 
   # 标题字体.
   headings:
-    external: false
-    family: HarmonyOS_Regular
+    external: true
+    family: Noto Serif SC
     size:
 
   # 文章字体.
@@ -100,16 +102,8 @@ font:
 
   # 代码块的字体
   codes:
-    external: false
-    family: jetbrains-mono # Inconsolata
-
-# 自定义区域
-custom:
-  enable: false
-  font:
-#    - FamilyName: # 字体名(冒号后留空)
-#      FamilyName: # 家族名
-#      src: # 链接,遵循@font-face的url格式
+    external: true
+    family: Inconsolata
 
 # project of https://www.iconfont.cn/
 # //at.alicdn.com/t/font_1832207_c8i9n1ulxlt.css => 1832207_c8i9n1ulxlt
@@ -132,7 +126,7 @@ menu:
   friends: /friends/ || heart
 
 twikoo:
-  enable: true
+  enable: false
   link: "https://cdn.staticfile.org/twikoo/1.6.6/twikoo.nocss.min.js"
   integ: "sha384-JqH6BJQNmQcewnQi3qB4KpHn9zYI4qjaBZe7E7cEW1aNjmvofaN/2+/qEmX8Nzou"
   mode: vercel # vercel或tencent
@@ -191,21 +185,20 @@ footer:
     enable: true  #是否开启
     word1: 中   #第一个字
     word2: 秋   #第二个字
-  icp:
+  icp: # ICP备案
     enable: false
-    icon: "beian.webp"
-    icpnumber: "xxx"
-    beian: "xxx"
-    recordcode: "xxx"
+    icon: "beian.webp" #网安备案图片
+    icpnumber: "xxx" # ICP备案号
+    beian: "xxx" # 网安备案号
+    recordcode: "xxx" # 网安备案链接中的recordcode参数
 
 post:
-  # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
   count: true
 
 # 文章是否失效
 outime:
   enable: true
-  days: 30 # 超过 30 天文章失效
+  days: 90 # 超过 90 天文章失效
 
 reward:
   # If true, reward will be displayed in every article by default.
@@ -312,7 +305,7 @@ advVendors:
     comment:
       src: css/comment.css
     fancybox:
-      src: combine/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css
+      src: combine:npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css
 vendorsList:
   js:
     - pace

@@ -29,9 +29,9 @@ if noBaiduT
 != feed_tag('rss.xml')
 != feed_tag('atom.xml')
 link(rel="alternate" type="application/json" title=siteTitle href=feedLink)
-!= _vendor_font()
-if theme.custom.enable
-    != _local_fonts()
+- var fontConfig = theme?.font?.loadFromGoogle
+if fontConfig
+    != _vendor_font()
 != _css('app.css')
 - var debugVue = theme?.experiments?.debug
 if debugVue
@@ -51,8 +51,3 @@ if theme.qweather.enable
             max-width: 2em !important;
         }
 
-if cssInjects
-    != css(cssInjects)
-
-if jsInjects
-    != js(jsInjects)

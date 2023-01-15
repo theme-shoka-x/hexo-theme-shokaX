@@ -134,22 +134,6 @@ hexo.extend.helper.register('_vendor_font', () => {
     : ''
 })
 
-hexo.extend.helper.register('_local_fonts', () => {
-  let res = '<style>'
-  const fonts = hexo.theme.config.custom.font
-  fonts.forEach((item) => {
-    const tmp = `
-    @font-face {
-        font-family: ${item.family};
-        src: ${item.src};
-        font-display: swap;
-    };`
-    res += tmp
-  })
-  res += '</style>'
-  return res
-})
-
 hexo.extend.helper.register('_vendor_js', () => {
   const config = hexo.theme.config.vendors.js
 
