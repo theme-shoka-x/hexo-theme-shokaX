@@ -4,45 +4,6 @@
 const { htmlTag, url_for, stripHTML } = require('hexo-util')
 const theme_env = require('../../package.json')
 
-hexo.extend.helper.register('_init_comments', function (mode) {
-  if (mode === 'twikoo') {
-    const options = {
-      envId: `${hexo.theme.config?.twikoo?.envId}`,
-      el: '#tcomments'
-    }
-    if (hexo.theme.config.twikoo.mode === 'tencent') {
-      options.region = `'${hexo.theme.config.twikoo.region}'`
-    }
-    return `
-        <script data-pjax>
-        setTimeout(function () {
-            twikoo.init(${JSON.stringify(options)})
-        }, 1000)
-        </script>`
-  } else if (mode === 'waline') {
-    const options = {
-      el: '#wcomments',
-      serverURL: hexo.theme.config.waline.serverURL,
-      lang: hexo.theme.config.waline?.lang || 'zh-CN',
-      locale: hexo.theme.config.waline?.locale || {},
-      emoji: hexo.theme.config.waline?.emoji || [],
-      meta: hexo.theme.config.waline?.meta ?? ['nick', 'mail', 'link'],
-      requiredMeta: hexo.theme.config.waline?.requiredMeta ?? ['nick', 'mail'],
-      wordLimit: hexo.theme.config.waline?.wordLimit ?? 0,
-      pageSize: hexo.theme.config.waline?.pageSize || 10
-    }
-    return `
-    <script type="module">
-        import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs'
-        init(${JSON.stringify(options)});
-    </script>
-    <script nomodule type="text/javascript">
-        Waline.init(${JSON.stringify(options)});
-    </script>
-    `
-  }
-})
-
 hexo.extend.helper.register('_new_comments', function (mode) {
   if (mode === 'twikoo') {
     return `<script data-pjax type="module">
@@ -80,13 +41,6 @@ hexo.extend.helper.register('_new_comments', function (mode) {
     <script type="module">
         import { RecentComments } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs'
         RecentComments({
-          el: '#new-comment',
-          serverURL: '${hexo.theme.config.waline.serverURL}',
-          count: 10,
-        });
-    </script>
-    <script nomodule type="text/javascript">
-        Waline.RecentComments({
           el: '#new-comment',
           serverURL: '${hexo.theme.config.waline.serverURL}',
           count: 10,

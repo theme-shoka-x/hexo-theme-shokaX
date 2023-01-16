@@ -278,7 +278,7 @@ const getScript = function (url:string, callback?:Function, condition?:string):v
     script.onload = function (_, isAbort: boolean) {
 
       // @ts-ignore TODO 此处代码在非ie下可能无效
-      if (isAbort || !script.readyState || /loaded|complete/.test(script.readyState)) {
+      if (isAbort || !script.readyState) {
         console.log("abort!")
         script.onload = null
         script = undefined

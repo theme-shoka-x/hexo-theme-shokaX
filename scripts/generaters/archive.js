@@ -63,8 +63,8 @@ if (!(hexo.config.archive && hexo.config.archive.enabled === false)) {
       const month = date.month() + 1 // month is started from 0
 
       if (!Object.prototype.hasOwnProperty.call(posts, year)) {
-        // 13 arrays. The first array is for posts in this year
-        // and the other arrays is for posts in this month
+        // 13个数组. 第一个数组是给这一年的文章准备的
+        // 其他则是各个月份的文章
         posts[year] = [
           [],
           [],

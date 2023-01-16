@@ -4,9 +4,31 @@ mixin CommentRender()
     if page.comment !== false && !theme.experiments.disableThemeComment
         if tk
             div(class="wrap" id="tcomments")
-            != _init_comments("twikoo")
+            script(type="text/javascript" data-pjax).
+                setTimeout(function () {
+                    twikoo.init({
+                        envId: '#{ hexo.theme.config.twikoo.envId }',
+                        el: '#tcomments',
+                        region: '#{hexo.theme.config.twikoo?.region}'
+                    })
+                }, 1000)
         else if wl
             div(class="warp" id="wcomments")
-            != _init_comments("waline")
+            script(type="module" data-pjax).
+                import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+
+                setTimeout(function () {
+                    init({
+                        el: '#wcomments',
+                        serverURL: '#{hexo.theme.config.waline.serverURL}',
+                        lang: '#{hexo.theme.config.waline?.lang || 'zh-CN'}',
+                        locale: #{hexo.theme.config.waline?.locale || {}},
+                        emoji: #{hexo.theme.config.waline?.emoji || []},
+                        meta: #{hexo.theme.config.waline?.meta ?? ['nick', 'mail', 'link']},
+                        requiredMeta: #{hexo.theme.config.waline?.requiredMeta ?? ['nick', 'mail']},
+                        wordLimit: #{hexo.theme.config.waline?.wordLimit ?? 0},
+                        pageSize: #{hexo.theme.config.waline?.pageSize || 10}
+                    });
+                }, 1000)
 
 

@@ -45,11 +45,7 @@ const autoDarkmode = function () {
     if (new Date().getHours() >= CONFIG.auto_dark.start || new Date().getHours() <= CONFIG.auto_dark.end) {
       changeTheme('dark')
     } else {
-      if (window.matchMedia('(prefers-color-scheme:dark)').matches) {
-        changeTheme('dark')
-      } else {
-        changeTheme()
-      }
+      changeTheme()
     }
   }
 }
@@ -63,6 +59,7 @@ const lazyload = lozad('img, [data-background-image]', {
   }
 })
 
+// 加载动画
 const Loader = {
   timer: null,
   lock: false,
@@ -93,6 +90,7 @@ const changeMetaTheme = function (color:string):void {
   $dom('meta[name="theme-color"]').attr('content', color)
 }
 
+// 记忆日夜模式切换和系统亮暗模式监听
 const themeColorListener = function () {
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (mediaQueryList) {
     if (mediaQueryList.matches) {
@@ -112,6 +110,7 @@ const themeColorListener = function () {
   }
 }
 
+// 可见度监听(离开页面和返回时更改document的title)
 const visibilityListener = function () {
   let iconNode = $dom('[rel="icon"]')
   document.addEventListener('visibilitychange', function () {
@@ -134,6 +133,7 @@ const visibilityListener = function () {
   })
 }
 
+// 显示提示(现阶段用于版权及复制结果提示)
 const showtip = function (msg:string):void|never {
   if (!msg) { return }
 
@@ -189,11 +189,7 @@ const scrollHandle = function (event) {
 
   diffY = scrollAction.y - window.scrollY
 
-  // if (diffX < 0) {
-  // Scroll right
-  // } else if (diffX > 0) {
-  // Scroll left
-  // } else
+  // 控制滑动时导航栏显示
   if (diffY < 0) {
     // Scroll down
     siteNav.removeClass('up')
@@ -205,7 +201,6 @@ const scrollHandle = function (event) {
   } else {
     // First scroll event
   }
-  // scrollAction.x = Container.scrollLeft;
   scrollAction.y = window.scrollY
 
   const scrollPercent = Math.round(Math.min(100 * window.scrollY / contentVisibilityHeight, 100)) + '%'
