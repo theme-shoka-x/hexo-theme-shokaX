@@ -47,6 +47,8 @@ hexo.extend.helper.register('_new_comments', function (mode) {
         });
     </script>
     `
+  } else {
+    console.log(`${mode} is not supported recent comment`)
   }
 })
 

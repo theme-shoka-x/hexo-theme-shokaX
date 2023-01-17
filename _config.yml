@@ -130,10 +130,9 @@ menu:
 twikoo:
   enable: false
   link: "https://cdn.staticfile.org/twikoo/1.6.6/twikoo.nocss.min.js"
-  integ: "sha384-JqH6BJQNmQcewnQi3qB4KpHn9zYI4qjaBZe7E7cEW1aNjmvofaN/2+/qEmX8Nzou"
   mode: vercel # vercel或tencent
   envId: "https://114514.foo.bar" # twikoo环境ID,vercel填地址
-  region: "none"
+  region:
 
 # https://waline.js.org/
 waline:
@@ -157,6 +156,8 @@ waline:
     - mail
   wordLimit: 0 # 字数限制,0为不限制
   pageSize: 10 # 每页评论条数
+
+
 
 # Social Links
 # Usage: `Key: permalink || icon || color`

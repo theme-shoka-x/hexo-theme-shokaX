@@ -1,6 +1,6 @@
 mixin CommentRender()
     != shokax_inject('comment')
-    - var tk = theme?.twikoo?.enable,wl = theme?.waline?.enable
+    - var tk = theme?.twikoo?.enable,wl = theme?.waline?.enable,gt=theme?.gitalk?.enable
     if page.comment !== false && !theme.experiments.disableThemeComment
         if tk
             div(class="wrap" id="tcomments")
@@ -30,5 +30,19 @@ mixin CommentRender()
                         pageSize: #{hexo.theme.config.waline?.pageSize || 10}
                     });
                 }, 1000)
+        else if gt
+            div(class="warp" id="gtcomments")
+            script(type="text/javascript" data-pjax).
+                const gitalk = new Gitalk({
+                    clientID: '#{theme.gitalk.clientID}',
+                    clientSecret: '#{theme.gitalk.clientSecret}',
+                    repo: '#{theme.gitalk.repo}',
+                    owner: '#{theme.gitalk.owner}',
+                    admin: #{theme.gitalk.admin},
+                    id: location.pathname,      // Ensure uniqueness and length less than 50
+                    distractionFreeMode: false,  // Facebook-like distraction free mode
+                    proxy: "#{theme.gitalk?.proxy || undefined}"
+                });
+                gitalk.render("gtcomments")
 
 

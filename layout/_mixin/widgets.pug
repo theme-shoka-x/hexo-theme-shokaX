@@ -9,6 +9,7 @@ mixin field(item)
             != _url(link1, postText + (postTitleIcon || ''))
 
 mixin WRender(item)
+    - var tk = theme?.twikoo?.enable
     if theme.widgets.random_posts
         div(class="rpost pjax")
             h2
@@ -21,9 +22,10 @@ mixin WRender(item)
         div(class="rpost pjax")
             h2 最新评论
             ul(class="leancloud-recent-comment" id="new-comment")
-                li(v-for="com in coms" class="item")
-                    a(v-bind:href="com.href" data-pjax-state="data-pjax-state")
-                        span(class="breadcrumb") {{com.nick}}@{{com.time}}
-                        span {{com.text}}
-                            br
+                if tk
+                    li(v-for="com in coms" class="item")
+                        a(v-bind:href="com.href" data-pjax-state="data-pjax-state")
+                            span(class="breadcrumb") {{com.nick}}@{{com.time}}
+                            span {{com.text}}
+                                br
 
