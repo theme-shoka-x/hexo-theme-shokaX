@@ -7,9 +7,9 @@ mixin CommentRender()
             script(type="text/javascript" data-pjax).
                 setTimeout(function () {
                     twikoo.init({
-                        envId: '#{ hexo.theme.config.twikoo.envId }',
+                        envId: '#{ theme.twikoo.envId }',
                         el: '#tcomments',
-                        region: '#{hexo.theme.config.twikoo?.region}'
+                        region: '#{theme.twikoo.region}'
                     })
                 }, 1000)
         else if wl
@@ -21,13 +21,13 @@ mixin CommentRender()
                     init({
                         el: '#wcomments',
                         serverURL: '#{hexo.theme.config.waline.serverURL}',
-                        lang: '#{hexo.theme.config.waline?.lang || 'zh-CN'}',
-                        locale: #{hexo.theme.config.waline?.locale || {}},
-                        emoji: #{hexo.theme.config.waline?.emoji || []},
-                        meta: #{hexo.theme.config.waline?.meta ?? ['nick', 'mail', 'link']},
-                        requiredMeta: #{hexo.theme.config.waline?.requiredMeta ?? ['nick', 'mail']},
-                        wordLimit: #{hexo.theme.config.waline?.wordLimit ?? 0},
-                        pageSize: #{hexo.theme.config.waline?.pageSize || 10}
+                        lang: '#{hexo.theme.config.waline.lang}',
+                        locale: #{hexo.theme.config.waline.locale},
+                        emoji: #{hexo.theme.config.waline.emoji},
+                        meta: #{hexo.theme.config.waline.meta},
+                        requiredMeta: #{hexo.theme.config.waline.requiredMeta},
+                        wordLimit: #{hexo.theme.config.waline.wordLimit},
+                        pageSize: #{hexo.theme.config.waline.pageSize}
                     });
                 }, 1000)
         else if gt
@@ -41,7 +41,7 @@ mixin CommentRender()
                     admin: #{theme.gitalk.admin},
                     id: location.pathname,      // Ensure uniqueness and length less than 50
                     distractionFreeMode: false,  // Facebook-like distraction free mode
-                    proxy: "#{theme.gitalk?.proxy || undefined}"
+                    proxy: "#{theme.gitalk.proxy || undefined}"
                 });
                 gitalk.render("gtcomments")
         else if gs
@@ -51,13 +51,13 @@ mixin CommentRender()
                     data-repo-id="#{theme.giscus.repoId}"
                     data-category="#{theme.giscus.category}"
                     data-category-id="#{theme.giscus.categoryId}"
-                    data-mapping="#{theme.giscus.mapping || "pathname" }"
-                    data-strict="#{theme.giscus.strict || "1" }"
-                    data-reactions-enabled="#{theme.giscus.reactionsEnabled || "1"}"
-                    data-emit-metadata="#{theme.giscus.emitMetadata || "0"}"
-                    data-input-position="#{theme.giscus.inputPosition || "bottom"}"
-                    data-theme="#{theme.giscus.commentTheme || "preferred_color_scheme"}"
-                    data-lang="#{theme.giscus.lang || "zh-CN"}"
+                    data-mapping="#{theme.giscus.mapping}"
+                    data-strict="#{theme.giscus.strict}"
+                    data-reactions-enabled="#{theme.giscus.reactionsEnabled}"
+                    data-emit-metadata="#{theme.giscus.emitMetadata}"
+                    data-input-position="#{theme.giscus.inputPosition}"
+                    data-theme="#{theme.giscus.commentTheme}"
+                    data-lang="#{theme.giscus.lang}"
                     data-loading="lazy"
                     crossorigin="anonymous"
                     async
