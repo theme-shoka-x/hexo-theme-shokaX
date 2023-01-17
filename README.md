@@ -12,16 +12,6 @@
 `0.0.2-alpha2`开始,`lantern`和`qweather`已迁移为插件 \
 插件系统已完工,食用方法见[awesome-shokaX](https://github.com/zkz098/awesome-shokaX)
 
-## 待办名单
-- [x] 推出一个可用的测试版
-- [x] 支持twikoo和waline评论系统
-- [x] 优化部分html标签
-- [x] 原生PWA支持
-- [x] 注入js和css支持
-- [x] 自定义font
-- [x] 部分功能调整为可关闭
-- [x] 插件系统
-
 ## 和shoka的区别
 原先shoka使用了javascript+Native+nunjucks的技术 \
 而shokaX则使用了typescript+Vue 3+Pug的技术搭配 \

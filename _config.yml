@@ -166,6 +166,20 @@ gitalk:
   admin:
   proxy: # 选填
 
+# https://giscus.app/zh-CN
+giscus:
+  repo:
+  repoId:
+  category:
+  categoryId:
+  mapping:
+  strict:
+  reactionsEnabled:
+  emitMetadata:
+  inputPosition:
+  commentTheme:
+  lang:
+
 
 # Social Links
 # Usage: `Key: permalink || icon || color`

@@ -1,6 +1,6 @@
 mixin CommentRender()
     != shokax_inject('comment')
-    - var tk = theme?.twikoo?.enable,wl = theme?.waline?.enable,gt=theme?.gitalk?.enable
+    - var tk = theme?.twikoo?.enable,wl = theme?.waline?.enable,gt=theme?.gitalk?.enable,gs=theme?.giscus?.enable
     if page.comment !== false && !theme.experiments.disableThemeComment
         if tk
             div(class="wrap" id="tcomments")
@@ -44,5 +44,23 @@ mixin CommentRender()
                     proxy: "#{theme.gitalk?.proxy || undefined}"
                 });
                 gitalk.render("gtcomments")
+        else if gs
+            div(class="warp giscus" id="gscomments")
+            script( src="https://giscus.app/client.js"
+                    data-repo="#{theme.giscus.repo}"
+                    data-repo-id="#{theme.giscus.repoId}"
+                    data-category="#{theme.giscus.category}"
+                    data-category-id="#{theme.giscus.categoryId}"
+                    data-mapping="#{theme.giscus.mapping || "pathname" }"
+                    data-strict="#{theme.giscus.strict || "1" }"
+                    data-reactions-enabled="#{theme.giscus.reactionsEnabled || "1"}"
+                    data-emit-metadata="#{theme.giscus.emitMetadata || "0"}"
+                    data-input-position="#{theme.giscus.inputPosition || "bottom"}"
+                    data-theme="#{theme.giscus.commentTheme || "preferred_color_scheme"}"
+                    data-lang="#{theme.giscus.lang || "zh-CN"}"
+                    data-loading="lazy"
+                    crossorigin="anonymous"
+                    async
+                    )
 
 
