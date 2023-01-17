@@ -35,6 +35,7 @@ npm i shokax-cli --location=global
 # hexo init 初始化环境
 SXC install shokaX
 ```
+后续配置请点[这里](https://www.kaitaku.xyz/webbuild/shokaX/) 查看
 
 # 许可证
 许可证: BSD-3-Clause \
