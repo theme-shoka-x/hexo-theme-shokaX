@@ -10,3 +10,4 @@ node_modules/
 .yarn/install-state.gz
 yarn-error.log*
 pnpm-lock.yaml
+test.html
