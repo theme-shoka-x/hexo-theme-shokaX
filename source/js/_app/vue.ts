@@ -10,7 +10,7 @@ Vue.createApp(
     methods: {
       changeThemeByBtn() {
         let c
-        const btn = $dom('.theme').child('.ic')
+        const btn = $dom('.theme').child('.fa')
 
         const neko = BODY.createChild('div', {
           id: 'neko',

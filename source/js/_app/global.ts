@@ -24,15 +24,15 @@ let pjax
  * 更改日夜模式
  */
 const changeTheme = function (type?:string) {
-  const btn = $dom('.theme .ic')
+  const btn = $dom('.theme .fa')
   if (type === 'dark') {
     HTML.attr('data-theme', type)
-    btn.removeClass('i-sun')
-    btn.addClass('i-moon')
+    btn.removeClass('fa-sunrise')
+    btn.addClass('fa-moon-stars')
   } else {
     HTML.attr('data-theme', null)
-    btn.removeClass('i-moon')
-    btn.addClass('i-sun')
+    btn.removeClass('fa-moon-stars')
+    btn.addClass('fa-sunrise')
   }
 }
 

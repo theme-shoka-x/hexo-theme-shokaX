@@ -5,7 +5,7 @@ Vue.createApp({
     methods: {
         changeThemeByBtn() {
             let c;
-            const btn = $dom('.theme').child('.ic');
+            const btn = $dom('.theme').child('.fa');
             const neko = BODY.createChild('div', {
                 id: 'neko',
                 innerHTML: '<div class="planet"><div class="sun"></div><div class="moon"></div></div><div class="body"><div class="face"><section class="eyes left"><span class="pupil"></span></section><section class="eyes right"><span class="pupil"></span></section><span class="nose"></span></div></div>'

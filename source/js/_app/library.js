@@ -288,18 +288,6 @@ const pjaxScript = function (element) {
     }
     parent.appendChild(script);
 };
-const pageScrollOld = function (target, offset, complete) {
-    const opt = {
-        targets: typeof offset === 'number' ? target.parentNode : document.scrollingElement,
-        duration: 500,
-        easing: 'easeInOutQuad',
-        scrollTop: offset || (typeof target === 'number' ? target : (target ? target.top() + document.documentElement.scrollTop - siteNavHeight : 0)),
-        complete: function () {
-            complete && complete();
-        }
-    };
-    anime(opt);
-};
 const pageScroll = (target, offset, complete) => {
     const opt = {
         left: 0,

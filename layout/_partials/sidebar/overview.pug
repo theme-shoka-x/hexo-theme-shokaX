@@ -32,7 +32,7 @@ nav(class="state")
 div(class="social")
     each link, name  in theme.social
         - var sidebarURL = link.split('||')[0].trim()
-        - var sidebarIcon = '<i class="ic i-' + link.split('||')[1].trim() + '"></i>'
+        - var sidebarIcon = '<i class="fa fa-solid fa-' + link.split('||')[1].trim() + '"></i>'
         != _url(sidebarURL, sidebarIcon, {title: sidebarURL, class: 'item ' + name})
 
 != shokax_inject('sidebar')

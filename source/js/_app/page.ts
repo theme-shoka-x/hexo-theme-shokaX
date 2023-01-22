@@ -216,14 +216,14 @@ const postBeauty = function () {
         })
 
         clipBoard(code, function (result) {
-          target.child('.ic').className = result ? 'ic i-check' : 'ic i-times'
+          target.child('.fa').className = result ? 'fa fa-solid fa-check' : 'fa fa-solid fa-times'
           target.blur()
           showtip(LOCAL.copyright)
         })
       }, { passive: true })
       copyBtn.addEventListener('mouseleave', function (event) {
         setTimeout(function () {
-          event.target.child('.ic').className = 'ic i-clipboard'
+          event.target.child('.fa').className = 'fa fa-solid fa-clipboard'
         }, 1000)
       })
     }
@@ -233,10 +233,10 @@ const postBeauty = function () {
       const target = event.currentTarget
       if (element.hasClass('breakline')) {
         element.removeClass('breakline')
-        target.child('.ic').className = 'ic i-align-left'
+        target.child('.fa').className = 'fa fa-solid fa-align-left'
       } else {
         element.addClass('breakline')
-        target.child('.ic').className = 'ic i-align-justify'
+        target.child('.fa').className = 'fa fa-solid fa-align-justify'
       }
     })
 
@@ -245,7 +245,7 @@ const postBeauty = function () {
       element.removeClass('fullscreen')
       element.scrollTop = 0
       BODY.removeClass('fullscreen')
-      fullscreenBtn.child('.ic').className = 'ic i-expand'
+      fullscreenBtn.child('.fa').className = 'fa fa-solid fa-expand'
     }
     const fullscreenHandle = function (event) {
       const target = event.currentTarget
@@ -260,7 +260,7 @@ const postBeauty = function () {
       } else {
         element.addClass('fullscreen')
         BODY.addClass('fullscreen')
-        fullscreenBtn.child('.ic').className = 'ic i-compress'
+        fullscreenBtn.child('.fa').className = 'fa fa-solid fa-compress'
         if (code_container && code_container.find('tr').length > 15){
           const showBtn = code_container.child('.show-btn')
           code_container.style.maxHeight = ''
@@ -450,7 +450,7 @@ const algoliaSearch = function (pjax) {
   if (!siteSearch) {
     siteSearch = BODY.createChild('div', {
       id: 'search',
-      innerHTML: '<div class="inner"><div class="header"><span class="icon"><i class="fa fa-solid fa-magnifying-glass"></i></span><div class="search-input-container"></div><span class="close-btn"><i class="ic i-times-circle"></i></span></div><div class="results"><div class="inner"><div id="search-stats"></div><div id="search-hits"></div><div id="search-pagination"></div></div></div></div>'
+      innerHTML: '<div class="inner"><div class="header"><span class="icon"><i class="fa fa-solid fa-magnifying-glass"></i></span><div class="search-input-container"></div><span class="close-btn"><i class="fa fa-solid fa-times-circle"></i></span></div><div class="results"><div class="inner"><div id="search-stats"></div><div id="search-hits"></div><div id="search-pagination"></div></div></div></div>'
     })
   }
 

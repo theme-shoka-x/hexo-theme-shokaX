@@ -175,7 +175,7 @@ const postBeauty = function () {
     $dom.each('figure.highlight', function (element) {
         const code_container = element.child('.code-container');
         const caption = element.child('figcaption');
-        element.insertAdjacentHTML('beforeend', '<div class="operation"><span class="breakline-btn"><i class="ic i-align-left"></i></span><span class="copy-btn"><i class="ic i-clipboard"></i></span><span class="fullscreen-btn"><i class="ic i-expand"></i></span></div>');
+        element.insertAdjacentHTML('beforeend', '<div class="operation"><span class="breakline-btn"><i class="fa fa-solid fa-align-left"></i></span><span class="copy-btn"><i class="fa fa-solid fa-clipboard"></i></span><span class="fullscreen-btn"><i class="fa fa-solid fa-expand"></i></span></div>');
         const copyBtn = element.child('.copy-btn');
         if (LOCAL.nocopy) {
             copyBtn.remove();
@@ -190,14 +190,14 @@ const postBeauty = function () {
                     comma = '\n';
                 });
                 clipBoard(code, function (result) {
-                    target.child('.ic').className = result ? 'ic i-check' : 'ic i-times';
+                    target.child('.fa').className = result ? 'fa fa-solid fa-check' : 'fa fa-solid fa-times';
                     target.blur();
                     showtip(LOCAL.copyright);
                 });
             }, { passive: true });
             copyBtn.addEventListener('mouseleave', function (event) {
                 setTimeout(function () {
-                    event.target.child('.ic').className = 'ic i-clipboard';
+                    event.target.child('.fa').className = 'fa fa-solid fa-clipboard';
                 }, 1000);
             });
         }
@@ -206,11 +206,11 @@ const postBeauty = function () {
             const target = event.currentTarget;
             if (element.hasClass('breakline')) {
                 element.removeClass('breakline');
-                target.child('.ic').className = 'ic i-align-left';
+                target.child('.fa').className = 'fa fa-solid fa-align-left';
             }
             else {
                 element.addClass('breakline');
-                target.child('.ic').className = 'ic i-align-justify';
+                target.child('.fa').className = 'fa fa-solid fa-align-justify';
             }
         });
         const fullscreenBtn = element.child('.fullscreen-btn');
@@ -218,7 +218,7 @@ const postBeauty = function () {
             element.removeClass('fullscreen');
             element.scrollTop = 0;
             BODY.removeClass('fullscreen');
-            fullscreenBtn.child('.ic').className = 'ic i-expand';
+            fullscreenBtn.child('.fa').className = 'fa fa-solid fa-expand';
         };
         const fullscreenHandle = function (event) {
             const target = event.currentTarget;
@@ -234,7 +234,7 @@ const postBeauty = function () {
             else {
                 element.addClass('fullscreen');
                 BODY.addClass('fullscreen');
-                fullscreenBtn.child('.ic').className = 'ic i-compress';
+                fullscreenBtn.child('.fa').className = 'fa fa-solid fa-compress';
                 if (code_container && code_container.find('tr').length > 15) {
                     const showBtn = code_container.child('.show-btn');
                     code_container.style.maxHeight = '';
@@ -246,7 +246,7 @@ const postBeauty = function () {
         caption && caption.addEventListener('click', fullscreenHandle);
         if (code_container && code_container.find('tr').length > 15) {
             code_container.style.maxHeight = '300px';
-            code_container.insertAdjacentHTML('beforeend', '<div class="show-btn"><i class="ic i-angle-down"></i></div>');
+            code_container.insertAdjacentHTML('beforeend', '<div class="show-btn"><i class="fa fa-solid fa-angle-down"></i></div>');
             const showBtn = code_container.child('.show-btn');
             const hideCode = function () {
                 code_container.style.maxHeight = '300px';
@@ -414,7 +414,7 @@ const algoliaSearch = function (pjax) {
     if (!siteSearch) {
         siteSearch = BODY.createChild('div', {
             id: 'search',
-            innerHTML: '<div class="inner"><div class="header"><span class="icon"><i class="ic i-search"></i></span><div class="search-input-container"></div><span class="close-btn"><i class="ic i-times-circle"></i></span></div><div class="results"><div class="inner"><div id="search-stats"></div><div id="search-hits"></div><div id="search-pagination"></div></div></div></div>'
+            innerHTML: '<div class="inner"><div class="header"><span class="icon"><i class="fa fa-solid fa-magnifying-glass"></i></span><div class="search-input-container"></div><span class="close-btn"><i class="fa fa-solid fa-times-circle"></i></span></div><div class="results"><div class="inner"><div id="search-stats"></div><div id="search-hits"></div><div id="search-pagination"></div></div></div></div>'
         });
     }
     const search = instantsearch({
@@ -459,7 +459,7 @@ const algoliaSearch = function (pjax) {
             container: '#search-hits',
             templates: {
                 item: function (data) {
-                    const cats = data.categories ? '<span>' + data.categories.join('<i class="ic i-angle-right"></i>') + '</span>' : '';
+                    const cats = data.categories ? '<span>' + data.categories.join('<i class="fa fa-solid fa-angle-right"></i>') + '</span>' : '';
                     return '<a href="' + CONFIG.root + data.path + '">' + cats + data._highlightResult.title.value + '</a>';
                 },
                 empty: function (data) {
@@ -478,10 +478,10 @@ const algoliaSearch = function (pjax) {
             showFirst: false,
             showLast: false,
             templates: {
-                first: '<i class="ic i-angle-double-left"></i>',
-                last: '<i class="ic i-angle-double-right"></i>',
-                previous: '<i class="ic i-angle-left"></i>',
-                next: '<i class="ic i-angle-right"></i>'
+                first: '<i class="fa fa=solid fa-angle-double-left"></i>',
+                last: '<i class="fa fa-solid fa-angle-double-right"></i>',
+                previous: '<i class="fa fa-solid fa-angle-left"></i>',
+                next: '<i class="fa fa-solid fa-angle-right"></i>'
             },
             cssClasses: {
                 root: 'pagination',
@@ -530,7 +530,7 @@ const domInit = function () {
     if (!toolBtn) {
         toolBtn = siteHeader.createChild('div', {
             id: 'tool',
-            innerHTML: '<div class="item player"></div><div class="item contents"><i class="ic i-list-ol"></i></div><div class="item chat"><i class="ic i-comments"></i></div><div class="item back-to-top"><i class="ic i-arrow-up"></i><span>0%</span></div>'
+            innerHTML: '<div class="item player"></div><div class="item contents"><i class="fa fa-solid fa-list-ol"></i></div><div class="item chat"><i class="fa fa-solid fa-comments"></i></div><div class="item back-to-top"><i class="fa fa-solid fa-arrow-up"></i><span>0%</span></div>'
         });
     }
     toolPlayer = toolBtn.child('.player');
@@ -618,6 +618,8 @@ const siteInit = function () {
     });
     siteRefresh(1);
 };
-window.addEventListener('DOMContentLoaded', siteInit);
+window.addEventListener('DOMContentLoaded', siteInit, {
+    passive: true
+});
 console.log('%c Theme.ShokaX v' + CONFIG.version + ' %c https://github.com/zkz098/hexo-theme-shokaX ', 'color: white; background: #e9546b; padding:5px 0;', 'padding:4px;border:1px solid #e9546b;');
 console.log('%c by kaitaku ' + '%c https://www.kaitaku.xyz', 'color: white; background: #00bfff; padding: 5px 3px;', 'padding: 4px;border:1px solid #00bfff');
