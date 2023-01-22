@@ -17,7 +17,7 @@ article(itemscope itemtype="http://schema.org/Article" class="post block" lang=t
             div(class="tags")
                 each tag in post.tags.toArray()
                     a(href!=url_for(tag.path) rel="tag")
-                        i(class="ic i-tag")
+                        i(class="fa fa-solid fa-tag")
                         != tag.name
     footer
         != partial('_partials/post/footer.pug')

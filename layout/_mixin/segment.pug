@@ -4,7 +4,7 @@ mixin SMRender(item)
     - var link1 = item.link || item.path
     - var gradient = theme?.experiments?.gradient
     if item.link
-        - var postTitleIcon = '<i class="ic i-link-alt"></i>'
+        - var postTitleIcon = '<i class="fa fa-solid fa-up-right-from-square"></i>'
     - var postText = item.title || item.link || __('post.untitled')
     article(class="item")
         if gradient
@@ -27,6 +27,6 @@ mixin SMRender(item)
                 div(class="meta footer")
                     span
                         - var lastcat = item.categories.last()
-                        != _url(lastcat.path, '<i class="ic i-flag"></i>' + lastcat.name, {itemprop: 'url', title: lastcat.name})
+                        != _url(lastcat.path, '<i class="fa fa-solid fa-flag"></i>' + lastcat.name, {itemprop: 'url', title: lastcat.name})
             != _url(link1, 'more...', {itemprop: 'url', title: postText, class: 'btn'})
 

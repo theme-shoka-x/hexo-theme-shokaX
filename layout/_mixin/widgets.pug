@@ -1,6 +1,6 @@
 mixin field(item)
     if item.link
-        - var postTitleIcon = '<i class="ic i-link-alt"></i>'
+        - var postTitleIcon = '<i class="fa fa-solid fa-up-right-from-square"></i>'
     li(class="item")
         +BCRender(item, false)
         - var postText = item.title || item.link || __('post.untitled')

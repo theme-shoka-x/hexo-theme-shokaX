@@ -201,7 +201,7 @@ const postBeauty = function () {
     const code_container = element.child('.code-container')
     const caption = element.child('figcaption')
 
-    element.insertAdjacentHTML('beforeend', '<div class="operation"><span class="breakline-btn"><i class="ic i-align-left"></i></span><span class="copy-btn"><i class="ic i-clipboard"></i></span><span class="fullscreen-btn"><i class="ic i-expand"></i></span></div>')
+    element.insertAdjacentHTML('beforeend', '<div class="operation"><span class="breakline-btn"><i class="fa fa-solid fa-align-left"></i></span><span class="copy-btn"><i class="fa fa-solid fa-clipboard"></i></span><span class="fullscreen-btn"><i class="fa fa-solid fa-expand"></i></span></div>')
 
     const copyBtn = element.child('.copy-btn')
     if (LOCAL.nocopy) {
@@ -273,7 +273,7 @@ const postBeauty = function () {
 
     if (code_container && code_container.find('tr').length > 15) {
       code_container.style.maxHeight = '300px'
-      code_container.insertAdjacentHTML('beforeend', '<div class="show-btn"><i class="ic i-angle-down"></i></div>')
+      code_container.insertAdjacentHTML('beforeend', '<div class="show-btn"><i class="fa fa-solid fa-angle-down"></i></div>')
       const showBtn = code_container.child('.show-btn')
 
       const hideCode = function () {
@@ -450,7 +450,7 @@ const algoliaSearch = function (pjax) {
   if (!siteSearch) {
     siteSearch = BODY.createChild('div', {
       id: 'search',
-      innerHTML: '<div class="inner"><div class="header"><span class="icon"><i class="ic i-search"></i></span><div class="search-input-container"></div><span class="close-btn"><i class="ic i-times-circle"></i></span></div><div class="results"><div class="inner"><div id="search-stats"></div><div id="search-hits"></div><div id="search-pagination"></div></div></div></div>'
+      innerHTML: '<div class="inner"><div class="header"><span class="icon"><i class="fa fa-solid fa-magnifying-glass"></i></span><div class="search-input-container"></div><span class="close-btn"><i class="ic i-times-circle"></i></span></div><div class="results"><div class="inner"><div id="search-stats"></div><div id="search-hits"></div><div id="search-pagination"></div></div></div></div>'
     })
   }
 
@@ -503,7 +503,7 @@ const algoliaSearch = function (pjax) {
       container: '#search-hits',
       templates: {
         item: function (data) {
-          const cats = data.categories ? '<span>' + data.categories.join('<i class="ic i-angle-right"></i>') + '</span>' : ''
+          const cats = data.categories ? '<span>' + data.categories.join('<i class="fa fa-solid fa-angle-right"></i>') + '</span>' : ''
           return '<a href="' + CONFIG.root + data.path + '">' + cats + data._highlightResult.title.value + '</a>'
         },
         empty: function (data) {
@@ -523,10 +523,10 @@ const algoliaSearch = function (pjax) {
       showFirst: false,
       showLast: false,
       templates: {
-        first: '<i class="ic i-angle-double-left"></i>',
-        last: '<i class="ic i-angle-double-right"></i>',
-        previous: '<i class="ic i-angle-left"></i>',
-        next: '<i class="ic i-angle-right"></i>'
+        first: '<i class="fa fa=solid fa-angle-double-left"></i>',
+        last: '<i class="fa fa-solid fa-angle-double-right"></i>',
+        previous: '<i class="fa fa-solid fa-angle-left"></i>',
+        next: '<i class="fa fa-solid fa-angle-right"></i>'
       },
       cssClasses: {
         root: 'pagination',
@@ -587,7 +587,7 @@ const domInit = function () {
   if (!toolBtn) {
     toolBtn = siteHeader.createChild('div', {
       id: 'tool',
-      innerHTML: '<div class="item player"></div><div class="item contents"><i class="ic i-list-ol"></i></div><div class="item chat"><i class="ic i-comments"></i></div><div class="item back-to-top"><i class="ic i-arrow-up"></i><span>0%</span></div>'
+      innerHTML: '<div class="item player"></div><div class="item contents"><i class="fa fa-solid fa-list-ol"></i></div><div class="item chat"><i class="fa fa-solid fa-comments"></i></div><div class="item back-to-top"><i class="fa fa-solid fa-arrow-up"></i><span>0%</span></div>'
     })
   }
 

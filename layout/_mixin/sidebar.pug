@@ -25,12 +25,12 @@ mixin sidebarRender(display_toc)
             li(class="prev pjax")
                 if page && page.prev
                     if prevlink
-                        != _url(prevlink, '<i class="ic i-chevron-left"></i>', {rel: 'prev', title: __('post.prev')})
+                        != _url(prevlink, '<i class="fa fa-solid fa-chevron-left"></i>', {rel: 'prev', title: __('post.prev')})
             li(class="up")
-                i(class="ic i-arrow-up")
+                i(class="fa fa-solid fa-arrow-up")
             li(class="down")
-                i(class="ic i-arrow-down")
+                i(class="fa fa-solid fa-arrow-down")
             li(class="next pjax")
                 if nextlink
-                    != _url(nextlink, '<i class="ic i-chevron-right"></i>', {rel: 'next', title: __('post.next')})
+                    != _url(nextlink, '<i class="fa fa-solid fa-chevron-right"></i>', {rel: 'next', title: __('post.next')})
             li(class="percent")

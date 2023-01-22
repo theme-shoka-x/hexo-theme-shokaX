@@ -11,12 +11,12 @@ div(class="status")
     if theme.footer.count
         div(class="count")
             span(class="post-meta-item-icon")
-                i(class="ic i-chart-area")
+                i(class="fa fa-solid fa-chart-area")
             span(title=__('symbols_count_time.count_total'))
                 != `${ symbolsCountTotal(site) } ${__('symbols_count_time.word')}`
             span(class="post-meta-divider") |
             span(class="post-meta-item-icon")
-                i(class="ic i-coffee")
+                i(class="fa fa-solid fa-coffee")
             span(title=__('symbols_count_time.time_total'))
                 != symbolsTimeTotal(site, config.symbols_count_time.awl, config.symbols_count_time.wpm, __('symbols_count_time.time_minutes'))
             //- span(id="timeDate")

@@ -17,7 +17,7 @@ block title
 block header
     h1(itemprop="name headline")
         if page.link
-            - var postTitleIcon = '<i class="ic i-link-alt"></i>'
+            - var postTitleIcon = '<i class="fa fa-solid fa-up-right-from-square"></i>'
             - var postText = page.title || page.link
             != _url(page.link, postText + postTitleIcon, {class: 'link external', itemprop: 'url'})
         else

@@ -1,7 +1,7 @@
 mixin BCRender(post, home)
     if home
         != '<div class="breadcrumb" itemListElement itemscope itemtype="https://schema.org/BreadcrumbList">'
-        i(class="ic i-home")
+        i(class="fa fa-solid fa-house")
         span
             a(href=url_for(site.path))
                 != __('menu.home')
@@ -10,7 +10,7 @@ mixin BCRender(post, home)
     if post.categories && post.categories.length
         - var cat_length = post.categories.length
         if home
-            i(class="ic i-angle-right")
+            i(class="fa fa-solid fa-angle-right")
         each cat,index in post.categories.toArray()
             if home
                 if index===cat_length
@@ -29,5 +29,5 @@ mixin BCRender(post, home)
                 a(href=url_for(cat.path) title=__('post.in')+cat.name)
                     != cat.name
             if cat_length > 1 && index !== cat_length
-                i(class="ic i-angle-right")
+                i(class="fa fa-solid fa-angle-right")
     != '</div>'

@@ -103,7 +103,7 @@ block content
                                         a(href=url_for(cat.path)) #{cat.name}
                     div(class="title")
                         if post.link
-                            - var postTitleIcon = '<i class="ic i-link-alt"></i>'
+                            - var postTitleIcon = '<i class="fa fa-solid fa-up-right-from-square"></i>'
                             - var postText = post.title || post.link
                             != _url(post.link, postText + postTitleIcon, {class: 'external', itemprop: 'url'})
                         else

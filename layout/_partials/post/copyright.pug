@@ -1,5 +1,5 @@
 if page.copyright !== false
-    - var ccIcon = '<i class="ic i-creative-commons"><em>(CC)</em></i>'
+    - var ccIcon = '<i class="fa fa-brands fa-creative-commons"><em>(CC)</em></i>'
     - var ccText = theme.creative_commons.license.toUpperCase()
     div(id="copyright")
         ul
@@ -7,7 +7,7 @@ if page.copyright !== false
                 strong
                     != __('post.copyright.author') + __('symbol.colon')
                 != page.author || author
-                i(class="ic i-at")
+                i(class="fa fa-solid fa-at")
                     em @
                 != title
             li(class="link")
