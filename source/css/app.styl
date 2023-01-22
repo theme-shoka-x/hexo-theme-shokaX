@@ -13,10 +13,10 @@ if $colors = hexo-config('style.colors')
 else
   @import "_colors";
 
-//if $_iconfont = hexo-config('style.iconfont')
-//  @import $_iconfont;
-//else
-//  @import "_iconfont";
+if $_iconfont = hexo-config('style.iconfont')
+  @import $_iconfont;
+else
+  @import "_iconfont";
 
 // Scaffolding
 @import "_common/scaffolding";
