@@ -33,6 +33,7 @@ link(rel="alternate" type="application/json" title=siteTitle href=feedLink)
 if fontConfig
     != _vendor_font()
 != _css('app.css')
+link(rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/font-awesome/6.2.1/css/all.min.css")
 - var debugVue = theme?.experiments?.debug
 if debugVue
     script(src="https://cdn.staticfile.org/vue/3.2.45/vue.global.js")

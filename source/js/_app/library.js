@@ -149,7 +149,7 @@ const getScript = function (url, callback, condition) {
     else {
         let script = document.createElement('script');
         script.onload = function (_, isAbort) {
-            if (isAbort || !script.readyState || /loaded|complete/.test(script.readyState)) {
+            if (isAbort || !script.readyState) {
                 console.log("abort!");
                 script.onload = null;
                 script = undefined;
@@ -288,7 +288,7 @@ const pjaxScript = function (element) {
     }
     parent.appendChild(script);
 };
-const pageScroll = function (target, offset, complete) {
+const pageScrollOld = function (target, offset, complete) {
     const opt = {
         targets: typeof offset === 'number' ? target.parentNode : document.scrollingElement,
         duration: 500,
@@ -299,4 +299,28 @@ const pageScroll = function (target, offset, complete) {
         }
     };
     anime(opt);
+};
+const pageScroll = (target, offset, complete) => {
+    const opt = {
+        left: 0,
+        behavior: "smooth"
+    };
+    if (typeof target === "number") {
+        opt.top = target;
+    }
+    else {
+        if (typeof target === 'number') {
+            opt.top = offset || target;
+        }
+        else {
+            if (offset || target) {
+                opt.top = target.top() + document.documentElement.scrollTop - siteNavHeight;
+            }
+            else {
+                opt.top = 0;
+            }
+        }
+    }
+    scrollTo(opt);
+    complete && complete();
 };

@@ -706,7 +706,9 @@ const siteInit = function () {
   siteRefresh(1)
 }
 
-window.addEventListener('DOMContentLoaded', siteInit)
+window.addEventListener('DOMContentLoaded', siteInit, {
+  passive: true
+})
 
 console.log('%c Theme.ShokaX v' + CONFIG.version + ' %c https://github.com/zkz098/hexo-theme-shokaX ', 'color: white; background: #e9546b; padding:5px 0;', 'padding:4px;border:1px solid #e9546b;')
 console.log('%c by kaitaku ' + '%c https://www.kaitaku.xyz', 'color: white; background: #00bfff; padding: 5px 3px;', 'padding: 4px;border:1px solid #00bfff')

@@ -43,12 +43,7 @@ const autoDarkmode = function () {
             changeTheme('dark');
         }
         else {
-            if (window.matchMedia('(prefers-color-scheme:dark)').matches) {
-                changeTheme('dark');
-            }
-            else {
-                changeTheme();
-            }
+            changeTheme();
         }
     }
 };

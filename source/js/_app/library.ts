@@ -379,7 +379,6 @@ const transition = (target:HTMLElement, type:any, complete?:Function):void => {
       display = type.display
       break
   }
-  // @ts-ignore
   anime(Object.assign({
     targets: target,
     duration: 200,
@@ -418,15 +417,37 @@ const pjaxScript = function (element:HTMLScriptElement) {
   parent.appendChild(script)
 }
 
-const pageScroll = function (target:any, offset?:number, complete?:Function) {
-  const opt = {
-    targets: typeof offset === 'number' ? target.parentNode : document.scrollingElement,
-    duration: 500,
-    easing: 'easeInOutQuad',
-    scrollTop: offset || (typeof target === 'number' ? target : (target ? target.top() + document.documentElement.scrollTop - siteNavHeight : 0)),
-    complete: function () {
-      complete && complete()
+// const pageScrollOld = function (target:any, offset?:number, complete?:Function) {
+//   const opt = {
+//     targets: typeof offset === 'number' ? target.parentNode : document.scrollingElement,
+//     duration: 500,
+//     easing: 'easeInOutQuad',
+//     scrollTop: offset || (typeof target === 'number' ? target : (target ? target.top() + document.documentElement.scrollTop - siteNavHeight : 0)),
+//     complete: function () {
+//       complete && complete()
+//     }
+//   }
+//   anime(opt)
+// }
+
+const pageScroll = (target:any, offset?:number, complete?:Function) => {
+  const opt:ScrollToOptions = {
+    left: 0,
+    behavior: "smooth"
+  }
+  if (typeof target === "number") {
+    opt.top = target
+  } else {
+    if (typeof target === 'number') {
+      opt.top = offset || target
+    } else {
+      if (offset || target) {
+        opt.top = target.top() + document.documentElement.scrollTop - siteNavHeight
+      } else {
+        opt.top = 0
+      }
     }
   }
-  anime(opt)
+  scrollTo(opt)
+  complete && complete()
 }
