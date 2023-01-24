@@ -2,7 +2,7 @@
 - var yandexValid = theme?.seo?.yandex,baiduValid = theme?.seo?.baidu
 - var siteTitle = config.title,noBaiduT = theme?.seo?.disable_baidu_transformation
 - var feedLink = full_url_for("/feed.json")
-- var twikooLink = theme?.twikoo?.link;var jsInjects = theme?.inject?.head?.js,cssInjects = theme?.inject?.head?.css
+- var tk= theme?.twikoo?.enable;var jsInjects = theme?.inject?.head?.js,cssInjects = theme?.inject?.head?.css
 - var wl = theme.waline.enable,gt=theme?.gitalk?.enable
 meta(charset="UTF-8")
 meta(name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2")
@@ -33,16 +33,16 @@ link(rel="alternate" type="application/json" title=siteTitle href=feedLink)
 if fontConfig
     != _vendor_font()
 != _css('app.css')
-link(rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/font-awesome/6.2.1/css/all.min.css")
+
 - var debugVue = theme?.experiments?.debug
 if debugVue
     script(src="https://cdn.staticfile.org/vue/3.2.45/vue.global.js")
 else
     script(src="https://cdn.staticfile.org/vue/3.2.45/vue.global.prod.js")
 include pwa.pug
-if twikooLink
+if tk
     != _css("twikoo.css")
-    script(src=twikooLink)
+    script(src=theme.twikoo.link)
 else if wl
     link(rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css")
 else if gt
