@@ -21,9 +21,10 @@ mixin item(name, path, parent, dropdown, sublist)
                         - var menuText = __('menu.' + subname).replace('menu.', '')
                         if subname == 'default'
                             - var menuText = __('menu.' + name).replace('menu.', '')
-                        - var menuIcon = '<i class="ic i-' + trimn(path[1]) + '"></i>'
-                        li(class="item")
-                            != _url(itemURL, menuIcon + menuText, {rel: 'section'})
+                        else
+                            - var menuIcon = '<i class="ic i-' + trimn(path[1]) + '"></i>'
+                            li(class="item")
+                                != _url(itemURL, menuIcon + menuText, {rel: 'section'})
     else
         li(class="item")
             != _url(itemURL, menuIcon + menuText, {rel: 'section'})
