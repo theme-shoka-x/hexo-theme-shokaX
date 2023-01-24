@@ -163,11 +163,11 @@ const getScript = function (url, callback, condition) {
 };
 const assetUrl = function (asset, type) {
     const str = CONFIG[asset][type];
-    if (str.indexOf('npm') > -1) {
-        return `https://unpkg.com/${str}`;
-    }
     if (str.indexOf('gh') > -1 || str.indexOf('combine') > -1) {
         return `https://cdn.jsdelivr.net/${str}`;
+    }
+    if (str.indexOf('npm') > -1) {
+        return `https://unpkg.com/${str}`;
     }
     if (str.indexOf('http') > -1) {
         return str;
@@ -287,18 +287,6 @@ const pjaxScript = function (element) {
         script.appendChild(document.createTextNode(code));
     }
     parent.appendChild(script);
-};
-const pageScrollOld = function (target, offset, complete) {
-    const opt = {
-        targets: typeof offset === 'number' ? target.parentNode : document.scrollingElement,
-        duration: 500,
-        easing: 'easeInOutQuad',
-        scrollTop: offset || (typeof target === 'number' ? target : (target ? target.top() + document.documentElement.scrollTop - siteNavHeight : 0)),
-        complete: function () {
-            complete && complete();
-        }
-    };
-    anime(opt);
 };
 const pageScroll = (target, offset, complete) => {
     const opt = {

@@ -2,6 +2,7 @@ div(class="status")
     div(class="copyright")
         - var copyright_year = date(null, 'YYYY')
         if theme.footer.since && theme.footer.since != copyright_year
+            != `&copy; ${theme.footer.since} -`
         span(itemprop="copyrightYear")
             != copyright_year
         span(class="with-love")
