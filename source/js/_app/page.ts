@@ -50,6 +50,14 @@ const cardActive = function () {
   })
 }
 
+/*
+这段代码是在注册所有HTML页面中带有"span.exturl"类的元素, 为这些元素添加了一些链接属性。
+
+$dom.each是一个自定义函数，用于循环遍历所有匹配的元素。
+在回调函数中，创建了一个新的<a>元素，并使用atob()和decodeURIComponent()函数解码了存储在元素的data-url属性中的链接。
+然后，设置了新链接的一些属性，如rel，target和className，并将其内容设置为原始元素的内容。
+最后，使用element.parentNode.replaceChild()函数将原始元素替换为新链接元素。
+*/
 const registerExtURL = function () {
   $dom.each('span.exturl', function (element) {
     const link = <HTMLAnchorElement> document.createElement('a')

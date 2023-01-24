@@ -122,32 +122,49 @@ $dom.asyncifyEach = (selector:string, callback?:(value: HTMLElement, key: number
 }
 
 Object.assign(HTMLElement.prototype, {
-  /**
-     * 创建一个子节点并放置
+  /*
+这段代码实现了在当前 DOM 元素中创建一个新的子元素的功能。传入的 tag 变量表示要创建的元素标签名，
+obj 变量表示要添加到新元素上的属性，positon 变量表示新元素的插入位置。使用 Object.assign 方法将 obj 对象中的属性添加到 child 元素上，根据 positon 变量的值进行不同的操作，最后返回创建的 child 元素.
      */
   createChild: function (tag:string, obj:Object, positon?: string):HTMLElement {
+    // 创建一个新的 DOM 元素，标签名为传入的 tag 变量
     const child = document.createElement(tag)
+    // 使用 Object.assign 方法将 obj 对象中的属性添加到 child 元素上
     Object.assign(child, obj)
+    // 根据 positon 变量的值进行不同的操作
     switch (positon) {
+      // 如果 positon 为 'after'，则使用 insertAfter 方法将 child 插入到当前元素之后
       case 'after':
         this.insertAfter(child)
         break
+      // 如果 positon 为 'replace'，则将当前元素的 innerHTML 设置为空字符串，并将 child 元素添加到当前元素中
       case 'replace':
         this.innerHTML = ''
         this.appendChild(child)
         break
+      // 如果 positon 变量不存在或者为其它值，则默认将 child 元素添加到当前元素中
       default:
         this.appendChild(child)
     }
     return child
   },
+  /*
+  这段代码实现了将当前 DOM 元素包装在新的 div 元素中的功能。传入的 obj 变量表示要添加到新 div 元素上的属性，
+  使用 Object.assign 方法将 obj 对象中的属性添加到 box 元素上，将 box 元素插入到当前元素的父元素中,在当前元素之前，将当前元素从父元素中删除,最后将当前元素添加到 box
+   */
   wrapObject: function (obj:Object) {
+    // 创建一个新的 div 元素
     const box = document.createElement('div')
+    // 使用 Object.assign 方法将 obj 对象中的属性添加到 box 元素上
     Object.assign(box, obj)
+    // 将 box 元素插入到当前元素的父元素中,在当前元素之前
     this.parentNode.insertBefore(box, this)
+    // 将当前元素从父元素中删除
     this.parentNode.removeChild(this)
+    // 将当前元素添加到 box 元素中
     box.appendChild(this)
-  },
+  }
+  ,
   changeOrGetHeight: function (h?:number|string):number {
     if (h) {
       this.style.height = typeof h === 'number' ? h + 'rem' : h
@@ -223,21 +240,27 @@ Object.assign(HTMLElement.prototype, {
   find: function (selector:string):NodeListOf<HTMLElement> {
     return $dom.all(selector, this)
   },
-  /**
-   * 当输入type为toggle时,对每个className执行toggle操作 <br />
-   * 反之,对每个className执行type操作
+  /*
+   * 这段代码实现了在 DOM 元素的 classList 上执行 add, remove, toggle 操作的功能。传入的 type 变量表示要执行的操作类型，
+   * className 变量表示要操作的类名，当 type 为 toggle 时，display 变量可以传入一个布尔值，表示要添加还是删除类名。如果 className 中存在多个类名，则会将其分割为数组，然后使用 forEach 方法遍历数组并执行对应的操作。
    */
   _class: function (type: string, className: string, display?: boolean): void {
+    // 如果 className 中存在多个类名，则将其分割为数组
     const classNames = className.indexOf(' ') ? className.split(' ') : [className]
+    // 将 this 存储在变量 that 中，以便在 forEach 函数中使用
     const that = this
+    // 遍历 classNames 数组
     classNames.forEach(function (name) {
-        if (type === 'toggle') {
-          that.classList.toggle(name, display)
-        } else {
-          that.classList[type](name)
-        }
+      // 如果 type 等于 'toggle'，则使用 classList.toggle 方法
+      if (type === 'toggle') {
+        that.classList.toggle(name, display)
+        // 否则使用 classList[type] 方法
+      } else {
+        that.classList[type](name)
+      }
     })
-  },
+  }
+  ,
   addClass: function (className:string):any {
     this._class('add', className)
     return this
@@ -268,27 +291,38 @@ const $storage = {
   }
 }
 
+/*
+这段代码实现了动态加载外部 JavaScript 脚本文件的功能。如果传入了 condition 变量，则直接调用 callback 函数；如果没有传入 condition 变量，
+则创建一个 script 元素，设置其 src 属性为传入的 url，并将其添加到 head 元素中，在 script 元素加载完成后，调用 callback 函数。
+ */
 const getScript = function (url:string, callback?:Function, condition?:string):void {
+  // 如果 condition 变量存在，直接调用 callback 函数
   if (condition) {
     callback()
+    // 如果 condition 变量不存在，则创建 script 元素
   } else {
     let script = document.createElement('script')
-
-    // @ts-ignore TODO 有效性待验证
+    // 当 script 元素加载完成时，调用 onload 回调函数
+    // @ts-ignore
     script.onload = function (_, isAbort: boolean) {
-
-      // @ts-ignore TODO 此处代码在非ie下可能无效
+      // 如果 script 元素加载失败（isAbort=true）或 script 元素未准备就绪，则输出 "abort!" 信息
+      // @ts-ignore
       if (isAbort || !script.readyState) {
         console.log("abort!")
+        // 清除 onload 事件处理程序并释放 script 元素
         script.onload = null
         script = undefined
+        // 如果加载成功且存在 callback 函数，则延迟 0 毫秒后调用 callback 函数
         if (!isAbort && callback) setTimeout(callback, 0)
       }
     }
+    // 设置 script 元素的 src 属性，以加载外部脚本文件
     script.src = url
+    // 添加 script 元素到页面的 head 元素中
     document.head.appendChild(script)
   }
 }
+
 
 const assetUrl = function (asset:string, type:string):string {
   const str = CONFIG[asset][type]
@@ -389,31 +423,47 @@ const transition = (target:HTMLElement, type:any, complete?:Function):void => {
   })
 }
 
+/*
+这段代码的作用是在 Pjax 操作中，重新加载页面中的 script 标签。它会从页面中获取到 script 元素，将其从父元素中删除，
+然后创建一个新的 script 元素，将原来的 script 元素的属性和文本内容复制到新 script 元素上，最后将新 script 元素添加到父元素中。
+这样做的目的是为了避免 Pjax 操作中 script 标签重复执行的问题。
+ */
 const pjaxScript = function (element:HTMLScriptElement) {
+  // 获取 script 元素的文本内容
   const code = element.text || element.textContent || element.innerHTML || ''
+  // 获取 script 元素的父元素
   const parent = element.parentNode
+  // 从父元素中删除 script 元素
   parent.removeChild(element)
+  // 创建一个新的 script 元素
   const script = document.createElement('script')
+  // 如果 script 元素有 id 属性，则将其赋值给新 script 元素
   if (element.id) {
     script.id = element.id
   }
+  // 如果 script 元素有 className 属性，则将其赋值给新 script 元素
   if (element.className) {
     script.className = element.className
   }
+  // 如果 script 元素有 type 属性，则将其赋值给新 script 元素
   if (element.type) {
     script.type = element.type
   }
+  // 如果 script 元素有 src 属性，则将其赋值给新 script 元素
   if (element.src) {
     script.src = element.src
-    // Force synchronous loading of peripheral JS.
+    // 强制同步加载外部 JS
     script.async = false
   }
+  // 如果 script 元素有 dataset.pjax 属性，则将其赋值给新 script 元素
   if (element.dataset.pjax !== undefined) {
     script.dataset.pjax = ''
   }
+  // 如果 script 元素有文本内容，将其添加到新 script 元素中
   if (code !== '') {
     script.appendChild(document.createTextNode(code))
   }
+  // 将新 script 元素添加到父元素中
   parent.appendChild(script)
 }
 
