@@ -326,8 +326,8 @@ const getScript = function (url:string, callback?:Function, condition?:string):v
 
 const assetUrl = function (asset:string, type:string):string {
   const str = CONFIG[asset][type]
-  if (str.indexOf('npm') > -1) { return `https://unpkg.com/${str}` }
   if (str.indexOf('gh') > -1 || str.indexOf('combine') > -1) { return `https://cdn.jsdelivr.net/${str}` }
+  if (str.indexOf('npm') > -1) { return `https://unpkg.com/${str}` }
   if (str.indexOf('http') > -1) { return str }
   return `/${str}`
 }
