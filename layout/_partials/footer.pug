@@ -36,6 +36,7 @@ div(class="status")
                 a(target="_blank" href=`https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=${RC}`)
                     img(src=theme.statics + theme.assets + '/' + theme.footer.icp.icon style="max-width: 2em;display:inline;")
                     != beianN
+    != shokax_inject('status')
 
 != shokax_inject('footer')
 
