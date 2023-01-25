@@ -30,6 +30,7 @@ block content
                         - var lastcat = ""
                         - var lastcatslug = ""
                     else
+                        - var lastcat = true
                         mixin lastcat
                             != lastcat
                             a(href=url_for(cat.path))

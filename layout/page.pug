@@ -27,7 +27,6 @@ block header
                 != __('title.not_found')
             else
                 != page.title
-            != "|"
 
 block content
     if page.type === 'categories'
@@ -37,6 +36,7 @@ block content
                     != __('menu.home')
                 small
                 != _p('counter.categories', site.categories.length)
+            != _list_categories(3)
     else if page.type === 'tags'
         div(class="collapse wrap")
             h2(class="item title")
