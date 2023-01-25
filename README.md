@@ -65,8 +65,10 @@ github仓库建议通过右边的 releases 下载,步骤为:
 | hexo-theme-shoka | amehime           | 本项目的父主题            |
 
 ## 贡献者
-| 名称         | 站点                         | 描述                     |
-|:-----------|:---------------------------|:-----------------------|
-| Lavender   | https://www.lavenderdh.cn/ | 提供了大量shoka主题的魔改        |
-| AdminZhang | https://www.a9-9.top/      | 为本项目提供了大量想法并进行了DEBUG工作 |
+shokaX的贡献者包括以非代码形式进行贡献的开发者(例如社区教程、想法分享、DEBUG等)和以代码形式进行贡献的开发者
 
+| 名称         | 站点                         |
+|:-----------|:---------------------------|
+| Lavender   | https://www.lavenderdh.cn/ |
+| AdminZhang | https://www.a9-9.top/      |
+| D-Sketon   | http://d-sketon.top/       | 
