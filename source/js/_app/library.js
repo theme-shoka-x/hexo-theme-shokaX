@@ -288,27 +288,15 @@ const pjaxScript = function (element) {
     }
     parent.appendChild(script);
 };
-const pageScroll = (target, offset, complete) => {
+const pageScroll = function (target, offset, complete) {
     const opt = {
-        left: 0,
-        behavior: "smooth"
+        targets: typeof offset === 'number' ? target.parentNode : document.scrollingElement,
+        duration: 500,
+        easing: 'easeInOutQuad',
+        scrollTop: offset || (typeof target === 'number' ? target : (target ? target.top() + document.documentElement.scrollTop - siteNavHeight : 0)),
+        complete: function () {
+            complete && complete();
+        }
     };
-    if (typeof target === "number") {
-        opt.top = target;
-    }
-    else {
-        if (typeof target === 'number') {
-            opt.top = offset || target;
-        }
-        else {
-            if (offset || target) {
-                opt.top = target.top() + document.documentElement.scrollTop - siteNavHeight;
-            }
-            else {
-                opt.top = 0;
-            }
-        }
-    }
-    scrollTo(opt);
-    complete && complete();
+    anime(opt);
 };
