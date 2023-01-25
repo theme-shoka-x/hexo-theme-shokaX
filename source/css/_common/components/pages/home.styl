@@ -9,8 +9,8 @@ $item {
 
   &.show {
     @extend .slide-up-big-in;
-    content-visibility: auto;
-    contain-intrinsic-size: 250px;
+    // content-visibility: auto;
+    // contain-intrinsic-size: 250px;
     opacity: 1;
   }
 
@@ -26,6 +26,9 @@ $item {
     position: absolute;
     bottom: 0;
     right: 0;
+    transform-style: preserve-3d;
+    transform: translateZ(2rem);
+    backface-visibility: hidden;
     padding: .3rem 1rem;
     border-radius: 1rem 0;
     color: var(--grey-0);
