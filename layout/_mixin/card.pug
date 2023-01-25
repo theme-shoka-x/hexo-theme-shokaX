@@ -13,9 +13,10 @@ mixin CardRender(item)
         div(class="info")
             if item.link
                 - var postTitleIcon = '<i class="ic i-link-alt"></i>'
-            - var postText = itemname || item.link || __('post.untitled')
+            - var postText = itemname || item.link || item.path || __('post.untitled')
             div(class="ribbon")
-                != _url(item.link , postText + (postTitleIcon || ''), {itemprop: 'url', title: postText})
+                - var tempL = item.link || item.path
+                != _url(tempL , postText + (postTitleIcon || ''), {itemprop: 'url', title: postText})
             div(class="inner")
                 - var len = ''
                 if item.child
