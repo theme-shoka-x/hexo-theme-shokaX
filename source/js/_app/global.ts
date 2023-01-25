@@ -151,71 +151,85 @@ const showtip = function (msg:string):void|never {
 }
 
 const resizeHandle = function (event?) {
+// 获取 siteNav 的高度
   siteNavHeight = siteNav.changeOrGetHeight()
+// 获取 siteHeader 的高度
   headerHightInner = siteHeader.changeOrGetHeight()
+// 获取 #waves 的高度
   headerHight = headerHightInner + $dom('#waves').changeOrGetHeight()
 
+// 判断窗口宽度是否改变
   if (oWinWidth !== window.innerWidth) { sideBarToggleHandle(null, 1) }
 
+// 记录窗口高度和宽度
   oWinHeight = window.innerHeight
   oWinWidth = window.innerWidth
+// 设置 sidebar .panels 元素的高度
   sideBar.child('.panels').changeOrGetHeight(oWinHeight + 'px')
 }
 
 const scrollHandle = function (event) {
+  // 获取窗口高度
   const winHeight = window.innerHeight
+  // 获取文档高度
   const docHeight = getDocHeight()
+  // 计算可见内容高度
   const contentVisibilityHeight = docHeight > winHeight ? docHeight - winHeight : document.body.scrollHeight - winHeight
+  // 判断页面是否滚动超过 headerHightInner
   const SHOW = window.scrollY > headerHightInner
+  // 判断页面是否开始滚动
   const startScroll = window.scrollY > 0
 
+  // 根据条件修改 meta theme
   if (SHOW) {
     changeMetaTheme('#FFF')
   } else {
     changeMetaTheme('#222')
   }
 
+  // 控制导航栏的显示隐藏
   siteNav.toggleClass('show', SHOW)
+  // 控制网站 logo 的显示隐藏
   toolBtn.toggleClass('affix', startScroll)
+  // 控制侧边栏的显示隐藏，当滚动高度大于 headerHight 且窗口宽度大于 991px 时显示
   siteBrand.toggleClass('affix', startScroll)
   sideBar.toggleClass('affix', window.scrollY > headerHight && document.body.offsetWidth > 991)
-
+  // 初始化滚动时导航栏的显示方向
   if (typeof scrollAction.y === 'undefined') {
     scrollAction.y = window.scrollY
-    // scrollAction.x = Container.scrollLeft;
-    // scrollAction.y = Container.scrollTop;
   }
-  // var diffX = scrollAction.x - Container.scrollLeft;
-
   diffY = scrollAction.y - window.scrollY
 
   // 控制滑动时导航栏显示
   if (diffY < 0) {
-    // Scroll down
     siteNav.removeClass('up')
     siteNav.toggleClass('down', SHOW)
   } else if (diffY > 0) {
-    // Scroll up
     siteNav.removeClass('down')
     siteNav.toggleClass('up', SHOW)
   } else {
-    // First scroll event
   }
   scrollAction.y = window.scrollY
-
+  // 计算滚动百分比
   const scrollPercent = Math.round(Math.min(100 * window.scrollY / contentVisibilityHeight, 100)) + '%'
+  // 更新回到顶部按钮的文字
   backToTop.child('span').innerText = scrollPercent
+  // 更新百分比进度条的宽度
   $dom('.percent').changeOrGetWidth(scrollPercent)
 }
 
 const pagePosition = function () {
+  // 判断配置项是否开启了自动记录滚动位置
   if (CONFIG.auto_scroll) {
+    // 将当前页面的滚动位置存入本地缓存
     $storage.set(LOCAL_URL, String(scrollAction.y))
   }
 }
 
 const positionInit = function (comment?:boolean) {
+  // 获取页面锚点
   const anchor = window.location.hash
+
   let target = null
   if (LOCAL_HASH) {
     $storage.del(LOCAL_URL)
@@ -237,6 +251,10 @@ const positionInit = function (comment?:boolean) {
   }
 }
 
+/*
+这段代码是用来复制文本的。它使用了浏览器的 Clipboard API，如果浏览器支持该 API 并且当前页面是安全协议 (https)，
+它将使用 Clipboard API 将文本复制到剪贴板。如果不支持，它会创建一个隐藏的文本区域并使用 document.execCommand('copy') 将文本复制到剪贴板。最后，它会回调传入的函数并传入一个布尔值表示是否成功复制。
+*/
 const clipBoard = function (str: string, callback?: (result) => void) {
   if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(str).then(() => {
@@ -267,7 +285,6 @@ const clipBoard = function (str: string, callback?: (result) => void) {
       selection.removeAllRanges()
       selection.addRange(selected)
     }
-    // @ts-ignore
     BODY.removeChild(ta)
   }
 }

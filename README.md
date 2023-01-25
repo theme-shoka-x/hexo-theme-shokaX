@@ -71,4 +71,4 @@ shokaX的贡献者包括以非代码形式进行贡献的开发者(例如社区�
 |:-----------|:---------------------------|
 | Lavender   | https://www.lavenderdh.cn/ |
 | AdminZhang | https://www.a9-9.top/      |
-| D-Sketon   | http://d-sketon.top/       | 
+| D-Sketon   | https://d-sketon.top/      | 
