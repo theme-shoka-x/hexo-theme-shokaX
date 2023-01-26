@@ -14,6 +14,10 @@ mixin CommentRender()
                 }, 1000)
         else if wl
             div(class="warp" id="wcomments")
+            - var locale = JSON.stringify(theme.waline.locale)
+            - var emoji = JSON.stringify(theme.waline.emoji)
+            - var meta = JSON.stringify(theme.waline.meta)
+            - var requiredMeta = JSON.stringify(theme.waline.requiredMeta)
             script(type="module" data-pjax).
                 import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
 
@@ -22,12 +26,13 @@ mixin CommentRender()
                         el: '#wcomments',
                         serverURL: '#{hexo.theme.config.waline.serverURL}',
                         lang: '#{hexo.theme.config.waline.lang}',
-                        locale: #{hexo.theme.config.waline.locale},
-                        emoji: #{hexo.theme.config.waline.emoji},
-                        meta: #{hexo.theme.config.waline.meta},
-                        requiredMeta: #{hexo.theme.config.waline.requiredMeta},
+                        locale: !{locale},
+                        emoji: !{emoji},
+                        meta: !{meta},
+                        requiredMeta: !{requiredMeta},
                         wordLimit: #{hexo.theme.config.waline.wordLimit},
-                        pageSize: #{hexo.theme.config.waline.pageSize}
+                        pageSize: #{hexo.theme.config.waline.pageSize},
+                        pageview: #{theme.waline.pageview}
                     });
                 }, 1000)
         else if gt
