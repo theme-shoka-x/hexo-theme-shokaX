@@ -38,7 +38,7 @@ hexo.extend.helper.register('_new_comments', function (mode) {
         </script>`
   } else if (mode === 'waline') {
     return `
-    <script type="module">
+    <script type="module" data-pjax>
         import { RecentComments } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs'
         RecentComments({
           el: '#new-comment',

@@ -21,7 +21,7 @@ mixin CommentRender()
             script(type="module" data-pjax).
                 import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
 
-                var path = document.getElementById("twikoo_visitors").attr("data-path");
+                var path = document.getElementById("twikoo_visitors").getAttribute("data-path");
                 setTimeout(function () {
                     init({
                         el: '#wcomments',

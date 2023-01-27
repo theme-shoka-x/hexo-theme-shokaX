@@ -567,7 +567,7 @@ const siteRefresh = function (reload) {
     vendorJs('copy_tex');
     vendorCss('mermaid');
     vendorJs('chart');
-    if (!reload) {
+    if (reload !== 1) {
         $dom.each('script[data-pjax]', pjaxScript);
     }
     originTitle = document.title;
@@ -612,7 +612,7 @@ const siteInit = function () {
     window.addEventListener('scroll', scrollHandle);
     window.addEventListener('resize', resizeHandle);
     window.addEventListener('pjax:send', pjaxReload);
-    window.addEventListener('pjax:success', siteRefresh);
+    window.addEventListener('pjax:success', siteRefresh); // 默认会传入一个event参数
     window.addEventListener('beforeunload', function () {
         pagePosition();
     });
