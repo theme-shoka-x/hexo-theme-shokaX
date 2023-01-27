@@ -612,7 +612,7 @@ const siteInit = function () {
     window.addEventListener('scroll', scrollHandle);
     window.addEventListener('resize', resizeHandle);
     window.addEventListener('pjax:send', pjaxReload);
-    window.addEventListener('pjax:success', siteRefresh); // 默认会传入一个event参数
+    window.addEventListener('pjax:success', siteRefresh);
     window.addEventListener('beforeunload', function () {
         pagePosition();
     });
