@@ -53,7 +53,7 @@ function linkGrid (args, content) {
       urlparam = new URL(item.url)
     }
 
-    let item_image = item.image || theme.images + '/404.png'
+    let item_image = item.image || theme.assets + '/404.png'
 
     if (!item_image.startsWith('//') && !item_image.startsWith('http')) {
       item_image = theme.statics + item_image
