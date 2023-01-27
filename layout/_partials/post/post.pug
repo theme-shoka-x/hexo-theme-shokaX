@@ -2,7 +2,7 @@
 article(itemscope itemtype="http://schema.org/Article" class="post block" lang=temp)
     link(itemprop="mainEntityOfPage" href!=post.permalink)
     span(hidden itemprop="author" itemscope itemtype="http://schema.org/Person")
-        meta(itemprop="image" content=url_for(theme.statics + theme.images + '/' + theme.sidebar.avatar))
+        meta(itemprop="image" content=url_for(theme.statics + theme.assets + '/' + theme.sidebar.avatar))
         meta(itemprop="name" content=author)
         meta(itemprop="description" content=`${ subtitle }, ${ description }`)
     span(hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization")
