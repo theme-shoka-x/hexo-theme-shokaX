@@ -28,6 +28,8 @@ experiments:
   debug: false # 使用debug模式启动
   disableThemeComment: false # 禁用主题评论系统(一般用于关闭评论或让插件接管评论系统)
 
+playerAPI: "https://api.injahow.cn" # 结尾不带/,只填写域名
+
 icon:
   favicon: "/favicon.ico"
   apple_touch_icon: "/apple-touch-icon.png"

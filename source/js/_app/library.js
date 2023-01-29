@@ -1,7 +1,7 @@
 const getDocHeight = () => $dom('main > .inner').offsetHeight;
 const $dom = (selector, element = document) => {
-    if (selector.indexOf('#') === 0) {
-        return element.getElementById(selector.replace('#', ''));
+    if (selector[0] === '#') {
+        return element.getElementById(selector.substring(1));
     }
     return element.querySelector(selector);
 };
