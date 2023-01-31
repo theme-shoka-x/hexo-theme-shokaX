@@ -11,7 +11,6 @@ open_graph:
 #fb_admins:
 #fb_app_id:
 
-
 grayMode: false # 全站黑白滤镜
 # 请注意: 本主题的PWA功能只是一个装载器,需要自备js和manifest
 # 图片可通过https://lp-pwa.gitee.io/pwa-genicon/生成
@@ -46,9 +45,9 @@ visitor:
 
 darkmode: false
 auto_dark: # 自动亮/暗模式
-  enable: true  #是否开启
-  start: 20     #开始时间
-  end: 7        #结束时间
+  enable: true #是否开启
+  start: 20 #开始时间
+  end: 7 #结束时间
 
 auto_scroll: true
 
@@ -139,7 +138,7 @@ twikoo:
 # https://waline.js.org/
 waline:
   enable: false
-  serverURL: ''
+  serverURL: ""
   lang: "zh-CN"
   locale: {} # https://waline.js.org/guide/features/i18n.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%AD%E8%A8%80
   emoji: # 表情包
@@ -183,7 +182,6 @@ giscus:
   commentTheme:
   lang:
 
-
 # Social Links
 # Usage: `Key: permalink || icon || color`
 # Key is the link label showing to end users.
@@ -209,7 +207,7 @@ sidebar:
   # Sidebar Position.
   position: left
   # position: right
-  # Replace the default avatar image and set the url here.
+  # Replace the default avatar image under <root>/source/_data/assets/ and set the url here.
   avatar: avatar.jpg
 
 widgets:
@@ -229,9 +227,9 @@ footer:
   count: true
   powered: true
   lantern:
-    enable: true  #是否开启
-    word1: 中   #第一个字
-    word2: 秋   #第二个字
+    enable: true #是否开启
+    word1: 中 #第一个字
+    word2: 秋 #第二个字
   icp: # ICP备案
     enable: false
     icon: "beian.webp" #网安备案图片
