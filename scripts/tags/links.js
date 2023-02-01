@@ -50,7 +50,7 @@ function linkGrid (args, content) {
     let urlparam = {}
 
     if (item.url) {
-      urlparam = new URL(item.url)
+      urlparam = new URL(item.url, hexo.config.url)
     }
 
     let item_image = item.image || theme.assets + '/404.png'
