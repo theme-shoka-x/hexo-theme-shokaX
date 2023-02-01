@@ -453,7 +453,7 @@ const mediaPlayer = function (t, config?) {
           this.options.rawList = newList
           playlist.clear()
           // 获取新列表
-          // this.fetch()
+          this.fetch()
         }
       } else {
         // 没有列表时，隐藏按钮

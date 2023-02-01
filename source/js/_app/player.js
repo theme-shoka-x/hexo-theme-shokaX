@@ -431,6 +431,7 @@ const mediaPlayer = function (t, config) {
                 if (this.options.rawList !== newList) {
                     this.options.rawList = newList;
                     playlist.clear();
+                    this.fetch();
                 }
             }
             else {

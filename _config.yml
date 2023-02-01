@@ -28,6 +28,8 @@ experiments:
   disableThemeComment: false # 禁用主题评论系统(一般用于关闭评论或让插件接管评论系统)
 
 playerAPI: "https://api.injahow.cn" # 结尾不带/,只填写域名
+# 如果条件允许,请参考 https://github.com/injahow/meting-api 自建API
+# 建议使用vercel自行部署,请参考: https://github.com/xizeyoupan/Meting-API
 
 icon:
   favicon: "/favicon.ico"
@@ -276,14 +278,15 @@ creative_commons:
   language: deed.zh
 
 # bgm
+# 不使用请打开noplayer功能
 audio:
-  - title: 列表1
-    list:
-      - https://music.163.com/#/playlist?id=2943811283
-      - https://music.163.com/#/playlist?id=2297706586
-  - title: 列表2
-    list:
-      - https://music.163.com/#/playlist?id=2031842656
+#  - title: 列表1
+#    list:
+#      - https://music.163.com/#/playlist?id=2943811283
+#      - https://music.163.com/#/playlist?id=2297706586
+#  - title: 列表2
+#    list:
+#      - https://music.163.com/#/playlist?id=2031842656
 
 # random image api
 image_server: # "https://acg.xydwz.cn/api/api.php"
