@@ -1,6 +1,6 @@
 'use strict'
 /* global hexo */
-/*
+/*!
   hexo-symbols-count-time by theme-next
   under GNU Lesser General Public License v3.0
   https://github.com/theme-next/hexo-symbols-count-time/blob/master/LICENSE
