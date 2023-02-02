@@ -686,7 +686,9 @@ const siteInit = function () {
   quicklink.listen(CONFIG.quicklink)
   autoDarkmode()
 
-  visibilityListener()
+  if (!CONFIG.disableVL) {
+    visibilityListener()
+  }
   themeColorListener()
 
   algoliaSearch(pjax)

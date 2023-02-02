@@ -606,7 +606,9 @@ const siteInit = function () {
     CONFIG.quicklink.ignores = LOCAL.ignores;
     quicklink.listen(CONFIG.quicklink);
     autoDarkmode();
-    visibilityListener();
+    if (!CONFIG.disableVL) {
+        visibilityListener();
+    }
     themeColorListener();
     algoliaSearch(pjax);
     window.addEventListener('scroll', scrollHandle);

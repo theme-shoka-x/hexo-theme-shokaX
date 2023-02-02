@@ -43,7 +43,8 @@ hexo.extend.generator.register('script', function (locals) {
       timeout: theme.quicklink.timeout,
       priority: theme.quicklink.priority
     },
-    playerAPI: theme.playerAPI
+    playerAPI: theme.playerAPI,
+    disableVL: theme.disableVL
   }
 
   if (config?.algolia) {

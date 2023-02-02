@@ -26,10 +26,13 @@ experiments:
   gradientCover: "" # 当gradient为true时使用的主页面cover(为空则使用bing随机图片)
   debug: false # 使用debug模式启动
   disableThemeComment: false # 禁用主题评论系统(一般用于关闭评论或让插件接管评论系统)
+  usingRelative: false # _image.yml 使用相对路径
 
 playerAPI: "https://api.injahow.cn" # 结尾不带/,只填写域名
 # 如果条件允许,请参考 https://github.com/injahow/meting-api 自建API
 # 建议使用vercel自行部署,请参考: https://github.com/xizeyoupan/Meting-API
+
+disableVL: false # 禁用可见度监听
 
 icon:
   favicon: "/favicon.ico"

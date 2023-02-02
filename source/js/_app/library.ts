@@ -100,11 +100,12 @@ declare const CONFIG: {
   search: any,
   valine: string
   quicklink: {
-    ignores: any;
+    ignores: any
     timeout: number
     priority: string
   }
   playerAPI: string
+  disableVL: boolean
 }
 
 const getDocHeight = () => $dom('main > .inner').offsetHeight
