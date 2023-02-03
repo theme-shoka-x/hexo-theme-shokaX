@@ -2,6 +2,7 @@
 
 ---
 > 请在贡献前仔细阅读本文档
+
 目录:
 1. [代码贡献指南](#代码贡献指南)
 2. [翻译贡献指南](#翻译贡献指南)
@@ -13,6 +14,9 @@
 1. 您已阅读并同意[BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause) 授权许可
 2. 您同意我们在未来进行授权许可更改时包含您所贡献的代码
 3. 您有对于 shokaX 所使用的相关技术和 github PR 及 actions 的基础了解
+
+对于代码修改的说明:
+1. `page js` 仅需要修改ts文件，`hexo script` 请修改js文件
 
 有关提交的说明:
 1. 您在提交时的`commit message`应描述其改动

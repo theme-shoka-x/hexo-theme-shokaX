@@ -25,14 +25,14 @@ mixin CommentRender()
                 setTimeout(function () {
                     init({
                         el: '#wcomments',
-                        serverURL: '#{hexo.theme.config.waline.serverURL}',
-                        lang: '#{hexo.theme.config.waline.lang}',
+                        serverURL: '#{theme.waline.serverURL}',
+                        lang: '#{theme.waline.lang}',
                         locale: !{locale},
                         emoji: !{emoji},
                         meta: !{meta},
                         requiredMeta: !{requiredMeta},
-                        wordLimit: #{hexo.theme.config.waline.wordLimit},
-                        pageSize: #{hexo.theme.config.waline.pageSize},
+                        wordLimit: #{theme.waline.wordLimit},
+                        pageSize: #{theme.waline.pageSize},
                         pageview: #{theme.waline.pageview},
                         path: path
                     });
