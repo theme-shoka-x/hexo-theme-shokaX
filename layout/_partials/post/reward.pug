@@ -6,7 +6,7 @@ if page.reward !== false
         p
             != __('reward.text')
         div(id="qr")
-            each name, image in theme.reward.account
+            each image, name  in theme.reward.account
                 - var builtin = ['wechatpay', 'alipay', 'paypal', 'bitcoin']
                 if builtin.includes(name)
                     - var translation = __('reward.' + name)
