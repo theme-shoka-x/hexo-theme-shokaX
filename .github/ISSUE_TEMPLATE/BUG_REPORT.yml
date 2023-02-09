@@ -47,7 +47,7 @@ body:
       description: |
         在问题发生时你做了什么
     validations:
-      required: true
+      required: false
   - type: "textarea"
     id: config
     attributes:
