@@ -3,6 +3,14 @@
 /*
 对注释的说明: 部分注释为openai-chatgpt生成的注释,可能存在描述或语义的问题
  */
+
+/*!
+This file is part of Hexo-theme-shokaX.
+Hexo-theme-shokaX is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+Hexo-theme-shokaX is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License along with Foobar. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 declare interface EventTarget {
 // 设置或获取元素属性值
   attr(type: string, value?: any): any
@@ -112,12 +120,12 @@ const getDocHeight = () => $dom('main > .inner').offsetHeight
 /**
  * 获取一个dom选择器对应的元素
  */
-const $dom = (selector: string, element: Document = document): HTMLElement | null => {
+const $dom = (selector: string, element: Document = document): HTMLElement => {
   // 在测试环境中这能优化0.01-0.02ms左右
   if (selector[0] === '#') {
-    return element.getElementById(selector.substring(1))
+    return <HTMLElement> element.getElementById(selector.substring(1))
   }
-  return element.querySelector(selector)
+  return <HTMLElement> element.querySelector(selector)
 }
 
 /**

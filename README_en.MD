@@ -4,7 +4,7 @@
 ![stars](https://img.shields.io/github/stars/zkz098/hexo-theme-shokaX)
 ![version](https://shields.io/npm/v/hexo-theme-shokax)
 
-语言(language): [简体中文](https://github.com/zkz098/hexo-theme-shokaX/blob/main/README.md) | English \
+语言(language): [简体中文](./README.md) | English \
 This project is a secondary development version of Shoka, dedicated to improving performance and optimizing the development experience. \
 This project is in a period of intensive development, but the github repository version is basically available. \
 Please refer to the wiki for secondary development and common problems.

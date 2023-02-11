@@ -11,9 +11,8 @@
 # 代码贡献指南
 ## 前言
 在提交代码之前,我们默认以下几点:
-1. 您已阅读并同意[BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause) 授权许可
-2. 您同意我们在未来进行授权许可更改时包含您所贡献的代码
-3. 您有对于 shokaX 所使用的相关技术和 github PR 及 actions 的基础了解
+1. 您同意我们在未来进行授权许可更改时包含您所贡献的代码
+2. 您有对于 shokaX 所使用的相关技术和 github PR 及 actions 的基础了解
 
 对于代码修改的说明:
 1. `page js` 仅需要修改ts文件，`hexo script` 请修改js文件
@@ -45,9 +44,8 @@
 
 # 翻译贡献指南
 在提交代码之前,我们默认以下几点:
-1. 您已阅读并同意[BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause) 授权许可
-2. 您同意我们在未来进行授权许可更改时包含您所贡献的翻译
-3. 您有对于 shokaX 的翻译原文和 github PR 及 actions 的基础了解
+1. 您同意我们在未来进行授权许可更改时包含您所贡献的翻译
+2. 您有对于 shokaX 的翻译原文和 github PR 及 actions 的基础了解
 
 翻译排版参考[中文文案排版指北](https://github.com/sparanoid/chinese-copywriting-guidelines/blob/master/README.zh-Hans.md) \
 **截止本指南写就时，shokaX 存在大量不符合此指北的翻译，我们欢迎提交 PR 修正这些错误**

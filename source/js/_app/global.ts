@@ -1,7 +1,7 @@
 const statics = CONFIG.statics.indexOf('//') > 0 ? CONFIG.statics : CONFIG.root
-const scrollAction:{x:number, y:number} = { x: undefined, y: undefined }
+const scrollAction:{x:number, y:number} = { x:0,y:0}
 let diffY = 0
-let originTitle, titleTime
+let originTitle:string, titleTime:NodeJS.Timeout
 const BODY = document.getElementsByTagName('body')[0]
 const HTML = document.documentElement
 const Container = $dom('#container')
@@ -12,9 +12,9 @@ const menuToggle = siteNav.child('.toggle')
 const quickBtn = $dom('#quick')
 const sideBar = $dom('#sidebar')
 const siteBrand = $dom('#brand')
-let toolBtn = $dom('#tool'); let toolPlayer; let backToTop; let goToComment; let showContents
+let toolBtn = $dom('#tool'); let toolPlayer; let backToTop:HTMLElement; let goToComment; let showContents
 let siteSearch = $dom('#search')
-let siteNavHeight, headerHightInner, headerHight
+let siteNavHeight:number, headerHightInner:number, headerHight:number
 let oWinHeight = window.innerHeight
 let oWinWidth = window.innerWidth
 let LOCAL_HASH = 0; let LOCAL_URL = window.location.href
@@ -24,7 +24,7 @@ let pjax
  * 更改日夜模式
  */
 const changeTheme = function (type?:string) {
-  const btn = $dom('.theme .ic')
+  const btn = <HTMLElement> $dom('.theme .ic')
   if (type === 'dark') {
     HTML.attr('data-theme', type)
     btn.removeClass('i-sun')
@@ -61,7 +61,7 @@ const lazyload = lozad('img, [data-background-image]', {
 
 // 加载动画
 const Loader = {
-  timer: null,
+  timer: undefined,
   lock: false,
   show: function () {
     clearTimeout(this.timer)

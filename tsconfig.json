@@ -4,6 +4,7 @@
     "module": "es2022",
     "removeComments": true,
     "alwaysStrict": false,
+    "strict": false,
     "pretty": false,
     "allowJs": true,
     "esModuleInterop": true,
