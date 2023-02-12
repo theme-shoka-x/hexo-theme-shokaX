@@ -29,6 +29,15 @@ if noBaiduT
 != feed_tag('rss.xml')
 != feed_tag('atom.xml')
 link(rel="alternate" type="application/json" title=siteTitle href=feedLink)
+
+- var prelinks = theme.performance.preConnect || []
+each prelink in prelinks
+    link(rel="preconnect" href=prelink)
+
+- var dnslinks = theme.performance.dnsPrefetch || []
+each dnsLink in dnslinks
+    link(rel="dns-prefetch" href=dnsLink)
+
 - var fontConfig = theme?.font?.loadFromGoogle
 if fontConfig
     != _vendor_font()

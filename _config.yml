@@ -28,6 +28,16 @@ experiments:
   disableThemeComment: false # 禁用主题评论系统(一般用于关闭评论或让插件接管评论系统)
   usingRelative: false # _image.yml 使用相对路径
 
+# 优化性能区
+performance:
+  # 使用preconnect预加载的网址(不建议超过三个)
+  preConnect:
+    - "https://lf9-cdn-tos.bytecdntp.com"
+  # 使用dns-prefetch预解析的网址
+  dnsPrefetch:
+    - "https://cdn.jsdelivr.net"
+    - "https://unpkg.com"
+
 playerAPI: "https://api.injahow.cn" # 结尾不带/,只填写域名
 # 如果条件允许,请参考 https://github.com/injahow/meting-api 自建API
 # 使用vercel自行部署,请参考: https://github.com/xizeyoupan/Meting-API
