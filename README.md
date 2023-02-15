@@ -79,3 +79,6 @@ shokaX的贡献者包括以非代码形式进行贡献的开发者(例如社区�
 | Lavender                                | https://www.lavenderdh.cn/ |
 | AdminZhang                              | https://www.a9-9.top/      |
 | [D-Sketon](https://github.com/D-Sketon) | https://d-sketon.top/      |
+
+## 特别鸣谢
+[<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" width="40%">](https://jb.gg/OpenSourceSupport)
