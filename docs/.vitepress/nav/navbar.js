@@ -16,8 +16,8 @@ export default [
         link: '/develop/basic/'
     },
     {
-        text: '进阶指南',
-        link: '/develop/advanced/'
+        text: 'API指南',
+        link: '/develop/interface/'
     },
     {
         text: '赞助',

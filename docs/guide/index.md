@@ -108,5 +108,14 @@ autoprefixer:
     - '*.min.css'
 
 ```
+停用默认代码高亮:
+```yaml
+highlight:
+  enable: false
+
+prismjs:
+  enable: false
+```
+
 
 现在shokaX已经可以正常运行了,`hexo s`即可
