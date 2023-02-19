@@ -39,7 +39,7 @@ npm i shokax-cli --location=global
 # hexo init 初始化环境
 SXC install shokaX
 ```
-[点此](./docs/fromZero.md)以进行下一步配置([国内加速源](https://www.kaitaku.xyz/webbuild/shokaX/))
+[点此](./docs/guide/config.md)以进行下一步配置([国内加速源](https://www.kaitaku.xyz/webbuild/shokaX/))
 
 github仓库建议通过右边的 releases 下载,步骤为:
 - 点击 Releases 的 Latest 版本
@@ -81,4 +81,4 @@ shokaX的贡献者包括以非代码形式进行贡献的开发者(例如社区�
 | [D-Sketon](https://github.com/D-Sketon) | https://d-sketon.top/      |
 
 ## 特别鸣谢
-[<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" width="40%">](https://jb.gg/OpenSourceSupport)
+[<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" width="25%">](https://jb.gg/OpenSourceSupport)
