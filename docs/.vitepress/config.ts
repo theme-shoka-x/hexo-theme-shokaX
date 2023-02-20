@@ -6,6 +6,7 @@ export default defineConfig({
     lang: 'zh-CN',
     title: 'Hexo-theme-ShokaX',
     description: '基于 shoka 的高度可定制现代hexo主题，简洁、高效、易用。',
+    head: [['meta',{name: "baidu-site-verification",content: "codeva-8HEN8ONW9G"}]],
     themeConfig: {
         nav: navbar,
         sidebar: sidebar,
