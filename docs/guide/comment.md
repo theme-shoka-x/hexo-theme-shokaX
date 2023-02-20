@@ -47,3 +47,21 @@ twikoo:
   region: # vercel和私有部署不填，腾讯云见twikoo文档
 ```
 :::
+
+## git系评论系统
+此系列均使用 git 相关系统进行数据储存，故分为一类。
+受制于oauth权限问题，部分 git 系评论系统存在严重的隐私泄露问题，建议查看对应社区issues后使用
+:::details gitalk
+[gitalk](https://github.com/gitalk/gitalk/blob/master/readme-cn.md) 是一个基于 GitHub Issue 和 Preact 开发的评论插件。
+配置内容如下:
+```yaml
+gitalk:
+  # 参考gitalk官方教程填入即可，下列键和gitalk配置键对应
+  clientID:
+  clientSecret:
+  repo:
+  owner:
+  admin:
+  proxy: # CORS代理，选填
+```
+:::

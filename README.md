@@ -39,7 +39,7 @@ npm i shokax-cli --location=global
 # hexo init 初始化环境
 SXC install shokaX
 ```
-[点此](./docs/guide/config.md)以进行下一步配置([国内加速源](https://www.kaitaku.xyz/webbuild/shokaX/))
+[点此](https://docs.kaitaku.xyz/guide/#%E9%85%8D%E7%BD%AE%E4%B8%BB%E9%A2%98)以进行下一步配置([国内加速源](https://www.kaitaku.xyz/webbuild/shokaX/))
 
 github仓库建议通过右边的 releases 下载,步骤为:
 - 点击 Releases 的 Latest 版本
