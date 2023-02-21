@@ -12,3 +12,4 @@ yarn-error.log*
 pnpm-lock.yaml
 test.html
 /docs/.vitepress/cache/
+/docs/.vitepress/dist/
