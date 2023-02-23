@@ -19,7 +19,7 @@ SXC install shokaX
 
 ```shell [pnpm]
 # hexo init
-pnpm install shokax-cli --location=global
+pnpm add shokax-cli --location=global
 # cd your_blog
 SXC install shokaX
 ```
@@ -63,11 +63,11 @@ yarn add hexo-feed
 ::: code-group-item pnpm
 
 ```shell [pnpm]
-pnpm i hexo-theme-shokax
-pnpm i hexo-renderer-multi-next-markdown-it
-pnpm i hexo-autoprefixer
-pnpm i hexo-algoliasearch
-pnpm i hexo-feed
+pnpm add hexo-theme-shokax
+pnpm add hexo-renderer-multi-next-markdown-it
+pnpm add hexo-autoprefixer
+pnpm add hexo-algoliasearch
+pnpm add hexo-feed
 ```
 
 :::
