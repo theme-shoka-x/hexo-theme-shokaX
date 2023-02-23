@@ -36,8 +36,11 @@ ShokaX不建议使用手动安装，仅应该在SXC无法正常安装的时候�
 :::
 
 指令如下:
-::: code-group
-```shell [npm]
+
+:::: code-group
+::: code-group-item npm
+
+```shell
 npm i hexo-theme-shokax
 npm i hexo-renderer-multi-next-markdown-it
 npm i hexo-autoprefixer
@@ -45,13 +48,19 @@ npm i hexo-algoliasearch
 npm i hexo-feed
 ```
 
-```shell [yarn]
+:::
+::: code-group-item yarn
+
+```shell
 yarn add hexo-theme-shokax
 yarn add hexo-renderer-multi-next-markdown-it
 yarn add hexo-autoprefixer
 yarn add hexo-algoliasearch
 yarn add hexo-feed
 ```
+
+:::
+::: code-group-item pnpm
 
 ```shell [pnpm]
 pnpm i hexo-theme-shokax
@@ -60,7 +69,9 @@ pnpm i hexo-autoprefixer
 pnpm i hexo-algoliasearch
 pnpm i hexo-feed
 ```
+
 :::
+::::
 
 ## 配置主题
 :::tip

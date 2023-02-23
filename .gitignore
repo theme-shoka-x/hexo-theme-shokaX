@@ -11,5 +11,6 @@ node_modules/
 yarn-error.log*
 pnpm-lock.yaml
 test.html
-/docs/.vitepress/cache/
-/docs/.vitepress/dist/
+/docs/.vuepress/.cache/
+/docs/.vuepress/dist/
+/docs/.vuepress/.temp

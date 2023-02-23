@@ -30,8 +30,9 @@ minify:
 :::tip
 一般情况选择`npm(SXC) origin`即可，如果是github源安装则需要使用`github origin`
 :::
-::: code-group
-```yaml [github origin]
+:::: code-group
+::: code-group-item github
+```yaml
 feed:
   limit: 20
   order_by: "-date"
@@ -50,8 +51,10 @@ feed:
     template: "themes/shokaX/layout/_alternate/json.ejs"
     output: "feed.json"
 ```
+:::
 
-```yaml [npm(SXC) origin]
+::: code-group-item NPM(SXC)
+```yaml
 feed:
   limit: 20
   order_by: "-date"
@@ -71,6 +74,7 @@ feed:
     output: "feed.json"
 ```
 :::
+::::
 
 ## algolia搜索
 此部分为站内搜索配置
