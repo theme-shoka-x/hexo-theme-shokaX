@@ -21,6 +21,7 @@ pwa:
 
 # 实验性特性
 experiments:
+  noIE: true # 阻止IE浏览器访问(ShokaX不支持IE的任何版本)
   noPlayer: false # 禁用音乐播放器
   gradient: false # 使用CSS渐变作为文章封面
   fixedCover: "" # 主页面cover(为空则使用bing随机图片)
@@ -404,6 +405,3 @@ vendors:
     copy_tex: npm/katex@0.12.0/dist/contrib/copy-tex.min.js # ok
     chart: npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js # ok
 
-qweather:
-  enable: false
-  key: "114514"

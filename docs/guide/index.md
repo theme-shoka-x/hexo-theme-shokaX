@@ -9,21 +9,25 @@ ShokaX-CLI 目前版本不负责处理 hexo 环境，请自行`hexo init`
 ## 安装主题
 ### 使用ShokaX-CLI
 安装 ShokaX-CLI:
-::: code-group
-```shell [npm]
+:::: code-group
+::: code-group-item npm
+```shell
 # hexo init
 npm install shokax-cli --location=global
 # cd your_blog
 SXC install shokaX
 ```
+:::
 
-```shell [pnpm]
+::: code-group-item pnpm
+```shell
 # hexo init
 pnpm add shokax-cli --location=global
 # cd your_blog
 SXC install shokaX
 ```
 :::
+::::
 :::tip
 SXC默认从npm安装主题，如果自定义的部分较多可以从github安装:
 `SXC install -r=github shokaX`
