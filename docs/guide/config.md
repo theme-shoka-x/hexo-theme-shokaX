@@ -94,7 +94,20 @@ algolia:
     - photos
     - tags
 ```
-自行参考algolia官网填入即可
-:::info
-如果您对于algolia搜索配置流程有印象，可以编辑此文档
+### 配置流程
+- 登录 [Algolia](https://www.algolia.com/) 官网，建议使用 Github/Google 账号注册/登录
+- 进入 `Dashboard` - `Search` - `Index` 页面，选择上方 `+ Create Index` 创建索引，索引名称建议为 `shokaX`
+- 进入 `Dashboard` - `Settings` - `API Keys` 页面，复制如下数据到上方配置中
+
+|页面数据|对应配置|
+|-|-|
+|`Application ID`|`appId`|
+|`Search-Only API Key`|`apiKey`|
+|`Admin API Key`|`adminApiKey`|
+|创建的索引名|`indexName`|
+
+- 在博客部署前运行 `hexo algolia` 上传索引，可在 `Dashboard` - `Search` - `Index` 页面中查看
+
+:::warning
+请勿将 `apiKey` 和 `adminApiKey` 混用，否则索引可能被攻击！
 :::
