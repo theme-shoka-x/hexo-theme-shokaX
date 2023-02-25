@@ -7,7 +7,6 @@
 语言(language): 简体中文 | [English](./README_en.md) \
 此项目是shoka的一个二次开发版(算精神续作),致力于提高性能和优化魔改体验 \
 诞生原因是目前shoka已经两年没有更新了,积压了大量BUG和功能请求。\
-`0.0.2-alpha2`开始,`lantern`和`qweather`已迁移为插件
 
 shokaX的社区资源导航和插件仓库为[awesome-shokaX](https://github.com/zkz098/awesome-shokaX)
 
@@ -39,7 +38,7 @@ npm i shokax-cli --location=global
 # hexo init 初始化环境
 SXC install shokaX
 ```
-[点此](https://docs.kaitaku.xyz/guide/#%E9%85%8D%E7%BD%AE%E4%B8%BB%E9%A2%98)以进行下一步配置([国内加速源](https://www.kaitaku.xyz/webbuild/shokaX/))
+[点此](https://docs.kaitaku.xyz/guide/#%E9%85%8D%E7%BD%AE%E4%B8%BB%E9%A2%98)以进行下一步配置
 
 github仓库建议通过右边的 releases 下载,步骤为:
 - 点击 Releases 的 Latest 版本
@@ -70,15 +69,6 @@ GPL许可证主要目的是限制修改后的分发行为，避免未经许可�
 |:-----------------|:------------------|:-------------------|
 | Hexo             | Hexo contributors | 为本项目提供了良好的基础       |
 | hexo-theme-shoka | amehime           | 本项目的父主题            |
-
-## 贡献者
-shokaX的贡献者包括以非代码形式进行贡献的开发者(例如社区教程、想法分享、DEBUG等)和以代码形式进行贡献的开发者
-
-| 名称                                      | 站点                         |
-|:----------------------------------------|:---------------------------|
-| Lavender                                | https://www.lavenderdh.cn/ |
-| AdminZhang                              | https://www.a9-9.top/      |
-| [D-Sketon](https://github.com/D-Sketon) | https://d-sketon.top/      |
 
 ## 特别鸣谢
 [<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" width="25%">](https://jb.gg/OpenSourceSupport)

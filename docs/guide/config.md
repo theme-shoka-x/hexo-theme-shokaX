@@ -99,12 +99,12 @@ algolia:
 - 进入 `Dashboard` - `Search` - `Index` 页面，选择上方 `+ Create Index` 创建索引，索引名称建议为 `shokaX`
 - 进入 `Dashboard` - `Settings` - `API Keys` 页面，复制如下数据到上方配置中
 
-|页面数据|对应配置|
-|-|-|
-|`Application ID`|`appId`|
-|`Search-Only API Key`|`apiKey`|
-|`Admin API Key`|`adminApiKey`|
-|创建的索引名|`indexName`|
+| 页面数据                  | 对应配置          |
+|:----------------------|:--------------|
+| `Application ID`      | `appId`       |
+| `Search-Only API Key` | `apiKey`      |
+| `Admin API Key`       | `adminApiKey` |
+| 创建的索引名                | `indexName`   |
 
 - 在博客部署前运行 `hexo algolia` 上传索引，可在 `Dashboard` - `Search` - `Index` 页面中查看
 
