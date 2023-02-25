@@ -1,5 +1,5 @@
 mixin item(name, path, parent, sublist)
-    - var trimn = (str)=>{if (str!=null) return str.trim(); else return ""}
+    - var trimn = (str)=>{return str!=null?str.trim():"";}
     - var path = path.split('||')
     - var itemURL = path[0].trim()
     - if (!itemURL.startsWith('http')){ itemURL = itemURL.replace('//', '/') }

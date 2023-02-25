@@ -445,7 +445,6 @@ const mediaPlayer = function (t, config?) {
     // 加载播放列表
     load: function (newList) {
       let d = ''
-      // const that = this
 
       if (newList && newList.length > 0) {
         if (this.options.rawList !== newList) {
@@ -465,25 +464,23 @@ const mediaPlayer = function (t, config?) {
       return this
     },
     fetch: function () {
-      // eslint-disable-next-line @typescript-eslint/no-this-alias
-      const that = this
-      return new Promise<any>(function (resolve, reject) {
+      return new Promise<any>((resolve, reject) => {
         if (playlist.data.length > 0) {
           resolve(true)
         } else {
-          if (that.options.rawList) {
+          if (this.options.rawList) {
             const promises = []
 
-            that.options.rawList.forEach(function (raw, index) {
+            this.options.rawList.forEach(function (raw, index) {
               promises.push(new Promise(function (resolve, reject) {
                 let group = index
                 let source
                 if (!raw.list) {
                   group = 0
-                  that.group = false
+                  this.group = false
                   source = [raw]
                 } else {
-                  that.group = true
+                  this.group = true
                   source = raw.list
                 }
                 utils.fetch(source).then(function (list) {
@@ -502,7 +499,7 @@ const mediaPlayer = function (t, config?) {
         if (c) {
           playlist.create()
           controller.create()
-          that.mode()
+          this.mode()
         }
       })
     },
@@ -592,7 +589,6 @@ const mediaPlayer = function (t, config?) {
         this.mode()
         return
       }
-      // const that = this
       source.play().then(function () {
         playlist.scroll()
       }).catch(function (e) {

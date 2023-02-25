@@ -1,14 +1,13 @@
 
-
 Vue.createApp(
   {
-    data() {
+    data () {
       return {
 
       }
     },
     methods: {
-      changeThemeByBtn() {
+      changeThemeByBtn () {
         let c
         const btn = $dom('.theme').child('.ic')
 
