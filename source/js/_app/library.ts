@@ -261,12 +261,11 @@ Object.assign(HTMLElement.prototype, {
    */
   _class: function (type: string, className: string, display?: boolean): void {
     const classNames = className.indexOf(' ') ? className.split(' ') : [className]
-    const that = this
-    classNames.forEach(function (name) {
+    classNames.forEach((name) => {
       if (type === 'toggle') {
-        that.classList.toggle(name, display)
+        this.classList.toggle(name, display)
       } else {
-        that.classList[type](name)
+        this.classList[type](name)
       }
     })
   },
@@ -316,7 +315,7 @@ const getScript = function (url: string, callback?: Function, condition?: string
       // isAbort: 是否中止
       // @ts-ignore
       if (isAbort || !script.readyState) {
-        console.log("abort!")
+        console.log('abort!')
         script.onload = null
         script = undefined
         if (!isAbort && callback) setTimeout(callback, 0)
@@ -326,7 +325,6 @@ const getScript = function (url: string, callback?: Function, condition?: string
     document.head.appendChild(script)
   }
 }
-
 
 const assetUrl = function (asset: string, type: string): string {
   const str = CONFIG[asset][type]
@@ -370,10 +368,10 @@ const transition = (target: HTMLElement, type: any, complete?: Function): void =
   let display = 'none'
   switch (type) {
     case 0:
-      animation = {opacity: [1, 0]}
+      animation = { opacity: [1, 0] }
       break
     case 1:
-      animation = {opacity: [0, 1]}
+      animation = { opacity: [0, 1] }
       display = 'block'
       break
     case 'bounceUpIn':
@@ -382,10 +380,10 @@ const transition = (target: HTMLElement, type: any, complete?: Function): void =
           target.display('block')
         },
         translateY: [
-          {value: -60, duration: 200},
-          {value: 10, duration: 200},
-          {value: -5, duration: 200},
-          {value: 0, duration: 200}
+          { value: -60, duration: 200 },
+          { value: 10, duration: 200 },
+          { value: -5, duration: 200 },
+          { value: 0, duration: 200 }
         ],
         opacity: [0, 1]
       }
@@ -397,8 +395,8 @@ const transition = (target: HTMLElement, type: any, complete?: Function): void =
           target.display('block')
         },
         scale: [
-          {value: 1.1, duration: 300},
-          {value: 1, duration: 200}
+          { value: 1.1, duration: 300 },
+          { value: 1, duration: 200 }
         ],
         opacity: 1
       }
@@ -484,4 +482,3 @@ const pageScroll = function (target: any, offset?: number, complete?: Function) 
   anime(opt)
   // 调用 anime.js 函数，并传入参数
 }
-

@@ -22,7 +22,9 @@ module.exports = {
     camelcase: 'off',
     'n/no-callback-literal': 'off',
     '@typescript-eslint/ban-types': 'off',
-    // '@typescript-eslint/ban-ts-comment': 'off',
-    '@typescript-eslint/no-var-requires': 'off'
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+    'prefer-const': 'warn'
   }
 }

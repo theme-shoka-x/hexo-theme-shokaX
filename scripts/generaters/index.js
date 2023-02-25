@@ -14,7 +14,6 @@ hexo.extend.generator.register('index', function (locals) {
   const catlist = []
   let pages
   const config = hexo.config
-  const theme = hexo.theme.config
   const sticky = locals.posts.find({ sticky: true }).sort(config.index_generator.order_by)
   const posts = locals.posts.find({ sticky: { $exists: false } }).sort(config.index_generator.order_by)
   const paginationDir = config.pagination_dir || 'page'
@@ -69,9 +68,9 @@ hexo.extend.generator.register('index', function (locals) {
           cat.subs = child.sort({ name: 1 }).limit(6).toArray()
           pl = Math.max(0, pl - child.length)
           if (pl > 0) {
-            // eslint-disable-next-line array-callback-return
+            // TODO 需要测试
             cat.subs.push.apply(cat.subs, cat.posts.sort({ title: 1 }).filter(function (item, i) {
-              if (item.categories.last()._id === cat._id) { return true }
+              return item.categories.last()._id === cat._id
             }).limit(pl).toArray())
           }
         } else {

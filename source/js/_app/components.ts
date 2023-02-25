@@ -84,7 +84,7 @@ function createParticule (x:number, y:number):fireworksP {
   p.endPos = setParticuleDirection(p)
   // 绘制烟花粒子
   p.draw = function () {
-    //绘制圆，参数分别为圆心x坐标，圆心y坐标，半径，开始角度，结束角度，顺时针/逆时针
+    // 绘制圆，参数分别为圆心x坐标，圆心y坐标，半径，开始角度，结束角度，顺时针/逆时针
     ctx.beginPath()
     ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI, true)
     ctx.fillStyle = p.color
@@ -118,7 +118,7 @@ function createCircle (x:number, y:number):fireworksP {
     // 设置全局透明度为p.alpha
     ctx.globalAlpha = p.alpha
     ctx.beginPath()
-    //绘制圆，参数分别为圆心x坐标，圆心y坐标，半径，开始角度，结束角度，顺时针/逆时针
+    // 绘制圆，参数分别为圆心x坐标，圆心y坐标，半径，开始角度，结束角度，顺时针/逆时针
     ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI, true)
     // 设置线宽
     ctx.lineWidth = p.lineWidth
@@ -134,7 +134,7 @@ function createCircle (x:number, y:number):fireworksP {
 function renderParticule (anim:any):void {
   // 遍历所有可动画的对象
   for (let i = 0; i < anim.animatables.length; i++) {
-    //调用对象上的draw函数来绘制烟花粒子
+    // 调用对象上的draw函数来绘制烟花粒子
     anim.animatables[i].target.draw()
   }
 }
@@ -197,7 +197,6 @@ const render = anime({
     // 清除画布上的矩形区域，这里清除整个画布
   }
 })
-
 
 document.addEventListener(tap, function (e) {
   render.play()
@@ -353,7 +352,7 @@ const sidebarTOC = function () {
   sections = sections.map(function (element, index) {
     const link = element.child('a.toc-link')
     const anchor = $dom(decodeURI(link.attr('href')))
-    if (!anchor) return
+    if (!anchor) return null
     const alink = anchor.child('a.anchor')
 
     const anchorScroll = function (event) {

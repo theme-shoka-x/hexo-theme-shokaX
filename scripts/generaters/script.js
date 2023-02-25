@@ -34,7 +34,7 @@ hexo.extend.generator.register('script', function (locals) {
     },
     loader: theme.loader,
     search: null,
-    valine: theme.valine,
+    valine: theme.valine, // TODO 废弃属性
     outime: {
       enable: theme.outime.enable,
       days: theme.outime.days
