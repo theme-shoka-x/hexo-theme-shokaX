@@ -4,7 +4,7 @@
 
 const { htmlTag, url_for } = require('hexo-util')
 
-const randomServer = parseInt(Math.random() * 4, 10) + 1
+const randomServer = parseInt(String(Math.random() * 4), 10) + 1
 
 const randomBG = function (count = 1, image_server = null, image_list = []) {
   let i
@@ -125,7 +125,7 @@ hexo.extend.helper.register('_image_url', function (img, path = '') {
 })
 
 hexo.extend.helper.register('_cover', function (item, num) {
-  const { statics, js, image_server, image_list } = hexo.theme.config
+  const { image_server, image_list } = hexo.theme.config
 
   if (item.cover) {
     return this._image_url(item.cover, item.path)
@@ -179,6 +179,9 @@ hexo.extend.helper.register('language_name', function (language) {
 })
 
 hexo.extend.helper.register('random_color', function () {
+  /**
+  @type {number[]}
+   */
   const arr = []
   for (let i = 0; i < 3; i++) {
     arr.push(Math.floor(Math.random() * 128 + 128))
