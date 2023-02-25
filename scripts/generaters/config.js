@@ -14,7 +14,6 @@ hexo.extend.filter.register('before_generate', () => {
   const data = hexo.locals.get('data')
 
   if (data.languages) {
-    const { language } = hexo.config
     const { i18n } = hexo.theme
 
     const mergeLang = lang => {

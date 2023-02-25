@@ -231,7 +231,7 @@ const mediaPlayer = function (t, config) {
             const el = playlist.el;
             playlist.data.map(function (item, index) {
                 if (item.el) {
-                    return;
+                    return null;
                 }
                 const id = 'list-' + t.player._id + '-' + item.group;
                 let tab = $dom('#' + id);
@@ -320,7 +320,7 @@ const mediaPlayer = function (t, config) {
             }, 300);
         }
     };
-    let option = {
+    const option = {
         type: 'audio',
         mode: 'random',
         btns: ['play-pause', 'music'],
@@ -345,7 +345,7 @@ const mediaPlayer = function (t, config) {
             }
         }
     };
-    let utils = {
+    const utils = {
         random: function (len) {
             return Math.floor((Math.random() * len));
         },

@@ -251,7 +251,7 @@ const postBeauty = function () {
       const target = event.currentTarget
       if (element.hasClass('fullscreen')) {
         removeFullscreen()
-        if (code_container && code_container.find('tr').length > 15){
+        if (code_container && code_container.find('tr').length > 15) {
           const showBtn = code_container.child('.show-btn')
           code_container.style.maxHeight = '300px'
           showBtn.removeClass('open')
@@ -261,7 +261,7 @@ const postBeauty = function () {
         element.addClass('fullscreen')
         BODY.addClass('fullscreen')
         fullscreenBtn.child('.ic').className = 'ic i-compress'
-        if (code_container && code_container.find('tr').length > 15){
+        if (code_container && code_container.find('tr').length > 15) {
           const showBtn = code_container.child('.show-btn')
           code_container.style.maxHeight = ''
           showBtn.addClass('open')
@@ -600,7 +600,7 @@ const domInit = function () {
   goToComment.addEventListener('click', goToCommentHandle)
   showContents.addEventListener('click', sideBarToggleHandle)
 
-  if(typeof mediaPlayer !== 'undefined'){
+  if (typeof mediaPlayer !== 'undefined') {
     mediaPlayer(toolPlayer)
 
     $dom('main').addEventListener('click', function () {
@@ -618,7 +618,7 @@ const pjaxReload = function () {
       menuToggle.removeClass('close')
     }) // 'transition.slideRightOut'
   }
-  let mainNode = $dom('#main')
+  const mainNode = $dom('#main')
   // $('#main').innerHTML = ''
   // $('#main').appendChild(loadCat.lastChild.cloneNode(true));
   mainNode.innerHTML = ''
@@ -636,7 +636,7 @@ const siteRefresh = function (reload) {
   vendorJs('chart')
 
   if (reload !== 1) {
-    $dom.each('script[data-pjax]', pjaxScript);
+    $dom.each('script[data-pjax]', pjaxScript)
   }
 
   originTitle = document.title
@@ -699,7 +699,7 @@ const siteInit = function () {
 
   window.addEventListener('pjax:send', pjaxReload)
 
-  window.addEventListener('pjax:success', siteRefresh); // 默认会传入一个event参数
+  window.addEventListener('pjax:success', siteRefresh) // 默认会传入一个event参数
 
   window.addEventListener('beforeunload', function () {
     pagePosition()

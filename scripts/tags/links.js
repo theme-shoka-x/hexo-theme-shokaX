@@ -16,7 +16,6 @@
 const fs = require('fs')
 const path = require('path')
 const yaml = require('js-yaml')
-// const url = require('url')
 
 function linkGrid (args, content) {
   const theme = hexo.theme.config

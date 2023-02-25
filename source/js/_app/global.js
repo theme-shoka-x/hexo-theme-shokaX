@@ -1,5 +1,5 @@
 const statics = CONFIG.statics.indexOf('//') > 0 ? CONFIG.statics : CONFIG.root;
-const scrollAction = { x: undefined, y: undefined };
+const scrollAction = { x: 0, y: 0 };
 let diffY = 0;
 let originTitle, titleTime;
 const BODY = document.getElementsByTagName('body')[0];
@@ -53,7 +53,7 @@ const lazyload = lozad('img, [data-background-image]', {
     }
 });
 const Loader = {
-    timer: null,
+    timer: undefined,
     lock: false,
     show: function () {
         clearTimeout(this.timer);

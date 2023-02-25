@@ -21,7 +21,7 @@ pwa:
 
 # 实验性特性
 experiments:
-  noIE: true # 阻止IE浏览器访问(ShokaX不支持IE的任何版本)
+  noIE: true # TODO 阻止IE浏览器访问(ShokaX不支持IE的任何版本)
   noPlayer: false # 禁用音乐播放器
   gradient: false # 使用CSS渐变作为文章封面
   fixedCover: "" # 主页面cover(为空则使用bing随机图片)
