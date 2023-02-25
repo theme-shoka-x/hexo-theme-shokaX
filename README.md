@@ -70,5 +70,8 @@ GPL许可证主要目的是限制修改后的分发行为，避免未经许可�
 | Hexo             | Hexo contributors | 为本项目提供了良好的基础       |
 | hexo-theme-shoka | amehime           | 本项目的父主题            |
 
+## 开发者们
+[![](https://contributors-img.web.app/image?repo=zkz098/hexo-theme-shokaX)](https://github.com/zkz098/hexo-theme-shokaX/graphs/contributors)
+
 ## 特别鸣谢
 [<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" width="25%">](https://jb.gg/OpenSourceSupport)

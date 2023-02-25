@@ -3,8 +3,6 @@
 'use strict'
 
 const { htmlTag, url_for } = require('hexo-util')
-const url = require('url')
-const crypto = require('crypto')
 
 const randomServer = parseInt(Math.random() * 4, 10) + 1
 
@@ -53,24 +51,27 @@ const randomBG = function (count = 1, image_server = null, image_list = []) {
   return parseImage(image_list[Math.floor(Math.random() * image_list.length)], 'mw690')
 }
 
+// 注册hexo主题中的URL帮助方法
 hexo.extend.helper.register('_url', function (path, text, options = {}) {
+  // 如果未提供URL路径，则返回
   if (!path) { return }
 
+  // 获取hexo配置和URL路径信息
   const { config } = this
-  // eslint-disable-next-line n/no-deprecated-api
-  const data = url.parse(path)
-  // eslint-disable-next-line n/no-deprecated-api
-  const siteHost = url.parse(config.url).hostname || config.url
+  const data = new URL(path, hexo.config.url)
+  const siteHost = new URL(config.url).hostname || config.url
 
+  // 获取主题配置
   const theme = hexo.theme.config
   let exturl = ''
   let tag = 'a'
   let attrs = { href: url_for.call(this, path) }
 
-  // If `exturl` enabled, set spanned links only on external links.
+  // 如果启用了 `exturl`，则只为外部链接设置spanned链接。
   if (theme.exturl && data.protocol && data.hostname !== siteHost) {
     tag = 'span'
     exturl = 'exturl'
+    // 编码URL字符串，并将其存储在数据属性中。
     const encoded = Buffer.from(path).toString('base64')
     attrs = {
       class: exturl,
@@ -80,8 +81,8 @@ hexo.extend.helper.register('_url', function (path, text, options = {}) {
 
   for (const key in options) {
     /**
-         * If option have `class` attribute, add it to
-         * 'exturl' class if `exturl` option enabled.
+         * 如果选项包含 `class` 属性，则将其添加到 `exturl` 类中（如果启用了 `exturl` 选项）。
+         * 否则，将其添加到属性集中。
          */
     if (exturl !== '' && key === 'class') {
       attrs[key] += ' ' + options[key]
@@ -94,20 +95,21 @@ hexo.extend.helper.register('_url', function (path, text, options = {}) {
     attrs.class = attrs.class.join(' ')
   }
 
-  // If it's external link, rewrite attributes.
+  // 如果是外部链接，则重写属性
   if (data.protocol && data.hostname !== siteHost) {
     attrs.external = null
 
     if (!theme.exturl) {
-      // Only for simple link need to rewrite/add attributes.
+      // 仅需要为简单链接重写/添加属性。
       attrs.rel = 'noopener'
       attrs.target = '_blank'
     } else {
-      // Remove rel attributes for `exturl` in main menu.
+      // 在主菜单中移除 `exturl` 的 rel 属性。
       attrs.rel = null
     }
   }
 
+  // 返回HTML标记字符串
   return htmlTag(tag, attrs, decodeURI(text), false)
 })
 
@@ -134,20 +136,17 @@ hexo.extend.helper.register('_cover', function (item, num) {
   }
 })
 
-// TODO 此函数已被废弃
-hexo.extend.helper.register('_md5', function (path) {
-  const str = url_for.call(this, path)
-  str.replace('index.html', '')
-  return crypto.createHash('md5').update(str).digest('hex')
-})
-
+// 注册hexo主题的永久链接帮助方法
 hexo.extend.helper.register('_permapath', function (str) {
-  // https://support.google.com/webmasters/answer/139066
+  // 获取hexo的永久链接配置
   const { permalink } = hexo.config
+  // 将输入字符串中的'index.html'替换为空字符串
   let url = str.replace(/index\.html$/, '')
+  // 如果永久链接不以'.html'结尾，将输入字符串中的'.html'替换为空字符串
   if (!permalink.endsWith('.html')) {
     url = url.replace(/\.html$/, '')
   }
+  // 返回处理后的URL字符串
   return url
 })
 
@@ -158,17 +157,24 @@ hexo.extend.helper.register('canonical', function () {
 /**
  * Get page path given a certain language tag
  */
+// 注册hexo主题的国际化路径帮助方法
 hexo.extend.helper.register('i18n_path', function (language) {
+  // 获取当前页面的path和lang
   const { path, lang } = this.page
+  // 如果path以lang开头，则截取掉lang部分，作为基础路径
   const base = path.startsWith(lang) ? path.slice(lang.length + 1) : path
+  // 通过调用url_for方法，生成国际化路径
   return url_for.call(this, `${this.languages.indexOf(language) === 0 ? '' : '/' + language}/${base}`)
 })
 
 /**
  * Get the language name
  */
+// 注册hexo主题的语言名称帮助方法
 hexo.extend.helper.register('language_name', function (language) {
+  // 从主题配置中获取指定语言的名称
   const name = hexo.theme.i18n.__(language)('name')
+  // 如果名称为默认值'name'，则返回语言代码，否则返回语言名称
   return name === 'name' ? language : name
 })
 
