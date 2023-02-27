@@ -555,7 +555,7 @@ const pjaxReload = function () {
             menuToggle.removeClass('close');
         });
     }
-    let mainNode = $dom('#main');
+    const mainNode = $dom('#main');
     mainNode.innerHTML = '';
     mainNode.appendChild(loadCat.lastChild.cloneNode(true));
     pageScroll(0);

@@ -248,7 +248,7 @@ const sidebarTOC = function () {
         const link = element.child('a.toc-link');
         const anchor = $dom(decodeURI(link.attr('href')));
         if (!anchor)
-            return;
+            return null;
         const alink = anchor.child('a.anchor');
         const anchorScroll = function (event) {
             event.preventDefault();

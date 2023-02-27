@@ -104,7 +104,7 @@ const themeColorListener = function () {
     }
 };
 const visibilityListener = function () {
-    let iconNode = $dom('[rel="icon"]');
+    const iconNode = $dom('[rel="icon"]');
     document.addEventListener('visibilitychange', function () {
         switch (document.visibilityState) {
             case 'hidden':
@@ -182,8 +182,7 @@ const scrollHandle = function (event) {
         siteNav.removeClass('down');
         siteNav.toggleClass('up', SHOW);
     }
-    else {
-    }
+    else { }
     scrollAction.y = window.scrollY;
     const scrollPercent = Math.round(Math.min(100 * window.scrollY / contentVisibilityHeight, 100)) + '%';
     backToTop.child('span').innerText = scrollPercent;
@@ -287,16 +286,16 @@ const clickMenu = function () {
         event.preventDefault();
         let x = event.offsetX;
         let y = event.offsetY;
-        let winWidth = window.innerWidth;
-        let winHeight = window.innerHeight;
-        let menuWidth = menuElement.offsetWidth;
-        let menuHeight = menuElement.offsetHeight;
+        const winWidth = window.innerWidth;
+        const winHeight = window.innerHeight;
+        const menuWidth = menuElement.offsetWidth;
+        const menuHeight = menuElement.offsetHeight;
         x = winWidth - menuWidth >= x ? x : winWidth - menuWidth;
         y = winHeight - menuHeight >= y ? y : winHeight - menuHeight;
         menuElement.style.top = y + 'px';
         menuElement.style.left = x + 'px';
         menuElement.classList.add('active');
-        $dom.each(".clickSubmenu", (submenu) => {
+        $dom.each('.clickSubmenu', (submenu) => {
             if (x > (winWidth - menuWidth - submenu.offsetWidth)) {
                 submenu.style.left = '-200px';
             }

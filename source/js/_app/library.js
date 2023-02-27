@@ -105,13 +105,12 @@ Object.assign(HTMLElement.prototype, {
     },
     _class: function (type, className, display) {
         const classNames = className.indexOf(' ') ? className.split(' ') : [className];
-        const that = this;
-        classNames.forEach(function (name) {
+        classNames.forEach((name) => {
             if (type === 'toggle') {
-                that.classList.toggle(name, display);
+                this.classList.toggle(name, display);
             }
             else {
-                that.classList[type](name);
+                this.classList[type](name);
             }
         });
     },
@@ -150,7 +149,7 @@ const getScript = function (url, callback, condition) {
         let script = document.createElement('script');
         script.onload = function (_, isAbort) {
             if (isAbort || !script.readyState) {
-                console.log("abort!");
+                console.log('abort!');
                 script.onload = null;
                 script = undefined;
                 if (!isAbort && callback)
