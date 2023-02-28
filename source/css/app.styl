@@ -33,4 +33,6 @@ if $custom = hexo-config('style.custom')
 for $inject_style in hexo-config('injects.style')
   @import $inject_style;
 
+if $optimize = hexo-config('experiments.optimizeLongPosts')
+  @import "optimize.styl"
 

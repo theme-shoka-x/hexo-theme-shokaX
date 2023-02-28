@@ -28,6 +28,7 @@ experiments:
   debug: false # 使用debug模式启动
   disableThemeComment: false # 禁用主题评论系统(一般用于关闭评论或让插件接管评论系统)
   usingRelative: false # _image.yml 使用相对路径
+  optimizeLongPosts: false # 优化长文章，这能让长文章的FPS提升70%-150%并解决假死问题，但存在一些副作用
 
 # 优化性能区
 performance:
