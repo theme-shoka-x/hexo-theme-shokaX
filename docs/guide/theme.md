@@ -11,18 +11,24 @@ js: "js" # js存放目录(不建议改动)
 ```
 
 ### 实验性特性
-#### PWA
 :::tip
-PWA功能较为复杂且需要一些时间，早期站点搭建时可以先忽略
+实验性特性均不稳定，随时可能引入破坏性更改，且部分有明显副作用
 :::
-PWA是Progressive Web Apps的缩写，可以为web应用提供类似于原生应用的体验
-配置如下:
+#### 长文章优化
 ```yaml
-pwa:
-  enable: false # 开启PWA功能
-  serviceworker: sw.js #serviceworker脚本位置,使用以/为基准的绝对路径
-  manifest: manifest.json #manifest位置,使用以/为基准的绝对路径
+experiments:
+  optimizeLongPosts: true # 开启长文章优化
 ```
-serviceworker可查看[MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers)以获取帮助 \
-manifest可查看[MDN](https://developer.mozilla.org/zh-CN/docs/Web/Manifest)获取帮助 \
-建议将上述文件放置于assets或source(hexo根目录)下以方便定位
+当文章过长时(≥5万字)，文章页面的FPS会下降到10FPS左右，部分渲染性能较差的设备还会出现假死现象。 \
+此问题在 shoka 时期就已存在，因此 shokaX 引入了长文章优化，底层原理是使用`content-visibility`暴力缩短渲染范围以大幅提高性能。
+:::tip
+实验室数据显示在2万字时FPS便会出现波动，3万字时就可以感觉到波动了，5万字时页面已经十分卡顿。
+如果页面有大量Katex公式则此问题会更严重
+:::
+
+实验室数据显示此选项可将FPS由10提升到25左右(4x CPU slowdown)并解决卡死问题，但此功能存在`导航栏抖动`和`进度条抖动`问题，可能影响到浏览体验。
+- 导航栏抖动：在滑动时导航栏会反复弹出收回，时间较短(一般不超过1s)
+- 进度条抖动：返回顶部的文字和滑动条的长度与文章实际长度不符，存在±1-5%的误差
+
+上述问题均是由于此方法导致的`window.scrollY`抖动引起的，如果你有好的解决方法欢迎发起PR。
+因此，长文章优化功能仅建议在有文章字数超过3万字或站点主要面向渲染性能较差的设备时启用。
