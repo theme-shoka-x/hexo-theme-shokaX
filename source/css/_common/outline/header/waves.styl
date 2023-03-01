@@ -5,9 +5,12 @@
   min-height: 3.125rem;
   max-height: 9.375rem;
   position:relative;
+  content-visibility: auto;
+  contain-intrinsic-size: 100vw 15vh;
 
   +mobile() {
     height: 10vh;
+    contain-intrinsic-size: 100vw 10vh;
   }
 }
 /* Animation */
