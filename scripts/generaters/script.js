@@ -1,6 +1,5 @@
 /* global hexo */
 const fs = require('hexo-fs')
-// const url = require('url')
 
 hexo.extend.generator.register('script', function (locals) {
   const log = hexo.log || console.log
@@ -77,6 +76,11 @@ hexo.extend.generator.register('script', function (locals) {
     }
   }
   if (theme.fireworks && theme.fireworks.enable) {
+    if (fs.existsSync('themes/shokaX/source/js/_app/fireworks.js')) {
+      text += fs.readFileSync('themes/shokaX/source/js/_app/fireworks.js').toString()
+    } else {
+      text += fs.readFileSync('node_modules/hexo-theme-shokax/source/js/_app/fireworks.js').toString()
+    }
     siteConfig.fireworks = theme.fireworks.color || ['rgba(255,182,185,.9)', 'rgba(250,227,217,.9)', 'rgba(187,222,214,.9)', 'rgba(138,198,209,.9)']
   }
 
