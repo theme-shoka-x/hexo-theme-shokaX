@@ -42,7 +42,7 @@ hexo.extend.helper.register('_new_comments', function (mode) {
         import { RecentComments } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs'
         RecentComments({
           el: '#new-comment',
-          serverURL: '${hexo.theme.config.waline.serverURL}',
+          serverURL: '${hexo.theme.config.waline.serverURL.replace(/\/+$/, '')}',
           count: 10,
         });
     </script>
