@@ -186,7 +186,7 @@ const resizeHandle = function (event?) {
   oWinHeight = window.innerHeight
   oWinWidth = window.innerWidth
   // 设置 sidebar .panels 元素的高度
-  sideBar.child('.panels').changeOrGetHeight(oWinHeight + 'px')
+//   sideBar.child('.panels').changeOrGetHeight(oWinHeight + 'px')
 }
 
 const scrollHandle = function (event) {
