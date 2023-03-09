@@ -495,7 +495,7 @@ const mediaPlayer = function (t, config?) {
             })
           }
         }
-      }).then(function (c) {
+      }).then((c) => {
         if (c) {
           playlist.create()
           controller.create()
@@ -555,7 +555,7 @@ const mediaPlayer = function (t, config?) {
       }
     },
     // 更新source为当前曲目index
-    init: function () {
+    init: () => {
       const item = playlist.current()
 
       if (!item || item.error) {
