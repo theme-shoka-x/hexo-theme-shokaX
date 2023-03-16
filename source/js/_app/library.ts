@@ -363,7 +363,17 @@ const vendorCss = function (type: string, condition?: string): void {
   }
 }
 
-const transition = (target: HTMLElement, type: any, complete?: Function): void => {
+/**
+ * 参数  动画效果
+ * 0  元素逐渐消失
+ * 1  元素逐渐出现
+ * bounceUpIn  元素从下方弹跳出现
+ * shrinkIn  元素从放大到正常大小出现
+ * slideRightIn  元素从右侧滑入
+ * slideRightOut  元素向右侧滑出
+ * TODO 函数功能过于复杂，需要拆分
+ */
+const transition = (target: HTMLElement, type: number|string|Function, complete?: Function): void => {
   let animation
   let display = 'none'
   switch (type) {
@@ -420,6 +430,7 @@ const transition = (target: HTMLElement, type: any, complete?: Function): void =
       break
     default:
       animation = type
+      // @ts-ignore
       display = type.display
       break
   }
@@ -434,31 +445,31 @@ const transition = (target: HTMLElement, type: any, complete?: Function): void =
 }
 
 const pjaxScript = function (element: HTMLScriptElement) {
-  const code = element.text || element.textContent || element.innerHTML || ''
-  const parent = element.parentNode
-  parent.removeChild(element)
+  const { text, parentNode, id, className, type, src, dataset } = element
+  const code = text || element.textContent || element.innerHTML || ''
+  parentNode.removeChild(element)
   const script = document.createElement('script')
-  if (element.id) {
-    script.id = element.id
+  if (id) {
+    script.id = id
   }
-  if (element.className) {
-    script.className = element.className
+  if (className) {
+    script.className = className
   }
-  if (element.type) {
-    script.type = element.type
+  if (type) {
+    script.type = type
   }
-  if (element.src) {
-    script.src = element.src
+  if (src) {
     // Force synchronous loading of peripheral JS.
+    script.src = src
     script.async = false
   }
-  if (element.dataset.pjax !== undefined) {
+  if (dataset.pjax !== undefined) {
     script.dataset.pjax = ''
   }
   if (code !== '') {
     script.appendChild(document.createTextNode(code))
   }
-  parent.appendChild(script)
+  parentNode.appendChild(script)
 }
 
 const pageScroll = function (target: any, offset?: number, complete?: Function) {

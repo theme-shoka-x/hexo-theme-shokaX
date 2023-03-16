@@ -10,6 +10,24 @@ css: "css" # css存放目录(不建议改动)
 js: "js" # js存放目录(不建议改动)
 ```
 
+### 导航栏
+```yaml
+menu:
+  home: / || home
+  submenu:
+    default: /page/ || user
+    link: /page1/ || cloud
+  link2: /page2/ || coffee
+```
+此处的配置分为如下两种:
+1. 独立导航链接(例如`home`和`link2`)
+   - `home(link2)`为本地化键(详见本地化)和备用名称
+   - `/(/page2/)`为超链接地址，可为站外链接(需要带`https`)
+   - `||`分隔符，分隔链接和图标
+   - `home(user)`图标，具体可参见`/source/css/_iconfont.styl`
+2. 下拉菜单(例如`submenu`)
+   - `default`为dropbox显示的内容，不建议在此处放置超链接地址(建议设置为`/`)
+   - 剩余部分为n个不重复的独立导航链接
 ### 实验性特性
 :::tip
 实验性特性均不稳定，随时可能引入破坏性更改，且部分有明显副作用
@@ -32,3 +50,4 @@ experiments:
 
 上述问题均是由于此方法导致的`window.scrollY`抖动引起的，如果你有好的解决方法欢迎发起PR。
 因此，长文章优化功能仅建议在有文章字数超过3万字或站点主要面向渲染性能较差的设备时启用。
+

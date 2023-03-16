@@ -97,7 +97,7 @@ markdown:
     - plugin:
         name: markdown-it-toc-and-anchor
         enable: true
-        options: # 文章目录以及锚点应用的 class 名称，shoka 主题必须设置成这样
+        options: # 文章目录以及锚点应用的 class 名称，shoka 系主题必须设置成这样
           tocClassName: 'toc'
           anchorClassName: 'anchor'
     - plugin:

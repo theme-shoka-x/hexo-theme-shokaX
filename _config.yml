@@ -132,17 +132,14 @@ iconfont: "1832207_igi8uaupcus"
 menu:
   home: / || home
   about:
-    default: /about/ || user
-    aboutsite: /about/ || star
-    updata: /updata/ || cloud
+    default: / || user
+    aboutsite: /about/  || user
     admiration: /admiration/ || coffee
-    privacy: /privacy/ || list-alt
   posts:
     default: / || feather
     archives: /archives/ || list-alt
     categories: /categories/ || th
     tags: /tags/ || tags
-  statistics: /statistics/ || clock
   friends: /friends/ || heart
 
 # https://twikoo.js.org
@@ -236,7 +233,7 @@ widgets:
 
 footer:
   # Specify the date when the site was setup. If not defined, current year will be used.
-  since: 2021
+  since: 2022
   icon:
     name: sakura rotate
     # Change the color of icon, using Hex Code.
