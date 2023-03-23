@@ -2,12 +2,17 @@ mixin sidebarRender(display_toc)
     - var related = _category_posts(page)
     if page && page.prev
         -   var prevlink = page?.prev_link
+        if !prevlink && is_home()
+            if page.prev === 1
+                - prevlink = '/'
+            else
+                - prevlink = `/page/${page.prev}/`
         if is_page() || is_post()
-            - prevlink = page?.next?.path
+            - prevlink = page.prev.path
     if page && page.next
         - var nextlink = page?.next_link
         if is_page() || is_post()
-            - nextlink = page?.prev?.path
+            - nextlink = page.next.path
     div(class="inner")
         div(class="panels")
             div(class="inner")
@@ -23,9 +28,8 @@ mixin sidebarRender(display_toc)
                     != partial('_partials/sidebar/overview.pug', {}, {cache: true})
         ul(id="quick")
             li(class="prev pjax")
-                if page && page.prev
-                    if prevlink
-                        != _url(prevlink, '<i class="ic i-chevron-left"></i>', {rel: 'prev', title: __('post.prev')})
+                if prevlink
+                    != _url(prevlink, '<i class="ic i-chevron-left"></i>', {rel: 'prev', title: __('post.prev')})
             li(class="up")
                 i(class="ic i-arrow-up")
             li(class="down")

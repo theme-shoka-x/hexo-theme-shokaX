@@ -9,7 +9,7 @@ declare interface fireworksP {
   endPos: any,
   alpha?: number,
   lineWidth?: number,
-  draw: any
+  draw: ()=>void
 }
 
 // 使用 document.createElement() 创建了一个 canvas 元素，并将它赋值给变量 canvasEl
@@ -65,7 +65,7 @@ function setParticuleDirection (p:fireworksP):Object {
 
 // 创建一个烟花粒子
 function createParticule (x:number, y:number):fireworksP {
-  const p = {
+  const p:fireworksP = {
     x: undefined,
     y: undefined,
     color: undefined,

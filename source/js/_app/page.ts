@@ -1,4 +1,4 @@
-declare const instantsearch:any, algoliasearch:any, quicklink:any, Pjax:any
+declare const algoliasearch:any, quicklink:any, instantsearch:any
 
 const cardActive = function () {
   if (!$dom('.index.wrap')) { return }
