@@ -199,6 +199,10 @@ const render = anime({
 })
 
 document.addEventListener(tap, function (e) {
+  // @ts-ignore
+  if (e.target.nodeName === 'A') {
+    return
+  }
   render.play()
   updateCoords(e)
   animateParticules(pointerX, pointerY)

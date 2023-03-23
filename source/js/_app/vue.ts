@@ -18,6 +18,7 @@ Vue.createApp(
 
         const hideNeko = function () {
           transition(neko, {
+            // @ts-ignore
             delay: 2500,
             opacity: 0
           }, function () {

@@ -152,7 +152,6 @@ const resizeHandle = function (event) {
     }
     oWinHeight = window.innerHeight;
     oWinWidth = window.innerWidth;
-    // sideBar.child('.panels').changeOrGetHeight(oWinHeight + 'px');
 };
 const scrollHandle = function (event) {
     const winHeight = window.innerHeight;

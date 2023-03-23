@@ -262,30 +262,30 @@ const transition = (target, type, complete) => {
     });
 };
 const pjaxScript = function (element) {
-    const code = element.text || element.textContent || element.innerHTML || '';
-    const parent = element.parentNode;
-    parent.removeChild(element);
+    const { text, parentNode, id, className, type, src, dataset } = element;
+    const code = text || element.textContent || element.innerHTML || '';
+    parentNode.removeChild(element);
     const script = document.createElement('script');
-    if (element.id) {
-        script.id = element.id;
+    if (id) {
+        script.id = id;
     }
-    if (element.className) {
-        script.className = element.className;
+    if (className) {
+        script.className = className;
     }
-    if (element.type) {
-        script.type = element.type;
+    if (type) {
+        script.type = type;
     }
-    if (element.src) {
-        script.src = element.src;
+    if (src) {
+        script.src = src;
         script.async = false;
     }
-    if (element.dataset.pjax !== undefined) {
+    if (dataset.pjax !== undefined) {
         script.dataset.pjax = '';
     }
     if (code !== '') {
         script.appendChild(document.createTextNode(code));
     }
-    parent.appendChild(script);
+    parentNode.appendChild(script);
 };
 const pageScroll = function (target, offset, complete) {
     const opt = {
