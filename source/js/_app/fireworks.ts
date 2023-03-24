@@ -199,6 +199,7 @@ const render = anime({
 })
 
 document.addEventListener(tap, function (e) {
+  // 禁用A标签的Fireworks动画以修复动画不消失问题
   // @ts-ignore
   if (e.target.nodeName === 'A') {
     return

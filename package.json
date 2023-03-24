@@ -1,6 +1,6 @@
 {
     "name": "hexo-theme-shokax",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "a hexo theme based on shoka",
     "main": "index.js",
     "repository": "https://github.com/zkz098/hexo-theme-shokaX",
@@ -12,35 +12,35 @@
         "docs:build": "vuepress build docs"
     },
     "devDependencies": {
-        "@algolia/client-search": ">= 4.9.1 < 6",
+        "@algolia/client-search": "^4",
         "@types/animejs": "^3.1.7",
         "@types/fancybox": "^3.5.3",
         "@types/hexo": "^3.8.8",
         "@types/jquery": "^3.5.16",
         "@types/js-yaml": "^4.0.5",
         "@types/lozad": "^1.16.1",
-        "@types/node": "^18.13.0",
+        "@types/node": "^18.15.6",
         "@types/shelljs": "^0.8.11",
-        "@typescript-eslint/eslint-plugin": "^5.51.0",
-        "@typescript-eslint/parser": "^5.51.0",
-        "@vuepress/client": "2.0.0-beta.60",
+        "@typescript-eslint/eslint-plugin": "^5.56.0",
+        "@typescript-eslint/parser": "^5.56.0",
+        "@vuepress/client": "2.0.0-beta.61",
         "@vuepress/plugin-docsearch": "2.0.0-beta.60",
-        "algoliasearch": ">=3.1.0 <6.0.0",
-        "eslint": "^8.34.0",
+        "algoliasearch": "^4.16.0",
+        "eslint": "^8.36.0",
         "eslint-config-standard": "^17.0.0",
         "eslint-plugin-import": "^2.27.5",
         "eslint-plugin-n": "^15.6.1",
         "eslint-plugin-promise": "^6.1.1",
-        "eslint-plugin-vue": "^9.9.0",
-        "instantsearch.js": "^4.52.0",
+        "eslint-plugin-vue": "^9.10.0",
+        "instantsearch.js": "^4.53.0",
         "pjax": "^0.2.8",
-        "typescript": "^4.9.5",
+        "typescript": "^5.0.2",
         "vue": "^3.2.47",
-        "vuepress": "2.0.0-beta.60",
-        "vuepress-plugin-sitemap2": "2.0.0-beta.180"
+        "vuepress": "2.0.0-beta.61",
+        "vuepress-plugin-sitemap2": "2.0.0-beta.197"
     },
     "dependencies": {
         "js-yaml": "^4.1.0",
-        "sass": "^1.58.3"
+        "sass": "^1.60.0"
     }
 }
