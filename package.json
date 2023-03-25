@@ -24,7 +24,7 @@
         "@typescript-eslint/eslint-plugin": "^5.56.0",
         "@typescript-eslint/parser": "^5.56.0",
         "@vuepress/client": "2.0.0-beta.61",
-        "@vuepress/plugin-docsearch": "2.0.0-beta.60",
+        "@vuepress/plugin-docsearch": "2.0.0-beta.61",
         "algoliasearch": "^4.16.0",
         "eslint": "^8.36.0",
         "eslint-config-standard": "^17.0.0",
