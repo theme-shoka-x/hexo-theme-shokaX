@@ -25,11 +25,13 @@ jobs:
       - name: Build TypeScript files
         run: pnpm run build
 
-      - name: Create ZIP package
-        run: zip -r shokaX.zip * -x '*.ts'
-
-      - name: Upload artifact
+      - name: Create ZIP package & Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: shokaX
-          path: shokaX.zip
+          path: |
+            !node_modules/**
+            !.github/**
+            !docs/**
+            !**/*.ts
+            *
