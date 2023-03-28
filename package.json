@@ -8,6 +8,7 @@
     "license": "GPL-3.0-or-later",
     "scripts": {
         "test": "cd ./source/js && tsc",
+        "build": "pnpm install && tsc",
         "docs:dev": "vuepress dev docs",
         "docs:build": "vuepress build docs"
     },
