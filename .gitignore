@@ -14,3 +14,4 @@ test.html
 /docs/.vuepress/.cache/
 /docs/.vuepress/dist/
 /docs/.vuepress/.temp
+*.js
