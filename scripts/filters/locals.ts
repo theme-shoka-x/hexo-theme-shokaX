@@ -1,13 +1,14 @@
-'use strict'
 /* global hexo */
 
-const fmtNum = num => {
+const fmtNum = (num) => {
   return num < 10 ? '0' + num : num
 }
 
-hexo.extend.filter.register('template_locals', locals => {
+// TODO 重写一个接口以适应shoka的locals写法
+hexo.extend.filter.register('template_locals', (locals:any) => {
   const { config } = hexo
   const { __, theme } = locals
+  // @ts-ignore
   const { i18n } = hexo.theme
 
   const pangu = theme.pangu
