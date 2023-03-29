@@ -1,10 +1,13 @@
 'use strict'
 /* global hexo */
 
+// @ts-ignore
 const fs = require('hexo-fs')
 
 const prepareQuery = (categories, parent) => {
-  const query = {}
+  const query = {
+    parent: undefined
+  }
 
   if (parent) {
     query.parent = parent
@@ -21,7 +24,7 @@ hexo.extend.helper.register('_list_categories', function (depth = 0) {
 
   if (!categories || !categories.length) return ''
 
-  const hierarchicalList = (level, parent) => {
+  const hierarchicalList = (level, parent?) => {
     let result = ''
 
     prepareQuery(categories, parent).forEach((cat, i) => {

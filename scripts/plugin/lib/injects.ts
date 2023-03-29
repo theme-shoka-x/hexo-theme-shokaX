@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use strict'
 
 // 插件部分参考自theme-next

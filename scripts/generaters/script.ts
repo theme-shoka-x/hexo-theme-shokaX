@@ -1,4 +1,5 @@
 /* global hexo */
+// @ts-ignore
 const fs = require('hexo-fs')
 
 hexo.extend.generator.register('script', function (locals) {
@@ -43,7 +44,9 @@ hexo.extend.generator.register('script', function (locals) {
       priority: theme.quicklink.priority
     },
     playerAPI: theme.playerAPI,
-    disableVL: theme.disableVL
+    disableVL: theme.disableVL,
+    audio: undefined,
+    fireworks: undefined
   }
 
   if (config?.algolia) {

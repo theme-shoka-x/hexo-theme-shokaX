@@ -1,5 +1,6 @@
 'use strict'
 /* global hexo */
+// @ts-ignore
 const yaml = require('js-yaml')
 
 function postMedia (args, content) {

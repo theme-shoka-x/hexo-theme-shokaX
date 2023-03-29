@@ -6,6 +6,7 @@
   https://github.com/theme-next/hexo-symbols-count-time/blob/master/LICENSE
  */
 
+// @ts-ignore
 const { stripHTML } = require('hexo-util')
 
 const config = hexo.config.symbols_count_time = Object.assign({

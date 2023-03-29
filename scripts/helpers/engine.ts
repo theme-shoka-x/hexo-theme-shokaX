@@ -2,6 +2,7 @@
 
 'use strict'
 
+// @ts-ignore
 const { htmlTag, url_for } = require('hexo-util')
 
 const randomServer = parseInt(String(Math.random() * 4), 10) + 1
@@ -65,7 +66,7 @@ hexo.extend.helper.register('_url', function (path, text, options = {}) {
   const theme = hexo.theme.config
   let exturl = ''
   let tag = 'a'
-  let attrs = { href: url_for.call(this, path) }
+  let attrs: { class: string; 'data-url': any; [index:string]:any } = { href: url_for.call(this, path), class: undefined, external: undefined, rel: undefined, 'data-url': undefined }
 
   // 如果启用了 `exturl`，则只为外部链接设置spanned链接。
   if (theme.exturl && data.protocol && data.hostname !== siteHost) {
@@ -73,6 +74,7 @@ hexo.extend.helper.register('_url', function (path, text, options = {}) {
     exturl = 'exturl'
     // 编码URL字符串，并将其存储在数据属性中。
     const encoded = Buffer.from(path).toString('base64')
+
     attrs = {
       class: exturl,
       'data-url': encoded
@@ -81,9 +83,9 @@ hexo.extend.helper.register('_url', function (path, text, options = {}) {
 
   for (const key in options) {
     /**
-         * 如果选项包含 `class` 属性，则将其添加到 `exturl` 类中（如果启用了 `exturl` 选项）。
-         * 否则，将其添加到属性集中。
-         */
+     * 如果选项包含 `class` 属性，则将其添加到 `exturl` 类中（如果启用了 `exturl` 选项）。
+     * 否则，将其添加到属性集中。
+     */
     if (exturl !== '' && key === 'class') {
       attrs[key] += ' ' + options[key]
     } else {
@@ -173,6 +175,7 @@ hexo.extend.helper.register('i18n_path', function (language) {
 // 注册hexo主题的语言名称帮助方法
 hexo.extend.helper.register('language_name', function (language) {
   // 从主题配置中获取指定语言的名称
+  // @ts-ignore
   const name = hexo.theme.i18n.__(language)('name')
   // 如果名称为默认值'name'，则返回语言代码，否则返回语言名称
   return name === 'name' ? language : name
@@ -180,7 +183,7 @@ hexo.extend.helper.register('language_name', function (language) {
 
 hexo.extend.helper.register('random_color', function () {
   /**
-  @type {number[]}
+   @type {number[]}
    */
   const arr = []
   for (let i = 0; i < 3; i++) {
@@ -188,10 +191,10 @@ hexo.extend.helper.register('random_color', function () {
   }
   const [r, g, b] = arr
   return `#${
-      r.toString(16).length > 1 ? r.toString(16) : '0' + r.toString(16)
-    }${g.toString(16).length > 1 ? g.toString(16) : '0' + g.toString(16)}${
-      b.toString(16).length > 1 ? b.toString(16) : '0' + b.toString(16)
-    }`
+    r.toString(16).length > 1 ? r.toString(16) : '0' + r.toString(16)
+  }${g.toString(16).length > 1 ? g.toString(16) : '0' + g.toString(16)}${
+    b.toString(16).length > 1 ? b.toString(16) : '0' + b.toString(16)
+  }`
 })
 
 hexo.extend.helper.register('shokax_inject', function (point) {

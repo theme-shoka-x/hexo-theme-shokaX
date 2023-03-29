@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* global hexo */
 'use strict'
 
@@ -69,9 +70,9 @@ hexo.extend.generator.register('index', function (locals) {
           pl = Math.max(0, pl - child.length)
           if (pl > 0) {
             // TODO 需要测试
-            cat.subs.push.apply(cat.subs, cat.posts.sort({ title: 1 }).filter(function (item, i) {
-              return item.categories.last()._id === cat._id
-            }).limit(pl).toArray())
+            cat.subs.push(...cat.posts.sort({ title: 1 })
+              .filter(function (item, i) { return item.categories.last()._id === cat._id })
+              .limit(pl).toArray())
           }
         } else {
           cat.subs = cat.posts.sort({ title: 1 }).limit(6).toArray()

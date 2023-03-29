@@ -2,8 +2,11 @@
 /* global hexo */
 
 const merge = require('hexo-util').deepMerge || require('lodash/merge')
+// @ts-ignore
 const fs = require('hexo-fs')
+// @ts-ignore
 const path = require('path')
+// @ts-ignore
 const yaml = require('js-yaml')
 
 hexo.extend.filter.register('before_generate', () => {
@@ -14,6 +17,7 @@ hexo.extend.filter.register('before_generate', () => {
   const data = hexo.locals.get('data')
 
   if (data.languages) {
+    // @ts-ignore
     const { i18n } = hexo.theme
 
     const mergeLang = lang => {

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* global hexo */
 'use strict'
 /*

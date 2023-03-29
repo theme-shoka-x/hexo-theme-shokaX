@@ -1,8 +1,10 @@
 /* global hexo */
 'use strict'
 
+// @ts-ignore
 const pagination = require('hexo-pagination')
 
+// @ts-ignore
 const fmtNum = num => {
   return num < 10 ? '0' + num : num
 }
@@ -30,6 +32,7 @@ if (!(hexo.config.archive && hexo.config.archive.enabled === false)) {
     const config = hexo.config
     let archiveDir = config.archive_dir
     const paginationDir = config.pagination_dir || 'page'
+    // @ts-ignore
     const allPosts = locals.posts.sort(config.archive_generator.order_by || '-date')
     const perPage = config.archive_generator.per_page
     let result = []
@@ -38,7 +41,7 @@ if (!(hexo.config.archive && hexo.config.archive.enabled === false)) {
 
     if (archiveDir[archiveDir.length - 1] !== '/') archiveDir += '/'
 
-    function generate (path, posts, options) {
+    function generate (path, posts, options?) {
       options = options || {}
       options.archive = true
 

@@ -1,5 +1,6 @@
 /* global hexo */
 
+// @ts-ignore
 const fmtNum = (num) => {
   return num < 10 ? '0' + num : num
 }

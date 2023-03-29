@@ -1,6 +1,7 @@
 /* global hexo */
 
 'use strict'
+// @ts-ignore
 const { htmlTag, url_for, stripHTML } = require('hexo-util')
 const theme_env = require('../../package.json')
 
@@ -84,6 +85,7 @@ hexo.extend.helper.register('_vendor_font', () => {
 
   fontFamilies = fontFamilies.filter(item => item !== '')
   fontFamilies = [...new Set(fontFamilies)]
+  // @ts-ignore
   fontFamilies = fontFamilies.join('|')
 
   // Merge extra parameters to the final processed font string
@@ -111,6 +113,7 @@ hexo.extend.helper.register('_vendor_js', () => {
 
   vendorJs = vendorJs.filter(item => item !== '')
   vendorJs = [...new Set(vendorJs)]
+  // @ts-ignore
   vendorJs = vendorJs.join(',')
   return vendorJs ? htmlTag('script', { src: `https://cdn.jsdelivr.net/combine/${vendorJs}` }, '') : ''
 })
@@ -162,7 +165,11 @@ hexo.extend.helper.register('_adv_vendor_js', function (js_name) {
   } else {
     result = '/' + src
   }
-  const attr = { src: result }
+  const attr = {
+    src: result,
+    integrity: undefined,
+    async: undefined
+  }
   if (config.async) attr.async = 'async'
   if (config['data-pjax']) attr['data-pjax'] = 'data-pjax'
   if (config['hash-value']) attr.integrity = config['hash-value']

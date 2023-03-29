@@ -1,6 +1,7 @@
 /* global hexo */
 'use strict'
 
+// @ts-ignore
 const fs = require('hexo-fs')
 
 hexo.extend.generator.register('images', function (locals) {
