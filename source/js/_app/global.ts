@@ -233,9 +233,13 @@ const scrollHandle = function (event) {
   // 计算滚动百分比
   const scrollPercent = Math.round(Math.min(100 * window.scrollY / contentVisibilityHeight, 100)) + '%'
   // 更新回到顶部按钮的文字
-  backToTop.child('span').innerText = scrollPercent
+  if(backToTop.child('span').innerText !== scrollPercent) {
+    backToTop.child('span').innerText = scrollPercent;
+  }
   // 更新百分比进度条的宽度
-  $dom('.percent').changeOrGetWidth(scrollPercent)
+  if($dom('#sidebar').hasClass('affix')) {
+    $dom('.percent').changeOrGetWidth(scrollPercent)
+  }
 }
 
 const pagePosition = function () {
