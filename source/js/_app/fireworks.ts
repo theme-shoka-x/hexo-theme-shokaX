@@ -198,10 +198,19 @@ const render = anime({
   }
 })
 
+const hasAncestor = function (node:any, name:string):boolean {
+  name = name.toUpperCase()
+  do {
+    if (node === null || node === undefined) break
+    if (node.nodeName === name) return true
+  } while (node = node.parentNode)
+  return false
+}
+
 document.addEventListener(tap, function (e) {
   // 禁用A标签的Fireworks动画以修复动画不消失问题
   // @ts-ignore
-  if (e.target.nodeName === 'A') {
+  if (hasAncestor(e.target, 'a')) {
     return
   }
   render.play()
