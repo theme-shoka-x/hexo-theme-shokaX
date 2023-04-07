@@ -1,4 +1,4 @@
-declare const algoliasearch:any, quicklink:any, instantsearch:any
+declare const algoliasearch: any, quicklink: any, instantsearch: any
 
 const cardActive = function () {
   if (!$dom('.index.wrap')) { return }
@@ -52,7 +52,7 @@ const cardActive = function () {
 
 const registerExtURL = function () {
   $dom.each('span.exturl', function (element) {
-    const link = <HTMLAnchorElement> document.createElement('a')
+    const link = <HTMLAnchorElement>document.createElement('a')
     // https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
 
     link.href = decodeURIComponent(atob(element.dataset.url).split('').map(function (c) {
@@ -208,7 +208,7 @@ const postBeauty = function () {
       copyBtn.remove()
     } else {
       copyBtn.addEventListener('click', function (event) {
-        const target = <HTMLElement> event.currentTarget
+        const target = <HTMLElement>event.currentTarget
         let comma = ''; let code = ''
         code_container.find('pre').forEach(function (line) {
           code += comma + line.innerText
@@ -508,8 +508,8 @@ const algoliaSearch = function (pjax) {
         },
         empty: function (data) {
           return '<div id="hits-empty">' +
-              LOCAL.search.empty.replace(/\$\{query}/, data.query) +
-              '</div>'
+            LOCAL.search.empty.replace(/\$\{query}/, data.query) +
+            '</div>'
         }
       },
       cssClasses: {
@@ -570,26 +570,6 @@ const algoliaSearch = function (pjax) {
   })
 }
 
-const createIntersectionObserver = function () {
-    if (!window.IntersectionObserver) {
-        return;
-    }
-    new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) {
-            document.querySelectorAll('.parallax>use').forEach(i => {
-                i.classList.remove('stop-animation');
-            })
-        } else {
-            document.querySelectorAll('.parallax>use').forEach(i => {
-                i.classList.add('stop-animation');
-            })
-        }
-    }, {
-        root: null,
-        threshold: 0.2
-    }).observe(document.getElementById('waves'));
-}
-
 /* pjax部分 */
 
 const domInit = function () {
@@ -626,6 +606,26 @@ const domInit = function () {
     $dom('main').addEventListener('click', function () {
       toolPlayer.player.mini()
     })
+  }
+  // waves在视口外时停止动画
+  const createIntersectionObserver = function () {
+    if (!window.IntersectionObserver) {
+      return;
+    }
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        document.querySelectorAll('.parallax>use').forEach(i => {
+          i.classList.remove('stop-animation');
+        })
+      } else {
+        document.querySelectorAll('.parallax>use').forEach(i => {
+          i.classList.add('stop-animation');
+        })
+      }
+    }, {
+      root: null,
+      threshold: 0.2
+    }).observe(document.getElementById('waves'));
   }
   createIntersectionObserver();
 }
