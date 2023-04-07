@@ -570,6 +570,26 @@ const algoliaSearch = function (pjax) {
   })
 }
 
+const createIntersectionObserver = function () {
+    if (!window.IntersectionObserver) {
+        return;
+    }
+    new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+            document.querySelectorAll('.parallax>use').forEach(i => {
+                i.classList.remove('stop-animation');
+            })
+        } else {
+            document.querySelectorAll('.parallax>use').forEach(i => {
+                i.classList.add('stop-animation');
+            })
+        }
+    }, {
+        root: null,
+        threshold: 0.2
+    }).observe(document.getElementById('waves'));
+}
+
 /* pjax部分 */
 
 const domInit = function () {
@@ -607,6 +627,7 @@ const domInit = function () {
       toolPlayer.player.mini()
     })
   }
+  createIntersectionObserver();
 }
 
 const pjaxReload = function () {

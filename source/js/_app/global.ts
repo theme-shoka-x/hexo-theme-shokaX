@@ -237,7 +237,7 @@ const scrollHandle = function (event) {
     backToTop.child('span').innerText = scrollPercent;
   }
   // 更新百分比进度条的宽度
-  if($dom('#sidebar').hasClass('affix')) {
+  if($dom('#sidebar').hasClass('affix') || $dom('#sidebar').hasClass('on')) {
     $dom('.percent').changeOrGetWidth(scrollPercent)
   }
 }
