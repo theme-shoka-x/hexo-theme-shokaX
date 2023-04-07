@@ -1,4 +1,4 @@
-declare const algoliasearch: any, quicklink: any, instantsearch: any
+declare const algoliasearch:any, quicklink:any, instantsearch:any
 
 const cardActive = function () {
   if (!$dom('.index.wrap')) { return }
@@ -52,7 +52,7 @@ const cardActive = function () {
 
 const registerExtURL = function () {
   $dom.each('span.exturl', function (element) {
-    const link = <HTMLAnchorElement>document.createElement('a')
+    const link = <HTMLAnchorElement> document.createElement('a')
     // https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
 
     link.href = decodeURIComponent(atob(element.dataset.url).split('').map(function (c) {
@@ -208,7 +208,7 @@ const postBeauty = function () {
       copyBtn.remove()
     } else {
       copyBtn.addEventListener('click', function (event) {
-        const target = <HTMLElement>event.currentTarget
+        const target = <HTMLElement> event.currentTarget
         let comma = ''; let code = ''
         code_container.find('pre').forEach(function (line) {
           code += comma + line.innerText
