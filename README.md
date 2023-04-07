@@ -24,11 +24,10 @@ shokaX的社区资源导航和插件仓库为[awesome-shokaX](https://github.com
 |  自定义字体   |  ✅*  |    自定义样式     |  ✅*  |
 | 多种评论系统支持 |  ✅   |   用户行为分析支持   |  ✅   |
 |  底部备案号   |  ✅   |    自定义页尾     |  ✅*  |
-| CSS渐变封面  |  ✅   | typescript支持 |  ✅^  |
+| CSS渐变封面  |  ✅   | typescript支持 |  ✅   |
 
 备注:
 - *: 需要使用注入API实现
-- ^: 仅page js部分,hexo script未实现
 
 
 ## 🔧 如何安装?
