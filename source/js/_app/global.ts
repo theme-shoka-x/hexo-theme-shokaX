@@ -241,17 +241,17 @@ const scrollHandle = function (event) {
     $dom('.percent').changeOrGetWidth(scrollPercent)
   }
   // imgs在视口外时停止动画
-  // 是否可以用IntersectionObserver代替？
-  const { top } = document.getElementById('main').getBoundingClientRect();
-  if (top >= 0) {
-    document.querySelectorAll('#imgs .item').forEach(i => {
-      i.classList.remove('stop-animation');
-    })
-  } else {
-    document.querySelectorAll('#imgs .item').forEach(i => {
-      i.classList.add('stop-animation');
-    })
-  }
+  // 已被IntersectionObserver代替
+  // const { top } = document.getElementById('main').getBoundingClientRect();
+  // if (top >= 0) {
+  //   document.querySelectorAll('#imgs .item').forEach(i => {
+  //     i.classList.remove('stop-animation');
+  //   })
+  // } else {
+  //   document.querySelectorAll('#imgs .item').forEach(i => {
+  //     i.classList.add('stop-animation');
+  //   })
+  // }
 }
 
 const pagePosition = function () {

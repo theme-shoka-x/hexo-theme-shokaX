@@ -360,17 +360,18 @@ const postBeauty = function () {
     }).player.load(JSON.parse(element.attr('data-src'))).fetch()
   })
 
-  const angleDown = document.querySelectorAll('.show-btn .i-angle-down');
+  const angleDown = document.querySelectorAll('.show-btn .i-angle-down')
   if (angleDown.length) {
+    if (!window.IntersectionObserver) return
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           angleDown.forEach(i => {
-            i.classList.remove('stop-animation');
+            i.classList.remove('stop-animation')
           })
         } else {
           angleDown.forEach(i => {
-            i.classList.add('stop-animation');
+            i.classList.add('stop-animation')
           })
         }
       })
@@ -379,7 +380,7 @@ const postBeauty = function () {
       threshold: 0.5
     });
     angleDown.forEach(i => {
-      io.observe(i);
+      io.observe(i)
     })
   }
 }
@@ -630,41 +631,48 @@ const domInit = function () {
       toolPlayer.player.mini()
     })
   }
-  // waves在视口外时停止动画
+  
   const createIntersectionObserver = function () {
-    if (!window.IntersectionObserver) {
-      return;
-    }
+    if (!window.IntersectionObserver) return
+    // waves在视口外时停止动画
     new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         document.querySelectorAll('.parallax>use').forEach(i => {
-          i.classList.remove('stop-animation');
+          i.classList.remove('stop-animation')
         })
+        document.querySelectorAll('#imgs .item').forEach(i=>{
+          i.classList.remove('stop-animation')
+        }) 
       } else {
         document.querySelectorAll('.parallax>use').forEach(i => {
-          i.classList.add('stop-animation');
+          i.classList.add('stop-animation')
+        })
+        // waves不可见时imgs也应该不可见了
+        document.querySelectorAll('#imgs .item').forEach(i=>{
+          i.classList.add('stop-animation')
+        }) 
+      }
+    }, {
+      root: null,
+      threshold: 0.2
+    }).observe(document.getElementById('waves'))
+    // sakura在视口外时停止动画
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        document.querySelectorAll('.with-love>i').forEach(i => {
+          i.classList.remove('stop-animation')
+        })
+      } else {
+        document.querySelectorAll('.with-love>i').forEach(i => {
+          i.classList.add('stop-animation')
         })
       }
     }, {
       root: null,
       threshold: 0.2
-    }).observe(document.getElementById('waves'));
-    new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        document.querySelectorAll('.with-love>i').forEach(i => {
-          i.classList.remove('stop-animation');
-        })
-      } else {
-        document.querySelectorAll('.with-love>i').forEach(i => {
-          i.classList.add('stop-animation');
-        })
-      }
-    }, {
-      root: null,
-      threshold: 0.2
-    }).observe(document.querySelector('.with-love'));
+    }).observe(document.querySelector('.with-love'))
   }
-  createIntersectionObserver();
+  createIntersectionObserver()
 }
 
 const pjaxReload = function () {
