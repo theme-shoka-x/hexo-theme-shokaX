@@ -170,7 +170,7 @@ const showtip = function (msg: string): void | never {
 }
 
 const resizeHandle = function (event?) {
-// 获取 siteNav 的高度
+  // 获取 siteNav 的高度
   siteNavHeight = siteNav.changeOrGetHeight()
   // 获取 siteHeader 的高度
   headerHightInner = siteHeader.changeOrGetHeight()
@@ -186,7 +186,7 @@ const resizeHandle = function (event?) {
   oWinHeight = window.innerHeight
   oWinWidth = window.innerWidth
   // 设置 sidebar .panels 元素的高度
-//   sideBar.child('.panels').changeOrGetHeight(oWinHeight + 'px')
+  //   sideBar.child('.panels').changeOrGetHeight(oWinHeight + 'px')
 }
 
 const scrollHandle = function (event) {
@@ -233,13 +233,25 @@ const scrollHandle = function (event) {
   // 计算滚动百分比
   const scrollPercent = Math.round(Math.min(100 * window.scrollY / contentVisibilityHeight, 100)) + '%'
   // 更新回到顶部按钮的文字
-  if(backToTop.child('span').innerText !== scrollPercent) {
+  if (backToTop.child('span').innerText !== scrollPercent) {
     backToTop.child('span').innerText = scrollPercent;
   }
   // 更新百分比进度条的宽度
-  if($dom('#sidebar').hasClass('affix')) {
+  if ($dom('#sidebar').hasClass('affix') || $dom('#sidebar').hasClass('on')) {
     $dom('.percent').changeOrGetWidth(scrollPercent)
   }
+  // imgs在视口外时停止动画
+  // 已被IntersectionObserver代替
+  // const { top } = document.getElementById('main').getBoundingClientRect();
+  // if (top >= 0) {
+  //   document.querySelectorAll('#imgs .item').forEach(i => {
+  //     i.classList.remove('stop-animation');
+  //   })
+  // } else {
+  //   document.querySelectorAll('#imgs .item').forEach(i => {
+  //     i.classList.add('stop-animation');
+  //   })
+  // }
 }
 
 const pagePosition = function () {

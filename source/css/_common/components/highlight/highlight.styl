@@ -246,6 +246,10 @@ code,
     .ic {
       margin-top: 1rem;
       @extend .up-down;
+
+      &.stop-animation {
+        animation-play-state: paused;
+      }
     }
 
     &.open {
