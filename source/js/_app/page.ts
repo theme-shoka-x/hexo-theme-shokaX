@@ -1,4 +1,4 @@
-declare const algoliasearch:any, quicklink:any, instantsearch:any
+declare const algoliasearch: any, quicklink: any, instantsearch: any
 
 const cardActive = function () {
   if (!$dom('.index.wrap')) { return }
@@ -52,7 +52,7 @@ const cardActive = function () {
 
 const registerExtURL = function () {
   $dom.each('span.exturl', function (element) {
-    const link = <HTMLAnchorElement> document.createElement('a')
+    const link = <HTMLAnchorElement>document.createElement('a')
     // https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
 
     link.href = decodeURIComponent(atob(element.dataset.url).split('').map(function (c) {
@@ -208,7 +208,7 @@ const postBeauty = function () {
       copyBtn.remove()
     } else {
       copyBtn.addEventListener('click', function (event) {
-        const target = <HTMLElement> event.currentTarget
+        const target = <HTMLElement>event.currentTarget
         let comma = ''; let code = ''
         code_container.find('pre').forEach(function (line) {
           code += comma + line.innerText
@@ -359,6 +359,30 @@ const postBeauty = function () {
       btns: []
     }).player.load(JSON.parse(element.attr('data-src'))).fetch()
   })
+
+  const angleDown = document.querySelectorAll('.show-btn .i-angle-down')
+  if (angleDown.length) {
+    if (!window.IntersectionObserver) return
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          angleDown.forEach(i => {
+            i.classList.remove('stop-animation')
+          })
+        } else {
+          angleDown.forEach(i => {
+            i.classList.add('stop-animation')
+          })
+        }
+      })
+    }, {
+      root: null,
+      threshold: 0.5
+    });
+    angleDown.forEach(i => {
+      io.observe(i)
+    })
+  }
 }
 
 const tabFormat = function () {
@@ -508,8 +532,8 @@ const algoliaSearch = function (pjax) {
         },
         empty: function (data) {
           return '<div id="hits-empty">' +
-              LOCAL.search.empty.replace(/\$\{query}/, data.query) +
-              '</div>'
+            LOCAL.search.empty.replace(/\$\{query}/, data.query) +
+            '</div>'
         }
       },
       cssClasses: {
@@ -607,6 +631,48 @@ const domInit = function () {
       toolPlayer.player.mini()
     })
   }
+  
+  const createIntersectionObserver = function () {
+    if (!window.IntersectionObserver) return
+    // waves在视口外时停止动画
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        document.querySelectorAll('.parallax>use').forEach(i => {
+          i.classList.remove('stop-animation')
+        })
+        document.querySelectorAll('#imgs .item').forEach(i=>{
+          i.classList.remove('stop-animation')
+        }) 
+      } else {
+        document.querySelectorAll('.parallax>use').forEach(i => {
+          i.classList.add('stop-animation')
+        })
+        // waves不可见时imgs也应该不可见了
+        document.querySelectorAll('#imgs .item').forEach(i=>{
+          i.classList.add('stop-animation')
+        }) 
+      }
+    }, {
+      root: null,
+      threshold: 0.2
+    }).observe(document.getElementById('waves'))
+    // sakura在视口外时停止动画
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        document.querySelectorAll('.with-love>i').forEach(i => {
+          i.classList.remove('stop-animation')
+        })
+      } else {
+        document.querySelectorAll('.with-love>i').forEach(i => {
+          i.classList.add('stop-animation')
+        })
+      }
+    }, {
+      root: null,
+      threshold: 0.2
+    }).observe(document.querySelector('.with-love'))
+  }
+  createIntersectionObserver()
 }
 
 const pjaxReload = function () {
