@@ -7,7 +7,7 @@
  */
 
 // @ts-ignore
-const { stripHTML } = require('hexo-util')
+import { stripHTML } from 'hexo-util'
 
 const config = hexo.config.symbols_count_time = Object.assign({
   symbols: true,

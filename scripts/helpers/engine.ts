@@ -3,7 +3,7 @@
 'use strict'
 
 // @ts-ignore
-const { htmlTag, url_for } = require('hexo-util')
+import { htmlTag, url_for } from 'hexo-util'
 
 const randomServer = parseInt(String(Math.random() * 4), 10) + 1
 

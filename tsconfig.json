@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es2021",
-    "module": "es2022",
+    "target": "ESNext",
+    "module": "ESNext",
     "removeComments": true,
     "alwaysStrict": false,
     "strict": false,
     "pretty": false,
     "allowJs": true,
     "esModuleInterop": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "resolveJsonModule": true
   },
   "typeAcquisition": {
     "enable": true

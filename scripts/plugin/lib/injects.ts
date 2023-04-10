@@ -2,9 +2,9 @@
 'use strict'
 
 // 插件部分参考自theme-next
-const fs = require('fs')
-const path = require('path')
-const points = require('./injects-point')
+import fs from 'node:fs'
+import path from 'node:path'
+import points from './injects-point'
 const defaultExtname = '.pug'
 
 // Defining stylus types

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /* global hexo */
 'use strict'
 /*
@@ -14,9 +13,9 @@
 {% linksfile [path] %}
 */
 
-const fs = require('fs')
-const path = require('path')
-const yaml = require('js-yaml')
+import fs from 'node:fs'
+import path from 'node:path'
+import yaml from 'js-yaml'
 
 function linkGrid (args, content) {
   const theme = hexo.theme.config
@@ -38,7 +37,7 @@ function linkGrid (args, content) {
 
   const siteHost = new URL(hexo.config.url).hostname || hexo.config.url
 
-  const list = yaml.load(content)
+  const list = yaml.load(content) as Array<any>
 
   let result = ''
 
@@ -47,7 +46,10 @@ function linkGrid (args, content) {
       return
     }
 
-    let urlparam = {}
+    let urlparam = {
+      protocol: undefined,
+      hostname: undefined
+    }
 
     if (item.url) {
       urlparam = new URL(item.url, hexo.config.url)

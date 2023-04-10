@@ -1,9 +1,8 @@
 /* global hexo */
 
-'use strict'
+import theme_env from '../../package.json'
 // @ts-ignore
-const { htmlTag, url_for, stripHTML } = require('hexo-util')
-const theme_env = require('../../package.json')
+import { htmlTag, url_for, stripHTML } from 'hexo-util'
 
 hexo.extend.helper.register('_new_comments', function (mode) {
   if (mode === 'twikoo') {

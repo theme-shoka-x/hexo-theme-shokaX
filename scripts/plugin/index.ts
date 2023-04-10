@@ -1,4 +1,3 @@
-/* global hexo */
 
 hexo.on('generateBefore', () => {
   // 加载`theme_injects`过滤器
@@ -10,7 +9,7 @@ hexo.on('generateAfter', () => {
   const https = require('https')
   const path = require('path')
   const { version } = require(path.normalize('../../package.json'))
-  https.get('https://api.github.com/repos/zkz098/hexo-theme-shokaX/releases/latest', {
+  https.get('https://api.github.com/repos/theme-shoka-x/hexo-theme-shokaX/releases/latest', {
     headers: {
       'User-Agent': 'Theme ShokaX Client'
     }
@@ -35,7 +34,7 @@ hexo.on('generateAfter', () => {
         }
         if (isOutdated) {
           hexo.log.warn(`Your theme ShokaX is outdated. Current version: v${current.join('.')}, latest version: v${latest.join('.')}`)
-          hexo.log.warn('Visit https://github.com/zkz098/hexo-theme-shokaX/releases for more information.')
+          hexo.log.warn('Visit https://github.com/theme-shoka-x/hexo-theme-shokaX/releases for more information.')
         }
       } catch (err) {
         hexo.log.error('Failed to detect version info. Error message:')
