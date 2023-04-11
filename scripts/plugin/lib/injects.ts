@@ -57,7 +57,7 @@ function initInject (base_dir) {
   return injects
 }
 
-module.exports = (hexo) => {
+export default (hexo) => {
   // Exec theme_inject filter
   const injects = initInject(hexo.base_dir)
   hexo.execFilterSync('theme_inject', injects)

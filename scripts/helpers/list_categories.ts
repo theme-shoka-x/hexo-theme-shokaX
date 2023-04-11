@@ -70,13 +70,11 @@ hexo.extend.helper.register('_categories', function () {
   const categories = this.site.categories
   if (!categories || !categories.length) return ''
 
-  const pangu = this.theme.pangu
-    ? require('pangu')
-    : {
-        spacing: data => {
-          return data
-        }
-      }
+  const pangu = {
+    spacing: data => {
+      return data
+    }
+  }
 
   const result = {}
 

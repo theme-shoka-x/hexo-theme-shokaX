@@ -1,6 +1,6 @@
 {
     "name": "hexo-theme-shokax",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "description": "a hexo theme based on shoka",
     "main": "index.js",
     "repository": "https://github.com/zkz098/hexo-theme-shokaX",
@@ -33,6 +33,8 @@
         "eslint-plugin-n": "^15.6.1",
         "eslint-plugin-promise": "^6.1.1",
         "eslint-plugin-vue": "^9.10.0",
+        "hexo-fs": "^4.1.1",
+        "hexo-util": "^3.0.1",
         "instantsearch.js": "^4.53.0",
         "pjax": "^0.2.8",
         "typescript": "^5.0.2",

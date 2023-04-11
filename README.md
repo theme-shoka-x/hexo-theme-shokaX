@@ -1,7 +1,9 @@
+如果你访问的仓库地址是**zkz098/hexo-theme-shokaX**，请转为访问最新地址: [theme-shoka-x/hexo-theme-shokaX](https://github.com/theme-shoka-x/hexo-theme-shokaX)
+
 # hexo-theme-shokaX
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fzkz098%2Fhexo-theme-shokaX.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fzkz098%2Fhexo-theme-shokaX?ref=badge_shield)
-![LICENSE](	https://img.shields.io/github/license/zkz098/hexo-theme-shokaX)
-![stars](https://img.shields.io/github/stars/zkz098/hexo-theme-shokaX)
+![LICENSE](	https://img.shields.io/github/license/theme-shoka-x/hexo-theme-shokaX)
+![stars](https://img.shields.io/github/stars/theme-shoka-x/hexo-theme-shokaX)
 ![version](https://shields.io/npm/v/hexo-theme-shokax)
 
 语言(language): 简体中文 | [English](./README_en.md) \
