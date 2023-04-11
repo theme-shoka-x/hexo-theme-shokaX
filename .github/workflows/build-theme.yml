@@ -35,3 +35,36 @@ jobs:
         with:
           name: shokaX-stable
           path: shokaX.zip
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+      - name: Init environment
+        run: |
+          npm install pnpm -g
+          hexo init
+          pnpm install
+          pnpm add hexo-renderer-multi-next-markdown-it
+          pnpm add hexo-autoprefixer
+          pnpm add hexo-algoliasearch
+          pnpm add hexo-feed
+
+      - name: Install theme
+        uses: actions/checkout@v3
+        with:
+          path: themes
+      - name: Build Typescript files
+        run: |
+          cd themes
+          pnpm install
+          pnpm run build
+          cd ..
+          find themes -type f -name "*.ts" -delete
+
+      - name: Test
+        run: hexo g
