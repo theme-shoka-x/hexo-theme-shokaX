@@ -58,7 +58,7 @@ jobs:
       - name: Install theme
         uses: actions/checkout@v3
         with:
-          path: themes
+          path: themes/shokaX
       - name: Build Typescript files
         run: |
           cd themes
