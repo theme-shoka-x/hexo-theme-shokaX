@@ -1,5 +1,5 @@
-// @ts-ignore
 
+// @ts-ignore
 const fmtNum = (num) => {
   return num < 10 ? '0' + num : num
 }
@@ -10,13 +10,11 @@ hexo.extend.filter.register('template_locals', (locals:localsPlus) => {
   // @ts-ignore
   const { i18n } = hexo.theme
 
-  const pangu = theme.pangu
-    ? require('pangu')
-    : {
-        spacing: (data) => {
-          return data
-        }
-      }
+  const pangu = {
+    spacing: (data) => {
+      return data
+    }
+  }
 
   // Language & Config
   locals.alternate = theme.alternate

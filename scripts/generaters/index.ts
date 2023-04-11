@@ -2,8 +2,8 @@
 /* global hexo */
 'use strict'
 
-const fs = require('hexo-fs')
-const pagination = require('hexo-pagination')
+import fs from 'hexo-fs'
+import pagination from 'hexo-pagination'
 
 hexo.config.index_generator = Object.assign({
   per_page: typeof hexo.config.per_page === 'undefined' ? 10 : hexo.config.per_page,

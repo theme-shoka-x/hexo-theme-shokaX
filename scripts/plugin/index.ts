@@ -1,14 +1,14 @@
+import injects from './lib/injects'
+import https from 'node:https'
+import { version } from '../../package.json'
 
 hexo.on('generateBefore', () => {
   // 加载`theme_injects`过滤器
-  require('./lib/injects')(hexo)
+  injects(hexo)
 })
 
 hexo.on('generateAfter', () => {
   // 检查版本更新
-  const https = require('https')
-  const path = require('path')
-  const { version } = require(path.normalize('../../package.json'))
   https.get('https://api.github.com/repos/theme-shoka-x/hexo-theme-shokaX/releases/latest', {
     headers: {
       'User-Agent': 'Theme ShokaX Client'

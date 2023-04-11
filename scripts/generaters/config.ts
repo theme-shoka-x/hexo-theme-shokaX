@@ -1,17 +1,15 @@
 'use strict'
 /* global hexo */
 
-const merge = require('hexo-util').deepMerge || require('lodash/merge')
-// @ts-ignore
-const fs = require('hexo-fs')
-// @ts-ignore
-const path = require('path')
-// @ts-ignore
-const yaml = require('js-yaml')
+import merge from 'hexo-util'
+import fs from 'hexo-fs'
+import path from 'path'
+import yaml from 'js-yaml'
 
 hexo.extend.filter.register('before_generate', () => {
   if (hexo.config.theme_config) {
-    hexo.theme.config = merge(hexo.theme.config, hexo.config.theme_config)
+    // @ts-ignore
+    hexo.theme.config = merge.deepMerge(hexo.theme.config, hexo.config.theme_config)
   }
 
   const data = hexo.locals.get('data')
@@ -21,7 +19,9 @@ hexo.extend.filter.register('before_generate', () => {
     const { i18n } = hexo.theme
 
     const mergeLang = lang => {
-      if (data.languages[lang]) { i18n.set(lang, merge(i18n.get([lang]), data.languages[lang])) }
+      if (data.languages[lang]) { // @ts-ignore
+        i18n.set(lang, merge.deepMerge(i18n.get([lang]), data.languages[lang]))
+      }
     }
 
     for (const lang of ['en', 'ja', 'zh-CN', 'zh-HK', 'zh-TW']) {

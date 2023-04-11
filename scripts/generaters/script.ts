@@ -1,13 +1,11 @@
 /* global hexo */
-// @ts-ignore
-const fs = require('hexo-fs')
+import env from '../../package.json'
+import fs from 'hexo-fs'
 
 hexo.extend.generator.register('script', function (locals) {
   const log = hexo.log || console.log
   const config = hexo.config
   const theme = hexo.theme.config
-
-  const env = require('../../package.json')
 
   const siteConfig = {
     version: env.version,

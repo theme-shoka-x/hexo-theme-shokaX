@@ -2,7 +2,7 @@
 'use strict'
 
 // @ts-ignore
-const pagination = require('hexo-pagination')
+import pagination from 'hexo-pagination'
 
 // @ts-ignore
 const fmtNum = num => {

@@ -2,7 +2,7 @@
 'use strict'
 
 // @ts-ignore
-const fs = require('hexo-fs')
+import fs from 'hexo-fs'
 
 hexo.extend.generator.register('images', function (locals) {
   const theme = hexo.theme.config
@@ -11,7 +11,7 @@ hexo.extend.generator.register('images', function (locals) {
   if (!fs.existsSync(dir)) { return }
 
   const result = []
-  const files = fs.listDirSync(dir)
+  const files = fs.listDirSync(dir) as string[]
 
   files.forEach((file) => {
     result.push({
