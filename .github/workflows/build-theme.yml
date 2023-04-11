@@ -71,3 +71,6 @@ jobs:
         run: |
           sed -i 's/landscape/shokaX/g' _config.yml
           hexo g
+          dir
+          cd themes
+          dir
