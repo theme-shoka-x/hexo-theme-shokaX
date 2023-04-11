@@ -47,6 +47,7 @@ jobs:
       - name: Init environment
         run: |
           npm install pnpm -g
+          npm install hexo-cli -g
           hexo init
           pnpm install
           pnpm add hexo-renderer-multi-next-markdown-it
