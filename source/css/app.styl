@@ -1,12 +1,14 @@
 @import "_variables";
 
-for $inject_variable in hexo-config('injects.variable')
-  @import $inject_variable;
+if hexo-config('injects.variable')
+  for $inject_variable in hexo-config('injects.variable')
+    @import $inject_variable
 
 @import "_mixins";
 
-for $inject_mixin in hexo-config('injects.mixin')
-  @import $inject_mixin;
+if hexo-config('injects.mixin')
+  for $inject_mixin in hexo-config('injects.mixin')
+    @import $inject_mixin;
 
 if $colors = hexo-config('style.colors')
   @import $colors;
@@ -30,8 +32,9 @@ else
 if $custom = hexo-config('style.custom')
   @import $custom;
 
-for $inject_style in hexo-config('injects.style')
-  @import $inject_style;
+if hexo-config('injects.style')
+  for $inject_style in hexo-config('injects.style')
+    @import $inject_style;
 
 if $optimize = hexo-config('experiments.optimizeLongPosts')
   @import "optimize.styl"
