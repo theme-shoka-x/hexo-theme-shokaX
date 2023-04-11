@@ -45,5 +45,5 @@
     "dependencies": {
         "js-yaml": "^4.1.0",
         "sass": "^1.60.0"
-    },
+    }
 }
