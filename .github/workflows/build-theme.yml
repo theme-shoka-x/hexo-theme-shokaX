@@ -68,4 +68,6 @@ jobs:
           find themes -type f -name "*.ts" -delete
 
       - name: Test
-        run: hexo g
+        run: |
+          sed -i 's/landscape/shokaX/g' _config.yml
+          hexo g
