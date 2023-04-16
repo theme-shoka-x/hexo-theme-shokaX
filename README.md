@@ -5,6 +5,7 @@
 ![LICENSE](	https://img.shields.io/github/license/theme-shoka-x/hexo-theme-shokaX)
 ![stars](https://img.shields.io/github/stars/theme-shoka-x/hexo-theme-shokaX)
 ![version](https://shields.io/npm/v/hexo-theme-shokax)
+![build](https://img.shields.io/github/actions/workflow/status/theme-shoka-x/hexo-theme-shokaX/build-theme.yml)
 
 语言(language): 简体中文 | [English](./README_en.md) \
 此项目是shoka的一个二次开发版(算精神续作),致力于提高性能和优化魔改体验 \

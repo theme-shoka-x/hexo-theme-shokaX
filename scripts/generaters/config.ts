@@ -2,7 +2,7 @@
 /* global hexo */
 
 import merge from 'hexo-util'
-import fs from 'hexo-fs'
+import fs from 'node:fs'
 import path from 'path'
 import yaml from 'js-yaml'
 
@@ -41,6 +41,7 @@ hexo.extend.filter.register('before_generate', () => {
   if (data.images && data.images.length >= 6) {
     hexo.theme.config.image_list = data.images
   } else {
+    // @ts-ignore
     hexo.theme.config.image_list = yaml.load(fs.readFileSync(path.join(__dirname, '../../_images.yml')) as string)
   }
 })
