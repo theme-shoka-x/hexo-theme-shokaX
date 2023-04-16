@@ -679,7 +679,7 @@ const pjaxReload = function () {
   pagePosition()
 
   if (sideBar.hasClass('on')) {
-    transition(sideBar, function () {
+    transition(sideBar, 0, function () {
       sideBar.removeClass('on')
       menuToggle.removeClass('close')
     }) // 'transition.slideRightOut'

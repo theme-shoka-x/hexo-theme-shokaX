@@ -131,11 +131,11 @@ function createCircle (x:number, y:number):fireworksP {
 }
 
 // 渲染烟花粒子
-function renderParticule (anim:any):void {
+function renderParticule (targets:any):void {
   // 遍历所有可动画的对象
-  for (let i = 0; i < anim.animatables.length; i++) {
+  for (let target of targets) {
     // 调用对象上的draw函数来绘制烟花粒子
-    anim.animatables[i].target.draw()
+    target.draw()
   }
 }
 
@@ -150,9 +150,16 @@ function animateParticules (x:number, y:number):void {
     particules.push(createParticule(x, y))
   }
   // 创建一个 anime.js 的时间线，并添加动画
-  anime.timeline().add({
+  // @ts-ignore
+  anime().timeline().add({
     targets: particules,
     // x 坐标移动到烟花粒子的终点坐标
+    // 动画持续时间为 anime.random(1200, 1800)
+    duration: anime.random(1200, 1800),
+    // 动画缓动效果为 easeOutExpo
+    easing: 'easeOutExpo',
+    // 更新渲染函数
+    update: renderParticule,
     x: function (p) {
       return p.endPos.x
     },
@@ -161,16 +168,14 @@ function animateParticules (x:number, y:number):void {
       return p.endPos.y
     },
     // 半径变为0.1
-    radius: 0.1,
-    // 动画持续时间为 anime.random(1200, 1800)
-    duration: anime.random(1200, 1800),
-    // 动画缓动效果为 easeOutExpo
-    easing: 'easeOutExpo',
-    // 更新渲染函数
-    update: renderParticule
+    radius: 0.1
   }).add({
     targets: circle,
     // 圆形半径变为 anime.random(80, 160)
+    duration: anime.random(1200, 1800),
+    easing: 'easeOutExpo',
+    // 更新渲染函数
+    update: renderParticule,
     radius: anime.random(80, 160),
     lineWidth: 0,
     // 透明度变化，最终值为0
@@ -179,12 +184,8 @@ function animateParticules (x:number, y:number):void {
       easing: 'linear',
       // 持续时间为 anime.random(600, 800)
       duration: anime.random(600, 800)
-    },
-    duration: anime.random(1200, 1800),
-    easing: 'easeOutExpo',
-    // 更新渲染函数
-    update: renderParticule
-  }, 0)
+    }
+  }).play()
 }
 
 const render = anime({

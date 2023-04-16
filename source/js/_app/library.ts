@@ -373,7 +373,7 @@ const vendorCss = function (type: string, condition?: string): void {
  * slideRightOut  元素向右侧滑出
  * TODO 函数功能过于复杂，需要拆分
  */
-const transition = (target: HTMLElement, type: number|string|Function, complete?: Function): void => {
+const transition = (target: HTMLElement, type: number|string|Function, complete?: Function, begin?: Function): void => {
   let animation
   let display = 'none'
   switch (type) {
@@ -417,14 +417,14 @@ const transition = (target: HTMLElement, type: number|string|Function, complete?
         begin: function (anim) {
           target.display('block')
         },
-        translateX: [100, 0],
+        translateX: ['100%', '0%'],
         opacity: [0, 1]
       }
       display = 'block'
       break
     case 'slideRightOut':
       animation = {
-        translateX: [0, 100],
+        translateX: ['0%', '100%'],
         opacity: [1, 0]
       }
       break
@@ -437,11 +437,15 @@ const transition = (target: HTMLElement, type: number|string|Function, complete?
   anime(Object.assign({
     targets: target,
     duration: 200,
-    easing: 'linear'
-  }, animation)).finished.then(function () {
-    target.display(display)
-    complete && complete()
-  })
+    easing: 'linear',
+    begin: function () {
+      begin && begin()
+    },
+    complete: function () {
+      target.display(display)
+      complete && complete()
+    }
+  }, animation)).play()
 }
 
 const pjaxScript = function (element: HTMLScriptElement) {
@@ -490,6 +494,6 @@ const pageScroll = function (target: any, offset?: number, complete?: Function) 
       complete && complete()
     }
   }
-  anime(opt)
+  anime(opt).play()
   // 调用 anime.js 函数，并传入参数
 }
