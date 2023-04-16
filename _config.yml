@@ -344,7 +344,7 @@ advVendors:
     fetch:
       src: npm:whatwg-fetch@3.4.0/dist/fetch.umd.js
     anime:
-      src: bytedance:animejs/3.2.0/anime.min.js
+      src: npm:theme-shokax-anime@latest/anime.shokax.min.js
     algolia:
       src: bytedance:algoliasearch/4.12.1/algoliasearch-lite.umd.min.js
     instantsearch:
@@ -394,7 +394,7 @@ vendors:
     pace: npm/pace-js@1.0.2/pace.min.js # ok
     pjax: npm/pjax@0.2.8/pjax.min.js # ok
     fetch: npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js # ok
-    anime: npm/animejs@3.2.0/lib/anime.min.js # ok
+    anime: npm:theme-shokax-anime@latest/anime.shokax.min.js # ok
     algolia: npm/algoliasearch@4/dist/algoliasearch-lite.umd.js # ok
     instantsearch: npm/instantsearch.js@4/dist/instantsearch.production.min.js # ok
     lazyload: npm/lozad@1/dist/lozad.min.js # ok

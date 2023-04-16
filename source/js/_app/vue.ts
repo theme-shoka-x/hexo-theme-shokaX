@@ -44,6 +44,8 @@ Vue.createApp(
         }
         transition(neko, 1, function () {
           setTimeout(c, 210)
+        }, function() {
+          neko.display('block')
         })
       }
     }
