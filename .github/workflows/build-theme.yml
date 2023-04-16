@@ -61,11 +61,12 @@ jobs:
           path: themes/shokaX
       - name: Build Typescript files
         run: |
-          cd themes
+          cd themes/shokaX
           pnpm install
           pnpm run build
           cd ..
-          find themes -type f -name "*.ts" -delete
+          find shokaX -type f -name "*.ts" -delete
+          cd ..
 
       - name: Test
         run: |
