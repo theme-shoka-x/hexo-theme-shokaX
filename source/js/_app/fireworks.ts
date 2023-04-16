@@ -150,6 +150,7 @@ function animateParticules (x:number, y:number):void {
     particules.push(createParticule(x, y))
   }
   // 创建一个 anime.js 的时间线，并添加动画
+  // @ts-ignore
   anime().timeline().add({
     targets: particules,
     // x 坐标移动到烟花粒子的终点坐标
