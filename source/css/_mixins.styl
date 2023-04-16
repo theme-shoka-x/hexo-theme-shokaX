@@ -1,4 +1,4 @@
-$mobile-wdith = hexo-config('experiments.mobileWidth')
+$mobile-wdith = unquote(hexo-config('experiments.mobileWidth'))
 
 the-transition(duration = .2s, function = ease-in-out, delay = 0s, property = all) {
   transition:property duration function delay;
