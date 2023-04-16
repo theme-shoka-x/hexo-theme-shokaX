@@ -1,6 +1,6 @@
 /* global hexo */
 import env from '../../package.json'
-import fs from 'hexo-fs'
+import fs = require('hexo-fs')
 
 hexo.extend.generator.register('script', function (locals) {
   const log = hexo.log || console.log

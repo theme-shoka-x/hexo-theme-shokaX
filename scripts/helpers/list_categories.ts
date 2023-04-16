@@ -2,7 +2,7 @@
 /* global hexo */
 
 // @ts-ignore
-import fs from 'hexo-fs'
+import fs = require('hexo-fs')
 
 const prepareQuery = (categories, parent) => {
   const query = {

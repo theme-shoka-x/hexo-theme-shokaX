@@ -2,7 +2,7 @@
 /* global hexo */
 'use strict'
 
-import fs from 'hexo-fs'
+import fs = require('hexo-fs')
 import pagination from 'hexo-pagination'
 
 hexo.config.index_generator = Object.assign({

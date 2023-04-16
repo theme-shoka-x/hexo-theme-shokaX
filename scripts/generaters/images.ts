@@ -2,7 +2,7 @@
 'use strict'
 
 // @ts-ignore
-import fs from 'hexo-fs'
+import fs = require('hexo-fs')
 
 hexo.extend.generator.register('images', function (locals) {
   const theme = hexo.theme.config
