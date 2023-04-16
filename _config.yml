@@ -394,7 +394,7 @@ vendors:
     pace: npm/pace-js@1.0.2/pace.min.js # ok
     pjax: npm/pjax@0.2.8/pjax.min.js # ok
     fetch: npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js # ok
-    anime: npm:theme-shokax-anime@latest/anime.shokax.min.js # ok
+    anime: npm/theme-shokax-anime@latest/anime.shokax.min.js
     algolia: npm/algoliasearch@4/dist/algoliasearch-lite.umd.js # ok
     instantsearch: npm/instantsearch.js@4/dist/instantsearch.production.min.js # ok
     lazyload: npm/lozad@1/dist/lozad.min.js # ok
