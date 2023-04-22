@@ -73,5 +73,5 @@ jobs:
           sed -i 's/landscape/shokaX/g' _config.yml
           hexo g
           hexo s &
-          sleep 10
-          curl http://localhost:4000/
+          sleep 8
+          curl http://localhost:4000/index.html
