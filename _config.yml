@@ -198,6 +198,13 @@ giscus:
   commentTheme:
   lang:
 
+summary:
+  enable: false
+  mode: openai # openai/custom
+  openai:
+    remote: "https://api.openai.com"
+    apikey: "key"
+
 # Social Links
 # Usage: `Key: permalink || icon || color`
 # Key is the link label showing to end users.

@@ -1,6 +1,5 @@
 mixin PMRender(item, full)
     - full ||= false
-    //- 下方的_content为暴力修复法,在未来需要重写
     div(class="meta")
         - var create_title = __('post.created') + __('symbol.colon') + full_date(item.date)
         span(class="item" title=create_title)

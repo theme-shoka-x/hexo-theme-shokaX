@@ -7,7 +7,7 @@ If the repository address you are visiting is zkz098/hexo-theme-shokaX, please s
 ![version](https://shields.io/npm/v/hexo-theme-shokax)
 ![build](https://img.shields.io/github/actions/workflow/status/theme-shoka-x/hexo-theme-shokaX/build-theme.yml)
 
-Language: Simplified Chinese | [English](./README_en.md)
+Language: [简体中文](./README.md) | English \
 This project is a secondary development version of shoka (spiritual sequel), dedicated to improving performance and optimizing modding experience.
 The reason for its birth is that shoka has not been updated for two years, with a large backlog of bugs and feature requests.
 

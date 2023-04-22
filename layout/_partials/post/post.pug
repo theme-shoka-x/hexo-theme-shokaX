@@ -12,6 +12,9 @@ article(itemscope itemtype="http://schema.org/Article" class="post block" lang=t
             div(class="gallery" itemscope itemtype="http://schema.org/ImageGallery")
                 each photo in post.photos
                     img(data-src=_image_url(photo, post.path) itemprop="contentUrl")
+        div(class='summary')
+            p
+                != get_summary(page)
         != post.content
         if post.tags && post.tags.length
             div(class="tags")
