@@ -25,12 +25,13 @@ shokaX的社区资源导航和插件仓库为[awesome-shokaX](https://github.com
 |  PWA支持   |  ✅   |    JSD拆分     |  ✅   |
 |  注入API   |  ✅   |    社区插件系统    |  ✅   |
 |  自定义字体   |  ✅*  |    自定义样式     |  ✅*  |
-| 多种评论系统支持 |  ✅   |   用户行为分析支持   |  ✅   |
+| 多种评论系统支持 |  ✅   |   AI生成文章概括   |  🔬  |
 |  底部备案号   |  ✅   |    自定义页尾     |  ✅*  |
 | CSS渐变封面  |  ✅   | typescript支持 |  ✅   |
 
 备注:
 - *: 需要使用注入API实现
+- 🔬: 实验中，可能存在问题
 
 
 ## 🔧 如何安装?
@@ -77,3 +78,6 @@ GPL许可证主要目的是限制修改后的分发行为，避免未经许可�
 
 ## 特别鸣谢
 [<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" width="25%">](https://jb.gg/OpenSourceSupport)
+
+## 其他信息
+![Star history chart](https://api.star-history.com/svg?repos=theme-shoka-x/hexo-theme-shokaX&type=Date)

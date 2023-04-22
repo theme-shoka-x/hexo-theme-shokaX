@@ -1,22 +1,24 @@
 import fs from 'node:fs'
-import Hexo from 'hexo'
 
 function getContent (post) {
   return post?.raw ?? post?._content ?? post.content
 }
 
-const config = hexo.theme.config.summary
 let db:object
-if (fs.existsSync('../../summary.json')) {
-  // @ts-ignore
-  db = JSON.parse(fs.readFileSync('../../summary.json') as string)
-} else {
-  db = {}
-}
+
 function getSummary (path:string, content?:string):string {
+  if (fs.existsSync('summary.json')) {
+    // @ts-ignore
+    db = JSON.parse(fs.readFileSync('summary.json') as string)
+  } else {
+    db = {}
+  }
+  const config = hexo.theme.config.summary
   if (config.enable) {
-    if (db?.[path]) {
+    if (typeof db?.[path] !== 'undefined') {
       return db[path].summary
+    } else {
+      db[path] = {}
     }
     if (config.mode === 'openai') {
       const requestHeaders = {
@@ -40,13 +42,13 @@ function getSummary (path:string, content?:string):string {
           // @ts-ignore
           const summary = data.choices[0].message.content
           db[path].summary = summary
+          fs.writeFileSync('summary.json', JSON.stringify(db))
           return summary
         })
       })
     } else {
       // custom尚未支持
     }
-    fs.writeFileSync('../../summary.json', JSON.stringify(db))
   }
 }
 
