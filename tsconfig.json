@@ -10,7 +10,7 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "typeRoots": ["node_modules","node_modules/@types"],
+
     "types": ["theme-shokax-anime","lozad","jquery","fancybox"]
   },
   "typeAcquisition": {
