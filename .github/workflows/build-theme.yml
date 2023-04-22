@@ -71,4 +71,5 @@ jobs:
       - name: Test
         run: |
           sed -i 's/landscape/shokaX/g' _config.yml
-          hexo g
+          hexo s
+          curl http://localhost:4000
