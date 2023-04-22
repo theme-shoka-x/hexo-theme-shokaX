@@ -1,7 +1,6 @@
 'use strict'
 /* global hexo */
 
-// @ts-ignore
 import fs = require('hexo-fs')
 
 const prepareQuery = (categories, parent) => {

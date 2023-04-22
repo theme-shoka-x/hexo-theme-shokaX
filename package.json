@@ -1,13 +1,13 @@
 {
     "name": "hexo-theme-shokax",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "description": "a hexo theme based on shoka",
     "main": "index.js",
     "repository": "https://github.com/zkz098/hexo-theme-shokaX",
     "author": "Chou kaitaku",
     "license": "GPL-3.0-or-later",
     "scripts": {
-        "test": "cd ./source/js && tsc",
+        "test": "tsc",
         "build": "pnpm install && tsc",
         "docs:dev": "vuepress dev docs",
         "docs:build": "vuepress build docs"
@@ -19,31 +19,30 @@
         "@types/jquery": "^3.5.16",
         "@types/js-yaml": "^4.0.5",
         "@types/lozad": "^1.16.1",
-        "@types/node": "^18.15.6",
-        "@types/shelljs": "^0.8.11",
-        "@typescript-eslint/eslint-plugin": "^5.56.0",
-        "@typescript-eslint/parser": "^5.56.0",
+        "@types/node": "^18.15.13",
+        "@typescript-eslint/eslint-plugin": "^5.59.0",
+        "@typescript-eslint/parser": "^5.59.0",
         "@vuepress/client": "2.0.0-beta.61",
         "@vuepress/plugin-docsearch": "2.0.0-beta.61",
-        "algoliasearch": "^4.16.0",
-        "eslint": "^8.36.0",
+        "algoliasearch": "^4.17.0",
+        "eslint": "^8.39.0",
         "eslint-config-standard": "^17.0.0",
         "eslint-plugin-import": "^2.27.5",
-        "eslint-plugin-n": "^15.6.1",
+        "eslint-plugin-n": "^15.7.0",
         "eslint-plugin-promise": "^6.1.1",
-        "eslint-plugin-vue": "^9.10.0",
+        "eslint-plugin-vue": "^9.11.0",
         "hexo-fs": "^4.1.1",
         "hexo-util": "^3.0.1",
-        "instantsearch.js": "^4.53.0",
+        "instantsearch.js": "^4.54.1",
         "pjax": "^0.2.8",
         "theme-shokax-anime": "^0.0.4",
-        "typescript": "^5.0.2",
+        "typescript": "^5.0.4",
         "vue": "^3.2.47",
         "vuepress": "2.0.0-beta.61",
-        "vuepress-plugin-sitemap2": "2.0.0-beta.203"
+        "vuepress-plugin-sitemap2": "2.0.0-beta.205"
     },
     "dependencies": {
         "js-yaml": "^4.1.0",
-        "sass": "^1.60.0"
+        "sass": "^1.62.0"
     }
 }

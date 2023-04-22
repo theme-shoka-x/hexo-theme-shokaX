@@ -133,7 +133,7 @@ function createCircle (x:number, y:number):fireworksP {
 // 渲染烟花粒子
 function renderParticule (targets:any):void {
   // 遍历所有可动画的对象
-  for (let target of targets) {
+  for (const target of targets) {
     // 调用对象上的draw函数来绘制烟花粒子
     target.draw()
   }
@@ -203,13 +203,12 @@ const hasAncestor = function (node:any, name:string):boolean {
   do {
     if (node === null || node === undefined) break
     if (node.nodeName === name) return true
-  } while (node = node.parentNode)
+  } while ((node = node.parentNode) !== null)
   return false
 }
 
 document.addEventListener(tap, function (e) {
   // 禁用A标签的Fireworks动画以修复动画不消失问题
-  // @ts-ignore
   if (hasAncestor(e.target, 'a')) {
     return
   }
