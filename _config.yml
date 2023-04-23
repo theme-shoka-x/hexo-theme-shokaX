@@ -198,6 +198,17 @@ giscus:
   commentTheme:
   lang:
 
+summary:
+  enable: false
+  introduce: "我是基于ChatGPT-turbo-3.5实现的AI助手，在此网站上负责整理和概括文章" # AI自我介绍
+  mode: openai # openai/custom
+  openai:
+    remote: "https://api.openai.com"
+    apikey: "key"
+  custom:
+    remote: "http://localhost:8000"
+
+
 # Social Links
 # Usage: `Key: permalink || icon || color`
 # Key is the link label showing to end users.

@@ -12,6 +12,19 @@ article(itemscope itemtype="http://schema.org/Article" class="post block" lang=t
             div(class="gallery" itemscope itemtype="http://schema.org/ImageGallery")
                 each photo in post.photos
                     img(data-src=_image_url(photo, post.path) itemprop="contentUrl")
+        if theme.summary.enable
+            div(class='tabs' id='summary')
+                div(class="show-btn")
+                div(class="nav")
+                    ul(class="special")
+                div(class="tab" data-id="summary" data-title="自我介绍")
+                    p
+                        != get_introduce()
+                div(class="tab active" data-id="summary" data-title="文章概括")
+                    p
+                        != get_summary(page)
+
+
         != post.content
         if post.tags && post.tags.length
             div(class="tags")
