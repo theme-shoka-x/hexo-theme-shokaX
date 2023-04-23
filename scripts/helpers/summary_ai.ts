@@ -5,8 +5,7 @@ function getContent (post) {
 }
 
 let db:object
-
-function getSummary (path:string, content?:string):string {
+function postMessage (path:string, content:string, dbPath:string, startMessage:string) {
   if (fs.existsSync('summary.json')) {
     // @ts-ignore
     db = JSON.parse(fs.readFileSync('summary.json') as string)
@@ -15,10 +14,14 @@ function getSummary (path:string, content?:string):string {
   }
   const config = hexo.theme.config.summary
   if (config.enable) {
-    if (typeof db?.[path] !== 'undefined') {
-      return db[path].summary
+    if (typeof db?.[path] !== 'undefined' && typeof db?.[path]?.[dbPath] !== 'undefined') {
+      return db[path][dbPath]
     } else {
-      db[path] = {}
+      if (typeof db?.[path] === 'undefined') {
+        db[path] = {}
+      } else {
+        db[path][dbPath] = ''
+      }
     }
     if (config.mode === 'openai') {
       const requestHeaders = {
@@ -27,7 +30,7 @@ function getSummary (path:string, content?:string):string {
       }
       const requestBody = {
         model: 'gpt-3.5-turbo',
-        messages: [{ role: 'user', content: `请为下述文章提供一份200字以内的概括，使用中文回答且尽可能简洁: ${content}` }],
+        messages: [{ role: 'user', content: `${startMessage} ${content}` }],
         temperature: 0.7
       }
       fetch(`${config.openai.remote}/v1/chat/completions`, {
@@ -41,7 +44,7 @@ function getSummary (path:string, content?:string):string {
         response.json().then((data:object) => {
           // @ts-ignore
           const summary = data.choices[0].message.content
-          db[path].summary = summary
+          db[path][dbPath] = summary
           fs.writeFileSync('summary.json', JSON.stringify(db))
           return summary
         })
@@ -53,5 +56,9 @@ function getSummary (path:string, content?:string):string {
 }
 
 hexo.extend.helper.register('get_summary', (post) => {
-  return getSummary(post.path, getContent(post))
+  return postMessage(post.path, getContent(post), 'summary', '请为下述文章提供一份200字以内的概括，使用中文回答且尽可能简洁: ')
+})
+
+hexo.extend.helper.register('get_introduce', () => {
+  return hexo.theme.config.summary.introduce
 })

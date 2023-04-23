@@ -35,6 +35,7 @@ shokaX的社区资源导航和插件仓库为[awesome-shokaX](https://github.com
 
 
 ## 🔧 如何安装?
+注意: 本项目需要 node.js 18.x 或更高版本才能运行 \
 建议使用[ShokaX-CLI](https://github.com/zkz098/shokaX-CLI) ,执行下列命令即可:
 ```bash
 npm i shokax-cli --location=global
