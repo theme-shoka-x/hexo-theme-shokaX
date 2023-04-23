@@ -17,12 +17,10 @@ article(itemscope itemtype="http://schema.org/Article" class="post block" lang=t
                 div(class="show-btn")
                 div(class="nav")
                     ul(class="special")
-                        li(class="") 自我介绍
-                        li(class="active") 文章概括
-                div(class="tab active" data-id="summary" data-title="自我介绍" data-ready="true")
+                div(class="tab" data-id="summary" data-title="自我介绍")
                     p
                         != get_introduce()
-                div(class="tab active" data-id="summary" data-title="文章概括" data-ready="true")
+                div(class="tab active" data-id="summary" data-title="文章概括")
                     p
                         != get_summary(page)
 
