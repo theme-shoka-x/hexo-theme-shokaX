@@ -5,44 +5,24 @@
  */
 
 declare interface EventTarget {
-// 设置或获取元素属性值
-  attr(type: string, value?: any): any
-
-// 移除元素的指定class
-  removeClass(className: string): any
-
-// 添加元素的指定class
-  addClass(className: string): any
-
-// 创建并插入一个新元素
-  createChild(tag: string, obj: Object, positon?: string | null): HTMLElement
-
-// 获取元素的子元素
-  child(selector: string): HTMLElement
-
-// 检查元素是否有指定class
-  hasClass(className: string): boolean
-
-// 设置或获取元素高度
-  changeOrGetHeight(h?: number | string): number
-
-// 添加或移除元素指定class
-  toggleClass(className: string, display?: boolean): any
-
-// 设置或获取元素宽度
-  changeOrGetWidth(w?: number | string): number
-
-// 在指定元素后面插入当前元素
-  insertAfter(element: HTMLElement): void
-
-// 将对象包装到元素中
-  wrapObject(obj: Object)
-
-// 查找元素的子元素
-  find(selector: string): NodeListOf<HTMLElement>
-
-// 设置或获取元素display属性
-  display(d?: null | string): string | any
+  createChild(tag: string, obj: Object, positon?: string): HTMLElement;
+  wrapObject(obj: Object): void;
+  changeOrGetHeight(h?: number | string): number;
+  changeOrGetWidth(w?: number | string): number;
+  getTop(): number;
+  left(): number;
+  attr(type: string, value: string): EventTarget;
+  attr(type: string):string
+  attr(type:string, value:null):void
+  insertAfter(element: HTMLElement): void;
+  display(d?: string): string | EventTarget;
+  child(selector: string): HTMLElement;
+  find(selector: string): NodeListOf<HTMLElement>;
+  _class(type: string, className: string, display?: boolean): void;
+  addClass(className: string): any;
+  removeClass(className: string): any;
+  toggleClass(className: string, display?: boolean): any;
+  hasClass(className: string): boolean;
 }
 
 declare const LOCAL: {
@@ -196,7 +176,7 @@ Object.assign(HTMLElement.prototype, {
     }
     return this.getBoundingClientRect().width
   },
-  top: function (): number {
+  getTop: function (): number {
     return this.getBoundingClientRect().top
   },
   left: function (): number {
@@ -488,7 +468,7 @@ const pageScroll = function (target: any, offset?: number, complete?: Function) 
     // 动画缓动函数
     easing: 'easeInOutQuad',
     // 如果 offset 存在，则滚动到 offset，如果 target 是数字，则滚动到 target，如果 target 是 DOM 元素，则滚动到下述表达式
-    scrollTop: offset || (typeof target === 'number' ? target : (target ? target.top() + document.documentElement.scrollTop - siteNavHeight : 0)),
+    scrollTop: offset || (typeof target === 'number' ? target : (target ? target.getTop() + document.documentElement.scrollTop - siteNavHeight : 0)),
     // 完成回调函数
     complete: function () {
       complete && complete()

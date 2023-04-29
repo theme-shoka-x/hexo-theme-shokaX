@@ -79,7 +79,7 @@ const postFancybox = function (p) {
       $dom.each(p + ' p.gallery', function (element) {
         const box = document.createElement('div')
         box.className = 'gallery'
-        box.attr('data-height', element.attr('data-height') || 220)
+        box.attr('data-height', String(element.attr('data-height') || 220))
 
         box.innerHTML = element.innerHTML.replace(/<br>/g, '')
 
@@ -378,7 +378,7 @@ const postBeauty = function () {
     }, {
       root: null,
       threshold: 0.5
-    });
+    })
     angleDown.forEach(i => {
       io.observe(i)
     })
@@ -438,7 +438,7 @@ const tabFormat = function () {
     })
 
     box.appendChild(element)
-    element.attr('data-ready', true)
+    element.attr('data-ready', String(true))
   })
 }
 
@@ -631,7 +631,7 @@ const domInit = function () {
       toolPlayer.player.mini()
     })
   }
-  
+
   const createIntersectionObserver = function () {
     if (!window.IntersectionObserver) return
     // waves在视口外时停止动画
@@ -640,17 +640,17 @@ const domInit = function () {
         document.querySelectorAll('.parallax>use').forEach(i => {
           i.classList.remove('stop-animation')
         })
-        document.querySelectorAll('#imgs .item').forEach(i=>{
+        document.querySelectorAll('#imgs .item').forEach(i => {
           i.classList.remove('stop-animation')
-        }) 
+        })
       } else {
         document.querySelectorAll('.parallax>use').forEach(i => {
           i.classList.add('stop-animation')
         })
         // waves不可见时imgs也应该不可见了
-        document.querySelectorAll('#imgs .item').forEach(i=>{
+        document.querySelectorAll('#imgs .item').forEach(i => {
           i.classList.add('stop-animation')
-        }) 
+        })
       }
     }, {
       root: null,

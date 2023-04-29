@@ -234,7 +234,7 @@ const scrollHandle = function (event) {
   const scrollPercent = Math.round(Math.min(100 * window.scrollY / contentVisibilityHeight, 100)) + '%'
   // 更新回到顶部按钮的文字
   if (backToTop.child('span').innerText !== scrollPercent) {
-    backToTop.child('span').innerText = scrollPercent;
+    backToTop.child('span').innerText = scrollPercent
   }
   // 更新百分比进度条的宽度
   if ($dom('#sidebar').hasClass('affix') || $dom('#sidebar').hasClass('on')) {

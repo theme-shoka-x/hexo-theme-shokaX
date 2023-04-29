@@ -24,6 +24,51 @@ function postMessage (path:string, content:string, dbPath:string, startMessage:s
       }
     }
     if (config.mode === 'openai') {
+      const request = () => {
+        fetch(`${config.openai.remote}/v1/chat/completions`, {
+          method: 'POST',
+          headers: requestHeaders,
+          body: JSON.stringify(requestBody)
+        }).then((response) => {
+          if (!response.ok) {
+            throw Error('ERROR: Failed to get summary from Openai API')
+          }
+          response.json().then((data:object) => {
+            // @ts-ignore
+            const summary = data.choices[0].message.content
+            try {
+              db[path][dbPath] = summary
+            } catch (e) {
+              db ??= {}
+              db[path] ??= {}
+              db[path][dbPath] ??= ''
+              console.log(db[path])
+              db[path][dbPath] = summary
+            }
+            fs.writeFileSync('summary.json', JSON.stringify(db))
+            if (fs.existsSync('requested.lock')) {
+              fs.unlinkSync('requested.lock')
+            }
+            return summary
+          })
+        })
+      }
+
+      const checkTime = () => {
+        if (fs.existsSync('request.lock')) {
+          if (fs.existsSync('requested.lock')) {
+            setTimeout(checkTime, 1000 * 10)
+            return
+          }
+          // Openai API 针对个人用户限制 3 RPM，这里是30s后发送请求
+          fs.writeFileSync('requested.lock', '')
+          setTimeout(request, 1000 * 20)
+          fs.unlinkSync('request.lock') // TODO 需要测试
+        } else {
+          fs.writeFileSync('request.lock', '')
+          request()
+        }
+      }
       const requestHeaders = {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${config.openai.apikey}`
@@ -33,22 +78,8 @@ function postMessage (path:string, content:string, dbPath:string, startMessage:s
         messages: [{ role: 'user', content: `${startMessage} ${content}` }],
         temperature: 0.7
       }
-      fetch(`${config.openai.remote}/v1/chat/completions`, {
-        method: 'POST',
-        headers: requestHeaders,
-        body: JSON.stringify(requestBody)
-      }).then((response) => {
-        if (!response.ok) {
-          throw Error('ERROR: Failed to get summary from Openai API')
-        }
-        response.json().then((data:object) => {
-          // @ts-ignore
-          const summary = data.choices[0].message.content
-          db[path][dbPath] = summary
-          fs.writeFileSync('summary.json', JSON.stringify(db))
-          return summary
-        })
-      })
+
+      checkTime()
     } else {
       // custom尚未支持
     }
