@@ -257,6 +257,7 @@ const mediaPlayer = function (t, config?) {
           })
           if (t.player.group) {
             tab.attr('data-title', t.player.options.rawList[item.group].title)
+            // @ts-ignore
               .attr('data-id', t.player._id)
           }
         }
@@ -443,7 +444,7 @@ const mediaPlayer = function (t, config?) {
     _id: utils.random(999999),
     group: true,
     // 加载播放列表
-    load: function (newList) {
+    load: (newList) => {
       let d = ''
 
       if (newList && newList.length > 0) {
@@ -504,7 +505,7 @@ const mediaPlayer = function (t, config?) {
       })
     },
     // 根据模式切换当前曲目index
-    mode: function () {
+    mode: () => {
       const total = playlist.data.length
 
       if (!total || playlist.errnum === total) { return }
@@ -519,7 +520,7 @@ const mediaPlayer = function (t, config?) {
         playlist.index = index
       }
 
-      const random = function () {
+      const random = () => {
         const p = utils.random(total)
         if (playlist.index !== p) {
           playlist.index = p
@@ -545,7 +546,7 @@ const mediaPlayer = function (t, config?) {
       this.init()
     },
     // 直接设置当前曲目index
-    switch: function (index) {
+    switch: (index) => {
       if (typeof index === 'number' &&
                 index !== playlist.index &&
                 playlist.current() &&
@@ -582,7 +583,7 @@ const mediaPlayer = function (t, config?) {
         this.play()
       }
     },
-    play: function () {
+    play: () => {
       NOWPLAYING && NOWPLAYING.player.pause()
 
       if (playlist.current().error) {
