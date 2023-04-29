@@ -54,15 +54,15 @@ function postMessage (path:string, content:string, dbPath:string, startMessage:s
         })
       }
 
-      const checkTime = () => {
+      const checkTime = (waitTime:number) => {
         if (fs.existsSync('request.lock')) {
           if (fs.existsSync('requested.lock')) {
-            setTimeout(checkTime, 1000 * 10)
+            setTimeout(checkTime, 1000 * waitTime)
             return
           }
-          // Openai API 针对个人用户限制 3 RPM，这里是30s后发送请求
+          // Openai API 针对个人用户免费试用限制 3 RPM，这里是25s后发送请求
           fs.writeFileSync('requested.lock', '')
-          setTimeout(request, 1000 * 20)
+          setTimeout(request, 1000 * 2.5 * waitTime)
           fs.unlinkSync('request.lock') // TODO 需要测试
         } else {
           fs.writeFileSync('request.lock', '')
@@ -78,8 +78,14 @@ function postMessage (path:string, content:string, dbPath:string, startMessage:s
         messages: [{ role: 'user', content: `${startMessage} ${content}` }],
         temperature: 0.7
       }
-
-      checkTime()
+      if (config.pricing === 'trial') {
+        hexo.log.info('Requesting OpenAI API... (3 RPM mode)')
+        hexo.log.info('It may take 20 minutes or more (depending on the number of articles, each one takes 25 seconds)')
+        checkTime(10)
+      } else {
+        hexo.log.info('Requesting OpenAI API... (60 RPM mode)')
+        checkTime(0.5)
+      }
     } else {
       // custom尚未支持
     }
