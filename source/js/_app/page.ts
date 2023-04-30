@@ -744,7 +744,6 @@ const siteInit = function () {
       '.leancloud-recent-comment',
       'script[data-config]'
     ],
-    analytics: false,
     cacheBust: false
   })
 
