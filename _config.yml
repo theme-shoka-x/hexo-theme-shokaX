@@ -352,7 +352,7 @@ advVendors:
     pace:
       src: bytedance:pace/1.0.2/pace.min.js
     pjax:
-      src: baomitu:pjax/0.2.8/pjax.min.js
+      src: npm:theme-shokax-pjax@latest/pjax.shokax.min.js
     fetch:
       src: npm:whatwg-fetch@3.4.0/dist/fetch.umd.js
     anime:
@@ -404,7 +404,7 @@ vendors:
 
   js:
     pace: npm/pace-js@1.0.2/pace.min.js # ok
-    pjax: npm/pjax@0.2.8/pjax.min.js # ok
+    pjax: npm/theme-shokax-pjax@latest/pjax.shokax.min.js # ok
     fetch: npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js # ok
     anime: npm/theme-shokax-anime@latest/anime.shokax.min.js
     algolia: npm/algoliasearch@4/dist/algoliasearch-lite.umd.js # ok
