@@ -1,10 +1,17 @@
 import injects from './lib/injects'
 import https from 'node:https'
 import { version } from '../../package.json'
+import fs from 'node:fs'
 
 hexo.on('generateBefore', () => {
   // 加载`theme_injects`过滤器
   injects(hexo)
+  if (fs.existsSync('request.lock')) {
+    fs.unlinkSync('request.lock')
+  }
+  if (fs.existsSync('requested.lock')) {
+    fs.unlinkSync('requested.lock')
+  }
 })
 
 hexo.on('generateAfter', () => {
