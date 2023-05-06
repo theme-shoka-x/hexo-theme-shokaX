@@ -1,7 +1,7 @@
 'use strict'
 /* global hexo */
 
-import merge from 'hexo-util'
+import { deepMerge } from 'hexo-util'
 import fs from 'node:fs'
 import path from 'path'
 import yaml from 'js-yaml'
