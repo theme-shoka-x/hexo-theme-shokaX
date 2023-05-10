@@ -115,6 +115,7 @@ $dom.each = (selector: string, callback: (value: HTMLElement, key: number, paren
 }
 
 /* shokaX异步化计划 */
+// TODO 异步化意义不明确，代码实现存在问题
 $dom.asyncify = async (selector: string, element: Document = document): Promise<HTMLElement | null> => {
   if (selector.indexOf('#') === 0) {
     return element.getElementById(selector.replace('#', ''))
@@ -162,6 +163,7 @@ Object.assign(HTMLElement.prototype, {
   },
   changeOrGetHeight: function (h?: number | string): number {
     if (h) {
+      // TODO 0rem是期望的值吗?
       this.style.height = typeof h === 'number' ? h + 'rem' : h
     }
     return this.getBoundingClientRect().height
@@ -172,6 +174,7 @@ Object.assign(HTMLElement.prototype, {
    */
   changeOrGetWidth: function (w?: number | string): number {
     if (w) {
+      // TODO 0rem是期望的值吗?
       this.style.width = typeof w === 'number' ? w + 'rem' : w
     }
     return this.getBoundingClientRect().width

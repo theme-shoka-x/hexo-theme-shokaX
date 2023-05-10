@@ -465,7 +465,7 @@ const mediaPlayer = function (t, config?) {
       return this
     },
     fetch: function () {
-      return new Promise<any>((resolve, reject) => {
+      return new Promise<boolean>((resolve, reject) => {
         if (playlist.data.length > 0) {
           resolve(true)
         } else {
@@ -505,7 +505,7 @@ const mediaPlayer = function (t, config?) {
       })
     },
     // 根据模式切换当前曲目index
-    mode: function() {
+    mode: function () {
       const total = playlist.data.length
 
       if (!total || playlist.errnum === total) { return }
@@ -546,7 +546,7 @@ const mediaPlayer = function (t, config?) {
       this.init()
     },
     // 直接设置当前曲目index
-    switch: function(index) {
+    switch: function (index) {
       if (typeof index === 'number' &&
                 index !== playlist.index &&
                 playlist.current() &&
@@ -556,7 +556,7 @@ const mediaPlayer = function (t, config?) {
       }
     },
     // 更新source为当前曲目index
-    init: function() {
+    init: function () {
       const item = playlist.current()
 
       if (!item || item.error) {
@@ -583,7 +583,7 @@ const mediaPlayer = function (t, config?) {
         this.play()
       }
     },
-    play: function() {
+    play: function () {
       NOWPLAYING && NOWPLAYING.player.pause()
 
       if (playlist.current().error) {
@@ -638,7 +638,7 @@ const mediaPlayer = function (t, config?) {
     el: null,
     data: null,
     index: 0,
-    create: function(box) {
+    create: function (box) {
       const current = playlist.index
       // const that = this
       const raw = playlist.current().lrc

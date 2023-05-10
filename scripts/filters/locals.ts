@@ -17,6 +17,7 @@ hexo.extend.filter.register('template_locals', (locals:localsPlus) => {
   }
 
   // Language & Config
+  // 根据主题配置的 Creative Commons 许可证生成链接
   locals.alternate = theme.alternate
   locals.title = pangu.spacing(__('title') !== 'title' ? __('title') : config.title)
   locals.subtitle = pangu.spacing(__('subtitle') !== 'subtitle' ? __('subtitle') : config.subtitle)
@@ -28,6 +29,7 @@ hexo.extend.filter.register('template_locals', (locals:localsPlus) => {
   locals.hostname = new URL(config.url).hostname || config.url
 
   // Creative Commons
+  // 根据主题配置的 Creative Commons 许可证生成链接
   if (theme.creative_commons.license === 'zero') {
     locals.ccURL = 'https://creativecommons.org/' + 'publicdomain/zero/1.0/' + (theme.creative_commons.language || '')
   } else {
