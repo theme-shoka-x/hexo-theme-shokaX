@@ -59,7 +59,7 @@ if (!(hexo.config.archive && hexo.config.archive.enabled === false)) {
 
     const posts = {}
 
-    // Organize posts by date
+    // 按日期对文章进行分类
     allPosts.forEach(post => {
       const date = post.date
       const year = date.year()

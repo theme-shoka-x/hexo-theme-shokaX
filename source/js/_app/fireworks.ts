@@ -5,8 +5,8 @@ declare interface fireworksP {
   x: number,
   y: number,
   color: string,
-  radius: any,
-  endPos: any,
+  radius: number,
+  endPos: Object,
   alpha?: number,
   lineWidth?: number,
   draw: ()=>void
@@ -198,18 +198,18 @@ const render = anime({
   }
 })
 
-const hasAncestor = function (node:any, name:string):boolean {
+const hasAncestor = function (node:Element, name:string):boolean {
   name = name.toUpperCase()
   do {
     if (node === null || node === undefined) break
     if (node.nodeName === name) return true
-  } while ((node = node.parentNode) !== null)
+  } while ((node = <Element>node.parentNode) !== null)
   return false
 }
 
 document.addEventListener(tap, function (e) {
   // 禁用A标签的Fireworks动画以修复动画不消失问题
-  if (hasAncestor(e.target, 'a')) {
+  if (hasAncestor(<Element>e.target, 'a')) {
     return
   }
   render.play()

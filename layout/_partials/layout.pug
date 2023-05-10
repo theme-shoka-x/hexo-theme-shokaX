@@ -2,6 +2,10 @@ include ../_mixin/breadcrumb.pug
 include ../_mixin/sidebar.pug
 include ../_mixin/widgets.pug
 
+- var ignores = []
+if (theme.quicklink.ignores)
+    - ignores.push(theme.quicklink.ignores)
+
 doctype html
 html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'filter: grayscale(1);':'' )
     head
@@ -67,65 +71,43 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
                     != partial('_partials/footer.pug', {}, {cache: true})
         - var ccIcon = '<i class="ic i-creative-commons"></i>'
         - var ccText = theme.creative_commons.license.toUpperCase()
-        <script data-config type="text/javascript" >
-            | var LOCAL = {
-            != `path: \"${_permapath(page.path)}\",`
-            |   favicon: {
-            !=      `show: \'${__('favicon.show')}\',`
-            !=      `hide: \'${__('favicon.hide')}\'`
-            |    },
-            |    search: {
-            !=       `placeholder: \"${__('search.placeholder')}\",`
-            !=       `empty: \"${__('search.empty')}\",`
-            !=       `stats: \"${__('search.stats')}\"`
-            |    },
-            if theme.widgets.recent_comments || page.comment !== false
-                != `valine: ${page.valine ? _safedump(page.valine) : 'true'},`
-            if page.chart
-                | chart: true,
-            if page.math
-                | copy_tex: true,
-                | katex: true,
-            if page.mermaid
-                | mermaid: true,
-            if page.audio
-                != `audio: ${_safedump(page.audio)},`
-            if page.audio === false
-                | audio: {},
-            if page.fancybox !== false
-                | fancybox: true,
-            if page.copyright !== false
-                if page.copyright === true
-                    | nocopy: true,
-                    != `copyright: \'${__("tips.nocopy")}\',`
-                else
-                    != `copyright: \'${__("tips.copyright", ccIcon + ccText)}\',`
-            if page.outime === false
-                | outime: false,
-            else
-                | outime: true,template: `!{ __('outime.template') }`,
-            if page.quiz
-                | quiz: {
-                != `choice: \'${__('quiz.choice')}\',`
-                != `multiple: \'${__('quiz.multiple')}\',`
-                != `true_false: \'${__('quiz.true_false')}\',`
-                != `essay: \'${__('quiz.essay')}\',`
-                != `gap_fill: \'${__('quiz.gap_fill')}\',`
-                != `mistake: \'${__('quiz.mistake')}\'`
-                | },
-            | ignores : [
-            |   function(uri) {
-            |       return uri.includes('#');
-            |   },
-            |   function(uri) {
-            |       return new RegExp(LOCAL.path+"$").test(uri);
-            |   }
-            if theme.quicklink.ignores
-                | ,
-                != _safedump(theme.quicklink.ignores)
-            | ]
-            | };
-        </script>
+        script(data-config type="text/javascript").
+            var LOCAL = {
+                path: `#{_permapath(page.path)}`,
+                favicon: {
+                show: `#{__('favicon.show')}`,
+                hide: `#{__('favicon.hide')}`
+            },
+            search: {
+            placeholder: "!{__('search.placeholder')}",
+                empty: "!{__('search.empty')}",
+                stats: "!{__('search.stats')}"
+            },
+            valine: `#{page.valine ? _safedump(page.valine) : 'true'}`,
+                chart: `#{page.chart ? 'true' : 'false'}`,
+                copy_tex: `#{page.math ? 'true' : 'false'}`,
+                katex: `#{page.math ? 'true' : 'false'}`,
+                mermaid: `#{page.mermaid ? 'true' : 'false'}`,
+                audio: `#{_safedump(page.audio)}`,
+                fancybox: `#{page.fancybox !== false ? 'true' : 'false'}`,
+                nocopy: `#{page.nocopy ? 'true' : 'false'}`,
+                outime: `#{page.outime !== false ? 'true' : 'false'}`,
+                template: `#{__('outime.template')}`,
+                quiz: {
+                choice: `#{__('quiz.choice')}`,
+                multiple: `#{__('quiz.multiple')}`,
+                true_false: `#{__('quiz.true_false')}`,
+                essay: `#{__('quiz.essay')}`,
+                gap_fill: `#{__('quiz.gap_fill')}`,
+                mistake: `#{__('quiz.mistake')}`
+            },
+            ignores: [
+            (uri) => uri.includes('#'),
+            (uri) => new RegExp(LOCAL.path + '$').test(uri),
+                !{JSON.stringify(ignores)}
+            ]
+            };
+
         script(src="https://polyfill.alicdn.com/polyfill.min.js")
         if theme.advVendors.enable
             each i in _list_vendor_js()

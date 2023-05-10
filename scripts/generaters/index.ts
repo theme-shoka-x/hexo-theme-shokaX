@@ -69,7 +69,6 @@ hexo.extend.generator.register('index', function (locals) {
           cat.subs = child.sort({ name: 1 }).limit(6).toArray()
           pl = Math.max(0, pl - child.length)
           if (pl > 0) {
-            // TODO 需要测试
             cat.subs.push(...cat.posts.sort({ title: 1 })
               .filter(function (item, i) { return item.categories.last()._id === cat._id })
               .limit(pl).toArray())

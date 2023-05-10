@@ -2,36 +2,27 @@ declare const algoliasearch: any, quicklink: any, instantsearch: any
 
 const cardActive = function () {
   if (!$dom('.index.wrap')) { return }
-
-  if (!window.IntersectionObserver) {
-    $dom.each('.index.wrap article.item, .index.wrap section.item', function (article) {
-      if (article.hasClass('show') === false) {
-        article.addClass('show')
+  const io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (article) {
+      if (article.target.hasClass('show')) {
+        io.unobserve(article.target)
+      } else {
+        if (article.isIntersecting || article.intersectionRatio > 0) {
+          article.target.addClass('show')
+          io.unobserve(article.target)
+        }
       }
     })
-  } else {
-    const io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (article) {
-        if (article.target.hasClass('show')) {
-          io.unobserve(article.target)
-        } else {
-          if (article.isIntersecting || article.intersectionRatio > 0) {
-            article.target.addClass('show')
-            io.unobserve(article.target)
-          }
-        }
-      })
-    }, {
-      root: null,
-      threshold: [0.3]
-    })
+  }, {
+    root: null,
+    threshold: [0.3]
+  })
 
-    $dom.each('.index.wrap article.item, .index.wrap section.item', function (article) {
-      io.observe(article)
-    })
+  $dom.each('.index.wrap article.item, .index.wrap section.item', function (article) {
+    io.observe(article)
+  })
 
-    $dom('.index.wrap .item:first-child').addClass('show')
-  }
+  $dom('.index.wrap .item:first-child').addClass('show')
 
   $dom.each('.cards .item', function (element, index) {
     ['mouseenter', 'touchstart'].forEach(function (item) {
@@ -55,7 +46,7 @@ const registerExtURL = function () {
     const link = <HTMLAnchorElement>document.createElement('a')
     // https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
 
-    link.href = decodeURIComponent(atob(element.dataset.url).split('').map(function (c) {
+    link.href = decodeURIComponent(window.atob(element.dataset.url).split('').map(function (c) {
       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
     }).join(''))
     link.rel = 'noopener external nofollow noreferrer'
@@ -777,5 +768,5 @@ window.addEventListener('DOMContentLoaded', siteInit, {
   passive: true
 })
 
-console.log('%c Theme.ShokaX v' + CONFIG.version + ' %c https://github.com/zkz098/hexo-theme-shokaX ', 'color: white; background: #e9546b; padding:5px 0;', 'padding:4px;border:1px solid #e9546b;')
+console.log('%c Theme.ShokaX v' + CONFIG.version + ' %c https://github.com/theme-shoka-x/hexo-theme-shokaX ', 'color: white; background: #e9546b; padding:5px 0;', 'padding:4px;border:1px solid #e9546b;')
 console.log('%c by kaitaku ' + '%c https://www.kaitaku.xyz', 'color: white; background: #00bfff; padding: 5px 3px;', 'padding: 4px;border:1px solid #00bfff')
