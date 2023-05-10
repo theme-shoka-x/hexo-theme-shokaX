@@ -1,15 +1,15 @@
 name: English
 
 favicon:
-  show: （●´3｀●）Goooood
-  hide: (´Д｀)Booooom
+  show: (●´3｀●) Here we go again.
+  hide: (´Д｀) It's a disaster!
 
 title:
   archive: Archive
   category: Category
   tag: Tag
   all: All
-  not_found: Σ( ° △ °|||)︴404!
+  not_found: Σ( ° △ °|||)︴404! Nothing can be seen
   category_in: Posted in category "%s"
   tag_in: Posted with tag "%s"
   archive_in: Posted on "%s"
@@ -22,13 +22,13 @@ menu:
   tags: Tags
   about: About
   search: Search
-  aboutsite: About the Website
-  census: Blog access statistics
-  updata: Changelog
-  statistics: Article statistics
-  admiration: Appreciation to author
+  census: Blog Visits Statistics
+  aboutsite: About This Site
+  updata: Update Log
+  statistics: Statistics
+  admiration: Appreciation
   friends: Friends
-  privacy: Privacy policy
+  privacy: Privacy Policy
 
 sidebar:
   overview: Overview

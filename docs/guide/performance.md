@@ -1,11 +1,6 @@
 # 性能优化
 ## 性能报告
-:::tip
-性能报告的测试网站均为较有特点的Shoka(X)网站 \
-报告中的symlpigeon和shoka较有横向对比性(除LCP)
-:::
-![性能测试报告-谷歌移动](./perf-mobile.png)
-
+性能报告正在更新...
 ## 优化网页
 :::tip
 下方数据均基于google pagespeed移动设备规格测试
