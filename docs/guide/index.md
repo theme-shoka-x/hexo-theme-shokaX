@@ -132,5 +132,8 @@ prismjs:
   enable: false
 ```
 
+:::danger
+如果您把 ShokaX 网站部署到了 cloudflare CDN 支持的服务上，请关闭`rocket-loader`，此功能与ShokaX的page ts存在冲突，会导致页面在loading时卡死
+:::
 
 现在shokaX已经可以正常运行了,`hexo s`即可
