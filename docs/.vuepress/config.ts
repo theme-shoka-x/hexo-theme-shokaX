@@ -28,7 +28,7 @@ export default defineUserConfig({
     description: '基于 shoka 的高度可定制现代hexo主题，简洁、高效、易用。',
     head: [['meta',{name: "baidu-site-verification",content: "codeva-8HEN8ONW9G"}]],
     theme: defaultTheme({
-        repo: "zkz098/hexo-theme-shokaX",
+        repo: "theme-shoka-x/hexo-theme-shokaX",
         navbar: navbar,
         lastUpdated: true,
         contributors: true,
