@@ -24,5 +24,21 @@ export default {
                 {text: "性能优化",link: "/guide/performance.html"}
             ]
         }
-    ]
+    ],
+  '/develop/': [
+    {
+      text: "开发指南",
+      collapsible: true,
+      children: [
+        {text: "快速上手",link: "/develop/basic/"}
+      ]
+    },
+    {
+      text: "API指南",
+      collapsible: true,
+      children: [
+        {text: "术语表及说明",link: "/develop/interface/"}
+      ]
+    }
+  ]
 }
