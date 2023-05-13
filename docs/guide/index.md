@@ -1,7 +1,7 @@
 # 快速上手
 ## 在开始之前
 在开始之前，你应该已经安装了如下软件:
-- nodejs 16以上
+- nodejs 18以上
 - hexo-cli 的 latest 版本
 
 ShokaX-CLI 目前版本不负责处理 hexo 环境，请自行`hexo init`
@@ -132,5 +132,9 @@ prismjs:
   enable: false
 ```
 
+:::warning
+在0.2.5及以下的版本中，如果您把 ShokaX 网站部署到了 cloudflare CDN 支持的服务上，请关闭`rocket-loader`，此功能与ShokaX的page ts存在冲突，会导致页面在loading时卡死 \
+0.2.6已修复此问题，可开启`rocket-loader`功能
+:::
 
 现在shokaX已经可以正常运行了,`hexo s`即可
