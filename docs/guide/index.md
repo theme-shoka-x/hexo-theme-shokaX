@@ -1,7 +1,7 @@
 # 快速上手
 ## 在开始之前
 在开始之前，你应该已经安装了如下软件:
-- nodejs 16以上
+- nodejs 18以上
 - hexo-cli 的 latest 版本
 
 ShokaX-CLI 目前版本不负责处理 hexo 环境，请自行`hexo init`
