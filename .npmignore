@@ -6,4 +6,4 @@ tsconfig.json
 .idea
 .github
 pnpm-lock.yaml
-docs
+../shokaX-docs/docs
