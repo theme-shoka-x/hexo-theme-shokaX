@@ -3,7 +3,6 @@ name: Node.js Package
 on:
   release:
     types: [created]
-  workflow_call:
 
 env:
   NPM_TOKEN: ${{ secrets.npm_token }}
