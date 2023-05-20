@@ -4,31 +4,17 @@ on:
   release:
     types: [created]
 
-env:
-  NPM_TOKEN: ${{ secrets.npm_token }}
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 jobs:
   publish:
     if: "!github.event.release.prerelease"
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        registry:
-          - name: NPM Registry
-            url: https://registry.npmjs.org/
-            token: ${{ env.NPM_TOKEN }}
-          - name: GitHub Packages Registry
-            url: https://npm.pkg.github.com/
-            token: ${{ env.GITHUB_TOKEN }}
 
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-          registry-url: ${{ matrix.registry.url }}
+          registry-url: https://registry.npmjs.org/
 
       - name: Install dependencies
         run: npm install pnpm -g
@@ -38,4 +24,25 @@ jobs:
 
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ matrix.registry.token }}
+          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+
+  publish-gh:
+    if: "!github.event.release.prerelease"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          registry-url: https://npm.pkg.github.com
+      
+      - name: Install dependencies
+        run: npm install pnpm -g
+
+      - name: Build TypeScript files
+        run: pnpm run build
+
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
