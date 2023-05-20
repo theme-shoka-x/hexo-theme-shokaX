@@ -1,9 +1,10 @@
 div(class="meta")
     if date(post.date) != date(post.updated) || time(post.date) != time(post.updated)
-        span(class="icon")
-            i(class="ic i-eye")
-        span 此文章已被阅读次数:
-        span(id="twikoo_visitors" class="waline-pageview-count" data-path=post.path) 正在加载...
+        if theme.twikoo.enable || theme.waline.pageview
+            span(class="icon")
+                i(class="ic i-eye")
+            span 此文章已被阅读次数:
+            span(id="twikoo_visitors" class="waline-pageview-count" data-path=post.path) 正在加载...
         span(class="item")
             span(class="icon")
                 i(class="ic i-calendar-check")
