@@ -39,12 +39,33 @@ hexo.extend.helper.register('_new_comments', function (mode) {
   } else if (mode === 'waline') {
     return `
     <script type="module" data-pjax>
+        let items = []
         import { RecentComments } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs'
         RecentComments({
-          el: '#new-comment',
           serverURL: '${hexo.theme.config.waline.serverURL.replace(/\/+$/, '')}',
           count: 10,
-        });
+        }).then(({ comments }) => {
+          comments.forEach(function (item) {
+              let cText = (item.orig.length > 50) ? item.orig.substring(0,50)+'...' : item.orig
+              item.url = item.url !== '/' ?  '/' + item.url : item.url;
+              const siteLink = item.url + "#" + item.objectId
+              items.push({
+                  href: siteLink,
+                  nick: item.nick,
+                  time: item.insertedAt.split('T').shift(),
+                  text: cText
+              })
+          })
+          Vue.createApp({
+            data() {
+                return {
+                    coms: items
+                }
+            }
+          }).mount('#new-comment')
+        }).catch(function (err) {
+          console.error(err)
+        })
     </script>
     `
   } else {
