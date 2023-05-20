@@ -8,12 +8,10 @@
     "license": "GPL-3.0-or-later",
     "scripts": {
         "test": "tsc",
-        "build": "pnpm install && tsc",
-        "docs:dev": "vuepress dev docs",
-        "docs:build": "vuepress build docs"
+        "build": "pnpm install && tsc"
     },
     "devDependencies": {
-        "@algolia/client-search": "^4",
+
         "@types/fancybox": "^3.5.3",
         "@types/hexo": "^3.8.8",
         "@types/jquery": "^3.5.16",
@@ -22,9 +20,7 @@
         "@types/node": "^20.1.0",
         "@typescript-eslint/eslint-plugin": "^5.59.0",
         "@typescript-eslint/parser": "^5.59.0",
-        "@vuepress/client": "2.0.0-beta.62",
-        "@vuepress/plugin-docsearch": "2.0.0-beta.62",
-        "algoliasearch": "^4.17.0",
+
         "eslint": "^8.39.0",
         "eslint-config-standard": "^17.0.0",
         "eslint-plugin-import": "^2.27.5",
@@ -36,13 +32,9 @@
         "instantsearch.js": "^4.54.1",
         "theme-shokax-anime": "^0.0.4",
         "theme-shokax-pjax": "^0.0.2",
-        "typescript": "^5.0.4",
-        "vue": "^3.2.47",
-        "vuepress": "2.0.0-beta.62",
-        "vuepress-plugin-sitemap2": "2.0.0-beta.210"
+        "typescript": "^5.0.4"
     },
     "dependencies": {
-        "js-yaml": "^4.1.0",
-        "sass": "^1.62.0"
+        "js-yaml": "^4.1.0"
     }
 }

@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://docs.kaitaku.xyz/sitemap.xml
