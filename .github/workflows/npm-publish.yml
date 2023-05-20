@@ -3,6 +3,11 @@ name: Node.js Package
 on:
   release:
     types: [created]
+  workflow_call:
+
+env:
+  NPM_TOKEN: ${{ secrets.npm_token }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   publish:
@@ -14,10 +19,10 @@ jobs:
         registry:
           - name: NPM Registry
             url: https://registry.npmjs.org/
-            token: ${{ secrets.npm_token }}
+            token: ${{ env.NPM_TOKEN }}
           - name: GitHub Packages Registry
             url: https://npm.pkg.github.com/
-            token: ${{ secrets.GITHUB_TOKEN }}
+            token: ${{ env.GITHUB_TOKEN }}
 
     steps:
       - uses: actions/checkout@v2
