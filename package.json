@@ -32,7 +32,7 @@
         "instantsearch.js": "^4.54.1",
         "theme-shokax-anime": "^0.0.4",
         "theme-shokax-pjax": "^0.0.2",
-        "typescript": "^5.0.4",
+        "typescript": "^5.0.4"
     },
     "dependencies": {
         "js-yaml": "^4.1.0"
