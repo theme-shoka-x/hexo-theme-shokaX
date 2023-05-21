@@ -187,8 +187,6 @@ const sidebarTOC = function () {
   }
 
   const createIntersectionObserver = function () {
-    if (!window.IntersectionObserver) return
-
     const observer = new IntersectionObserver(function (entries, observe) {
       const index = findIndex(entries) + (diffY < 0 ? 1 : 0)
       if (activeLock === null) {
