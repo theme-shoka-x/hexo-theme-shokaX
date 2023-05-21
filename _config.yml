@@ -74,6 +74,13 @@ loader:
   start: true # 进入页面时显示加载动画
   switch: false # 切换页面时显示加载动画
 
+# 使用polyfill.io自动处理浏览器兼容问题
+polyfill:
+  enable: true
+  features:
+    - default
+    - fetch
+
 # 显示的动画(烟花)
 fireworks:
   enable: true

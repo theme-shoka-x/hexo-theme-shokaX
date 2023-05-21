@@ -185,8 +185,6 @@ const resizeHandle = function (event?) {
   // 记录窗口高度和宽度
   oWinHeight = window.innerHeight
   oWinWidth = window.innerWidth
-  // 设置 sidebar .panels 元素的高度
-  //   sideBar.child('.panels').changeOrGetHeight(oWinHeight + 'px')
 }
 
 const scrollHandle = function (event) {
@@ -240,18 +238,6 @@ const scrollHandle = function (event) {
   if ($dom('#sidebar').hasClass('affix') || $dom('#sidebar').hasClass('on')) {
     $dom('.percent').changeOrGetWidth(scrollPercent)
   }
-  // imgs在视口外时停止动画
-  // 已被IntersectionObserver代替
-  // const { top } = document.getElementById('main').getBoundingClientRect();
-  // if (top >= 0) {
-  //   document.querySelectorAll('#imgs .item').forEach(i => {
-  //     i.classList.remove('stop-animation');
-  //   })
-  // } else {
-  //   document.querySelectorAll('#imgs .item').forEach(i => {
-  //     i.classList.add('stop-animation');
-  //   })
-  // }
 }
 
 const pagePosition = function () {
@@ -291,7 +277,8 @@ const positionInit = function (comment?: boolean) {
 
 /*
 这段代码是用来复制文本的。它使用了浏览器的 Clipboard API，如果浏览器支持该 API 并且当前页面是安全协议 (https)，
-它将使用 Clipboard API 将文本复制到剪贴板。如果不支持，它会创建一个隐藏的文本区域并使用 document.execCommand('copy') 将文本复制到剪贴板。最后，它会回调传入的函数并传入一个布尔值表示是否成功复制。
+它将使用 Clipboard API 将文本复制到剪贴板。如果不支持，它会创建一个隐藏的文本区域并使用 document.execCommand('copy') 将文本复制到剪贴板。
+最后，它会回调传入的函数并传入一个布尔值表示是否成功复制。
 */
 const clipBoard = function (str: string, callback?: (result) => void) {
   if (navigator.clipboard && window.isSecureContext) {
@@ -301,6 +288,7 @@ const clipBoard = function (str: string, callback?: (result) => void) {
       callback && callback(false)
     })
   } else {
+    // TODO 根据caniuse，需要此polyfill的设备不足5%，应考虑删除
     const ta = <HTMLTextAreaElement><unknown>BODY.createChild('textarea', {
       style: {
         top: window.scrollY + 'px',

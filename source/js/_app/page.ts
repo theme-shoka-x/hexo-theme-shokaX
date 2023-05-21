@@ -353,7 +353,6 @@ const postBeauty = function () {
 
   const angleDown = document.querySelectorAll('.show-btn .i-angle-down')
   if (angleDown.length) {
-    if (!window.IntersectionObserver) return
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -442,21 +441,16 @@ const loadComments = function () {
   } else {
     goToComment.display('')
   }
-
-  if (!window.IntersectionObserver) {
+  const io = new IntersectionObserver(function (entries, observer) {
+    const entry = entries[0]
     vendorCss('valine')
-  } else {
-    const io = new IntersectionObserver(function (entries, observer) {
-      const entry = entries[0]
-      vendorCss('valine')
-      if (entry.isIntersecting || entry.intersectionRatio > 0) {
-        transition($dom('#comments'), 'bounceUpIn')
-        observer.disconnect()
-      }
-    })
+    if (entry.isIntersecting || entry.intersectionRatio > 0) {
+      transition($dom('#comments'), 'bounceUpIn')
+      observer.disconnect()
+    }
+  })
 
-    io.observe(element)
-  }
+  io.observe(element)
 }
 
 const algoliaSearch = function (pjax) {
@@ -624,7 +618,6 @@ const domInit = function () {
   }
 
   const createIntersectionObserver = function () {
-    if (!window.IntersectionObserver) return
     // waves在视口外时停止动画
     new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
@@ -676,8 +669,6 @@ const pjaxReload = function () {
     }) // 'transition.slideRightOut'
   }
   const mainNode = $dom('#main')
-  // $('#main').innerHTML = ''
-  // $('#main').appendChild(loadCat.lastChild.cloneNode(true));
   mainNode.innerHTML = ''
   mainNode.appendChild(loadCat.lastChild.cloneNode(true))
   pageScroll(0)
