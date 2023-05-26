@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use strict'
 
 // 插件部分参考自theme-next
@@ -7,8 +6,16 @@ import path from 'node:path'
 import points from './injects-point'
 const defaultExtname = '.pug'
 
+interface viewConfig {
+  layout: string,
+  locals: object,
+  options: object,
+  order: number
+}
 // Defining stylus types
 class StylusInject {
+  files: Array<string>
+  base_dir: string
   constructor (base_dir) {
     this.base_dir = base_dir
     this.files = []
@@ -22,6 +29,8 @@ class StylusInject {
 
 // Defining view types
 class ViewInject {
+  base_dir:string
+  raws: Array<object>
   constructor (base_dir) {
     this.base_dir = base_dir
     this.raws = []
@@ -85,6 +94,6 @@ export default (hexo) => {
     })
     // Views sort.
     hexo.theme.config.injects[type] = Object.values(configs)
-      .sort((x, y) => x.order - y.order)
+      .sort((x:viewConfig, y:viewConfig) => x.order - y.order)
   })
 }

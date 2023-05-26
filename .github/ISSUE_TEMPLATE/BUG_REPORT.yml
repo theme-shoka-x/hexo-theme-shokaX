@@ -37,7 +37,7 @@ body:
     attributes:
       label: 问题描述
       description: |
-        详细描述问题或者错误,如有报错请粘贴于此。图片可以粘贴链接
+        详细描述问题或者错误,如有报错请粘贴于此。
     validations:
       required: true
   - type: "textarea"

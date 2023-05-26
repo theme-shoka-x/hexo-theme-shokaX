@@ -391,7 +391,6 @@ vendorsList:
   js:
     - pace
     - pjax
-#    - fetch  # polyfill已暂时禁用
     - anime
     - algolia
     - instantsearch

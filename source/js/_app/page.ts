@@ -155,7 +155,8 @@ const postBeauty = function () {
       if (event.clipboardData) {
         event.clipboardData.setData('text/html', htmlData)
         event.clipboardData.setData('text/plain', textData)
-      } else { // @ts-ignore
+      } else {
+        // @ts-ignore
         if (window.clipboardData) {
           // @ts-ignore
           return window.clipboardData.setData('text', textData)
