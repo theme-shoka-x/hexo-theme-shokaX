@@ -124,14 +124,8 @@ $dom.asyncify = async (selector: string, element: Document = document): Promise<
   return element.querySelector(selector) as HTMLElement
 }
 
-$dom.asyncifyAll = async (selector: string, element: Document = document): Promise<NodeListOf<HTMLElement>> => {
-  return element.querySelectorAll(selector)
-}
-
 $dom.asyncifyEach = (selector: string, callback?: (value: HTMLElement, key: number, parent: NodeListOf<Element>) => void, element?: Document): void => {
-  $dom.asyncifyAll(selector, element).then((tmp) => {
-    tmp.forEach(callback)
-  })
+  $dom.all(selector, element).forEach(callback)
 }
 
 Object.assign(HTMLElement.prototype, {
