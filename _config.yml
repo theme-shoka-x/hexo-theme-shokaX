@@ -61,6 +61,7 @@ seo:
 visitor:
   clarity: false
   baiduAnalytics: false
+  googleAnalytics: false
 
 darkmode: false
 auto_dark: # 自动亮/暗模式
