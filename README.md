@@ -7,11 +7,11 @@
 ![version](https://shields.io/npm/v/hexo-theme-shokax)
 ![build](https://img.shields.io/github/actions/workflow/status/theme-shoka-x/hexo-theme-shokaX/build-theme.yml)
 
-语言(language): 简体中文 | [English](./README_en.md) \
+语言(language): 简体中文 | [English](./README_en.MD) \
 此项目是shoka的一个二次开发版(算精神续作),致力于提高性能和优化魔改体验 \
-诞生原因是目前shoka已经两年没有更新了,积压了大量BUG和功能请求。\
+诞生原因是目前shoka已经两年没有更新了,积压了大量BUG和功能请求。
 
-shokaX的社区资源导航和插件仓库为[awesome-shokaX](https://github.com/zkz098/awesome-shokaX)
+shokaX的社区资源导航和插件仓库为[awesome-shokaX](https://github.com/theme-shoka-x/awesome-shokaX)
 
 ## 💬 和shoka的区别
 原先shoka使用了javascript+Native+nunjucks的技术 \
@@ -75,7 +75,7 @@ GPL许可证主要目的是限制修改后的分发行为，避免未经许可�
 | hexo-theme-shoka | amehime           | 本项目的父主题            |
 
 ## 开发者们
-[![](https://contributors-img.web.app/image?repo=zkz098/hexo-theme-shokaX)](https://github.com/zkz098/hexo-theme-shokaX/graphs/contributors)
+[![](https://contributors-img.web.app/image?repo=theme-shoka-x/hexo-theme-shokaX)](https://github.com/theme-shoka-x/hexo-theme-shokaX/graphs/contributors)
 
 ## 特别鸣谢
 [<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" width="25%">](https://jb.gg/OpenSourceSupport)

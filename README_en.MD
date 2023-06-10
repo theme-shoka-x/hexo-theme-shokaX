@@ -1,4 +1,4 @@
-If the repository address you are visiting is zkz098/hexo-theme-shokaX, please switch to the latest address: theme-shoka-x/hexo-theme-shokaX.
+If the repository address you are visiting is **zkz098/hexo-theme-shokaX**, please switch to the latest address: [theme-shoka-x/hexo-theme-shokaX](https://github.com/theme-shoka-x/hexo-theme-shokaX)
 
 # hexo-theme-shokaX
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fzkz098%2Fhexo-theme-shokaX.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fzkz098%2Fhexo-theme-shokaX?ref=badge_shield)
@@ -11,7 +11,7 @@ Language: [简体中文](./README.md) | English \
 This project is a secondary development version of shoka (spiritual sequel), dedicated to improving performance and optimizing modding experience.
 The reason for its birth is that shoka has not been updated for two years, with a large backlog of bugs and feature requests.
 
-The community resource navigation and plugin repository for shokaX is awesome-shokaX.
+The community resource navigation and plugin repository for shokaX is [awesome-shokaX](https://github.com/theme-shoka-x/awesome-shokaX)
 
 ## 💬 Differences with shoka
 The original shoka used javascript+Native+nunjucks technology, while shokaX uses typescript+Vue 3+Pug technology and has changed a lot of hard-to-access CDN links.
@@ -30,7 +30,7 @@ Remarks:
 - *: Requires implementation using Injection API.
 
 ## 🔧 How to Install?
-It is recommended to use [ShokaX-CLI](https://github.com/zkz098/shokaX-CLI) and execute the following command:
+It is recommended to use [ShokaX-CLI](https://github.com/theme-shoka-x/shokaX-CLI) and execute the following command:
 ```bash
 npm i shokax-cli --location=global
 # hexo init initializes the environment
@@ -50,7 +50,7 @@ license: GPL 3 or later
 
 ## Contributors
 
-[![](https://contributors-img.web.app/image?repo=zkz098/hexo-theme-shokaX)](https://github.com/zkz098/hexo-theme-shokaX/graphs/contributors)
+[![](https://contributors-img.web.app/image?repo=theme-shoka-x/hexo-theme-shokaX)](https://github.com/theme-shoka-x/hexo-theme-shokaX/graphs/contributors)
 
 ## Special thanks
 [<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" width="25%">](https://jb.gg/OpenSourceSupport)
