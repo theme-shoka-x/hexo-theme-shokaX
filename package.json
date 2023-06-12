@@ -1,10 +1,10 @@
 {
     "name": "hexo-theme-shokax",
-    "version": "0.2.8",
+    "version": "0.2.9",
     "description": "a hexo theme based on shoka",
     "main": "index.js",
     "repository": "https://github.com/theme-shoka-x/hexo-theme-shokaX",
-    "author": "Chou kaitaku",
+    "author": "zkz098",
     "license": "GPL-3.0-or-later",
     "scripts": {
         "test": "tsc",
