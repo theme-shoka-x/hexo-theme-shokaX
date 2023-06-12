@@ -1,7 +1,7 @@
 mixin navpost(item, type)
     - var postText = item.title || item.link || __('post.untitled')
     - var lastcat = item.categories.last()
-    - var itemlink=`<span class="type">${__('post.' + type)}</span><span class="category"><i class="ic i-flag"></i>${lastcat?.name}</span><h3>${ postText }</h3>`
+    - var itemlink = `<span class="type">${__('post.' + type)}</span>${lastcat && lastcat.name ? `<span class="category"><i class="ic i-flag"></i>${lastcat.name}</span>` : ''}<h3>${postText}</h3>`
     != _url(item.path, itemlink, {itemprop: 'url', rel: type, 'data-background-image': _cover(item), title: postText})
 
 div(class="post-nav")
