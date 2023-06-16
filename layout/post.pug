@@ -11,7 +11,8 @@ block title
         each cat in page.categories.toArray()
             - var cat_list = cat.name + comma + cat_list
             - var comma = ' - '
-        - var page_title = page.title + ' - ' + cat_list
+        if cat_list.length !== 0
+            - var page_title = page.title + ' - ' + cat_list
     != `${page_title}`
 
 block header
