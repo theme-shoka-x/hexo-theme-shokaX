@@ -1,17 +1,17 @@
 let NOWPLAYING = null
 const isMobile = /mobile/i.test(window.navigator.userAgent)
-const mediaPlayer = function (t, config?) {
+const mediaPlayer = (t, config?) => {
   const buttons = {
     el: {},
-    create: function () {
+    create () {
       if (!t.player.options.btns) { return }
-      t.player.options.btns.forEach(function (item) {
+      t.player.options.btns.forEach((item) => {
         if (buttons.el[item]) { return }
 
         buttons.el[item] = t.createChild('div', {
           className: item + ' btn',
-          onclick: function (event) {
-            t.player.fetch().then(function () {
+          onclick(event) {
+            t.player.fetch().then(() => {
               t.player.options.events[item](event)
             })
           }
@@ -30,11 +30,11 @@ const mediaPlayer = function (t, config?) {
       if (!t.player.options.controls) { return }
 
       const that = controller
-      t.player.options.controls.forEach(function (item) {
+      t.player.options.controls.forEach((item) => {
         if (that.btns[item]) { return }
 
         const opt = <HTMLElement> {
-          onclick: function (event) {
+          onclick(event) {
             that.events[item] ? that.events[item](event) : t.player.options.events[item](event)
           }
         }
@@ -62,7 +62,7 @@ const mediaPlayer = function (t, config?) {
       that.btns.volume.bar = that.btns.volume.child('.bar')
     },
     events: {
-      mode: function (e) {
+      mode(e) {
         switch (t.player.options.mode) {
           case 'loop':
             t.player.options.mode = 'random'
@@ -77,20 +77,20 @@ const mediaPlayer = function (t, config?) {
         controller.btns.mode.className = 'mode ' + t.player.options.mode + ' btn'
         $storage.set('_PlayerMode', t.player.options.mode)
       },
-      volume: function (e) {
+      volume(e) {
         e.preventDefault()
 
         const current = e.currentTarget
 
         let drag = false
 
-        const thumbMove = function (e) {
+        const thumbMove = (e) => {
           e.preventDefault()
           t.player.volume(controller.percent(e, current))
           drag = true
         }
 
-        const thumbUp = function (e) {
+        const thumbUp = (e) => {
           e.preventDefault()
           current.removeEventListener(utils.nameMap.dragEnd, thumbUp)
           current.removeEventListener(utils.nameMap.dragMove, thumbMove)
@@ -111,20 +111,20 @@ const mediaPlayer = function (t, config?) {
         current.addEventListener(utils.nameMap.dragMove, thumbMove)
         current.addEventListener(utils.nameMap.dragEnd, thumbUp)
       },
-      backward: function (e) {
+      backward(e) {
         controller.step = 'prev'
         t.player.mode()
       },
-      forward: function (e) {
+      forward(e) {
         controller.step = 'next'
         t.player.mode()
       }
     },
-    update: function (percent) {
+    update(percent) {
       controller.btns.volume.className = 'volume ' + (!source.muted && percent > 0 ? 'on' : 'off') + ' btn'
       controller.btns.volume.bar.changeOrGetWidth(Math.floor(percent * 100) + '%')
     },
-    percent: function (e, el) {
+    percent(e, el) {
       let percentage = ((e.clientX || e.changedTouches[0].clientX) - el.left()) / el.changeOrGetWidth()
       percentage = Math.max(percentage, 0)
       return Math.min(percentage, 1)
@@ -133,7 +133,7 @@ const mediaPlayer = function (t, config?) {
   const progress = {
     el: null,
     bar: null,
-    create: function () {
+    create() {
       const current = playlist.current().el
 
       if (current) {
@@ -160,31 +160,31 @@ const mediaPlayer = function (t, config?) {
         playlist.scroll()
       }
     },
-    update: function (percent) {
+    update(percent) {
       progress.bar.changeOrGetWidth(Math.floor(percent * 100) + '%')
       progress.el.attr('data-ptime', utils.secondToTime(percent * source.duration))
     },
-    seeking: function (type) {
+    seeking(type) {
       if (type) { progress.el.addClass('seeking') } else { progress.el.removeClass('seeking') }
     },
-    percent: function (e, el) {
+    percent(e, el) {
       let percentage = ((e.clientX || e.changedTouches[0].clientX) - el.left()) / el.changeOrGetWidth()
       percentage = Math.max(percentage, 0)
       return Math.min(percentage, 1)
     },
-    drag: function (e) {
+    drag(e) {
       e.preventDefault()
 
       const current = playlist.current().el
 
-      const thumbMove = function (e) {
+      const thumbMove = (e) => {
         e.preventDefault()
         const percentage = progress.percent(e, current)
         progress.update(percentage)
         lyrics.update(percentage * source.duration)
       }
 
-      const thumbUp = function (e) {
+      const thumbUp = (e) => {
         e.preventDefault()
         current.removeEventListener(utils.nameMap.dragEnd, thumbUp)
         current.removeEventListener(utils.nameMap.dragMove, thumbMove)
@@ -203,7 +203,7 @@ const mediaPlayer = function (t, config?) {
   }
   const preview = {
     el: null,
-    create: function () {
+    create() {
       const current = playlist.current()
 
       preview.el.innerHTML = '<div class="cover"><div class="disc"><img src="' + (current.cover) + '" class="blur"  alt="music cover"/></div></div>' +
@@ -222,7 +222,7 @@ const mediaPlayer = function (t, config?) {
     index: -1,
     errnum: 0,
     add: (group, list) => {
-      list.forEach(function (item, i) {
+      list.forEach((item) => {
         item.group = group
         item.name = item.name || item.title || 'Meida name'
         item.artist = item.artist || item.author || 'Anonymous'
@@ -232,7 +232,7 @@ const mediaPlayer = function (t, config?) {
         playlist.data.push(item)
       })
     },
-    clear: function () {
+    clear() {
       playlist.data = []
       playlist.el.innerHTML = ''
 
@@ -241,10 +241,10 @@ const mediaPlayer = function (t, config?) {
         t.player.fetch()
       }
     },
-    create: function () {
+    create() {
       const el = playlist.el
 
-      playlist.data.map(function (item, index) {
+      playlist.data.map((item, index) => {
         if (item.el) { return null }
 
         const id = 'list-' + t.player._id + '-' + item.group
@@ -265,7 +265,7 @@ const mediaPlayer = function (t, config?) {
         item.el = tab.child('ol').createChild('li', {
           title: item.name + ' - ' + item.artist,
           innerHTML: '<span class="info"><span>' + item.name + '</span><span>' + item.artist + '</span></span>',
-          onclick: function (event) {
+          onclick(event) {
             const current = event.currentTarget
             if (playlist.index === index && progress.el) {
               if (source.paused) {
@@ -285,10 +285,10 @@ const mediaPlayer = function (t, config?) {
 
       tabFormat()
     },
-    current: function () {
+    current() {
       return this.data[this.index]
     },
-    scroll: function () {
+    scroll() {
       const item = this.current()
       let li = this.el.child('li.active')
       li && li.removeClass('active')
@@ -303,13 +303,13 @@ const mediaPlayer = function (t, config?) {
 
       return this
     },
-    title: function () {
+    title() {
       if (source.paused) { return }
 
       const current = this.current()
       document.title = 'Now Playing...' + current.name + ' - ' + current.artist + ' | ' + originTitle
     },
-    error: function () {
+    error() {
       const current = this.current()
       current.el.removeClass('current').addClass('error')
       current.error = true
@@ -318,7 +318,7 @@ const mediaPlayer = function (t, config?) {
   }
   const info = {
     el: null,
-    create: function () {
+    create() {
       if (this.el) { return }
 
       this.el = t.createChild('div', {
@@ -330,10 +330,10 @@ const mediaPlayer = function (t, config?) {
       playlist.el = this.el.child('.playlist')
       controller.el = this.el.child('.controller')
     },
-    hide: function () {
+    hide() {
       const el = this.el
       el.addClass('hide')
-      window.setTimeout(function () {
+      window.setTimeout(() => {
         el.removeClass('show hide')
       }, 300)
     }
@@ -344,14 +344,14 @@ const mediaPlayer = function (t, config?) {
     btns: ['play-pause', 'music'],
     controls: ['mode', 'backward', 'play-pause', 'forward', 'volume'],
     events: {
-      'play-pause': function (event) {
+      'play-pause'(event) {
         if (source.paused) {
           t.player.play()
         } else {
           t.player.pause()
         }
       },
-      music: function (event) {
+      music(event) {
         if (info.el.hasClass('show')) {
           info.hide()
         } else {
@@ -360,11 +360,12 @@ const mediaPlayer = function (t, config?) {
         }
       }
     }
-  }; const utils = {
-    random: function (len) {
+  }; 
+  const utils = {
+    random(len) {
       return Math.floor((Math.random() * len))
     },
-    parse: function (link) {
+    parse(link) {
       let result = [];
       [
         ['music.163.com.*song.*id=(\\d+)', 'netease', 'song'],
@@ -381,7 +382,7 @@ const mediaPlayer = function (t, config?) {
         ['xiami.com.*album/(\\w+)', 'xiami', 'album'],
         ['xiami.com.*artist/(\\w+)', 'xiami', 'artist'],
         ['xiami.com.*collect/(\\w+)', 'xiami', 'playlist']
-      ].forEach(function (rule) {
+      ].forEach((rule) => {
         const patt = new RegExp(rule[0])
         const res = patt.exec(link)
         if (res !== null) {
@@ -390,11 +391,11 @@ const mediaPlayer = function (t, config?) {
       })
       return result
     },
-    fetch: function (source) {
+    fetch(source) {
       const list = []
 
-      return new Promise(function (resolve, reject) {
-        source.forEach(function (raw) {
+      return new Promise((resolve, reject) => {
+        source.forEach((raw) => {
           const meta = utils.parse(raw)
           if (meta[0]) {
             const skey = JSON.stringify(meta)
@@ -405,9 +406,9 @@ const mediaPlayer = function (t, config?) {
               resolve(list)
             } else {
               fetch(`${CONFIG.playerAPI}/meting/?server=` + meta[0] + '&type=' + meta[1] + '&id=' + meta[2] + '&r=' + Math.random())
-                .then(function (response) {
+                .then((response) => {
                   return response.json()
-                }).then(function (json) {
+                }).then((json) => {
                   $storage.set(skey, JSON.stringify(json))
                   // list.push.apply(list, json)
                   list.push(...json)
@@ -423,8 +424,8 @@ const mediaPlayer = function (t, config?) {
         })
       })
     },
-    secondToTime: function (second) {
-      const add0 = function (num) {
+    secondToTime(second) {
+      const add0 = (num) => {
         return isNaN(num) ? '00' : (num < 10 ? '0' + num : '' + num)
       }
       const hour = Math.floor(second / 3600)
@@ -444,7 +445,7 @@ const mediaPlayer = function (t, config?) {
     _id: utils.random(999999),
     group: true,
     // 加载播放列表
-    load: function (newList) {
+    load(newList) {
       let d = ''
 
       if (newList && newList.length > 0) {
@@ -464,7 +465,7 @@ const mediaPlayer = function (t, config?) {
       }
       return this
     },
-    fetch: function () {
+    fetch() {
       return new Promise<boolean>((resolve, reject) => {
         if (playlist.data.length > 0) {
           resolve(true)
@@ -472,8 +473,8 @@ const mediaPlayer = function (t, config?) {
           if (this.options.rawList) {
             const promises = []
 
-            this.options.rawList.forEach(function (raw, index) {
-              promises.push(new Promise(function (resolve, reject) {
+            this.options.rawList.forEach((raw, index) => {
+              promises.push(new Promise((resolve, reject) => {
                 let group = index
                 let source
                 if (!raw.list) {
@@ -484,14 +485,14 @@ const mediaPlayer = function (t, config?) {
                   this.group = true
                   source = raw.list
                 }
-                utils.fetch(source).then(function (list) {
+                utils.fetch(source).then((list) => {
                   playlist.add(group, list)
                   resolve(0)
                 })
               }))
             })
 
-            Promise.all(promises).then(function () {
+            Promise.all(promises).then(() => {
               resolve(true)
             })
           }
@@ -505,14 +506,14 @@ const mediaPlayer = function (t, config?) {
       })
     },
     // 根据模式切换当前曲目index
-    mode: function () {
+    mode() {
       const total = playlist.data.length
 
       if (!total || playlist.errnum === total) { return }
 
       const step = controller.step === 'next' ? 1 : -1
 
-      const next = function () {
+      const next = () => {
         let index = playlist.index + step
         if (index > total || index < 0) {
           index = controller.step === 'next' ? 0 : total - 1
@@ -546,7 +547,7 @@ const mediaPlayer = function (t, config?) {
       this.init()
     },
     // 直接设置当前曲目index
-    switch: function (index) {
+    switch(index) {
       if (typeof index === 'number' &&
                 index !== playlist.index &&
                 playlist.current() &&
@@ -556,7 +557,7 @@ const mediaPlayer = function (t, config?) {
       }
     },
     // 更新source为当前曲目index
-    init: function () {
+    init() {
       const item = playlist.current()
 
       if (!item || item.error) {
@@ -583,35 +584,35 @@ const mediaPlayer = function (t, config?) {
         this.play()
       }
     },
-    play: function () {
+    play() {
       NOWPLAYING && NOWPLAYING.player.pause()
 
       if (playlist.current().error) {
         this.mode()
         return
       }
-      source.play().then(function () {
+      source.play().then(() => {
         playlist.scroll()
-      }).catch(function (e) {
+      }).catch((e) => {
         // 不处理错误
       })
     },
-    pause: function () {
+    pause() {
       source.pause()
       document.title = originTitle
     },
-    stop: function () {
+    stop() {
       source.pause()
       source.currentTime = 0
       document.title = originTitle
     },
-    seek: function (time) {
+    seek(time) {
       time = Math.max(time, 0)
       time = Math.min(time, source.duration)
       source.currentTime = time
       progress.update(time / source.duration)
     },
-    muted: function (status?) {
+    muted(status?) {
       if (status === 'muted') {
         source.muted = status
         $storage.set('_PlayerMuted', status)
@@ -622,14 +623,14 @@ const mediaPlayer = function (t, config?) {
         controller.update(source.volume)
       }
     },
-    volume: function (percentage) {
+    volume(percentage) {
       if (!isNaN(percentage)) {
         controller.update(percentage)
         $storage.set('_PlayerVolume', percentage)
         source.volume = percentage
       }
     },
-    mini: function () {
+    mini() {
       info.hide()
     }
   }
@@ -638,18 +639,18 @@ const mediaPlayer = function (t, config?) {
     el: null,
     data: null,
     index: 0,
-    create: function (box) {
+    create(box) {
       const current = playlist.index
       // const that = this
       const raw = playlist.current().lrc
 
-      const callback = function (body) {
+      const callback = (body) => {
         if (current !== playlist.index) { return }
 
         this.data = this.parse(body)
 
         let lrc = ''
-        this.data.forEach(function (line, index) {
+        this.data.forEach((line, index) => {
           lrc += '<p' + (index === 0 ? ' class="current"' : '') + '>' + line[1] + '</p>'
         })
 
@@ -663,7 +664,7 @@ const mediaPlayer = function (t, config?) {
 
       if (raw.startsWith('http')) { this.fetch(raw, callback) } else { callback(raw) }
     },
-    update: function (currentTime) {
+    update(currentTime) {
       if (!this.data) { return }
 
       if (this.index > this.data.length - 1 || currentTime < this.data[this.index][0] || (!this.data[this.index + 1] || currentTime >= this.data[this.index + 1][0])) {
@@ -679,9 +680,9 @@ const mediaPlayer = function (t, config?) {
         }
       }
     },
-    parse: function (lrc_s) {
+    parse(lrc_s) {
       if (lrc_s) {
-        lrc_s = lrc_s.replace(/([^\]^\n])\[/g, function (match, p1) {
+        lrc_s = lrc_s.replace(/([^\]^\n])\[/g, (match, p1) => {
           return p1 + '\n['
         })
         const lyric = lrc_s.split('\n')
@@ -694,7 +695,7 @@ const mediaPlayer = function (t, config?) {
           const lrcText = lyric[i]
             .replace(/.*\[(\d{2}):(\d{2})(\.(\d{2,3}))?]/g, '')
             .replace(/<(\d{2}):(\d{2})(\.(\d{2,3}))?>/g, '')
-            .replace(/^\s+|\s+$/g, '')
+            .trim
 
           if (lrcTimes) {
             // handle multiple time tag
@@ -710,65 +711,61 @@ const mediaPlayer = function (t, config?) {
           }
         }
         // sort by time
-        lrc = lrc.filter(function (item) {
-          return item[1]
-        })
-        lrc.sort(function (a, b) {
-          return a[0] - b[0]
-        })
+        lrc = lrc.filter((item) => item[1])
+        lrc.sort((a, b) => a[0] - b[0])
         return lrc
       } else {
         return []
       }
     },
-    fetch: function (url, callback) {
+    fetch(url, callback) {
       fetch(url)
-        .then(function (response) {
+        .then((response) => {
           return response.text()
-        }).then(function (body) {
+        }).then((body) => {
           callback(body)
-        }).catch(function (ex) {
+        }).catch((ex) => {
           // 不处理错误
         })
     }
   }
 
   const events = {
-    onerror: function () {
+    onerror() {
       playlist.error()
       t.player.mode()
     },
-    ondurationchange: function () {
+    ondurationchange() {
       if (source.duration !== 1) {
         progress.el.attr('data-dtime', utils.secondToTime(source.duration))
       }
     },
-    onloadedmetadata: function () {
+    onloadedmetadata() {
       t.player.seek(0)
       progress.el.attr('data-dtime', utils.secondToTime(source.duration))
     },
-    onplay: function () {
+    onplay() {
       t.parentNode.addClass('playing')
       showtip(this.attr('title'))
       NOWPLAYING = t
     },
-    onpause: function () {
+    onpause() {
       t.parentNode.removeClass('playing')
       NOWPLAYING = null
     },
-    ontimeupdate: function () {
+    ontimeupdate() {
       if (!this.disableTimeupdate) {
         progress.update(this.currentTime / this.duration)
         lyrics.update(this.currentTime)
       }
     },
-    onended: function (argument) {
+    onended(argument) {
       t.player.mode()
       t.player.play()
     }
   }
 
-  const init = function (config) {
+  const init = (config) => {
     if (t.player.created) { return }
 
     t.player.options = Object.assign(option, config)
