@@ -71,7 +71,7 @@ function createParticule (x:number, y:number):fireworksP {
     color: undefined,
     radius: undefined,
     endPos: undefined,
-    draw() {
+    draw () {
       // 绘制圆，参数分别为圆心x坐标，圆心y坐标，半径，开始角度，结束角度，顺时针/逆时针
       ctx.beginPath()
       ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI, true)
@@ -98,7 +98,7 @@ function createCircle (x:number, y:number):fireworksP {
     endPos: undefined,
     alpha: 0.5,
     lineWidth: 6,
-    draw() {
+    draw () {
       // 设置全局透明度为p.alpha
       ctx.globalAlpha = p.alpha
       ctx.beginPath()

@@ -499,7 +499,7 @@ const algoliaSearch = (pjax) => {
     instantsearch.widgets.stats({
       container: '#search-stats',
       templates: {
-        text(data) {
+        text (data) {
           const stats = LOCAL.search.stats
             .replace(/\$\{hits}/, data.nbHits)
             .replace(/\$\{time}/, data.processingTimeMS)
@@ -511,11 +511,11 @@ const algoliaSearch = (pjax) => {
     instantsearch.widgets.hits({
       container: '#search-hits',
       templates: {
-        item(data) {
+        item (data) {
           const cats = data.categories ? '<span>' + data.categories.join('<i class="ic i-angle-right"></i>') + '</span>' : ''
           return '<a href="' + CONFIG.root + data.path + '">' + cats + data._highlightResult.title.value + '</a>'
         },
-        empty(data) {
+        empty (data) {
           return '<div id="hits-empty">' +
             LOCAL.search.empty.replace(/\$\{query}/, data.query) +
             '</div>'

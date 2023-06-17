@@ -132,7 +132,7 @@ Object.assign(HTMLElement.prototype, {
   /**
    * 创建一个子节点并放置
    */
-  createChild(tag: string, obj: Object, positon?: string): HTMLElement {
+  createChild (tag: string, obj: Object, positon?: string): HTMLElement {
     const child = document.createElement(tag)
     Object.assign(child, obj)
     switch (positon) {
@@ -148,14 +148,14 @@ Object.assign(HTMLElement.prototype, {
     }
     return child
   },
-  wrapObject(obj: Object) {
+  wrapObject (obj: Object) {
     const box = document.createElement('div')
     Object.assign(box, obj)
     this.parentNode.insertBefore(box, this)
     this.parentNode.removeChild(this)
     box.appendChild(this)
   },
-  changeOrGetHeight(h?: number | string): number {
+  changeOrGetHeight (h?: number | string): number {
     if (h) {
       // TODO 0rem是期望的值吗?
       this.style.height = typeof h === 'number' ? h + 'rem' : h
@@ -166,17 +166,17 @@ Object.assign(HTMLElement.prototype, {
    此函数将元素的宽度设置为指定值,如果未提供值,则返回元素的宽度.<br />
    宽度可以作为数字提供(假定它以`rem`为单位).作为字符串提供则直接设置为元素宽度
    */
-  changeOrGetWidth(w?: number | string): number {
+  changeOrGetWidth (w?: number | string): number {
     if (w) {
       // TODO 0rem是期望的值吗?
       this.style.width = typeof w === 'number' ? w + 'rem' : w
     }
     return this.getBoundingClientRect().width
   },
-  getTop(): number {
+  getTop (): number {
     return this.getBoundingClientRect().top
   },
-  left(): number {
+  left (): number {
     return this.getBoundingClientRect().left
   },
   /**
@@ -185,7 +185,7 @@ Object.assign(HTMLElement.prototype, {
    * 2. `value`如果为真，则该函数将使用`type`参数指定的名称将属性设置为当前上下文中`value`参数的值。然后，该函数返回当前上下文。 <br />
    * 3. `value`如果不是真，则该函数返回属性的值，该值具有当前上下文中的参数指定的名称。
    */
-  attr(type: string, value?: string): void | EventTarget | string {
+  attr (type: string, value?: string): void | EventTarget | string {
     if (value === null) {
       return this.removeAttribute(type)
     }
@@ -200,7 +200,7 @@ Object.assign(HTMLElement.prototype, {
   /**
    * 将此节点插入父节点的下一个节点之前
    */
-  insertAfter(element: HTMLElement): void {
+  insertAfter (element: HTMLElement): void {
     const parent = this.parentNode
     if (parent.lastChild === this) {
       parent.appendChild(element)
@@ -212,7 +212,7 @@ Object.assign(HTMLElement.prototype, {
    * 当d为空时返回此节点的CSSStyle display属性 <br />
    * 反之,将d设置为此节点的CSSStyle display属性
    */
-  display(d?: string): string | EventTarget {
+  display (d?: string): string | EventTarget {
     if (d == null) {
       return this.style.display
     } else {
@@ -223,20 +223,20 @@ Object.assign(HTMLElement.prototype, {
   /**
    * 找到此节点第一个符合selector选择器的子节点
    */
-  child(selector: string): HTMLElement {
+  child (selector: string): HTMLElement {
     return $dom(selector, this)
   },
   /**
    * 找到此节点所有符合selector选择器的子节点
    */
-  find(selector: string): NodeListOf<HTMLElement> {
+  find (selector: string): NodeListOf<HTMLElement> {
     return $dom.all(selector, this)
   },
   /**
    * 当输入type为toggle时,对每个className执行toggle操作 <br />
    * 反之,对每个className执行type操作
    */
-  _class(type: string, className: string, display?: boolean): void {
+  _class (type: string, className: string, display?: boolean): void {
     const classNames = className.indexOf(' ') ? className.split(' ') : [className]
     classNames.forEach((name) => {
       if (type === 'toggle') {
@@ -246,32 +246,32 @@ Object.assign(HTMLElement.prototype, {
       }
     })
   },
-  addClass(className: string): any {
+  addClass (className: string): any {
     this._class('add', className)
     return this
   },
-  removeClass(className: string): any {
+  removeClass (className: string): any {
     this._class('remove', className)
     return this
   },
-  toggleClass(className: string, display?: boolean): any {
+  toggleClass (className: string, display?: boolean): any {
     this._class('toggle', className, display)
     return this
   },
-  hasClass(className: string): boolean {
+  hasClass (className: string): boolean {
     return this.classList.contains(className)
   }
 })
 
 // Html5LocalStorage的一个API
 const $storage = {
-  set(key: string, value: string): void {
+  set (key: string, value: string): void {
     localStorage.setItem(key, value)
   },
-  get(key: string): string {
+  get (key: string): string {
     return localStorage.getItem(key)
   },
-  del(key: string): void {
+  del (key: string): void {
     localStorage.removeItem(key)
   }
 }
@@ -363,7 +363,7 @@ const transition = (target: HTMLElement, type: number|string|Function, complete?
       break
     case 'bounceUpIn':
       animation = {
-        begin(anim) {
+        begin (anim) {
           target.display('block')
         },
         translateY: [
@@ -378,7 +378,7 @@ const transition = (target: HTMLElement, type: number|string|Function, complete?
       break
     case 'shrinkIn':
       animation = {
-        begin(anim) {
+        begin (anim) {
           target.display('block')
         },
         scale: [
@@ -391,7 +391,7 @@ const transition = (target: HTMLElement, type: number|string|Function, complete?
       break
     case 'slideRightIn':
       animation = {
-        begin(anim) {
+        begin (anim) {
           target.display('block')
         },
         translateX: ['100%', '0%'],
@@ -415,10 +415,10 @@ const transition = (target: HTMLElement, type: number|string|Function, complete?
     targets: target,
     duration: 200,
     easing: 'linear',
-    begin() {
+    begin () {
       begin && begin()
     },
-    complete() {
+    complete () {
       target.display(display)
       complete && complete()
     }
@@ -467,7 +467,7 @@ const pageScroll = (target: any, offset?: number, complete?: Function) => {
     // 如果 offset 存在，则滚动到 offset，如果 target 是数字，则滚动到 target，如果 target 是 DOM 元素，则滚动到下述表达式
     scrollTop: offset || (typeof target === 'number' ? target : (target ? target.getTop() + document.documentElement.scrollTop - siteNavHeight : 0)),
     // 完成回调函数
-    complete() {
+    complete () {
       complete && complete()
     }
   }

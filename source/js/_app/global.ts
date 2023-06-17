@@ -59,7 +59,7 @@ const autoDarkmode = () => {
  * 懒加载图片
  */
 const lazyload = lozad('img, [data-background-image]', {
-  loaded(el: HTMLElement) {
+  loaded (el: HTMLElement) {
     el.addClass('lozaded')
   }
 })
@@ -68,19 +68,19 @@ const lazyload = lozad('img, [data-background-image]', {
 const Loader = {
   timer: undefined,
   lock: false,
-  show() {
+  show () {
     clearTimeout(this.timer)
     document.body.removeClass('loaded')
     loadCat.attr('style', 'display:block')
     Loader.lock = false
   },
-  hide(sec?: number) {
+  hide (sec?: number) {
     if (!CONFIG.loader.start) {
       sec = -1
     }
     this.timer = setTimeout(this.vanish, sec || 3000)
   },
-  vanish(): void {
+  vanish (): void {
     if (Loader.lock) {
       return
     }
