@@ -63,13 +63,13 @@ visitor:
   baiduAnalytics: false
   googleAnalytics: false
 
-darkmode: false
+darkmode: true
 auto_dark: # 自动亮/暗模式
   enable: true #是否开启
   start: 20 #开始时间
   end: 7 #结束时间
 
-auto_scroll: true
+auto_scroll: false
 
 loader:
   start: true # 进入页面时显示加载动画
@@ -253,7 +253,7 @@ widgets:
   recent_comments: true
 
 footer:
-  # Specify the date when the site was setup. If not defined, current year will be used.
+  # Specify the date when the site was set up. If not defined, current year will be used.
   since: 2022
   icon:
     name: sakura rotate
@@ -278,7 +278,7 @@ post:
 
 # 文章是否失效
 outime:
-  enable: true
+  enable: false
   days: 90 # 超过 90 天文章失效
 
 reward:
