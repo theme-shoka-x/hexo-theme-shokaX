@@ -111,14 +111,14 @@ $dom.all = (selector: string, element: Document = document): NodeListOf<HTMLElem
  * 获取具有此选择器的所有dom节点,并依次执行callback函数
  */
 $dom.each = (selector: string, callback: (value: HTMLElement, key: number, parent: NodeListOf<Element>) => void, element?: Document): void => {
-  return $dom.all(selector, element).forEach(callback)
+  $dom.all(selector, element).forEach(callback)
 }
 
 /* shokaX异步化计划 */
 // TODO 异步化意义不明确，代码实现存在问题
 $dom.asyncify = async (selector: string, element: Document = document): Promise<HTMLElement | null> => {
-  if (selector.indexOf('#') === 0) {
-    return element.getElementById(selector.replace('#', ''))
+  if (selector[0] === '#') {
+    return element.getElementById(selector.substring(1))
   }
 
   return element.querySelector(selector) as HTMLElement
@@ -132,7 +132,7 @@ Object.assign(HTMLElement.prototype, {
   /**
    * 创建一个子节点并放置
    */
-  createChild: function (tag: string, obj: Object, positon?: string): HTMLElement {
+  createChild(tag: string, obj: Object, positon?: string): HTMLElement {
     const child = document.createElement(tag)
     Object.assign(child, obj)
     switch (positon) {
@@ -148,14 +148,14 @@ Object.assign(HTMLElement.prototype, {
     }
     return child
   },
-  wrapObject: function (obj: Object) {
+  wrapObject(obj: Object) {
     const box = document.createElement('div')
     Object.assign(box, obj)
     this.parentNode.insertBefore(box, this)
     this.parentNode.removeChild(this)
     box.appendChild(this)
   },
-  changeOrGetHeight: function (h?: number | string): number {
+  changeOrGetHeight(h?: number | string): number {
     if (h) {
       // TODO 0rem是期望的值吗?
       this.style.height = typeof h === 'number' ? h + 'rem' : h
@@ -166,17 +166,17 @@ Object.assign(HTMLElement.prototype, {
    此函数将元素的宽度设置为指定值,如果未提供值,则返回元素的宽度.<br />
    宽度可以作为数字提供(假定它以`rem`为单位).作为字符串提供则直接设置为元素宽度
    */
-  changeOrGetWidth: function (w?: number | string): number {
+  changeOrGetWidth(w?: number | string): number {
     if (w) {
       // TODO 0rem是期望的值吗?
       this.style.width = typeof w === 'number' ? w + 'rem' : w
     }
     return this.getBoundingClientRect().width
   },
-  getTop: function (): number {
+  getTop(): number {
     return this.getBoundingClientRect().top
   },
-  left: function (): number {
+  left(): number {
     return this.getBoundingClientRect().left
   },
   /**
@@ -185,7 +185,7 @@ Object.assign(HTMLElement.prototype, {
    * 2. `value`如果为真，则该函数将使用`type`参数指定的名称将属性设置为当前上下文中`value`参数的值。然后，该函数返回当前上下文。 <br />
    * 3. `value`如果不是真，则该函数返回属性的值，该值具有当前上下文中的参数指定的名称。
    */
-  attr: function (type: string, value?: string): void | EventTarget | string {
+  attr(type: string, value?: string): void | EventTarget | string {
     if (value === null) {
       return this.removeAttribute(type)
     }
@@ -200,7 +200,7 @@ Object.assign(HTMLElement.prototype, {
   /**
    * 将此节点插入父节点的下一个节点之前
    */
-  insertAfter: function (element: HTMLElement): void {
+  insertAfter(element: HTMLElement): void {
     const parent = this.parentNode
     if (parent.lastChild === this) {
       parent.appendChild(element)
@@ -212,7 +212,7 @@ Object.assign(HTMLElement.prototype, {
    * 当d为空时返回此节点的CSSStyle display属性 <br />
    * 反之,将d设置为此节点的CSSStyle display属性
    */
-  display: function (d?: string): string | EventTarget {
+  display(d?: string): string | EventTarget {
     if (d == null) {
       return this.style.display
     } else {
@@ -223,20 +223,20 @@ Object.assign(HTMLElement.prototype, {
   /**
    * 找到此节点第一个符合selector选择器的子节点
    */
-  child: function (selector: string): HTMLElement {
+  child(selector: string): HTMLElement {
     return $dom(selector, this)
   },
   /**
    * 找到此节点所有符合selector选择器的子节点
    */
-  find: function (selector: string): NodeListOf<HTMLElement> {
+  find(selector: string): NodeListOf<HTMLElement> {
     return $dom.all(selector, this)
   },
   /**
    * 当输入type为toggle时,对每个className执行toggle操作 <br />
    * 反之,对每个className执行type操作
    */
-  _class: function (type: string, className: string, display?: boolean): void {
+  _class(type: string, className: string, display?: boolean): void {
     const classNames = className.indexOf(' ') ? className.split(' ') : [className]
     classNames.forEach((name) => {
       if (type === 'toggle') {
@@ -246,37 +246,37 @@ Object.assign(HTMLElement.prototype, {
       }
     })
   },
-  addClass: function (className: string): any {
+  addClass(className: string): any {
     this._class('add', className)
     return this
   },
-  removeClass: function (className: string): any {
+  removeClass(className: string): any {
     this._class('remove', className)
     return this
   },
-  toggleClass: function (className: string, display?: boolean): any {
+  toggleClass(className: string, display?: boolean): any {
     this._class('toggle', className, display)
     return this
   },
-  hasClass: function (className: string): boolean {
+  hasClass(className: string): boolean {
     return this.classList.contains(className)
   }
 })
 
 // Html5LocalStorage的一个API
 const $storage = {
-  set: (key: string, value: string): void => {
+  set(key: string, value: string): void {
     localStorage.setItem(key, value)
   },
-  get: (key: string): string => {
+  get(key: string): string {
     return localStorage.getItem(key)
   },
-  del: (key: string): void => {
+  del(key: string): void {
     localStorage.removeItem(key)
   }
 }
 
-const getScript = function (url: string, callback?: Function, condition?: string): void {
+const getScript = (url: string, callback?: Function, condition?: string): void => {
   // url: 脚本文件的URL地址
   // callback: 当脚本加载完成时要执行的回调函数
   // condition: 可选的条件参数，如果存在，则执行callback
@@ -303,21 +303,21 @@ const getScript = function (url: string, callback?: Function, condition?: string
   }
 }
 
-const assetUrl = function (asset: string, type: string): string {
+const assetUrl = (asset: string, type: string): string => {
   const str = CONFIG[asset][type]
-  if (str.indexOf('gh') > -1 || str.indexOf('combine') > -1) {
+  if (str.includes('gh') || str.includes('combine')) {
     return `https://cdn.jsdelivr.net/${str}`
   }
-  if (str.indexOf('npm') > -1) {
+  if (str.includes('npm')) {
     return `https://cdn.jsdelivr.net/${str}`
   }
-  if (str.indexOf('http') > -1) {
+  if (str.includes('http')) {
     return str
   }
   return `/${str}`
 }
 
-const vendorJs = function (type: string, callback?: Function, condition?: string) {
+const vendorJs = (type: string, callback?: Function, condition?: string) => {
   if (LOCAL[type]) {
     getScript(assetUrl('js', type), callback || function () {
       window[type] = true
@@ -325,7 +325,7 @@ const vendorJs = function (type: string, callback?: Function, condition?: string
   }
 }
 
-const vendorCss = function (type: string, condition?: string): void {
+const vendorCss = (type: string, condition?: string): void => {
   if (window['css' + type]) {
     return
   }
@@ -363,7 +363,7 @@ const transition = (target: HTMLElement, type: number|string|Function, complete?
       break
     case 'bounceUpIn':
       animation = {
-        begin: function (anim) {
+        begin(anim) {
           target.display('block')
         },
         translateY: [
@@ -378,7 +378,7 @@ const transition = (target: HTMLElement, type: number|string|Function, complete?
       break
     case 'shrinkIn':
       animation = {
-        begin: function (anim) {
+        begin(anim) {
           target.display('block')
         },
         scale: [
@@ -391,7 +391,7 @@ const transition = (target: HTMLElement, type: number|string|Function, complete?
       break
     case 'slideRightIn':
       animation = {
-        begin: function (anim) {
+        begin(anim) {
           target.display('block')
         },
         translateX: ['100%', '0%'],
@@ -415,17 +415,17 @@ const transition = (target: HTMLElement, type: number|string|Function, complete?
     targets: target,
     duration: 200,
     easing: 'linear',
-    begin: function () {
+    begin() {
       begin && begin()
     },
-    complete: function () {
+    complete() {
       target.display(display)
       complete && complete()
     }
   }, animation)).play()
 }
 
-const pjaxScript = function (element: HTMLScriptElement) {
+const pjaxScript = (element: HTMLScriptElement) => {
   const { text, parentNode, id, className, type, src, dataset } = element
   const code = text || element.textContent || element.innerHTML || ''
   parentNode.removeChild(element)
@@ -453,7 +453,7 @@ const pjaxScript = function (element: HTMLScriptElement) {
   parentNode.appendChild(script)
 }
 
-const pageScroll = function (target: any, offset?: number, complete?: Function) {
+const pageScroll = (target: any, offset?: number, complete?: Function) => {
   // target: 滚动到的目标元素或坐标(number)
   // offset: 可选的偏移量
   // complete: 可选的回调函数，在动画完成时调用
@@ -467,7 +467,7 @@ const pageScroll = function (target: any, offset?: number, complete?: Function) 
     // 如果 offset 存在，则滚动到 offset，如果 target 是数字，则滚动到 target，如果 target 是 DOM 元素，则滚动到下述表达式
     scrollTop: offset || (typeof target === 'number' ? target : (target ? target.getTop() + document.documentElement.scrollTop - siteNavHeight : 0)),
     // 完成回调函数
-    complete: function () {
+    complete() {
       complete && complete()
     }
   }

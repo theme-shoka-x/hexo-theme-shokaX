@@ -16,18 +16,18 @@ Vue.createApp(
           innerHTML: '<div class="planet"><div class="sun"></div><div class="moon"></div></div><div class="body"><div class="face"><section class="eyes left"><span class="pupil"></span></section><section class="eyes right"><span class="pupil"></span></section><span class="nose"></span></div></div>'
         })
 
-        const hideNeko = function () {
+        const hideNeko = () => {
           transition(neko, {
             // @ts-ignore
             delay: 2500,
             opacity: 0
-          }, function () {
+          }, () => {
             BODY.removeChild(neko)
           })
         }
 
         if (btn.hasClass('i-sun')) {
-          c = function () {
+          c = () => {
             neko.addClass('dark')
             changeTheme('dark')
             $storage.set('theme', 'dark')
@@ -35,16 +35,16 @@ Vue.createApp(
           }
         } else {
           neko.addClass('dark')
-          c = function () {
+          c = () => {
             neko.removeClass('dark')
             changeTheme()
             $storage.set('theme', 'light')
             hideNeko()
           }
         }
-        transition(neko, 1, function () {
+        transition(neko, 1, () => {
           setTimeout(c, 210)
-        }, function () {
+        }, () => {
           neko.display('block')
         })
       }

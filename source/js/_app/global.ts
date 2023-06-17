@@ -28,7 +28,7 @@ let pjax
 /**
  * 更改日夜模式
  */
-const changeTheme = function (type?: string) {
+const changeTheme = (type?: string) => {
   const btn = <HTMLElement>$dom('.theme .ic')
   if (type === 'dark') {
     HTML.attr('data-theme', type)
@@ -45,7 +45,7 @@ const changeTheme = function (type?: string) {
  * 自动调整黑夜白天
  * 优先级: 手动选择>时间>跟随系统
  */
-const autoDarkmode = function () {
+const autoDarkmode = () => {
   if (CONFIG.auto_dark.enable) {
     if (new Date().getHours() >= CONFIG.auto_dark.start || new Date().getHours() <= CONFIG.auto_dark.end) {
       changeTheme('dark')
@@ -59,7 +59,7 @@ const autoDarkmode = function () {
  * 懒加载图片
  */
 const lazyload = lozad('img, [data-background-image]', {
-  loaded: function (el: HTMLElement) {
+  loaded(el: HTMLElement) {
     el.addClass('lozaded')
   }
 })
@@ -68,19 +68,19 @@ const lazyload = lozad('img, [data-background-image]', {
 const Loader = {
   timer: undefined,
   lock: false,
-  show: function () {
+  show() {
     clearTimeout(this.timer)
     document.body.removeClass('loaded')
     loadCat.attr('style', 'display:block')
     Loader.lock = false
   },
-  hide: function (sec?: number) {
+  hide(sec?: number) {
     if (!CONFIG.loader.start) {
       sec = -1
     }
     this.timer = setTimeout(this.vanish, sec || 3000)
   },
-  vanish: function (): void {
+  vanish(): void {
     if (Loader.lock) {
       return
     }
@@ -95,7 +95,7 @@ const Loader = {
 /**
  * 更改主题的meta
  */
-const changeMetaTheme = function (color: string): void {
+const changeMetaTheme = (color: string): void => {
   if (HTML.attr('data-theme') === 'dark') {
     color = '#222'
   }
@@ -104,8 +104,8 @@ const changeMetaTheme = function (color: string): void {
 }
 
 // 记忆日夜模式切换和系统亮暗模式监听
-const themeColorListener = function () {
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (mediaQueryList) {
+const themeColorListener = () => {
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (mediaQueryList) => {
     if (mediaQueryList.matches) {
       changeTheme('dark')
     } else {
@@ -124,9 +124,9 @@ const themeColorListener = function () {
 }
 
 // 可见度监听(离开页面和返回时更改document的title)
-const visibilityListener = function () {
+const visibilityListener = () => {
   const iconNode = $dom('[rel="icon"]')
-  document.addEventListener('visibilitychange', function () {
+  document.addEventListener('visibilitychange', () => {
     switch (document.visibilityState) {
       case 'hidden':
         iconNode.attr('href', statics + CONFIG.favicon.hidden)
@@ -142,7 +142,7 @@ const visibilityListener = function () {
         if (CONFIG.loader.switch) {
           Loader.hide(1000)
         }
-        titleTime = setTimeout(function () {
+        titleTime = setTimeout(() => {
           document.title = originTitle
         }, 2000)
         break
@@ -151,7 +151,7 @@ const visibilityListener = function () {
 }
 
 // 显示提示(现阶段用于版权及复制结果提示)
-const showtip = function (msg: string): void | never {
+const showtip = (msg: string): void | never => {
   if (!msg) {
     return
   }
@@ -161,15 +161,15 @@ const showtip = function (msg: string): void | never {
     className: 'tip'
   })
 
-  setTimeout(function () {
+  setTimeout(() => {
     tipbox.addClass('hide')
-    setTimeout(function () {
+    setTimeout(() => {
       BODY.removeChild(tipbox)
     }, 300)
   }, 3000)
 }
 
-const resizeHandle = function (event?) {
+const resizeHandle = (event?) => {
   // 获取 siteNav 的高度
   siteNavHeight = siteNav.changeOrGetHeight()
   // 获取 siteHeader 的高度
@@ -187,7 +187,7 @@ const resizeHandle = function (event?) {
   oWinWidth = window.innerWidth
 }
 
-const scrollHandle = function (event) {
+const scrollHandle = (event) => {
   // 获取窗口高度
   const winHeight = window.innerHeight
   // 获取文档高度
@@ -240,7 +240,7 @@ const scrollHandle = function (event) {
   }
 }
 
-const pagePosition = function () {
+const pagePosition = () => {
   // 判断配置项是否开启了自动记录滚动位置
   if (CONFIG.auto_scroll) {
     // 将当前页面的滚动位置存入本地缓存
@@ -248,7 +248,7 @@ const pagePosition = function () {
   }
 }
 
-const positionInit = function (comment?: boolean) {
+const positionInit = (comment?: boolean) => {
   // 获取页面锚点
   const anchor = window.location.hash
 
@@ -280,7 +280,7 @@ const positionInit = function (comment?: boolean) {
 它将使用 Clipboard API 将文本复制到剪贴板。如果不支持，它会创建一个隐藏的文本区域并使用 document.execCommand('copy') 将文本复制到剪贴板。
 最后，它会回调传入的函数并传入一个布尔值表示是否成功复制。
 */
-const clipBoard = function (str: string, callback?: (result) => void) {
+const clipBoard = (str: string, callback?: (result) => void) => {
   if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(str).then(() => {
       callback && callback(true)
@@ -315,7 +315,7 @@ const clipBoard = function (str: string, callback?: (result) => void) {
   }
 }
 
-const isOutime = function (): void {
+const isOutime = (): void => {
   let updateTime: Date
   if (CONFIG.outime.enable && LOCAL.outime) {
     const times = document.getElementsByTagName('time')
@@ -356,7 +356,7 @@ const isOutime = function (): void {
  * CSS应有如下class:
  * - clickMenu的active类(控制显示)
  */
-const clickMenu = function (): void {
+const clickMenu = (): void => {
   const menuElement = $dom('#clickMenu')
   window.oncontextmenu = function (event) {
     if (event.ctrlKey) { // 当按下ctrl键时不触发自定义菜单
@@ -383,7 +383,7 @@ const clickMenu = function (): void {
       }
     })
   }
-  window.addEventListener('click', function () {
+  window.addEventListener('click', () => {
     menuElement.classList.remove('active')
   })
 }

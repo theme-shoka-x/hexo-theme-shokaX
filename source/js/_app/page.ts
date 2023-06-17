@@ -1,9 +1,9 @@
 declare const algoliasearch: any, quicklink: any, instantsearch: any
 
-const cardActive = function () {
+const cardActive = () => {
   if (!$dom('.index.wrap')) { return }
-  const io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (article) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((article) => {
       if (article.target.hasClass('show')) {
         io.unobserve(article.target)
       } else {
@@ -18,35 +18,35 @@ const cardActive = function () {
     threshold: [0.3]
   })
 
-  $dom.each('.index.wrap article.item, .index.wrap section.item', function (article) {
+  $dom.each('.index.wrap article.item, .index.wrap section.item', (article) => {
     io.observe(article)
   })
 
   $dom('.index.wrap .item:first-child').addClass('show')
 
-  $dom.each('.cards .item', function (element, index) {
-    ['mouseenter', 'touchstart'].forEach(function (item) {
-      element.addEventListener(item, function (event) {
+  $dom.each('.cards .item', (element) => {
+    ['mouseenter', 'touchstart'].forEach((item) => {
+      element.addEventListener(item, () => {
         if ($dom('.cards .item.active')) {
           $dom('.cards .item.active').removeClass('active')
         }
         element.addClass('active')
       }, { passive: true })
     });
-    ['mouseleave'].forEach(function (item) {
-      element.addEventListener(item, function (event) {
+    ['mouseleave'].forEach((item) => {
+      element.addEventListener(item, () => {
         element.removeClass('active')
       }, { passive: true })
     })
   })
 }
 
-const registerExtURL = function () {
-  $dom.each('span.exturl', function (element) {
+const registerExtURL = () => {
+  $dom.each('span.exturl', (element) => {
     const link = <HTMLAnchorElement>document.createElement('a')
     // https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
 
-    link.href = decodeURIComponent(window.atob(element.dataset.url).split('').map(function (c) {
+    link.href = decodeURIComponent(window.atob(element.dataset.url).split('').map((c) => {
       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
     }).join(''))
     link.rel = 'noopener external nofollow noreferrer'
@@ -61,13 +61,13 @@ const registerExtURL = function () {
   })
 }
 
-const postFancybox = function (p) {
+const postFancybox = (p) => {
   if ($dom(p + ' .md img')) {
     vendorCss('fancybox')
-    vendorJs('fancybox', function () {
+    vendorJs('fancybox', () => {
       const q = jQuery.noConflict()
 
-      $dom.each(p + ' p.gallery', function (element) {
+      $dom.each(p + ' p.gallery', (element) => {
         const box = document.createElement('div')
         box.className = 'gallery'
         box.attr('data-height', String(element.attr('data-height') || 220))
@@ -78,7 +78,7 @@ const postFancybox = function (p) {
         element.remove()
       })
 
-      $dom.each(p + ' .md img:not(.emoji):not(.vemoji)', function (element) {
+      $dom.each(p + ' .md img:not(.emoji):not(.vemoji)', (element) => {
         const $image = q(element)
         const imageLink = $image.attr('data-src') || $image.attr('src') // 替换
         const $imageWrapLink = $image.wrap('<a class="fancybox" href="' + imageLink + '" itemscope itemtype="https://schema.org/ImageObject" itemprop="url"></a>').parent('a')
@@ -101,7 +101,7 @@ const postFancybox = function (p) {
         }
       })
 
-      $dom.each(p + ' div.gallery', function (el, i) {
+      $dom.each(p + ' div.gallery', (el, i) => {
         // @ts-ignore
         q(el).justifiedGallery({
           rowHeight: q(el).data('height') || 120,
@@ -128,14 +128,14 @@ const postFancybox = function (p) {
   }
 }
 
-const postBeauty = function () {
+const postBeauty = () => {
   loadComments()
 
   if (!$dom('.md')) { return }
 
   postFancybox('.post.block')
 
-  $dom('.post.block').oncopy = async function (event) {
+  $dom('.post.block').oncopy = async (event) => {
     showtip(LOCAL.copyright)
 
     if (LOCAL.nocopy) {
@@ -165,7 +165,7 @@ const postBeauty = function () {
     }
   }
 
-  $dom.each('li ruby', function (element) {
+  $dom.each('li ruby', (element) => {
     let parent = element.parentNode
     // @ts-ignore
     if (element.parentNode.tagName !== 'LI') {
@@ -174,22 +174,22 @@ const postBeauty = function () {
     parent.addClass('ruby')
   })
 
-  $dom.each('ol[start]', function (element) {
+  $dom.each('ol[start]', (element) => {
     // @ts-ignore
     element.style.counterReset = 'counter ' + parseInt(element.attr('start') - 1)
   })
 
-  $dom.each('.md table', function (element) {
+  $dom.each('.md table', (element) => {
     element.wrapObject({
       className: 'table-container'
     })
   })
 
-  $dom.each('.highlight > .table-container', function (element) {
+  $dom.each('.highlight > .table-container', (element) => {
     element.className = 'code-container'
   })
 
-  $dom.each('figure.highlight', function (element) {
+  $dom.each('figure.highlight', (element) => {
     const code_container = element.child('.code-container')
     const caption = element.child('figcaption')
 
@@ -199,29 +199,29 @@ const postBeauty = function () {
     if (LOCAL.nocopy) {
       copyBtn.remove()
     } else {
-      copyBtn.addEventListener('click', function (event) {
+      copyBtn.addEventListener('click', (event) => {
         const target = <HTMLElement>event.currentTarget
         let comma = ''; let code = ''
-        code_container.find('pre').forEach(function (line) {
+        code_container.find('pre').forEach((line) => {
           code += comma + line.innerText
           comma = '\n'
         })
 
-        clipBoard(code, function (result) {
+        clipBoard(code, (result) => {
           target.child('.ic').className = result ? 'ic i-check' : 'ic i-times'
           target.blur()
           showtip(LOCAL.copyright)
         })
       }, { passive: true })
-      copyBtn.addEventListener('mouseleave', function (event) {
-        setTimeout(function () {
+      copyBtn.addEventListener('mouseleave', (event) => {
+        setTimeout(() => {
           event.target.child('.ic').className = 'ic i-clipboard'
         }, 1000)
       })
     }
 
     const breakBtn = element.child('.breakline-btn')
-    breakBtn.addEventListener('click', function (event) {
+    breakBtn.addEventListener('click', (event) => {
       const target = event.currentTarget
       if (element.hasClass('breakline')) {
         element.removeClass('breakline')
@@ -233,14 +233,13 @@ const postBeauty = function () {
     })
 
     const fullscreenBtn = element.child('.fullscreen-btn')
-    const removeFullscreen = function () {
+    const removeFullscreen = () => {
       element.removeClass('fullscreen')
       element.scrollTop = 0
       BODY.removeClass('fullscreen')
       fullscreenBtn.child('.ic').className = 'ic i-expand'
     }
-    const fullscreenHandle = function (event) {
-      const target = event.currentTarget
+    const fullscreenHandle = () => {
       if (element.hasClass('fullscreen')) {
         removeFullscreen()
         if (code_container && code_container.find('tr').length > 15) {
@@ -268,16 +267,16 @@ const postBeauty = function () {
       code_container.insertAdjacentHTML('beforeend', '<div class="show-btn"><i class="ic i-angle-down"></i></div>')
       const showBtn = code_container.child('.show-btn')
 
-      const hideCode = function () {
+      const hideCode = () => {
         code_container.style.maxHeight = '300px'
         showBtn.removeClass('open')
       }
-      const showCode = function () {
+      const showCode = () => {
         code_container.style.maxHeight = ''
         showBtn.addClass('open')
       }
 
-      showBtn.addEventListener('click', function (event) {
+      showBtn.addEventListener('click', () => {
         if (showBtn.hasClass('open')) {
           removeFullscreen()
           hideCode()
@@ -289,19 +288,19 @@ const postBeauty = function () {
     }
   })
 
-  $dom.asyncifyEach('pre.mermaid > svg', function (element) {
+  $dom.asyncifyEach('pre.mermaid > svg', (element) => {
     const temp = <SVGAElement><unknown>element
     temp.style.maxWidth = ''
   })
 
-  $dom.each('.reward button', function (element) {
-    element.addEventListener('click', function (event) {
+  $dom.each('.reward button', (element) => {
+    element.addEventListener('click', (event) => {
       event.preventDefault()
       const qr = $dom('#qr')
       if (qr.display() === 'inline-flex') {
         transition(qr, 0)
       } else {
-        transition(qr, 1, function () {
+        transition(qr, 1, () => {
           qr.display('inline-flex')
         }) // slideUpBigIn
       }
@@ -309,8 +308,8 @@ const postBeauty = function () {
   })
 
   // quiz
-  $dom.asyncifyEach('.quiz > ul.options li', function (element) {
-    element.addEventListener('click', function (event) {
+  $dom.asyncifyEach('.quiz > ul.options li', (element) => {
+    element.addEventListener('click', () => {
       if (element.hasClass('correct')) {
         element.toggleClass('right')
         element.parentNode.parentNode.addClass('show')
@@ -320,13 +319,13 @@ const postBeauty = function () {
     })
   })
 
-  $dom.asyncifyEach('.quiz > p', function (element) {
-    element.addEventListener('click', function (event) {
+  $dom.asyncifyEach('.quiz > p', (element) => {
+    element.addEventListener('click', () => {
       element.parentNode.toggleClass('show')
     })
   })
 
-  $dom.asyncifyEach('.quiz > p:first-child', function (element) {
+  $dom.asyncifyEach('.quiz > p:first-child', (element) => {
     const quiz = element.parentNode
     let type = 'choice'
     if (quiz.hasClass('true') || quiz.hasClass('false')) { type = 'true_false' }
@@ -336,15 +335,15 @@ const postBeauty = function () {
     element.attr('data-type', LOCAL.quiz[type])
   })
 
-  $dom.asyncifyEach('.quiz .mistake', function (element) {
+  $dom.asyncifyEach('.quiz .mistake', (element) => {
     element.attr('data-type', LOCAL.quiz.mistake)
   })
 
-  $dom.each('div.tags a', function (element) {
+  $dom.each('div.tags a', (element) => {
     element.className = ['primary', 'success', 'info', 'warning', 'danger'][Math.floor(Math.random() * 5)]
   })
 
-  $dom.asyncifyEach('.md div.player', function (element) {
+  $dom.asyncifyEach('.md div.player', (element) => {
     mediaPlayer(element, {
       type: element.attr('data-type'),
       mode: 'order',
@@ -376,10 +375,10 @@ const postBeauty = function () {
   }
 }
 
-const tabFormat = function () {
+const tabFormat = () => {
   // tab
   let first_tab
-  $dom.each('div.tab', function (element, index) {
+  $dom.each('div.tab', (element) => {
     if (element.attr('data-ready')) { return }
 
     const id = element.attr('data-id')
@@ -392,7 +391,7 @@ const tabFormat = function () {
       box.innerHTML = '<div class="show-btn"></div>'
 
       const showBtn = box.child('.show-btn')
-      showBtn.addEventListener('click', function (event) {
+      showBtn.addEventListener('click', () => {
         pageScroll(box)
       })
 
@@ -419,9 +418,9 @@ const tabFormat = function () {
       element.addClass('active')
     }
 
-    li.addEventListener('click', function (event) {
+    li.addEventListener('click', (event) => {
       const target = event.currentTarget
-      box.find('.active').forEach(function (el) {
+      box.find('.active').forEach((el) => {
         el.removeClass('active')
       })
       element.addClass('active')
@@ -434,7 +433,7 @@ const tabFormat = function () {
 }
 
 // TODO 此函数在twikoo下可能不适用
-const loadComments = function () {
+const loadComments = () => {
   const element = $dom('#comments')
   if (!element) {
     goToComment.display('none')
@@ -442,7 +441,7 @@ const loadComments = function () {
   } else {
     goToComment.display('')
   }
-  const io = new IntersectionObserver(function (entries, observer) {
+  const io = new IntersectionObserver((entries, observer) => {
     const entry = entries[0]
     vendorCss('valine')
     if (entry.isIntersecting || entry.intersectionRatio > 0) {
@@ -454,7 +453,7 @@ const loadComments = function () {
   io.observe(element)
 }
 
-const algoliaSearch = function (pjax) {
+const algoliaSearch = (pjax) => {
   if (CONFIG.search === null) { return }
 
   if (!siteSearch) {
@@ -467,7 +466,7 @@ const algoliaSearch = function (pjax) {
   const search = instantsearch({
     indexName: CONFIG.search.indexName,
     searchClient: algoliasearch(CONFIG.search.appID, CONFIG.search.apiKey),
-    searchFunction: function (helper) {
+    searchFunction (helper) {
       const searchInput = <HTMLInputElement><unknown>$dom('.search-input')
       if (searchInput.value) {
         helper.search()
@@ -475,7 +474,7 @@ const algoliaSearch = function (pjax) {
     }
   })
 
-  search.on('render', function () {
+  search.on('render', () => {
     pjax.refresh($dom('#search-hits'))
   })
 
@@ -500,7 +499,7 @@ const algoliaSearch = function (pjax) {
     instantsearch.widgets.stats({
       container: '#search-stats',
       templates: {
-        text: function (data) {
+        text(data) {
           const stats = LOCAL.search.stats
             .replace(/\$\{hits}/, data.nbHits)
             .replace(/\$\{time}/, data.processingTimeMS)
@@ -512,11 +511,11 @@ const algoliaSearch = function (pjax) {
     instantsearch.widgets.hits({
       container: '#search-hits',
       templates: {
-        item: function (data) {
+        item(data) {
           const cats = data.categories ? '<span>' + data.categories.join('<i class="ic i-angle-right"></i>') + '</span>' : ''
           return '<a href="' + CONFIG.root + data.path + '">' + cats + data._highlightResult.title.value + '</a>'
         },
-        empty: function (data) {
+        empty(data) {
           return '<div id="hits-empty">' +
             LOCAL.search.empty.replace(/\$\{query}/, data.query) +
             '</div>'
@@ -551,29 +550,29 @@ const algoliaSearch = function (pjax) {
   search.start()
 
   // Handle and trigger popup window
-  $dom.each('.search', function (element) {
-    element.addEventListener('click', function () {
+  $dom.each('.search', (element) => {
+    element.addEventListener('click', () => {
       document.body.style.overflow = 'hidden'
-      transition(siteSearch, 'shrinkIn', function () {
+      transition(siteSearch, 'shrinkIn', () => {
         $dom('.search-input').focus()
       }) // transition.shrinkIn
     })
   })
 
   // Monitor main search box
-  const onPopupClose = function () {
+  const onPopupClose = () => {
     document.body.style.overflow = ''
     transition(siteSearch, 0) // "transition.shrinkOut"
   }
 
-  siteSearch.addEventListener('click', function (event) {
+  siteSearch.addEventListener('click', (event) => {
     if (event.target === siteSearch) {
       onPopupClose()
     }
   })
   $dom('.close-btn').addEventListener('click', onPopupClose)
   window.addEventListener('pjax:success', onPopupClose)
-  window.addEventListener('keyup', function (event) {
+  window.addEventListener('keyup', (event) => {
     if (event.key === 'Escape') {
       onPopupClose()
     }
@@ -582,8 +581,8 @@ const algoliaSearch = function (pjax) {
 
 /* pjax部分 */
 
-const domInit = function () {
-  $dom.each('.overview .menu > .item', function (el) {
+const domInit = () => {
+  $dom.each('.overview .menu > .item', (el) => {
     siteNav.child('.menu').appendChild(el.cloneNode(true))
   })
 
@@ -613,12 +612,12 @@ const domInit = function () {
   if (typeof mediaPlayer !== 'undefined') {
     mediaPlayer(toolPlayer)
 
-    $dom('main').addEventListener('click', function () {
+    $dom('main').addEventListener('click', () => {
       toolPlayer.player.mini()
     })
   }
 
-  const createIntersectionObserver = function () {
+  const createIntersectionObserver = () => {
     // waves在视口外时停止动画
     new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
@@ -660,11 +659,11 @@ const domInit = function () {
   createIntersectionObserver()
 }
 
-const pjaxReload = function () {
+const pjaxReload = () => {
   pagePosition()
 
   if (sideBar.hasClass('on')) {
-    transition(sideBar, 0, function () {
+    transition(sideBar, 0, () => {
       sideBar.removeClass('on')
       menuToggle.removeClass('close')
     }) // 'transition.slideRightOut'
@@ -675,7 +674,7 @@ const pjaxReload = function () {
   pageScroll(0)
 }
 
-const siteRefresh = function (reload) {
+const siteRefresh = (reload) => {
   LOCAL_HASH = 0
   LOCAL_URL = window.location.href
 
@@ -705,7 +704,7 @@ const siteRefresh = function (reload) {
   }
   Loader.hide()
 
-  setTimeout(function () {
+  setTimeout(() => {
     positionInit()
   }, 500)
 
@@ -715,7 +714,7 @@ const siteRefresh = function (reload) {
   isOutime()
 }
 
-const siteInit = function () {
+const siteInit = () => {
   domInit()
 
   pjax = new Pjax({
@@ -749,7 +748,7 @@ const siteInit = function () {
 
   window.addEventListener('pjax:success', siteRefresh) // 默认会传入一个event参数
 
-  window.addEventListener('beforeunload', function () {
+  window.addEventListener('beforeunload', () => {
     pagePosition()
   })
   // clickMenu() TODO 暂时禁用

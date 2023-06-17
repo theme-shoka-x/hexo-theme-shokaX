@@ -1,7 +1,7 @@
 
 /* 边栏分区 */
 
-const sideBarToggleHandle = function (event:Event, force?:number) {
+const sideBarToggleHandle = (event:Event, force?:number) => {
   if (sideBar.hasClass('on')) {
     sideBar.removeClass('on')
     menuToggle.removeClass('close')
@@ -18,7 +18,7 @@ const sideBarToggleHandle = function (event:Event, force?:number) {
       // noinspection JSConstantReassignment
       sideBar.style = ''
     } else {
-      transition(sideBar, 'slideRightIn', function () {
+      transition(sideBar, 'slideRightIn', () => {
         sideBar.addClass('on')
         menuToggle.addClass('close')
       })
@@ -26,9 +26,8 @@ const sideBarToggleHandle = function (event:Event, force?:number) {
   }
 }
 
-const sideBarTab = function () {
+const sideBarTab = () => {
   const sideBarInner = sideBar.child('.inner')
-  const panels = sideBar.find('.panel')
 
   if (sideBar.child('.tab')) {
     sideBarInner.removeChild(sideBar.child('.tab'))
@@ -37,10 +36,10 @@ const sideBarTab = function () {
   const list = document.createElement('ul'); let active = 'active'
   list.className = 'tab';
 
-  ['contents', 'related', 'overview'].forEach(function (item) {
+  ['contents', 'related', 'overview'].forEach((item) => {
     const element = sideBar.child('.panel.' + item)
 
-    if (element.innerHTML.replace(/(^\s*)|(\s*$)/g, '').length < 1) {
+    if (element.innerHTML.trim().length < 1) {
       if (item === 'contents') {
         showContents.display('none')
       }
@@ -64,15 +63,15 @@ const sideBarTab = function () {
     } else {
       element.removeClass('active')
     }
-    tab.addEventListener('click', function (event) {
+    tab.addEventListener('click', (event) => {
       const target = event.currentTarget as HTMLElement
       if (target.hasClass('active')) return
 
-      sideBar.find('.tab .item').forEach(function (element) {
+      sideBar.find('.tab .item').forEach((element) => {
         element.removeClass('active')
       })
 
-      sideBar.find('.panel').forEach(function (element) {
+      sideBar.find('.panel').forEach((element) => {
         element.removeClass('active')
       })
 
@@ -93,8 +92,8 @@ const sideBarTab = function () {
   }
 }
 
-const sidebarTOC = function () {
-  const activateNavByIndex = function (index, lock?) {
+const sidebarTOC = () => {
+  const activateNavByIndex = (index) => {
     const target = navItems[index]
 
     if (!target) return
@@ -103,11 +102,11 @@ const sidebarTOC = function () {
       return
     }
 
-    $dom.each('.toc .active', function (element) {
+    $dom.each('.toc .active', (element) => {
       element && element.removeClass('active current')
     })
 
-    sections.forEach(function (element) {
+    sections.forEach((element) => {
       element && element.removeClass('active')
     })
 
@@ -137,21 +136,21 @@ const sidebarTOC = function () {
     return
   }
 
-  let sections = Array.prototype.slice.call(navItems) || []
+  let sections = [...navItems]
   let activeLock = null
 
-  sections = sections.map(function (element, index) {
+  sections = sections.map((element, index) => {
     const link = element.child('a.toc-link')
     const anchor = $dom(decodeURI(link.attr('href')))
     if (!anchor) return null
     const alink = anchor.child('a.anchor')
 
-    const anchorScroll = function (event) {
+    const anchorScroll = (event) => {
       event.preventDefault()
       const target = $dom(decodeURI(event.currentTarget.attr('href')))
 
       activeLock = index
-      pageScroll(target, null, function () {
+      pageScroll(target, null, () => {
         activateNavByIndex(index)
         activeLock = null
       })
@@ -159,7 +158,7 @@ const sidebarTOC = function () {
 
     // TOC item animation navigate.
     link.addEventListener('click', anchorScroll)
-    alink && alink.addEventListener('click', function (event) {
+    alink && alink.addEventListener('click', (event) => {
       anchorScroll(event)
       clipBoard(CONFIG.hostname + '/' + LOCAL.path + event.currentTarget.attr('href'))
     })
@@ -168,7 +167,7 @@ const sidebarTOC = function () {
 
   const tocElement = sideBar.child('.contents.panel')
 
-  const findIndex = function (entries) {
+  const findIndex = (entries: any[]) => {
     let index = 0
     let entry = entries[index]
 
@@ -186,8 +185,8 @@ const sidebarTOC = function () {
     return sections.indexOf(entry.target)
   }
 
-  const createIntersectionObserver = function () {
-    const observer = new IntersectionObserver(function (entries, observe) {
+  const createIntersectionObserver = () => {
+    const observer = new IntersectionObserver((entries) => {
       const index = findIndex(entries) + (diffY < 0 ? 1 : 0)
       if (activeLock === null) {
         activateNavByIndex(index)
@@ -196,7 +195,7 @@ const sidebarTOC = function () {
       rootMargin: '0px 0px -100% 0px', threshold: 0
     })
 
-    sections.forEach(function (element) {
+    sections.forEach((element) => {
       element && observer.observe(element)
     })
   }
@@ -204,20 +203,20 @@ const sidebarTOC = function () {
   createIntersectionObserver()
 }
 
-const backToTopHandle = function () {
+const backToTopHandle = () => {
   pageScroll(0)
 }
 
-const goToBottomHandle = function () {
+const goToBottomHandle = () => {
   pageScroll(parseInt(String(Container.changeOrGetHeight())))
 }
 
-const goToCommentHandle = function () {
+const goToCommentHandle = () => {
   pageScroll($dom('#comments'))
 }
 
-const menuActive = function () {
-  $dom.each('.menu .item:not(.title)', function (element) {
+const menuActive = () => {
+  $dom.each('.menu .item:not(.title)', (element) => {
     const target = <HTMLAnchorElement> element.child('a[href]')
     const parentItem = element.parentNode.parentNode
     if (!target) return

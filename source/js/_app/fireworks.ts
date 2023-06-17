@@ -66,66 +66,51 @@ function setParticuleDirection (p:fireworksP):Object {
 // 创建一个烟花粒子
 function createParticule (x:number, y:number):fireworksP {
   const p:fireworksP = {
-    x: undefined,
-    y: undefined,
+    x,
+    y,
     color: undefined,
     radius: undefined,
     endPos: undefined,
-    draw: undefined
+    draw() {
+      // 绘制圆，参数分别为圆心x坐标，圆心y坐标，半径，开始角度，结束角度，顺时针/逆时针
+      ctx.beginPath()
+      ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI, true)
+      ctx.fillStyle = p.color
+      ctx.fill()
+    }
   }
-  // 将传入的坐标赋值给p
-  p.x = x
-  p.y = y
   // 从colors中随机选取一种颜色赋值给p.color
   p.color = colors[anime.random(0, colors.length - 1)]
   // 使用 anime.random() 随机生成烟花粒子的半径，范围在16~32之间
   p.radius = anime.random(16, 32)
   // 使用 setParticuleDirection() 方法来设置烟花粒子的终点坐标
   p.endPos = setParticuleDirection(p)
-  // 绘制烟花粒子
-  p.draw = function () {
-    // 绘制圆，参数分别为圆心x坐标，圆心y坐标，半径，开始角度，结束角度，顺时针/逆时针
-    ctx.beginPath()
-    ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI, true)
-    ctx.fillStyle = p.color
-    ctx.fill()
-  }
   return p
 }
 
 // 创建一个圆形
 function createCircle (x:number, y:number):fireworksP {
   const p = {
-    x: undefined,
-    y: undefined,
-    color: undefined,
-    radius: undefined,
+    x,
+    y,
+    color: '#FFF',
+    radius: 0.1,
     endPos: undefined,
-    alpha: undefined,
-    lineWidth: undefined,
-    draw: undefined
-  }
-  // 将传入的坐标赋值给p
-  p.x = x
-  p.y = y
-  // 将颜色设置为白色
-  p.color = '#FFF'
-  p.radius = 0.1
-  p.alpha = 0.5
-  p.lineWidth = 6
-  // 绘制圆形
-  p.draw = function () {
-    // 设置全局透明度为p.alpha
-    ctx.globalAlpha = p.alpha
-    ctx.beginPath()
-    // 绘制圆，参数分别为圆心x坐标，圆心y坐标，半径，开始角度，结束角度，顺时针/逆时针
-    ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI, true)
-    // 设置线宽
-    ctx.lineWidth = p.lineWidth
-    ctx.strokeStyle = p.color
-    ctx.stroke()
-    // 恢复全局透明度为1
-    ctx.globalAlpha = 1
+    alpha: 0.5,
+    lineWidth: 6,
+    draw() {
+      // 设置全局透明度为p.alpha
+      ctx.globalAlpha = p.alpha
+      ctx.beginPath()
+      // 绘制圆，参数分别为圆心x坐标，圆心y坐标，半径，开始角度，结束角度，顺时针/逆时针
+      ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI, true)
+      // 设置线宽
+      ctx.lineWidth = p.lineWidth
+      ctx.strokeStyle = p.color
+      ctx.stroke()
+      // 恢复全局透明度为1
+      ctx.globalAlpha = 1
+    }
   }
   return p
 }
@@ -159,13 +144,8 @@ function animateParticules (x:number, y:number):void {
     easing: 'easeOutExpo',
     // 更新渲染函数
     update: renderParticule,
-    x: function (p) {
-      return p.endPos.x
-    },
-    // y 坐标移动到烟花粒子的终点坐标
-    y: function (p) {
-      return p.endPos.y
-    },
+    x: p => p.endPos.x,
+    y: p => p.endPos.y,
     // 半径变为0.1
     radius: 0.1
   }).add({
@@ -191,14 +171,14 @@ const render = anime({
   // anime.js 的参数对象
   duration: Infinity,
   // 动画持续时间，设置为 Infinity 表示动画永远不会结束
-  update: function () {
+  update () {
     // 每帧更新时执行的函数
     ctx.clearRect(0, 0, canvasEl.width, canvasEl.height)
     // 清除画布上的矩形区域，这里清除整个画布
   }
 })
 
-const hasAncestor = function (node:Element, name:string):boolean {
+const hasAncestor = (node:Element, name:string):boolean => {
   name = name.toUpperCase()
   do {
     if (node === null || node === undefined) break
@@ -207,7 +187,7 @@ const hasAncestor = function (node:Element, name:string):boolean {
   return false
 }
 
-document.addEventListener(tap, function (e) {
+document.addEventListener(tap, (e) => {
   // 禁用A标签的Fireworks动画以修复动画不消失问题
   if (hasAncestor(<Element>e.target, 'a')) {
     return
