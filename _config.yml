@@ -349,7 +349,6 @@ quicklink:
 #! ---------------------------------------------------------------
 #! DO NOT EDIT THE FOLLOWING `vendors` SETTINGS
 #! UNLESS YOU KNOW WHAT YOU ARE DOING
-#! Script dependencies will be combined with jsDelivr (cdn.jsdelivr.net)
 #! ---------------------------------------------------------------
 advVendors:
   enable: true
@@ -377,13 +376,13 @@ advVendors:
       src: bytedance:??jquery/3.5.1/jquery.min.js,fancybox/3.5.7/jquery.fancybox.min.js,justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js
       async: true
     copy_tex:
-      src: bytedance:KaTeX/0.12.0/contrib/copy-tex.min.js
+      src: bytedance:KaTeX/0.16.7/contrib/copy-tex.min.js
       async: true
     chart:
       src: npm:frappe-charts@1.5.0/dist/frappe-charts.min.iife.js
   css:
     katex:
-      src: npm:katex@0.12.0/dist/katex.min.css
+      src: npm:katex@0.16.7/dist/katex.min.css
     comment:
       src: css/comment.css
     fancybox:
@@ -403,11 +402,9 @@ vendorsList:
 
 vendors:
   css:
-    # katex: npm/katex@0.12.0/dist/katex.min.css
-    katex: npm/katex@0.12.0/dist/katex.min.css # ok
+    katex: npm/katex@0.16.7/dist/katex.min.css # ok
     comment: css/comment.css
     fancybox: combine/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css # notok
-    # fancybox: npm/fancybox/justifiedGallery.min.css
 
   js:
     pace: npm/pace-js@1.0.2/pace.min.js # ok
@@ -419,8 +416,7 @@ vendors:
     lazyload: npm/lozad@1/dist/lozad.min.js # ok
     quicklink: npm/quicklink@2/dist/quicklink.umd.js # ok
     fancybox: combine/npm/jquery@3.5.1/dist/jquery.min.js,npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js,npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js # notok
-    # fancybox: npm/fancybox/jquery.justifiedGallery.min.js
-    valine: gh/amehime/MiniValine@4.2.2-beta10/dist/MiniValine.min.js
-    copy_tex: npm/katex@0.12.0/dist/contrib/copy-tex.min.js # ok
+    valine: gh/amehime/MiniValine@4.2.2-beta10/dist/MiniValine.min.js # TODO 弃用
+    copy_tex: npm/katex@0.16.7/dist/contrib/copy-tex.min.js # ok
     chart: npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js # ok
 
