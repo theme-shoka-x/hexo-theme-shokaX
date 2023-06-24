@@ -378,8 +378,6 @@ advVendors:
     copy_tex:
       src: bytedance:KaTeX/0.16.7/contrib/copy-tex.min.js
       async: true
-    chart:
-      src: npm:frappe-charts@1.5.0/dist/frappe-charts.min.iife.js
   css:
     katex:
       src: npm:katex@0.16.7/dist/katex.min.css
@@ -398,7 +396,6 @@ vendorsList:
     - quicklink
     - fancybox
     - copy_tex
-    - chart
 
 vendors:
   css:
