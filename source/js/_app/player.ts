@@ -695,7 +695,7 @@ const mediaPlayer = (t, config?) => {
           const lrcText = lyric[i]
             .replace(/.*\[(\d{2}):(\d{2})(\.(\d{2,3}))?]/g, '')
             .replace(/<(\d{2}):(\d{2})(\.(\d{2,3}))?>/g, '')
-            .trim
+            .trim()
 
           if (lrcTimes) {
             // handle multiple time tag
