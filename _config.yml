@@ -376,7 +376,7 @@ advVendors:
       src: bytedance:??jquery/3.5.1/jquery.min.js,fancybox/3.5.7/jquery.fancybox.min.js,justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js
       async: true
     copy_tex:
-      src: bytedance:KaTeX/0.16.7/contrib/copy-tex.min.js
+      src: bytedance:KaTeX/0.15.2/contrib/copy-tex.min.js
       async: true
   css:
     katex:

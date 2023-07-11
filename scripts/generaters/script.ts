@@ -4,15 +4,17 @@ import fs = require('hexo-fs')
 import pathLib from 'node:path'
 
 function findJsFile (path:string):string[] {
+  console.log(path)
   let result:string[] = []
   fs.readdirSync(path).forEach((item) => {
-    if (item.indexOf('player') || item.indexOf('fireworks')) {
-      return
-    }
-    if (item.indexOf('.js') === -1) {
+    console.log(item)
+    if (!item.endsWith('js')) {
       result = result.concat(findJsFile(pathLib.join(path, item)))
     } else {
-      result.push(pathLib.join(path, item))
+      if (item.indexOf('player') === -1 && item.indexOf('fireworks') === -1) {
+        console.log('push')
+        result.push(pathLib.join(path, item))
+      }
     }
   })
   return result
@@ -82,7 +84,12 @@ hexo.extend.generator.register('script', function (locals) {
     path = 'node_modules/hexo-theme-shokax/source/js/_app'
   }
 
-  const files = findJsFile(path)
+  let files = findJsFile(pathLib.join(path, 'library'))
+  files = files.concat(findJsFile(pathLib.join(path, 'globals')))
+  files = files.concat(findJsFile(pathLib.join(path, 'page')))
+  files = files.concat(findJsFile(pathLib.join(path, 'pjax')))
+  files = files.concat(findJsFile(pathLib.join(path, 'components')))
+  console.log(files)
 
   files.forEach(function (item) {
     text += fs.readFileSync(item).toString()
