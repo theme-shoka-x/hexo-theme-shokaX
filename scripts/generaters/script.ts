@@ -1,7 +1,22 @@
 /* global hexo */
 import env from '../../package.json'
 import fs = require('hexo-fs')
+import pathLib from 'node:path'
 
+function findJsFile (path:string):string[] {
+  let result:string[] = []
+  fs.readdirSync(path).forEach((item) => {
+    if (item.indexOf('player') || item.indexOf('fireworks')) {
+      return
+    }
+    if (item.indexOf('.js') === -1) {
+      result = result.concat(findJsFile(pathLib.join(path, item)))
+    } else {
+      result.push(pathLib.join(path, item))
+    }
+  })
+  return result
+}
 hexo.extend.generator.register('script', function (locals) {
   const log = hexo.log || console.log
   const config = hexo.config
@@ -59,14 +74,18 @@ hexo.extend.generator.register('script', function (locals) {
     siteConfig.audio = theme.audio
   }
 
-  let text = '';
+  let text = ''
+  let path = ''
+  if (fs.existsSync('themes/shokaX/source/js/_app/library/dom.js')) {
+    path = 'themes/shokaX/source/js/_app'
+  } else {
+    path = 'node_modules/hexo-theme-shokax/source/js/_app'
+  }
 
-  ['library', 'global', 'page', 'vue', 'components'].forEach(function (item) {
-    if (fs.existsSync(`themes/shokaX/source/js/_app/${item}.js`)) {
-      text += fs.readFileSync(`themes/shokaX/source/js/_app/${item}.js`).toString()
-    } else {
-      text += fs.readFileSync(`node_modules/hexo-theme-shokax/source/js/_app/${item}.js`).toString()
-    }
+  const files = findJsFile(path)
+
+  files.forEach(function (item) {
+    text += fs.readFileSync(item).toString()
   })
   if (!theme.experiments?.noPlayer) {
     if (fs.existsSync('themes/shokaX/source/js/_app/player.js')) {

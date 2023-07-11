@@ -1,0 +1,60 @@
+/**
+ * 更改日夜模式
+ */
+const changeTheme = (type?: string) => {
+  const btn = <HTMLElement>$dom('.theme .ic')
+  if (type === 'dark') {
+    HTML.attr('data-theme', type)
+    btn.removeClass('i-sun')
+    btn.addClass('i-moon')
+  } else {
+    HTML.attr('data-theme', null)
+    btn.removeClass('i-moon')
+    btn.addClass('i-sun')
+  }
+}
+
+/**
+ * 自动调整黑夜白天
+ * 优先级: 手动选择>时间>跟随系统
+ */
+const autoDarkmode = () => {
+  if (CONFIG.auto_dark.enable) {
+    if (new Date().getHours() >= CONFIG.auto_dark.start || new Date().getHours() <= CONFIG.auto_dark.end) {
+      changeTheme('dark')
+    } else {
+      changeTheme()
+    }
+  }
+}
+
+/**
+ * 更改主题的meta
+ */
+const changeMetaTheme = (color: string): void => {
+  if (HTML.attr('data-theme') === 'dark') {
+    color = '#222'
+  }
+
+  $dom('meta[name="theme-color"]').attr('content', color)
+}
+
+// 记忆日夜模式切换和系统亮暗模式监听
+const themeColorListener = () => {
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (mediaQueryList) => {
+    if (mediaQueryList.matches) {
+      changeTheme('dark')
+    } else {
+      changeTheme()
+    }
+  })
+
+  const t = $storage.get('theme')
+  if (t) {
+    changeTheme(t)
+  } else {
+    if (CONFIG.darkmode) {
+      changeTheme('dark')
+    }
+  }
+}

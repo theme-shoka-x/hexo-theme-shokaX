@@ -15,5 +15,5 @@
   "typeAcquisition": {
     "enable": true
   },
-  "include": ["source/js","scripts/"],
+  "include": ["source/js/**/*","scripts/**/*"],
 }
