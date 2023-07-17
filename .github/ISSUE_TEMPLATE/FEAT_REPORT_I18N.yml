@@ -1,0 +1,46 @@
+name: Feature Request
+description: Suggestions or feature requests for shokaX. If you are not familiar with Chinese, please use this template.
+labels: ["enhancement ✨"]
+assignees:
+  - zkz098
+body:
+  - type: "markdown"
+    attributes:
+      value: |
+        Please provide a brief description of the feature in the title.
+  - type: checkboxes
+    id: beforeraise
+    attributes:
+      label: Before raising the request...
+      options:
+        - label: I understand that Issues are used for providing feedback and resolving problems, and I will provide as much information as possible to help address the request.
+          required: true
+        - label: I have filled in a short and clear title to help developers quickly identify the general request when they receive the issue, instead of using vague titles like "a suggestion" or "add a feature".
+          required: true
+        - label: I have confirmed that the latest version does not have this feature and no one has previously made this request.
+          required: true
+  - type: "textarea"
+    id: describe
+    attributes:
+      label: Description of the request
+      description: |
+        Please provide a detailed description of the suggestion. If there are any reference links, you can paste them here.
+    validations:
+      required: true
+  - type: input
+    id: nativeLanguage
+    attributes:
+      label: Native Language
+      description: |
+        If English is not your native language, please fill in your native language to help us gather information more effectively.
+    validations:
+      required: false
+  - type: checkboxes
+    id: checkagain
+    attributes:
+      label: Important notes
+      description: |
+        1. Please make sure this feature request is not duplicated with existing ones.
+      options:
+        - label: I have confirmed the above notes.
+          required: true

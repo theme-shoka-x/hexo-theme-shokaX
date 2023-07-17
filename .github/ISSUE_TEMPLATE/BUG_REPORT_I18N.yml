@@ -1,0 +1,77 @@
+name: Feedback Bug
+description: Select this option if you have encountered a bug during usage. If you are not familiar with Chinese, please use this template.
+labels: ["bug 🐛"]
+assignees:
+  - zkz098
+body:
+  - type: "markdown"
+    attributes:
+      value: |
+        Please provide a brief description of the problem in the title.
+  - type: checkboxes
+    id: beforeraise
+    attributes:
+      label: Before raising the issue...
+      options:
+        - label: I understand that Issues are used for providing feedback and resolving problems, and I will provide as much information as possible to help solve the issue.
+          required: true
+        - label: I have filled in a short and clear title to help developers quickly identify the general problem when they receive the issue, instead of using vague titles like "an issue" or "error occurred".
+          required: true
+        - label: I have confirmed that the latest version has not fixed this problem and no one has previously reported this issue.
+          required: true
+  - type: dropdown
+    id: typequestion
+    attributes:
+      label: Issue occurrence location
+      description: Where did the issue occur?
+      options:
+        - Hexo rendering error
+        - Hexo rendering is incorrect (undefined text or blank, etc.)
+        - Front-end rendering is incorrect (CSS misalignment or JS error, etc.)
+        - Other issues
+        - Unable to determine
+    validations:
+      required: true
+  - type: "textarea"
+    id: describe
+    attributes:
+      label: Issue description
+      description: |
+        Please provide a detailed description of the issue or error. If there is an error message, please paste it here.
+    validations:
+      required: true
+  - type: "textarea"
+    id: step
+    attributes:
+      label: Reproduction steps
+      description: |
+        What steps did you take when the issue occurred?
+    validations:
+      required: false
+  - type: "textarea"
+    id: config
+    attributes:
+      label: Relevant configurations
+      description: |
+        Please describe your environment configurations here, such as the Hexo and Node versions or browser version (optional).
+    validations:
+      required: false
+  - type: input
+    id: nativeLanguage
+    attributes:
+      label: Native Language
+      description: |
+        If English is not your native language, please fill in your native language to help us gather information more effectively.
+    validations:
+      required: false
+  - type: checkboxes
+    id: checkagain
+    attributes:
+      label: Important notes
+      description: |
+        1. Please ensure that both shokaX and HRMNMI versions are up to date (based on npm version for shokaX).
+        2. Please correctly install the required plugins for shokaX (SXC will install them automatically).
+        3. If you have made modifications to the theme, please make sure that this error is not caused by the modified parts (such issues should be resolved in the discussion section).
+      options:
+        - label: I have confirmed the above notes.
+          required: true

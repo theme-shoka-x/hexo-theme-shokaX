@@ -63,7 +63,7 @@ function postMessage (path:string, content:string, dbPath:string, startMessage:s
           // Openai API 针对个人用户免费试用限制 3 RPM，这里是25s后发送请求
           fs.writeFileSync('requested.lock', '')
           setTimeout(request, 1000 * 2.5 * waitTime)
-          fs.unlinkSync('request.lock') // TODO 需要测试
+          fs.unlinkSync('request.lock')
         } else {
           fs.writeFileSync('request.lock', '')
           request()
