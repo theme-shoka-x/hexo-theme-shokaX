@@ -1,6 +1,6 @@
 /*!
   index.js in next-theme/hexo-theme-next by theme-next
-  under GNU AFFERO GENERAL PUBLIC LICENSE v3.0
+  under GNU AFFERO GENERAL PUBLIC LICENSE v3.0 OR LATER
   https://github.com/next-theme/hexo-theme-next/blob/master/LICENSE.md
  */
 
