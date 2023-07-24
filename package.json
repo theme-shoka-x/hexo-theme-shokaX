@@ -18,7 +18,7 @@
         "@types/lozad": "^1.16.1",
         "@types/node": "^20.2.3",
         "@typescript-eslint/eslint-plugin": "^6.0.0",
-        "@typescript-eslint/parser": "^5.59.7",
+        "@typescript-eslint/parser": "^6.1.0",
         "eslint": "^8.41.0",
         "eslint-config-standard": "*",
         "eslint-plugin-import": "^2.27.5",
