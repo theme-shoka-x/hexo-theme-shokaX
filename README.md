@@ -65,8 +65,7 @@ github仓库建议通过右边的 releases 下载,步骤为:
 - [Easy hexo](https://easyhexo.com/)
 
 # 许可证
-许可证: AGPL 3 or later \
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ftheme-shoka-x%2Fhexo-theme-shokaX.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Ftheme-shoka-x%2Fhexo-theme-shokaX?ref=badge_large)
+许可证: AGPL 3 or later
 
 ## 特别说明
 AGPL许可证主要目的是限制修改后的分发行为，避免未经许可的二次修改封装商业行为 \
