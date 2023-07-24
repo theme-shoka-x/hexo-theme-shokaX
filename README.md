@@ -47,6 +47,13 @@ github仓库建议通过右边的 releases 下载,步骤为:
 - 下载 Assets 中的 `Source code(zip)`
 - 解压即可作为主题使用
 
+## 📚子项目
+- [ShokaX docs](https://github.com/theme-shoka-x/shokaX-docs) ShokaX 主题文档 (正在编写中，欢迎加入！)
+- [HRMNMI](https://github.com/theme-shoka-x/hexo-renderer-multi-next-markdown-it) ShokaX 正在使用的 markdown 渲染器 (等待重构)
+- [ShokaX CLI](https://github.com/theme-shoka-x/shokaX-CLI) ShokaX 命令行安装程序
+- [ShokaX Pjax](https://github.com/theme-shoka-x/theme-shokax-pjax) ShokaX 提供的高效 Pjax 实现
+- [ShokaX Anime](https://github.com/theme-shoka-x/theme-shokax-anime) ShokaX 提供的精简版 Anime.js 实现
+
 ## 🛠️二次开发
 [ShokaX官方开发文档](https://docs.kaitaku.xyz/develop/basic/)
 
