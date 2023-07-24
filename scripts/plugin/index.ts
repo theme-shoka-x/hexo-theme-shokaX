@@ -1,3 +1,9 @@
+/*!
+  index.js in next-theme/hexo-theme-next by theme-next
+  under GNU AFFERO GENERAL PUBLIC LICENSE v3.0
+  https://github.com/next-theme/hexo-theme-next/blob/master/LICENSE.md
+ */
+
 import injects from './lib/injects'
 import https from 'node:https'
 import { version } from '../../package.json'

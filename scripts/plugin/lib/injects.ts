@@ -1,6 +1,10 @@
 'use strict'
 
-// 插件部分参考自theme-next
+/*!
+  inject.js in next-theme/hexo-theme-next by theme-next
+  under GNU AFFERO GENERAL PUBLIC LICENSE v3.0
+  https://github.com/next-theme/hexo-theme-next/blob/master/LICENSE.md
+ */
 import fs from 'node:fs'
 import path from 'node:path'
 import points from './injects-point'
@@ -12,7 +16,6 @@ interface viewConfig {
   options: object,
   order: number
 }
-// Defining stylus types
 class StylusInject {
   files: Array<string>
   base_dir: string
@@ -22,7 +25,6 @@ class StylusInject {
   }
 
   push (file) {
-    // Get absolute path base on hexo dir
     this.files.push(path.resolve(this.base_dir, file))
   }
 }

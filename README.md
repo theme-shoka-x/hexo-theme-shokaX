@@ -1,5 +1,3 @@
-
-
 # hexo-theme-shokaX
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fzkz098%2Fhexo-theme-shokaX.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fzkz098%2Fhexo-theme-shokaX?ref=badge_shield)
 ![LICENSE](	https://img.shields.io/github/license/theme-shoka-x/hexo-theme-shokaX)
@@ -60,15 +58,15 @@ github仓库建议通过右边的 releases 下载,步骤为:
 - [Easy hexo](https://easyhexo.com/)
 
 # 许可证
-许可证: GPL 3 or later \
+许可证: AGPL 3 or later \
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fzkz098%2Fhexo-theme-shokaX.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fzkz098%2Fhexo-theme-shokaX?ref=badge_large)
 
 ## 特别说明
-GPL许可证主要目的是限制修改后的分发行为，避免未经许可的二次修改封装商业行为 \
-仅修改源代码并不需要开源，因为未进行分发行为
+AGPL许可证主要目的是限制修改后的分发行为，避免未经许可的二次修改封装商业行为 \
+仅修改源代码**需要**开源，因为根据AGPL许可，搭建网站需要开源修改部分
 
 ## 使用特殊说明
-依照GPLv3 Section 7，我们添加了一些附加条款:
+依照AGPLv3 Section 7，我们添加了一些附加条款:
 请查看[使用限制](./UsageRestrictions.md)，使用ShokaX则默认您已知晓此文件内容
 
 # 致谢名单
