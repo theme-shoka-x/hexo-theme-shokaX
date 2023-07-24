@@ -21,7 +21,8 @@ mixin WRender(item)
                     +field(item)
     if theme.widgets.recent_comments
         div(class="rpost pjax")
-            h2 最新评论
+            h2
+                != __('index.recent_comments')
             ul(class="leancloud-recent-comment" id="new-comment")
                 if tk || waline
                     li(v-for="com in coms" class="item")
