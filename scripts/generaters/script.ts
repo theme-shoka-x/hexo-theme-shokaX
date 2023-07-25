@@ -4,15 +4,12 @@ import fs = require('hexo-fs')
 import pathLib from 'node:path'
 
 function findJsFile (path:string):string[] {
-  console.log(path)
   let result:string[] = []
   fs.readdirSync(path).forEach((item) => {
-    console.log(item)
     if (!item.endsWith('js')) {
       result = result.concat(findJsFile(pathLib.join(path, item)))
     } else {
       if (item.indexOf('player') === -1 && item.indexOf('fireworks') === -1) {
-        console.log('push')
         result.push(pathLib.join(path, item))
       }
     }
