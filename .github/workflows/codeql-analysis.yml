@@ -15,6 +15,10 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - name: 'install packages'
+        run: |
+          npm install pnpm -g
+          pnpm install
       - name: 'Qodana Scan'
         uses: JetBrains/qodana-action@main
         env:
