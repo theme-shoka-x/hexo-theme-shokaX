@@ -6,3 +6,4 @@ exclude:
   - name: All
     paths:
       - layout/_alternate
+  - name: Eslint
