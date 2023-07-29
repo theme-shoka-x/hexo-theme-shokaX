@@ -1,4 +1,4 @@
-const postFancybox = (p) => {
+const postFancybox = (p:string) => {
   if ($dom(p + ' .md img')) {
     vendorCss('fancybox')
     vendorJs('fancybox', () => {

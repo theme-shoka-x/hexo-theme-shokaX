@@ -73,17 +73,17 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
         - var ccText = theme.creative_commons.license.toUpperCase()
         script(data-config type="text/javascript").
             var LOCAL = {
-                path: `#{_permapath(page.path)}`,
-                favicon: {
-                show: `#{__('favicon.show')}`,
-                hide: `#{__('favicon.hide')}`
-            },
-            search: {
-            placeholder: "!{__('search.placeholder')}",
-                empty: "!{__('search.empty')}",
-                stats: "!{__('search.stats')}"
-            },
-            valine: #{page.valine ? _safedump(page.valine) : true},
+                    path: `#{_permapath(page.path)}`,
+                    favicon: {
+                    show: `#{__('favicon.show')}`,
+                    hide: `#{__('favicon.hide')}`
+                },
+                search: {
+                    placeholder: "!{__('search.placeholder')}",
+                    empty: "!{__('search.empty')}",
+                    stats: "!{__('search.stats')}"
+                },
+                valine: #{page.valine ? _safedump(page.valine) : true},
                 chart: #{!!page.chart},
                 copy_tex: #{!!page.math},
                 katex: #{!!page.math},
@@ -94,18 +94,18 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
                 outime: #{page.outime !== false},
                 template: `#{__('outime.template')}`,
                 quiz: {
-                choice: `#{__('quiz.choice')}`,
-                multiple: `#{__('quiz.multiple')}`,
-                true_false: `#{__('quiz.true_false')}`,
-                essay: `#{__('quiz.essay')}`,
-                gap_fill: `#{__('quiz.gap_fill')}`,
-                mistake: `#{__('quiz.mistake')}`
-            },
-            ignores: [
-            (uri) => uri.includes('#'),
-            (uri) => new RegExp(LOCAL.path + '$').test(uri),
-                !{JSON.stringify(ignores)}
-            ]
+                    choice: `#{__('quiz.choice')}`,
+                    multiple: `#{__('quiz.multiple')}`,
+                    true_false: `#{__('quiz.true_false')}`,
+                    essay: `#{__('quiz.essay')}`,
+                    gap_fill: `#{__('quiz.gap_fill')}`,
+                    mistake: `#{__('quiz.mistake')}`
+                },
+                ignores: [
+                    (uri) => uri.includes('#'),
+                    (uri) => new RegExp(LOCAL.path + '$').test(uri),
+                        !{JSON.stringify(ignores)}
+                ]
             };
 
         if theme.polyfill.enable

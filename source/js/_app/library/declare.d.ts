@@ -1,37 +1,55 @@
 /*
 对注释的说明: 部分注释为openai-chatgpt生成的注释,可能存在描述或语义的问题
  */
+interface AudioItem {
+  title: string;
+  list: string[];
+}
 
 declare interface EventTarget {
   createChild(tag: string, obj: Object, positon?: string): HTMLElement;
   wrapObject(obj: Object): void;
-  changeOrGetHeight(h?: number | string): number;
-  changeOrGetWidth(w?: number | string): number;
+  changeOrGetHeight(h: number | string): void;
+  changeOrGetHeight(): number;
+  changeOrGetWidth(w: number | string): void;
+  changeOrGetWidth(): number;
   getTop(): number;
   left(): number;
   attr(type: string, value: string): EventTarget;
   attr(type: string):string
   attr(type:string, value:null):void
   insertAfter(element: HTMLElement): void;
-  display(d?: string): string | EventTarget;
+  display(d: string): EventTarget;
+  display():string
   child(selector: string): HTMLElement;
   find(selector: string): NodeListOf<HTMLElement>;
   _class(type: string, className: string, display?: boolean): void;
-  addClass(className: string): any;
-  removeClass(className: string): any;
-  toggleClass(className: string, display?: boolean): any;
+  addClass(className: string): EventTarget;
+  removeClass(className: string): EventTarget;
+  toggleClass(className: string, display?: boolean): EventTarget;
   hasClass(className: string): boolean;
 }
 
 declare const LOCAL: {
   path: string;
-  ignores: any;
-  audio: any;
-  search: any;
-  quiz: any;
+  ignores: Array<(uri:string)=>boolean>;
+  audio: string[];
+  search: {
+    placeholder: string,
+    empty: string,
+    stats: string
+  };
+  quiz: {
+    choice: string,
+    multiple: string,
+    true_false: string,
+    essay: string,
+    gap_fill: string,
+    mistake: string
+  };
   nocopy: boolean;
   copyright: string;
-  outime: any
+  outime: boolean
   template: string
   favicon: {
     hide: string
@@ -40,8 +58,8 @@ declare const LOCAL: {
 }
 declare const CONFIG: {
   hostname: string;
-  fireworks: any;
-  audio: any;
+  fireworks: string[];
+  audio: AudioItem[];
   version: number
   root: string
   statics: string
@@ -86,5 +104,8 @@ declare const CONFIG: {
   playerAPI: string
   disableVL: boolean
 }
+declare const instantsearch: any;
 
-declare const algoliasearch: any, quicklink: any, instantsearch: any
+declare function algoliasearch(appID: string, apiKey: string): any;
+
+declare const quicklink: any

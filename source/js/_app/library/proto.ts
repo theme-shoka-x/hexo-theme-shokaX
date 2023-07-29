@@ -116,15 +116,15 @@ Object.assign(HTMLElement.prototype, {
       }
     })
   },
-  addClass (className: string): any {
+  addClass (className: string): EventTarget {
     this._class('add', className)
     return this
   },
-  removeClass (className: string): any {
+  removeClass (className: string): EventTarget {
     this._class('remove', className)
     return this
   },
-  toggleClass (className: string, display?: boolean): any {
+  toggleClass (className: string, display?: boolean): EventTarget {
     this._class('toggle', className, display)
     return this
   },

@@ -17,7 +17,6 @@ function findJsFile (path:string):string[] {
   return result
 }
 hexo.extend.generator.register('script', function (locals) {
-  const log = hexo.log || console.log
   const config = hexo.config
   const theme = hexo.theme.config
 
@@ -74,7 +73,7 @@ hexo.extend.generator.register('script', function (locals) {
   }
 
   let text = ''
-  let path = ''
+  let path: string
   if (fs.existsSync('themes/shokaX/source/js/_app/library/dom.js')) {
     path = 'themes/shokaX/source/js/_app'
   } else {
