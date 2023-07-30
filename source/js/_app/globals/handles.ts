@@ -1,4 +1,4 @@
-const resizeHandle = (event?) => {
+const resizeHandle = () => {
   // 获取 siteNav 的高度
   siteNavHeight = siteNav.changeOrGetHeight()
   // 获取 siteHeader 的高度
@@ -16,7 +16,7 @@ const resizeHandle = (event?) => {
   oWinWidth = window.innerWidth
 }
 
-const scrollHandle = (event) => {
+const scrollHandle = () => {
   // 获取窗口高度
   const winHeight = window.innerHeight
   // 获取文档高度
