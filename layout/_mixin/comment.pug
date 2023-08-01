@@ -21,7 +21,6 @@ mixin CommentRender()
             script(type="module" data-pjax).
                 import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
 
-                const path = document.getElementById("twikoo_visitors").getAttribute("data-path");
                 setTimeout(function () {
                     init({
                         el: '#wcomments',
@@ -34,7 +33,7 @@ mixin CommentRender()
                         wordLimit: #{theme.waline.wordLimit},
                         pageSize: #{theme.waline.pageSize},
                         pageview: #{theme.waline.pageview},
-                        path: path,
+                        path: window.location.pathname,
                         dark: 'html[data-theme="dark"]'
                     });
                 }, 1000)
