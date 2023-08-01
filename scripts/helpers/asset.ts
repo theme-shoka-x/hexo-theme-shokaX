@@ -157,7 +157,7 @@ hexo.extend.helper.register('_list_vendor_js', () => {
 })
 
 hexo.extend.helper.register('_adv_vendor_js', function (js_name) {
-  const srcHelpers = (src) => { return src.endsWith('/') ? src : src + '/' }
+  const srcHelpers = (src:string) => { return src.endsWith('/') ? src : src + '/' }
   const config = hexo.theme.config.advVendors.js[js_name]
   const themeConfig = hexo.theme.config
   const src = config.src
@@ -168,7 +168,7 @@ hexo.extend.helper.register('_adv_vendor_js', function (js_name) {
     bytedance: 'https://lf9-cdn-tos.bytecdntp.com/cdn/expire-6-M/',
     baomitu: 'https://lib.baomitu.com/'
   }
-  let result
+  let result: string
   if (src.startsWith('http')) {
     result = src
   } else if (src.startsWith('combine:')) {
