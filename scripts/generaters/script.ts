@@ -85,7 +85,6 @@ hexo.extend.generator.register('script', function (locals) {
   files = files.concat(findJsFile(pathLib.join(path, 'page')))
   files = files.concat(findJsFile(pathLib.join(path, 'pjax')))
   files = files.concat(findJsFile(pathLib.join(path, 'components')))
-  console.log(files)
 
   files.forEach(function (item) {
     text += fs.readFileSync(item).toString()

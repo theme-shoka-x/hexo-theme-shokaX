@@ -42,7 +42,6 @@ function postMessage (path:string, content:string, dbPath:string, startMessage:s
               db ??= {}
               db[path] ??= {}
               db[path][dbPath] ??= ''
-              console.log(db[path])
               db[path][dbPath] = summary
             }
             fs.writeFileSync('summary.json', JSON.stringify(db))
