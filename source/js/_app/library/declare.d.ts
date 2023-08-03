@@ -103,8 +103,9 @@ declare const CONFIG: {
   }
   playerAPI: string
   disableVL: boolean
+  noPlayer: boolean // TODO 添加
 }
-declare const instantsearch: any;
+declare const instantsearch: any
 
 declare function algoliasearch(appID: string, apiKey: string): any;
 

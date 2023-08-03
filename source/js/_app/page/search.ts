@@ -1,11 +1,15 @@
-const algoliaSearch = (pjax) => {
+import { BODY, setSiteSearch, siteSearch } from '../globals/globalVars'
+import { transition } from '../library/anime'
+import { $dom } from '../library/dom'
+
+export function algoliaSearch (pjax) {
   if (CONFIG.search === null) { return }
 
   if (!siteSearch) {
-    siteSearch = BODY.createChild('div', {
+    setSiteSearch(BODY.createChild('div', {
       id: 'search',
       innerHTML: '<div class="inner"><div class="header"><span class="icon"><i class="ic i-search"></i></span><div class="search-input-container"></div><span class="close-btn"><i class="ic i-times-circle"></i></span></div><div class="results"><div class="inner"><div id="search-stats"></div><div id="search-hits"></div><div id="search-pagination"></div></div></div></div>'
-    })
+    }))
   }
 
   const search = instantsearch({

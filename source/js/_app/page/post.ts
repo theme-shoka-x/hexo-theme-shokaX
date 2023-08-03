@@ -1,4 +1,12 @@
-const postBeauty = () => {
+import loadComments from './comment'
+import { $dom } from '../library/dom'
+import { postFancybox } from './fancybox'
+import { clipBoard, showtip } from '../globals/tools'
+import { BODY } from '../globals/globalVars'
+import { pageScroll, transition } from '../library/anime'
+import { mediaPlayer } from '../player'
+
+export const postBeauty = () => {
   loadComments()
 
   if (!$dom('.md')) { return }

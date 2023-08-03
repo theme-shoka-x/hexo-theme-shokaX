@@ -1,21 +1,22 @@
 // rocket-loader & Auto minify(cloudflare) 补丁
 // cloudflare 的上述功能会导致DOMContentLoaded事件无法触发，此补丁会将DOMContentLoaded重定向为load事件
-let inCloudFlare = true
-window.addEventListener('DOMContentLoaded', function () {
-  inCloudFlare = false
-})
-
-if (document.readyState === 'loading') {
-  window.addEventListener('load', function () {
-    if (inCloudFlare) {
-      window.dispatchEvent(new Event('DOMContentLoaded'))
-      console.log('%c ☁️cloudflare patch ' + '%c running(rocket & minify)', 'color: white; background: #ff8c00; padding: 5px 3px;', 'padding: 4px;border:1px solid #ff8c00')
-    }
+export function cloudflareInit () {
+  let inCloudFlare = true
+  window.addEventListener('DOMContentLoaded', function () {
+    inCloudFlare = false
   })
+
+  if (document.readyState === 'loading') {
+    window.addEventListener('load', function () {
+      if (inCloudFlare) {
+        window.dispatchEvent(new Event('DOMContentLoaded'))
+        console.log('%c ☁️cloudflare patch ' + '%c running(rocket & minify)', 'color: white; background: #ff8c00; padding: 5px 3px;', 'padding: 4px;border:1px solid #ff8c00')
+      }
+    })
+  }
 }
 
-
-const getScript = (url: string, callback?: Function, condition?: string): void => {
+export const getScript = (url: string, callback?: Function, condition?: string): void => {
   // url: 脚本文件的URL地址
   // callback: 当脚本加载完成时要执行的回调函数
   // condition: 可选的条件参数，如果存在，则执行callback
@@ -42,7 +43,7 @@ const getScript = (url: string, callback?: Function, condition?: string): void =
   }
 }
 
-const pjaxScript = (element: HTMLScriptElement) => {
+export const pjaxScript = (element: HTMLScriptElement) => {
   const { text, parentNode, id, className, type, src, dataset } = element
   const code = text || element.textContent || element.innerHTML || ''
   parentNode.removeChild(element)

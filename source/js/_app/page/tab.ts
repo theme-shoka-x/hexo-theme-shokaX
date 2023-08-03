@@ -1,4 +1,7 @@
-const tabFormat = () => {
+import { pageScroll } from '../library/anime'
+import { $dom } from '../library/dom'
+
+export const tabFormat = () => {
   // tab
   let first_tab
   $dom.each('div.tab', (element) => {

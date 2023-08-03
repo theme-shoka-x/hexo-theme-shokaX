@@ -1,3 +1,5 @@
+import anime from 'theme-shokax-anime'
+
 /*
 *  烟花分区
 */
@@ -187,15 +189,20 @@ const hasAncestor = (node:Element, name:string):boolean => {
   return false
 }
 
-document.addEventListener(tap, (e) => {
-  // 禁用A标签的Fireworks动画以修复动画不消失问题
-  if (hasAncestor(<Element>e.target, 'a')) {
+export function initFireworks () {
+  if (typeof CONFIG.fireworks === 'undefined') {
     return
   }
-  render.play()
-  updateCoords(e)
-  animateParticules(pointerX, pointerY)
-}, false)
+  document.addEventListener(tap, (e) => {
+  // 禁用A标签的Fireworks动画以修复动画不消失问题
+    if (hasAncestor(<Element>e.target, 'a')) {
+      return
+    }
+    render.play()
+    updateCoords(e)
+    animateParticules(pointerX, pointerY)
+  }, false)
 
-setCanvasSize()
-window.addEventListener('resize', setCanvasSize, false)
+  setCanvasSize()
+  window.addEventListener('resize', setCanvasSize, false)
+}

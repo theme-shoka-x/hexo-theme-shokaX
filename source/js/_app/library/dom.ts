@@ -36,3 +36,5 @@ $dom.asyncify = async (selector: string, element: Document = document): Promise<
 $dom.asyncifyEach = (selector: string, callback?: (value: HTMLElement, key: number, parent: NodeListOf<Element>) => void, element?: Document): void => {
   $dom.all(selector, element).forEach(callback)
 }
+
+export { $dom, getDocHeight }

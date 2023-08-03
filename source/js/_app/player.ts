@@ -1,6 +1,16 @@
+import { originTitle } from './globals/globalVars'
+import { showtip } from './globals/tools'
+import { pageScroll } from './library/anime'
+import { $dom } from './library/dom'
+import { $storage } from './library/storage'
+import { tabFormat } from './page/tab'
+
 let NOWPLAYING = null
 const isMobile = /mobile/i.test(window.navigator.userAgent)
-const mediaPlayer = (t, config?) => {
+export const mediaPlayer = (t, config?) => {
+  if (CONFIG.noPlayer) {
+    return
+  }
   const buttons = {
     el: {},
     create () {

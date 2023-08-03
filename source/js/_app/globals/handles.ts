@@ -1,10 +1,35 @@
-const resizeHandle = () => {
+import { sideBarToggleHandle } from '../components/sidebar'
+import { $dom, getDocHeight } from '../library/dom'
+import {
+  backToTop,
+  diffY,
+  headerHight,
+  headerHightInner,
+  oWinWidth,
+  originTitle,
+  scrollAction,
+  sideBar,
+  siteBrand,
+  siteHeader,
+  siteNav,
+  statics,
+  titleTime,
+  toolBtn,
+  setSiteNavHeight,
+  setHeaderHightInner,
+  setHeaderHight,
+  setOWinHeight, setOWinWidth, setDiffY, setTitleTime
+} from './globalVars'
+import { changeMetaTheme } from './themeColor'
+import { Loader } from './thirdparty'
+
+export const resizeHandle = () => {
   // 获取 siteNav 的高度
-  siteNavHeight = siteNav.changeOrGetHeight()
+  setSiteNavHeight(siteNav.changeOrGetHeight())
   // 获取 siteHeader 的高度
-  headerHightInner = siteHeader.changeOrGetHeight()
+  setHeaderHightInner(siteHeader.changeOrGetHeight())
   // 获取 #waves 的高度
-  headerHight = headerHightInner + $dom('#waves').changeOrGetHeight()
+  setHeaderHight(headerHightInner + $dom('#waves').changeOrGetHeight())
 
   // 判断窗口宽度是否改变
   if (oWinWidth !== window.innerWidth) {
@@ -12,11 +37,11 @@ const resizeHandle = () => {
   }
 
   // 记录窗口高度和宽度
-  oWinHeight = window.innerHeight
-  oWinWidth = window.innerWidth
+  setOWinHeight(window.innerHeight)
+  setOWinWidth(window.innerWidth)
 }
 
-const scrollHandle = () => {
+export const scrollHandle = () => {
   // 获取窗口高度
   const winHeight = window.innerHeight
   // 获取文档高度
@@ -46,7 +71,7 @@ const scrollHandle = () => {
   if (typeof scrollAction.y === 'undefined') {
     scrollAction.y = window.scrollY
   }
-  diffY = scrollAction.y - window.scrollY
+  setDiffY(scrollAction.y - window.scrollY)
 
   // 控制滑动时导航栏显示
   if (diffY < 0) {
@@ -77,7 +102,7 @@ const scrollHandle = () => {
  * CSS应有如下class:
  * - clickMenu的active类(控制显示)
  */
-const clickMenu = (): void => {
+export const clickMenu = (): void => {
   const menuElement = $dom('#clickMenu')
   window.oncontextmenu = function (event) {
     if (event.ctrlKey) { // 当按下ctrl键时不触发自定义菜单
@@ -110,7 +135,7 @@ const clickMenu = (): void => {
 }
 
 // 可见度监听(离开页面和返回时更改document的title)
-const visibilityListener = () => {
+export const visibilityListener = () => {
   const iconNode = $dom('[rel="icon"]')
   document.addEventListener('visibilitychange', () => {
     switch (document.visibilityState) {
@@ -128,9 +153,9 @@ const visibilityListener = () => {
         if (CONFIG.loader.switch) {
           Loader.hide(1000)
         }
-        titleTime = setTimeout(() => {
+        setTitleTime(setTimeout(() => {
           document.title = originTitle
-        }, 2000)
+        }, 2000))
         break
     }
   })

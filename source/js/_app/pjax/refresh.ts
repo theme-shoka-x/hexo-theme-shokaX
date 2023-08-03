@@ -1,4 +1,23 @@
-const pjaxReload = () => {
+import { $dom } from '../library/dom'
+import { cardActive, registerExtURL } from '../page/common'
+import { postBeauty } from '../page/post'
+import { pageScroll, transition } from '../library/anime'
+import { vendorCss, vendorJs } from '../library/loadFile'
+import { pjaxScript } from '../library/scriptPjax'
+import { resizeHandle } from '../globals/handles'
+import {
+  loadCat,
+  menuToggle,
+  setLocalHash, setLocalUrl, setOriginTitle,
+  sideBar,
+  toolPlayer
+} from '../globals/globalVars'
+import { mediaPlayer } from '../player'
+import { pagePosition, positionInit } from '../globals/tools'
+import { menuActive, sideBarTab, sidebarTOC } from '../components/sidebar'
+import { Loader, isOutime, lazyload } from '../globals/thirdparty'
+import { tabFormat } from '../page/tab'
+export const pjaxReload = () => {
   pagePosition()
 
   if (sideBar.hasClass('on')) {
@@ -13,9 +32,9 @@ const pjaxReload = () => {
   pageScroll(0)
 }
 
-const siteRefresh = (reload) => {
-  LOCAL_HASH = 0
-  LOCAL_URL = window.location.href
+export const siteRefresh = (reload) => {
+  setLocalHash(0)
+  setLocalUrl(window.location.href)
 
   vendorCss('katex')
   vendorJs('copy_tex')
@@ -26,7 +45,7 @@ const siteRefresh = (reload) => {
     $dom.each('script[data-pjax]', pjaxScript)
   }
 
-  originTitle = document.title
+  setOriginTitle(document.title)
 
   resizeHandle()
 

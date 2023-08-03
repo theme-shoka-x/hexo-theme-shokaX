@@ -1,7 +1,21 @@
+import initProto from '../library/proto'
+import domInit from './domInit'
+import { pjaxReload, siteRefresh } from './refresh'
+import { cloudflareInit } from '../library/scriptPjax'
+import { algoliaSearch } from '../page/search'
+import { pjax, setPjax } from '../globals/globalVars'
+import { autoDarkmode, themeColorListener } from '../globals/themeColor'
+import { resizeHandle, scrollHandle, visibilityListener } from '../globals/handles'
+import { pagePosition } from '../globals/tools'
+import { initFireworks } from '../fireworks'
+import Pjax from 'theme-shokax-pjax'
+
 const siteInit = () => {
+  cloudflareInit()
+  initProto()
   domInit()
 
-  pjax = new Pjax({
+  setPjax(new Pjax({
     selectors: [
       'head title',
       '.languages',
@@ -11,7 +25,7 @@ const siteInit = () => {
       'script[data-config]'
     ],
     cacheBust: false
-  })
+  }))
 
   CONFIG.quicklink.ignores = LOCAL.ignores
   quicklink.listen(CONFIG.quicklink)
@@ -23,6 +37,8 @@ const siteInit = () => {
   themeColorListener()
 
   algoliaSearch(pjax)
+
+  initFireworks()
 
   window.addEventListener('scroll', scrollHandle)
 

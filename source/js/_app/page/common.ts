@@ -1,4 +1,6 @@
-const cardActive = () => {
+import { $dom } from '../library/dom'
+
+export const cardActive = () => {
   if (!$dom('.index.wrap')) { return }
   const io = new IntersectionObserver((entries) => {
     entries.forEach((article) => {
@@ -39,7 +41,7 @@ const cardActive = () => {
   })
 }
 
-const registerExtURL = () => {
+export const registerExtURL = () => {
   $dom.each('span.exturl', (element) => {
     const link = <HTMLAnchorElement>document.createElement('a')
     // https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings

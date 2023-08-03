@@ -28,16 +28,18 @@
         "hexo-fs": "^4.1.1",
         "hexo-util": "^3.1.0",
         "instantsearch.js": "^4.56.7",
-        "theme-shokax-anime": "^0.0.4",
-        "theme-shokax-pjax": "^0.0.2",
         "typescript": "^5.1.6",
         "vue": "^3.3.4"
     },
     "dependencies": {
-        "js-yaml": "^4.1.0"
+        "esbuild": "^0.18.17",
+        "js-yaml": "^4.1.0",
+        "lozad": "^1.16.0",
+        "theme-shokax-anime": "^0.0.4",
+        "theme-shokax-pjax": "^0.0.2"
     },
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "engineStrict": true
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "engineStrict": true
 }

@@ -1,3 +1,6 @@
+import anime from 'theme-shokax-anime'
+import { siteNavHeight } from '../globals/globalVars'
+
 /**
  * 参数  动画效果
  * 0  元素逐渐消失
@@ -8,7 +11,7 @@
  * slideRightOut  元素向右侧滑出
  * TODO 函数功能过于复杂，需要拆分
  */
-const transition = (target: HTMLElement, type: number|string|Function, complete?: Function, begin?: Function): void => {
+export const transition = (target: HTMLElement, type: number|string|Function, complete?: Function, begin?: Function): void => {
   let animation
   let display = 'none'
   switch (type) {
@@ -83,9 +86,7 @@ const transition = (target: HTMLElement, type: number|string|Function, complete?
   }, animation)).play()
 }
 
-
-
-const pageScroll = (target: any, offset?: number, complete?: Function) => {
+export const pageScroll = (target: any, offset?: number, complete?: Function) => {
   // target: 滚动到的目标元素或坐标(number)
   // offset: 可选的偏移量
   // complete: 可选的回调函数，在动画完成时调用

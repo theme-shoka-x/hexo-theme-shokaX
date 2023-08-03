@@ -1,4 +1,7 @@
-const postFancybox = (p:string) => {
+import { $dom } from '../library/dom'
+import { vendorCss, vendorJs } from '../library/loadFile'
+
+export const postFancybox = (p:string) => {
   if ($dom(p + ' .md img')) {
     vendorCss('fancybox')
     vendorJs('fancybox', () => {

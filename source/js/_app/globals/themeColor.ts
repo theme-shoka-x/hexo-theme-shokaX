@@ -1,7 +1,11 @@
+import { $storage } from '../library/storage'
+import { $dom } from '../library/dom'
+import { HTML } from './globalVars'
+
 /**
  * 更改日夜模式
  */
-const changeTheme = (type?: string) => {
+export const changeTheme = (type?: string) => {
   const btn = <HTMLElement>$dom('.theme .ic')
   if (type === 'dark') {
     HTML.attr('data-theme', type)
@@ -18,7 +22,7 @@ const changeTheme = (type?: string) => {
  * 自动调整黑夜白天
  * 优先级: 手动选择>时间>跟随系统
  */
-const autoDarkmode = () => {
+export const autoDarkmode = () => {
   if (CONFIG.auto_dark.enable) {
     if (new Date().getHours() >= CONFIG.auto_dark.start || new Date().getHours() <= CONFIG.auto_dark.end) {
       changeTheme('dark')
@@ -31,7 +35,7 @@ const autoDarkmode = () => {
 /**
  * 更改主题的meta
  */
-const changeMetaTheme = (color: string): void => {
+export const changeMetaTheme = (color: string): void => {
   if (HTML.attr('data-theme') === 'dark') {
     color = '#222'
   }
@@ -40,7 +44,7 @@ const changeMetaTheme = (color: string): void => {
 }
 
 // 记忆日夜模式切换和系统亮暗模式监听
-const themeColorListener = () => {
+export const themeColorListener = () => {
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (mediaQueryList) => {
     if (mediaQueryList.matches) {
       changeTheme('dark')

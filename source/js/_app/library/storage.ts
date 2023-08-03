@@ -1,5 +1,5 @@
 // Html5LocalStorage的一个API
-const $storage = {
+export const $storage = {
   set (key: string, value: string): void {
     localStorage.setItem(key, value)
   },

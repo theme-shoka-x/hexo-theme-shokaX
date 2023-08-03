@@ -1,5 +1,10 @@
+import { pageScroll } from '../library/anime'
+import { $dom } from '../library/dom'
+import { $storage } from '../library/storage'
+import { BODY, LOCAL_HASH, LOCAL_URL, scrollAction, setLocalHash } from './globalVars'
+
 // 显示提示(现阶段用于版权及复制结果提示)
-const showtip = (msg: string): void | never => {
+export const showtip = (msg: string): void | never => {
   if (!msg) {
     return
   }
@@ -17,7 +22,7 @@ const showtip = (msg: string): void | never => {
   }, 3000)
 }
 
-const pagePosition = () => {
+export const pagePosition = () => {
   // 判断配置项是否开启了自动记录滚动位置
   if (CONFIG.auto_scroll) {
     // 将当前页面的滚动位置存入本地缓存
@@ -25,7 +30,7 @@ const pagePosition = () => {
   }
 }
 
-const positionInit = (comment?: boolean) => {
+export const positionInit = (comment?: boolean) => {
   // 获取页面锚点
   const anchor = window.location.hash
 
@@ -43,12 +48,12 @@ const positionInit = (comment?: boolean) => {
 
   if (target) {
     pageScroll(target)
-    LOCAL_HASH = 1
+    setLocalHash(1)
   }
 
   if (comment && anchor && !LOCAL_HASH) {
     pageScroll(target)
-    LOCAL_HASH = 1
+    setLocalHash(1)
   }
 }
 
@@ -57,7 +62,7 @@ const positionInit = (comment?: boolean) => {
 它将使用 Clipboard API 将文本复制到剪贴板。如果不支持，它会创建一个隐藏的文本区域并使用 document.execCommand('copy') 将文本复制到剪贴板。
 最后，它会回调传入的函数并传入一个布尔值表示是否成功复制。
 */
-const clipBoard = (str: string, callback?: (result) => void) => {
+export const clipBoard = (str: string, callback?: (result) => void) => {
   if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(str).then(() => {
       callback && callback(true)

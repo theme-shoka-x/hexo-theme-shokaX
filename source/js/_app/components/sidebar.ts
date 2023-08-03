@@ -1,7 +1,12 @@
 
 /* 边栏分区 */
 
-const sideBarToggleHandle = (event:Event, force?:number) => {
+import { Container, diffY, menuToggle, showContents, sideBar } from '../globals/globalVars'
+import { clipBoard } from '../globals/tools'
+import { pageScroll, transition } from '../library/anime'
+import { $dom } from '../library/dom'
+
+export const sideBarToggleHandle = (event:Event, force?:number) => {
   if (sideBar.hasClass('on')) {
     sideBar.removeClass('on')
     menuToggle.removeClass('close')
@@ -26,7 +31,7 @@ const sideBarToggleHandle = (event:Event, force?:number) => {
   }
 }
 
-const sideBarTab = () => {
+export const sideBarTab = () => {
   const sideBarInner = sideBar.child('.inner')
 
   if (sideBar.child('.tab')) {
@@ -92,7 +97,7 @@ const sideBarTab = () => {
   }
 }
 
-const sidebarTOC = () => {
+export const sidebarTOC = () => {
   const activateNavByIndex = (index) => {
     const target = navItems[index]
 
@@ -203,19 +208,19 @@ const sidebarTOC = () => {
   createIntersectionObserver()
 }
 
-const backToTopHandle = () => {
+export const backToTopHandle = () => {
   pageScroll(0)
 }
 
-const goToBottomHandle = () => {
+export const goToBottomHandle = () => {
   pageScroll(parseInt(String(Container.changeOrGetHeight())))
 }
 
-const goToCommentHandle = () => {
+export const goToCommentHandle = () => {
   pageScroll($dom('#comments'))
 }
 
-const menuActive = () => {
+export const menuActive = () => {
   $dom.each('.menu .item:not(.title)', (element) => {
     const target = <HTMLAnchorElement> element.child('a[href]')
     const parentItem = element.parentNode.parentNode

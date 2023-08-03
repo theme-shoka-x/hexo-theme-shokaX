@@ -1,3 +1,5 @@
+import { getScript } from './scriptPjax'
+
 const assetUrl = (asset: string, type: string): string => {
   const str = CONFIG[asset][type]
   if (str.includes('gh') || str.includes('combine')) {
@@ -12,7 +14,7 @@ const assetUrl = (asset: string, type: string): string => {
   return `/${str}`
 }
 
-const vendorJs = (type: string, callback?: Function, condition?: string) => {
+export const vendorJs = (type: string, callback?: Function, condition?: string) => {
   if (LOCAL[type]) {
     getScript(assetUrl('js', type), callback || function () {
       window[type] = true
@@ -20,7 +22,7 @@ const vendorJs = (type: string, callback?: Function, condition?: string) => {
   }
 }
 
-const vendorCss = (type: string, condition?: string): void => {
+export const vendorCss = (type: string, condition?: string): void => {
   if (window['css' + type]) {
     return
   }

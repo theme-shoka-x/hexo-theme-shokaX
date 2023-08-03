@@ -1,16 +1,20 @@
 // 与第三方js的交互或第三方嵌入js
 
+import lozad from 'lozad'
+import { loadCat } from './globalVars'
+import { transition } from '../library/anime'
+
 /**
  * 懒加载图片
  */
-const lazyload = lozad('img, [data-background-image]', {
+export const lazyload = lozad('img, [data-background-image]', {
   loaded (el: HTMLElement) {
     el.addClass('lozaded')
   }
 })
 
 // 加载动画
-const Loader = {
+export const Loader = {
   timer: undefined,
   lock: false,
   show () {
@@ -37,7 +41,7 @@ const Loader = {
   }
 }
 
-const isOutime = (): void => {
+export const isOutime = (): void => {
   let updateTime: Date
   if (CONFIG.outime.enable && LOCAL.outime) {
     const times = document.getElementsByTagName('time')

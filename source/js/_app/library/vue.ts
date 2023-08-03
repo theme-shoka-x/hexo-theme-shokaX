@@ -1,3 +1,8 @@
+import { $storage } from './storage'
+import { transition } from './anime'
+import { $dom } from './dom'
+import { BODY } from '../globals/globalVars'
+import { changeTheme } from '../globals/themeColor'
 
 Vue.createApp(
   {
@@ -8,7 +13,7 @@ Vue.createApp(
     },
     methods: {
       changeThemeByBtn () {
-        let c
+        let c: { (): void; (): void; (): void }
         const btn = $dom('.theme').child('.ic')
 
         const neko = BODY.createChild('div', {

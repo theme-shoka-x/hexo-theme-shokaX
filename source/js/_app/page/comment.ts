@@ -1,5 +1,10 @@
+import { $dom } from '../library/dom'
+import { transition } from '../library/anime'
+import { goToComment } from '../globals/globalVars'
+import { vendorCss } from '../library/loadFile'
+
 // TODO 此函数在twikoo下可能不适用
-const loadComments = () => {
+export default function loadComments () {
   const element = $dom('#comments')
   if (!element) {
     goToComment.display('none')
