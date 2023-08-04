@@ -9,11 +9,13 @@ module.exports = {
   extends: [
     'standard',
     'plugin:@typescript-eslint/recommended',
-    'plugin:vue/vue3-recommended'
+    'plugin:vue/vue3-recommended',
+    'plugin:chai-friendly/recommended'
   ],
   plugins: [
     '@typescript-eslint',
-    'vue'
+    'vue',
+    'chai-friendly'
   ],
   parserOptions: {
     ecmaVersion: 12

@@ -1,22 +1,8 @@
 /* global hexo */
 import env from '../../package.json'
 import fs = require('hexo-fs')
-import pathLib from 'node:path'
 import esbuild = require('esbuild')
 
-function findJsFile (path:string):string[] {
-  let result:string[] = []
-  fs.readdirSync(path).forEach((item) => {
-    if (!item.endsWith('js')) {
-      result = result.concat(findJsFile(pathLib.join(path, item)))
-    } else {
-      if (item.indexOf('player') === -1 && item.indexOf('fireworks') === -1) {
-        result.push(pathLib.join(path, item))
-      }
-    }
-  })
-  return result
-}
 hexo.extend.generator.register('script', function (locals) {
   const config = hexo.config
   const theme = hexo.theme.config
