@@ -12,7 +12,6 @@ import Pjax from 'theme-shokax-pjax'
 
 const siteInit = () => {
   cloudflareInit()
-  initProto()
   domInit()
 
   setPjax(new Pjax({

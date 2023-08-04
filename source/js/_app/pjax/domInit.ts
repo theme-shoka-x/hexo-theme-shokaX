@@ -15,8 +15,10 @@ import {
 import { Loader } from '../globals/thirdparty'
 import { $dom } from '../library/dom'
 import { mediaPlayer } from '../player'
+import initProto from '../library/proto'
 
 export default function domInit () {
+  initProto()
   $dom.each('.overview .menu > .item', (el) => {
     siteNav.child('.menu').appendChild(el.cloneNode(true))
   })

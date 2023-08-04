@@ -74,7 +74,7 @@ hexo.extend.generator.register('script', function (locals) {
     siteConfig.audio = theme.audio
   }
 
-  let text = ''
+  let text: string
   let enterPoint: string
   if (fs.existsSync('themes/shokaX/source/js/_app/pjax/siteInit.js')) {
     enterPoint = 'themes/shokaX/source/js/_app/pjax/siteInit.js'
@@ -86,7 +86,9 @@ hexo.extend.generator.register('script', function (locals) {
     entryPoints: [enterPoint],
     bundle: true,
     outfile: 'shokax_temp.js',
-    platform: 'browser'
+    platform: 'browser',
+    target: ['es2021'],
+    minify: true
   })
   text += fs.readFileSync('shokax_temp.js')
   const result = hexo.render.renderSync({ text, engine: 'js' })
