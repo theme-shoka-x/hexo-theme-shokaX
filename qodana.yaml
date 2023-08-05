@@ -1,5 +1,7 @@
 version: "1.0"
 linter: jetbrains/qodana-js:2023.2-eap
+profile:
+  name: qodana.recommended
 include:
   - name: CheckDependencyLicenses
 exclude:

@@ -358,18 +358,18 @@ advVendors:
   js:
     pace:
       src: bytedance:pace/1.0.2/pace.min.js
-    pjax:
-      src: npm:theme-shokax-pjax@latest/pjax.shokax.min.js
+#    pjax:
+#      src: npm:theme-shokax-pjax@latest/pjax.shokax.min.js
     fetch:
       src: npm:whatwg-fetch@3.4.0/dist/fetch.umd.js
-    anime:
-      src: npm:theme-shokax-anime@latest/anime.shokax.min.js
+#    anime:
+#      src: npm:theme-shokax-anime@latest/anime.shokax.min.js
     algolia:
       src: bytedance:algoliasearch/4.12.1/algoliasearch-lite.umd.min.js
     instantsearch:
       src: bytedance:instantsearch.js/4.39.0/instantsearch.production.min.js
-    lazyload:
-      src: bytedance:lozad.js/1.16.0/lozad.min.js
+#    lazyload:
+#      src: bytedance:lozad.js/1.16.0/lozad.min.js
     quicklink:
       src: bytedance:quicklink/2.2.0/quicklink.umd.min.js
     fancybox:
@@ -388,11 +388,11 @@ advVendors:
 vendorsList:
   js:
     - pace
-    - pjax
-    - anime
+#    - pjax
+#    - anime
     - algolia
     - instantsearch
-    - lazyload
+#    - lazyload
     - quicklink
     - fancybox
     - copy_tex
@@ -405,12 +405,12 @@ vendors:
 
   js:
     pace: npm/pace-js@1.0.2/pace.min.js # ok
-    pjax: npm/theme-shokax-pjax@latest/pjax.shokax.min.js # ok
+#    pjax: npm/theme-shokax-pjax@latest/pjax.shokax.min.js # ok
     fetch: npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js # ok
-    anime: npm/theme-shokax-anime@latest/anime.shokax.min.js
+#    anime: npm/theme-shokax-anime@latest/anime.shokax.min.js
     algolia: npm/algoliasearch@4/dist/algoliasearch-lite.umd.js # ok
     instantsearch: npm/instantsearch.js@4/dist/instantsearch.production.min.js # ok
-    lazyload: npm/lozad@1/dist/lozad.min.js # ok
+#    lazyload: npm/lozad@1/dist/lozad.min.js # ok
     quicklink: npm/quicklink@2/dist/quicklink.umd.js # ok
     fancybox: combine/npm/jquery@3.5.1/dist/jquery.min.js,npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js,npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js # notok
     valine: gh/amehime/MiniValine@4.2.2-beta10/dist/MiniValine.min.js # TODO 弃用

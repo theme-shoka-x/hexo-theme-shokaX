@@ -1,13 +1,13 @@
 {
     "name": "hexo-theme-shokax",
-    "version": "0.3.1",
+    "version": "0.3.2",
     "description": "a hexo theme based on shoka",
     "main": "index.js",
     "repository": "https://github.com/theme-shoka-x/hexo-theme-shokaX",
     "author": "zkz098",
     "license": "AGPL-3.0-or-later",
     "scripts": {
-        "test": "tsc",
+        "test": "mocha test --coverage",
         "build": "pnpm install && tsc"
     },
     "devDependencies": {
