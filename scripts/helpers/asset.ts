@@ -5,6 +5,7 @@ import theme_env from '../../package.json'
 import { htmlTag, url_for, stripHTML } from 'hexo-util'
 
 hexo.extend.helper.register('_new_comments', function (mode) {
+  const root = this.config.url.replace(/^(https?:\/\/)?[^\/]*/,'')
   if (mode === 'twikoo') {
     return `<script data-pjax type="module">
             let comments = []
@@ -28,7 +29,8 @@ hexo.extend.helper.register('_new_comments', function (mode) {
                 Vue.createApp({
                   data() {
                       return {
-                          coms: comments
+                          coms: comments,
+                          root: '${root}'
                       }
                   }
                   }).mount('#new-comment')
@@ -59,7 +61,8 @@ hexo.extend.helper.register('_new_comments', function (mode) {
           Vue.createApp({
             data() {
                 return {
-                    coms: items
+                    coms: items,
+                    root: '${root}'
                 }
             }
           }).mount('#new-comment')
