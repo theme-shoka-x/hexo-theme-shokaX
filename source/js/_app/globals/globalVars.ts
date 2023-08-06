@@ -1,6 +1,8 @@
 import { $dom } from '../library/dom'
 import Pjax from 'theme-shokax-pjax'
+import initProto from '../library/proto'
 
+initProto()
 export const statics = CONFIG.statics.indexOf('//') > 0 ? CONFIG.statics : CONFIG.root
 export const scrollAction: { x: number, y: number } = { x: 0, y: 0 }
 export let diffY = 0
