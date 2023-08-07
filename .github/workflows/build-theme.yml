@@ -55,4 +55,5 @@ jobs:
 
       - name: Test
         run: |
+          tsc
           pnpm test
