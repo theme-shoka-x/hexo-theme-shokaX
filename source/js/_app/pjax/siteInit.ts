@@ -1,4 +1,3 @@
-import initProto from '../library/proto'
 import domInit from './domInit'
 import { pjaxReload, siteRefresh } from './refresh'
 import { cloudflareInit } from '../library/scriptPjax'
@@ -9,10 +8,12 @@ import { resizeHandle, scrollHandle, visibilityListener } from '../globals/handl
 import { pagePosition } from '../globals/tools'
 import { initFireworks } from '../fireworks'
 import Pjax from 'theme-shokax-pjax'
+import { initVue } from '../library/vue'
 
 const siteInit = () => {
   cloudflareInit()
   domInit()
+  initVue()
 
   setPjax(new Pjax({
     selectors: [

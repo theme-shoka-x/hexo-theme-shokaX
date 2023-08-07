@@ -44,34 +44,15 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
+
+      - name: Get theme
+        uses: actions/checkout@v3
+
       - name: Init environment
         run: |
           npm install pnpm -g
-          npm install hexo-cli -g
-          hexo init
           pnpm install
-          pnpm add hexo-renderer-multi-next-markdown-it
-          pnpm add hexo-autoprefixer
-          pnpm add hexo-algoliasearch
-          pnpm add hexo-feed
-
-      - name: Install theme
-        uses: actions/checkout@v3
-        with:
-          path: themes/shokaX
-      - name: Build Typescript files
-        run: |
-          cd themes/shokaX
-          pnpm install
-          pnpm run build
-          cd ..
-          find shokaX -type f -name "*.ts" -delete
-          cd ..
 
       - name: Test
         run: |
-          sed -i 's/landscape/shokaX/g' _config.yml
-          hexo g
-          hexo s &
-          sleep 8
-          curl http://localhost:4000/index.html
+          pnpm test
