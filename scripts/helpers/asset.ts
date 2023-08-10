@@ -1,11 +1,10 @@
 /* global hexo */
 
 import theme_env from '../../package.json'
-// @ts-ignore
 import { htmlTag, url_for, stripHTML } from 'hexo-util'
 
 hexo.extend.helper.register('_new_comments', function (mode) {
-  const root = this.config.url.replace(/^(https?:\/\/)?[^\/]*/,'')
+  const root = this.config.url.replace(/^(https?:\/\/)?[^\/]*/, '')
   if (mode === 'twikoo') {
     return `<script data-pjax type="module">
             let comments = []
