@@ -38,7 +38,7 @@
         "jsdom": "^22.1.0"
     },
     "dependencies": {
-        "esbuild": "^0.18.17",
+        "esbuild": "^0.19.2",
         "js-yaml": "^4.1.0",
         "lozad": "^1.16.0",
         "theme-shokax-anime": "^0.0.4",
