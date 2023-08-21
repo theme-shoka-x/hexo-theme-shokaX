@@ -2,7 +2,6 @@
 * [ShokaX 正在寻找社区维护者](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/137)
 
 # hexo-theme-shokaX
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fzkz098%2Fhexo-theme-shokaX.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fzkz098%2Fhexo-theme-shokaX?ref=badge_shield)
 ![LICENSE](	https://img.shields.io/github/license/theme-shoka-x/hexo-theme-shokaX)
 ![stars](https://img.shields.io/github/stars/theme-shoka-x/hexo-theme-shokaX)
 ![version](https://shields.io/npm/v/hexo-theme-shokax)
