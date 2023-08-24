@@ -13,7 +13,7 @@ mixin BCRender(post, home)
             i(class="ic i-angle-right")
         each cat,index in post.categories.toArray()
             if home
-                if index===cat_length
+                if index===cat_length-1
                     span(class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem")
                         a(href=url_for(cat.path) itemprop="item" rel="index" title=__('post.in')+ cat.name)
                             span(itemprop="name")
@@ -28,6 +28,6 @@ mixin BCRender(post, home)
             else
                 a(href=url_for(cat.path) title=__('post.in')+cat.name)
                     != cat.name
-            if cat_length > 1 && index !== cat_length
+            if cat_length > 1 && index !== cat_length - 1
                 i(class="ic i-angle-right")
     != '</div>'

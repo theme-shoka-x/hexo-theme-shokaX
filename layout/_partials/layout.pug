@@ -71,7 +71,15 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
                     != partial('_partials/footer.pug', {}, {cache: true})
         - var ccIcon = '<i class="ic i-creative-commons"></i>'
         - var ccText = theme.creative_commons.license.toUpperCase()
-        - var pageAudio = _safedump(page.audio) || []
+        - var audioValue
+        if page.audio
+            - audioValue = JSON.stringify(page.audio);
+
+        else if page.audio === false
+            - audioValue = JSON.stringify({});
+        else
+            - audioValue = "undefined"
+
         script(data-config type="text/javascript").
             var LOCAL = {
                     path: `#{_permapath(page.path)}`,
@@ -89,11 +97,11 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
                 copy_tex: #{!!page.math},
                 katex: #{!!page.math},
                 mermaid: #{!!page.mermaid},
-                audio: #{pageAudio},
+                audio: !{audioValue},
                 fancybox: #{page.fancybox !== false},
                 nocopy: #{!!page.nocopy},
                 outime: #{page.outime !== false},
-                template: #{__('outime.template')},
+                template: `!{__('outime.template')}`,
                 quiz: {
                     choice: `#{__('quiz.choice')}`,
                     multiple: `#{__('quiz.multiple')}`,
