@@ -1,6 +1,6 @@
 *.ts
 .npmrc
-.eslintrc.js
+.eslintrc.cjs
 .editorconfig
 tsconfig.json
 .idea

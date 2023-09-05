@@ -1,8 +1,6 @@
 name: 请求功能
 description: 对shokaX的建议或功能请求
 labels: ["enhancement ✨"]
-assignees:
-  - zkz098
 body:
   - type: "markdown"
     attributes:
@@ -18,6 +16,8 @@ body:
         - label: 我填写了简短且清晰明确的标题，以便开发者在收到 Issue 时能快速确定大致问题。而不是"一个建议"、"加功能"等
           required: true
         - label: 我确认最新版尚未添加此功能，且此前没有人提出过此问题
+          required: true
+        - label: 为保证 Issue 及时得到回复，我已选择至少一名不在 busy 状态的组织成员作为`assignees`
           required: true
   - type: "textarea"
     id: describe
