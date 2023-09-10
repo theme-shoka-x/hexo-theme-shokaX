@@ -11,7 +11,6 @@ import Pjax from 'theme-shokax-pjax'
 import { initVue } from '../library/vue'
 
 const siteInit = () => {
-  cloudflareInit()
   domInit()
   initVue()
 
@@ -54,6 +53,8 @@ const siteInit = () => {
   // clickMenu() TODO 暂时禁用
   siteRefresh(1)
 }
+
+cloudflareInit()
 
 window.addEventListener('DOMContentLoaded', siteInit, {
   passive: true
