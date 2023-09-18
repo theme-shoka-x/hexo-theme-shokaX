@@ -44,11 +44,6 @@ SXC install shokaX
 ```
 [点此](https://docs.kaitaku.xyz/guide/#%E9%85%8D%E7%BD%AE%E4%B8%BB%E9%A2%98)以进行下一步配置
 
-github仓库建议通过右边的 releases 下载,步骤为:
-- 点击 Releases 的 Latest 版本
-- 下载 Assets 中的 `Source code(zip)`
-- 解压即可作为主题使用
-
 ## 📚子项目
 - [ShokaX docs](https://github.com/theme-shoka-x/shokaX-docs) ShokaX 主题文档 (正在编写中，欢迎加入！)
 - [HRMNMI](https://github.com/theme-shoka-x/hexo-renderer-multi-next-markdown-it) ShokaX 正在使用的 markdown 渲染器 (等待重构)

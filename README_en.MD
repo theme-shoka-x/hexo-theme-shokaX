@@ -37,11 +37,6 @@ Note: This project requires node.js 18.x or higher to run. \
 It is recommended to use [ShokaX-CLI](https://github.com/zkz098/shokaX-CLI) \
 [Click here](https://docs.kaitaku.xyz/guide/#%E9%85%8D%E7%BD%AE%E4%B8%BB%E9%A2%98) for the next configuration steps.
 
-For the GitHub repository, it is recommended to download from the releases on the right side, with the following steps:
-- Click on the Latest version in Releases
-- Download `Source code(zip)` from Assets
-- Unzip to use as a theme
-
 ## 📚 Sub-projects
 - [ShokaX docs](https://github.com/theme-shoka-x/shokaX-docs) ShokaX Theme Documentation (work in progress, contributions welcome!)
 - [HRMNMI](https://github.com/theme-shoka-x/hexo-renderer-multi-next-markdown-it) The markdown renderer used by ShokaX (awaiting refactoring)
