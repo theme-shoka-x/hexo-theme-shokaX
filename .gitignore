@@ -16,3 +16,4 @@ test.html
 /docs/.vuepress/.temp
 *.js
 !*.test.js
+test.ts

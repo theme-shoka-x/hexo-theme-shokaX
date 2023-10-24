@@ -3,12 +3,9 @@
     "target": "ESNext",
     "module": "CommonJS",
     "removeComments": true,
-    "alwaysStrict": false,
     "strict": false,
-    "pretty": false,
-    "allowJs": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     "resolveJsonModule": true,
     "types": ["theme-shokax-anime","lozad","jquery","fancybox"]
   },

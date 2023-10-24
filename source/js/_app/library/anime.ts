@@ -77,16 +77,18 @@ export const transition = (target: HTMLElement, type: number|string|Function, co
     duration: 200,
     easing: 'linear',
     begin () {
+      // eslint-disable-next-line chai-friendly/no-unused-expressions
       begin && begin()
     },
     complete () {
       target.display(display)
+      // eslint-disable-next-line chai-friendly/no-unused-expressions
       complete && complete()
     }
   }, animation)).play()
 }
 
-export const pageScroll = (target: any, offset?: number, complete?: Function) => {
+export const pageScroll = (target: HTMLElement, offset?: number, complete?: Function) => {
   // target: 滚动到的目标元素或坐标(number)
   // offset: 可选的偏移量
   // complete: 可选的回调函数，在动画完成时调用
@@ -101,6 +103,7 @@ export const pageScroll = (target: any, offset?: number, complete?: Function) =>
     scrollTop: offset || (typeof target === 'number' ? target : (target ? target.getTop() + document.documentElement.scrollTop - siteNavHeight : 0)),
     // 完成回调函数
     complete () {
+      // eslint-disable-next-line chai-friendly/no-unused-expressions
       complete && complete()
     }
   }

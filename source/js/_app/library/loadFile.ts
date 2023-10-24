@@ -1,5 +1,8 @@
 import { getScript } from './scriptPjax'
 
+/**
+ * 用途是根据不同的资源名称和类型生成相应的资源 URL。
+ */
 const assetUrl = (asset: string, type: string): string => {
   const str = CONFIG[asset][type]
   if (str.includes('gh') || str.includes('combine')) {

@@ -21,7 +21,11 @@ export default function initProto () {
       }
       return child
     },
-    wrapObject (obj: Object) {
+    /**
+     *  此方法使用`<div>`包装一个 DOM 元素
+     * @param obj 需要被包装的对象
+     */
+    wrapObject (obj: HTMLElement) {
       const box = document.createElement('div')
       Object.assign(box, obj)
       this.parentNode.insertBefore(box, this)
@@ -106,8 +110,11 @@ export default function initProto () {
       return $dom.all(selector, this)
     },
     /**
-   * 当输入type为toggle时,对每个className执行toggle操作 <br />
-   * 反之,对每个className执行type操作
+     * 这个方法接受三个参数：
+     * type 表示操作类型（'add'、'remove'、'toggle'），
+     * className 是一个或多个要操作的类名，
+     * display 是一个可选的布尔值，用于在执行切换操作时指定类名是否应显示或隐藏。
+     * 该方法会根据操作类型执行相应的类名操作。
    */
     _class (type: string, className: string, display?: boolean): void {
       const classNames = className.indexOf(' ') ? className.split(' ') : [className]
@@ -119,18 +126,34 @@ export default function initProto () {
         }
       })
     },
+    /**
+     * 这个方法是对 _class 方法的封装，调用时会将操作类型设为 'add'，然后执行添加类名的操作。
+     * 最后，它返回当前的 EventTarget，通常是 DOM 元素本身，以支持链式调用。
+     */
     addClass (className: string): EventTarget {
       this._class('add', className)
       return this
     },
+    /**
+     * 这个方法是对 _class 方法的封装，调用时会将操作类型设为 'remove'，然后执行移除类名的操作。
+     * 最后，它返回当前的 EventTarget，通常是 DOM 元素本身，以支持链式调用。
+     */
     removeClass (className: string): EventTarget {
       this._class('remove', className)
       return this
     },
+    /**
+     * 这个方法是对 _class 方法的封装，调用时会将操作类型设为 'toggle'，然后执行切换类名的操作。
+     * 如果提供了 display 参数，它将根据布尔值决定是否显示或隐藏类名。
+     * 最后，它返回当前的 EventTarget，通常是 DOM 元素本身，以支持链式调用。
+     */
     toggleClass (className: string, display?: boolean): EventTarget {
       this._class('toggle', className, display)
       return this
     },
+    /**
+     * 这个方法返回一个布尔值，表示元素是否包含指定的类名。
+     */
     hasClass (className: string): boolean {
       return this.classList.contains(className)
     }
