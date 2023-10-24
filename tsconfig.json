@@ -5,7 +5,7 @@
     "removeComments": true,
     "strict": false,
     "esModuleInterop": true,
-    "moduleResolution": "node16",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "types": ["theme-shokax-anime","lozad","jquery","fancybox"]
   },

@@ -88,13 +88,13 @@ export const transition = (target: HTMLElement, type: number|string|Function, co
   }, animation)).play()
 }
 
-export const pageScroll = (target: HTMLElement, offset?: number, complete?: Function) => {
+export const pageScroll = (target: HTMLElement|number, offset?: number, complete?: Function) => {
   // target: 滚动到的目标元素或坐标(number)
   // offset: 可选的偏移量
   // complete: 可选的回调函数，在动画完成时调用
   const opt = {
     // 动画目标
-    targets: typeof offset === 'number' ? target.parentNode : document.scrollingElement,
+    targets: typeof offset === 'number' && typeof target !== 'number' ? target.parentNode : document.scrollingElement,
     // 动画持续时间
     duration: 500,
     // 动画缓动函数
