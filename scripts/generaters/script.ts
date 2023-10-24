@@ -25,7 +25,7 @@ hexo.extend.generator.register('script', function (locals) {
       fancybox: theme.vendors.js.fancybox
     },
     css: {
-      valine: theme.css + '/comment.css',
+      // valine: theme.css + '/comment.css',
       katex: theme.vendors.css.katex,
       mermaid: theme.css + '/mermaid.css',
       fancybox: theme.vendors.css.fancybox
@@ -44,9 +44,9 @@ hexo.extend.generator.register('script', function (locals) {
     disableVL: theme.disableVL,
     noPlayer: theme.experiments?.noPlayer,
     audio: undefined,
-    fireworks: (theme.fireworks && theme.fireworks.enable) ? 
-    (theme.fireworks.color || ['rgba(255,182,185,.9)', 'rgba(250,227,217,.9)', 'rgba(187,222,214,.9)', 'rgba(138,198,209,.9)']) : 
-    undefined
+    fireworks: (theme.fireworks && theme.fireworks.enable)
+      ? (theme.fireworks.color || ['rgba(255,182,185,.9)', 'rgba(250,227,217,.9)', 'rgba(187,222,214,.9)', 'rgba(138,198,209,.9)'])
+      : undefined
   }
 
   if (config?.algolia) {

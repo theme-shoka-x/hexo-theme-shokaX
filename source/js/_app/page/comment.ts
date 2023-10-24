@@ -14,7 +14,7 @@ export default function loadComments () {
   }
   const io = new IntersectionObserver((entries, observer) => {
     const entry = entries[0]
-    vendorCss('valine')
+    // vendorCss('valine')
     if (entry.isIntersecting || entry.intersectionRatio > 0) {
       transition($dom('#comments'), 'bounceUpIn')
       observer.disconnect()

@@ -401,7 +401,7 @@ vendors:
     instantsearch: npm/instantsearch.js@4/dist/instantsearch.production.min.js # ok
     quicklink: npm/quicklink@2/dist/quicklink.umd.js # ok
     fancybox: combine/npm/jquery@3.5.1/dist/jquery.min.js,npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js,npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js # notok
-    valine: gh/amehime/MiniValine@4.2.2-beta10/dist/MiniValine.min.js # TODO 弃用
+#    valine: gh/amehime/MiniValine@4.2.2-beta10/dist/MiniValine.min.js # TODO 弃用
     copy_tex: npm/katex@0.16.7/dist/contrib/copy-tex.min.js # ok
     chart: npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js # ok
 
