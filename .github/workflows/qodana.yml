@@ -11,9 +11,14 @@ on:
 jobs:
   analyze:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      checks: write
     steps:
       - uses: actions/checkout@v3
         with:
+          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
       - name: 'install packages'
         run: |
@@ -21,5 +26,8 @@ jobs:
           pnpm install
       - name: 'Qodana Scan'
         uses: JetBrains/qodana-action@main
+        with:
+          pr-mode: false
+          post-pr-comment: true
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
