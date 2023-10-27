@@ -1,5 +1,5 @@
 div(class="meta")
-    if date(post.date) != date(post.updated) || time(post.date) != time(post.updated)
+    if date(post.date) !== date(post.updated) || time(post.date) !== time(post.updated)
         if theme.twikoo.enable || theme.waline.pageview
             span(class="icon")
                 i(class="ic i-eye")

@@ -65,8 +65,10 @@ export const positionInit = (comment?: boolean) => {
 export const clipBoard = (str: string, callback?: (result) => void) => {
   if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(str).then(() => {
+      // eslint-disable-next-line chai-friendly/no-unused-expressions
       callback && callback(true)
     }, () => {
+      // eslint-disable-next-line chai-friendly/no-unused-expressions
       callback && callback(false)
     })
   } else {
@@ -87,6 +89,7 @@ export const clipBoard = (str: string, callback?: (result) => void) => {
     ta.setSelectionRange(0, str.length)
     ta.readOnly = false
     const result = document.execCommand('copy')
+    // eslint-disable-next-line chai-friendly/no-unused-expressions
     callback && callback(result)
     ta.blur() // For iOS
     if (selected) {

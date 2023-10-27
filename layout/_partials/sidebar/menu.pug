@@ -7,7 +7,7 @@ mixin item(name, path, parent, sublist)
     - var menuText = __('menu.' + name).replace('menu.', '')
     if parent
         li(class="item dropdown")
-            if itemURL == '/'
+            if itemURL === '/'
                 a(href="javascript:void(0);")
                     != menuIcon + menuText
             else
@@ -18,7 +18,7 @@ mixin item(name, path, parent, sublist)
                     - var itemURL = path[0].trim()
                     - if (itemURL==='/') itemURL='javascript:void(0)'
                     - var menuText = __('menu.' + subname).replace('menu.', '')
-                    if subname == 'default'
+                    if subname === 'default'
                         - var menuText = __('menu.' + name).replace('menu.', '')
                     else
                         - var menuIcon = '<i class="ic i-' + trimn(path[1]) + '"></i>'
@@ -29,9 +29,9 @@ mixin item(name, path, parent, sublist)
             != _url(itemURL, menuIcon + menuText, {rel: 'section'})
 
 each value, name in theme.menu
-    if value == '[object Object]'
+    if value.toString() === '[object Object]'
         each subvalue, subname in value
-            if subname == 'default'
+            if subname === 'default'
                 +item(name, subvalue, true, value)
     else
         +item(name, value)

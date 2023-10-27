@@ -5,7 +5,7 @@ include _mixin/segment.pug
 
 block content
     div(class="index wrap")
-        if page.current == 1
+        if page.current === 1
             if page.sticky.length > 0
                 h2(class="divider")
                     != __('index.sticky')
@@ -22,7 +22,7 @@ block content
         - var pagePosts = page?.posts?.length
         if pagePosts > 0
             - var posts = page.posts.toArray()
-            if page.current == 1
+            if page.current === 1
                 h2(class="divider")
                     != __('index.posts')
             div(class="segments posts")

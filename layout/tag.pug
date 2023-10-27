@@ -27,7 +27,7 @@ block content
                     if post.categories && post.categories.length
                         - var cat_length = post.categories.length
                         each cat,index in post.categories.toArray()
-                            if index == cat_length && cat.name !== page.category
+                            if index === cat_length && cat.name !== page.category
                                 span
                                     a(href=url_for(cat.path))
                                         != cat.name
