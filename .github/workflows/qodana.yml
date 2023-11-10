@@ -29,5 +29,6 @@ jobs:
         with:
           pr-mode: false
           post-pr-comment: true
+          upload-result: true
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
