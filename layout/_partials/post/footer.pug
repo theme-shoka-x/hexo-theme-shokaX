@@ -14,7 +14,7 @@ div(class="meta")
                 != date(post.updated)
     if theme.waline.pageview && !theme.waline.enable && !theme.twikoo.enable
         script(type = "module" data-pjax).
-            import { pageviewCount } from 'https://unpkg.com/@waline/client/dist/pageview.mjs';
+            import { pageviewCount } from 'https://unpkg.com/@waline/client@2/dist/pageview.mjs';
 
             const path = document.getElementById("twikoo_visitors").getAttribute("data-path");
             pageviewCount({
