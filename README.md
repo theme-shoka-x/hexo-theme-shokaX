@@ -1,6 +1,3 @@
-# 📣 公告
-* [关于 ShokaX 下一代的技术选型](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/165)
-
 # hexo-theme-shokaX
 ![LICENSE](	https://img.shields.io/github/license/theme-shoka-x/hexo-theme-shokaX)
 ![stars](https://img.shields.io/github/stars/theme-shoka-x/hexo-theme-shokaX)
