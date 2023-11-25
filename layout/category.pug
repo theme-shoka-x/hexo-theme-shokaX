@@ -27,24 +27,19 @@ block content
                 - var cat_length = post.categories.length
                 each cat,index in post.categories.toArray()
                     if cat.name === page.title
-                        - var lastcat = ""
-                        - var lastcatslug = ""
+                        - lastcat = ""
+                        - lastcatslug = ""
                     else
-                        - var lastcat = true
-                        mixin lastcat
-                            != lastcat
-                            a(href=url_for(cat.path))
-                                != cat.name
-                            small
-                                if index >= post.categories.toArray().length
-                                    != cat.length
-                                else
-                                    #{'/'}
-                    - var lastcatslug = lastcatslug + cat.slug
+                        - lastcat += `<a href=${url_for(cat.path)}>${cat.name}</a><small>`
+                        if index >= post.categories.toArray().length - 1
+                            - lastcat = lastcat+' ( '+cat.length+' ) '+`</small>`
+                        else
+                            - lastcat = lastcat+'/'+`</small>`
+                    - lastcatslug = lastcatslug + cat.slug
             if lastcat && lastcatslug && lastcatslug !== current
                 h3(class="item section")
-                    +lastcat
-                - var current = lastcatslug
+                    !=lastcat
+                - current = lastcatslug
             article(class="item normal" itemscope itemtype="http://schema.org/Article")
                 div(class="meta")
                     time(
