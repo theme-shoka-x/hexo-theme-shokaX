@@ -11,7 +11,7 @@ mixin SMRender(item)
             div(class="cover" style=`background: linear-gradient(to bottom right, ${random_color()}, ${random_color()});`)
         else
             div(class="cover")
-                != _url(link1, '<img data-src="'+ _cover(item) +'" alt="article cover">', {itemprop: 'url', title: postText})
+                != _url(link1, '<img data-src="'+ _cover_index(item) +'" alt="article cover">', {itemprop: 'url', title: postText})
         div(class="info")
             +PMRender(item)
             h3

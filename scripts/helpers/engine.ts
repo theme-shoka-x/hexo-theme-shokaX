@@ -126,7 +126,7 @@ hexo.extend.helper.register('_image_url', function (img, path = '') {
   }
 })
 
-hexo.extend.helper.register('_cover', function (item, num) {
+hexo.extend.helper.register('_cover', function (item, num?) {
   const { image_server, image_list } = hexo.theme.config
 
   if (item.cover) {
@@ -135,6 +135,18 @@ hexo.extend.helper.register('_cover', function (item, num) {
     return this._image_url(item.photos[0], item.path)
   } else {
     return randomBG(num || 1, image_server, image_list)
+  }
+})
+
+hexo.extend.helper.register('_cover_index', function (item) {
+  const { index_images, image_list, image_server } = hexo.theme.config
+
+  if (item.cover) {
+    return this._image_url(item.cover, item.path)
+  } else if (item.photos && item.photos.length > 0) {
+    return this._image_url(item.photos[0], item.path)
+  } else {
+    return randomBG(1, image_server, index_images.length === 0 ? image_list : index_images)
   }
 })
 

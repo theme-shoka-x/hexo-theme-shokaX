@@ -41,7 +41,12 @@ hexo.extend.filter.register('before_generate', () => {
   if (data.images && data.images.length >= 6) {
     hexo.theme.config.image_list = data.images
   } else {
-    // @ts-ignore
-    hexo.theme.config.image_list = yaml.load(fs.readFileSync(path.join(__dirname, '../../_images.yml')) as string)
+    hexo.theme.config.image_list = yaml.load(fs.readFileSync(path.join(__dirname, '../../_images.yml'), { encoding: 'utf-8' }))
+  }
+
+  if (fs.existsSync(path.join(__dirname, '../../_images_index.yml'))) {
+    hexo.theme.config.index_images = yaml.load(fs.readFileSync(path.join(__dirname, '../../_images_index.yml'), { encoding: 'utf-8' }))
+  } else {
+    hexo.theme.config.index_images = []
   }
 })
