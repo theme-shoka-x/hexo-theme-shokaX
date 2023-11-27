@@ -35,7 +35,7 @@
         "mocha": "^10.2.0",
         "typescript": "^5.3.2",
         "vue": "^3.3.9",
-        "jsdom": "^22.1.0"
+        "jsdom": "^23.0.0"
     },
     "dependencies": {
         "esbuild": "^0.19.7",
