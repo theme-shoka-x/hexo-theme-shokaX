@@ -133,7 +133,7 @@ symbols_count_time:
   count_total: 站點總字數
   time: 閱讀時長
   time_total: 站點閱讀時長
-  time_minutes: 分鍾
+  time_minutes: 分鐘
   word: 字
   view: 次
 
