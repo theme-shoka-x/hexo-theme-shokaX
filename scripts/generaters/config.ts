@@ -47,6 +47,6 @@ hexo.extend.filter.register('before_generate', () => {
   if (fs.existsSync(path.join(__dirname, '../../_images_index.yml'))) {
     hexo.theme.config.index_images = yaml.load(fs.readFileSync(path.join(__dirname, '../../_images_index.yml'), { encoding: 'utf-8' }))
   } else {
-    hexo.theme.config.index_images = []
+    hexo.theme.config.index_images = data.index_images || []
   }
 })
