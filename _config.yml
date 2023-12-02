@@ -139,7 +139,7 @@ font:
 iconfont: "1832207_igi8uaupcus"
 
 menu:
-  # home: / || home
+  home: / || home
   # about:
   #   default: / || user
   #   aboutsite: /about/  || user
