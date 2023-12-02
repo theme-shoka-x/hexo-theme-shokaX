@@ -1,5 +1,5 @@
 import { $dom } from '../library/dom'
-import { cardActive, registerExtURL } from '../page/common'
+import { cardActive } from '../page/common'
 import { postBeauty } from '../page/post'
 import { pageScroll, transition } from '../library/anime'
 import { vendorCss, vendorJs } from '../library/loadFile'
@@ -54,7 +54,6 @@ export const siteRefresh = (reload) => {
   sideBarTab()
   sidebarTOC()
 
-  registerExtURL()
   postBeauty()
   tabFormat()
   if (typeof mediaPlayer !== 'undefined') {

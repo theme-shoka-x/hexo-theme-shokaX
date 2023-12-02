@@ -57,58 +57,15 @@ hexo.extend.helper.register('_url', function (path, text, options = {}) {
   // 如果未提供URL路径，则返回
   if (!path) { return }
 
-  // 获取hexo配置和URL路径信息
-  const { config } = this
-  const data = new URL(path, hexo.config.url)
-  const siteHost = new URL(config.url).hostname || config.url
-
-  // 获取主题配置
-  const theme = hexo.theme.config
-  let exturl = ''
   let tag = 'a'
   let attrs: { class: string; 'data-url': any; [index:string]:any } = { href: url_for.call(this, path), class: undefined, external: undefined, rel: undefined, 'data-url': undefined }
 
-  // 如果启用了 `exturl`，则只为外部链接设置spanned链接。
-  if (theme.exturl && data.protocol && data.hostname !== siteHost) {
-    tag = 'span'
-    exturl = 'exturl'
-    // 编码URL字符串，并将其存储在数据属性中。
-    const encoded = Buffer.from(path).toString('base64')
-
-    attrs = {
-      class: exturl,
-      'data-url': encoded
-    }
-  }
-
   for (const key in options) {
-    /**
-     * 如果选项包含 `class` 属性，则将其添加到 `exturl` 类中（如果启用了 `exturl` 选项）。
-     * 否则，将其添加到属性集中。
-     */
-    if (exturl !== '' && key === 'class') {
-      attrs[key] += ' ' + options[key]
-    } else {
-      attrs[key] = options[key]
-    }
+    attrs[key] = options[key]
   }
 
   if (attrs.class && Array.isArray(attrs.class)) {
     attrs.class = attrs.class.join(' ')
-  }
-
-  // 如果是外部链接，则重写属性
-  if (data.protocol && data.hostname !== siteHost) {
-    attrs.external = null
-
-    if (!theme.exturl) {
-      // 仅需要为简单链接重写/添加属性。
-      attrs.rel = 'noopener'
-      attrs.target = '_blank'
-    } else {
-      // 在主菜单中移除 `exturl` 的 rel 属性。
-      attrs.rel = null
-    }
   }
 
   // 返回HTML标记字符串

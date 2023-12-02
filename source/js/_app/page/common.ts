@@ -40,23 +40,3 @@ export const cardActive = () => {
     })
   })
 }
-
-export const registerExtURL = () => {
-  $dom.each('span.exturl', (element) => {
-    const link = <HTMLAnchorElement>document.createElement('a')
-    // https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
-
-    link.href = decodeURIComponent(window.atob(element.dataset.url).split('').map((c) => {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-    }).join(''))
-    link.rel = 'noopener external nofollow noreferrer'
-    link.target = '_blank'
-    link.className = element.className
-    link.title = element.title || element.innerText
-    link.innerHTML = element.innerHTML
-    if (element.dataset.backgroundImage) {
-      link.dataset.backgroundImage = element.dataset.backgroundImage
-    }
-    element.parentNode.replaceChild(link, element)
-  })
-}
