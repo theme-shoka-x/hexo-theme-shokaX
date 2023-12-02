@@ -1,3 +1,6 @@
+# 公告
+[关于ShokaX markdown扩展特性的讨论](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/177) \
+[关于删除部分评论系统的讨论](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/175)
 # hexo-theme-shokaX
 ![LICENSE](	https://img.shields.io/github/license/theme-shoka-x/hexo-theme-shokaX)
 ![stars](https://img.shields.io/github/stars/theme-shoka-x/hexo-theme-shokaX)
