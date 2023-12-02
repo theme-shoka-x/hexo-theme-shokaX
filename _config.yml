@@ -140,16 +140,16 @@ iconfont: "1832207_igi8uaupcus"
 
 menu:
   home: / || home
-  about:
-    default: / || user
-    aboutsite: /about/  || user
-    admiration: /admiration/ || coffee
-  posts:
-    default: / || feather
-    archives: /archives/ || list-alt
-    categories: /categories/ || th
-    tags: /tags/ || tags
-  friends: /friends/ || heart
+  # about:
+  #   default: / || user
+  #   aboutsite: /about/  || user
+  #   admiration: /admiration/ || coffee
+  # posts:
+  #   default: / || feather
+  #   archives: /archives/ || list-alt
+  #   categories: /categories/ || th
+  #   tags: /tags/ || tags
+  # friends: /friends/ || heart
 
 # https://twikoo.js.org
 twikoo:
@@ -224,7 +224,7 @@ summary:
 # Value before `||` delimiter is the target permalink,
 # secend value is the name of Font icon.
 social:
-  github: https://github.com/name || github || "#191717"
+  # github: https://github.com/name || github || "#191717"
   #google: https://plus.google.com/yourname || google
   #twitter: https://twitter.com/yourname || twitter || "#00aff0"
   #zhihu: https://www.zhihu.com/people/yourname || zhihu || "#1e88e5"
