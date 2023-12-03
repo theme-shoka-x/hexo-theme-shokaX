@@ -38,7 +38,7 @@ hexo.extend.filter.register('before_generate', () => {
     }
   }
 
-  if (data.images && data.images.length >= 6) {
+  if (data.images && data.images.length > 0) {
     hexo.theme.config.image_list = data.images
   } else {
     hexo.theme.config.image_list = yaml.load(fs.readFileSync(path.join(__dirname, '../../_images.yml'), { encoding: 'utf-8' }))

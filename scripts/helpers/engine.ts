@@ -1,5 +1,3 @@
-/* global hexo */
-
 'use strict'
 
 // @ts-ignore
@@ -7,7 +5,7 @@ import { htmlTag, url_for } from 'hexo-util'
 
 const randomServer = parseInt(String(Math.random() * 4), 10) + 1
 
-const randomBG = function (count = 1, image_server = null, image_list = []) {
+const randomBG = function (count = 1, image_server:string = null, image_list:string[] = []) {
   let i
   if (image_server) {
     if (count && count > 1) {
@@ -22,7 +20,7 @@ const randomBG = function (count = 1, image_server = null, image_list = []) {
     return image_server + '?' + Math.floor(Math.random() * 999999)
   }
 
-  const parseImage = function (img, size) {
+  const parseImage = function (img:string, size:string) {
     if (img.startsWith('//') || img.startsWith('http')) {
       return img
     } else if (hexo.theme.config.experiments?.usingRelative) { // support relative url
@@ -34,7 +32,10 @@ const randomBG = function (count = 1, image_server = null, image_list = []) {
   }
 
   if (count && count > 1) {
-    const shuffled = image_list.slice(0)
+    let shuffled = image_list.slice(0)
+    while (shuffled.length < 6) {
+      shuffled = shuffled.concat(image_list.slice(0))
+    }
     i = image_list.length
     const min = i - count; let temp; let index
     while (i-- > min) {
@@ -151,10 +152,7 @@ hexo.extend.helper.register('language_name', function (language) {
 })
 
 hexo.extend.helper.register('random_color', function () {
-  /**
-   @type {number[]}
-   */
-  const arr = []
+  const arr:number[] = []
   for (let i = 0; i < 3; i++) {
     arr.push(Math.floor(Math.random() * 128 + 128))
   }
