@@ -1,8 +1,6 @@
 'use strict'
 /* global hexo */
 
-import fs = require('hexo-fs')
-
 const prepareQuery = (categories, parent) => {
   const query = {
     parent: undefined
@@ -62,40 +60,6 @@ hexo.extend.helper.register('_list_categories', function (depth = 0) {
   }
 
   return hierarchicalList(0)
-})
-
-hexo.extend.helper.register('_categories', function () {
-  // let hexo = this
-  const categories = this.site.categories
-  if (!categories || !categories.length) return ''
-
-  const pangu = {
-    spacing: data => {
-      return data
-    }
-  }
-
-  const result = {}
-
-  categories.forEach((cat, i) => {
-    const child = prepareQuery(categories, cat._id)
-    const cover = 'source/_posts' + cat.path.replace(this.config.category_dir, '') + 'cover.jpg'
-
-    if (fs.existsSync(cover)) {
-      const className = cat.slug.split('/')
-      className.pop()
-      cat.class = className.join(' ')
-      cat.name = pangu.spacing(cat.name)
-
-      if (child.length !== 0) {
-        cat.child = child
-      }
-
-      result[cat._id] = cat
-    }
-  })
-
-  return result
 })
 
 hexo.extend.helper.register('_category_prev', function (name) {

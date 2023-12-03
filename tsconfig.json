@@ -7,10 +7,11 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "types": ["theme-shokax-anime","lozad","jquery","fancybox"]
+    "types": ["theme-shokax-anime","lozad","jquery","fancybox"],
+    "skipLibCheck": true
   },
   "typeAcquisition": {
     "enable": true
   },
-  "include": ["source/js/**/*","scripts/**/*"],
+  "include": ["source/js/**/*","scripts/**/*"]
 }

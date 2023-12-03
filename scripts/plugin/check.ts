@@ -3,7 +3,7 @@
 let findProblem = false
 
 hexo.on('generateBefore', function () {
-  if (hexo.config.highlight.enable || hexo.config.prismjs.enable) {
+  if (hexo.config.syntax_highlighter) {
     findProblem = true
     hexo.log.error('[SXEC 101] Highlight.js or Prismjs enabled. The code block will render incomplete')
   }
