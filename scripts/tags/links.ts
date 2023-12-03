@@ -1,5 +1,8 @@
 /* global hexo */
-'use strict'
+import fs from 'node:fs'
+import path from 'node:path'
+import yaml from 'js-yaml'
+
 /*
 {% links %}
 - site: #main title
@@ -13,11 +16,16 @@
 {% linksfile [path] %}
 */
 
-import fs from 'node:fs'
-import path from 'node:path'
-import yaml from 'js-yaml'
+interface siteLink {
+  site: string
+  owner?: string
+  url: string
+  desc?: string
+  image?: string
+  color?: string
+}
 
-function linkGrid (args, content) {
+function linkGrid (args:string[], content:string) {
   const theme = hexo.theme.config
 
   if (!args[0] && !content) {
@@ -27,7 +35,7 @@ function linkGrid (args, content) {
   if (args[0]) {
     const filepath = path.join(hexo.source_dir, args[0])
     if (fs.existsSync(filepath)) {
-      content = fs.readFileSync(filepath)
+      content = fs.readFileSync(filepath, { encoding: 'utf-8' })
     }
   }
 
@@ -35,24 +43,13 @@ function linkGrid (args, content) {
     return
   }
 
-  const siteHost = new URL(hexo.config.url).hostname || hexo.config.url
-
-  const list = yaml.load(content) as Array<any>
+  const list = yaml.load(content) as Array<siteLink>
 
   let result = ''
 
   list.forEach((item) => {
     if (!item.url || !item.site) {
       return
-    }
-
-    let urlparam = {
-      protocol: undefined,
-      hostname: undefined
-    }
-
-    if (item.url) {
-      urlparam = new URL(item.url, hexo.config.url)
     }
 
     let item_image = item.image || theme.assets + '/404.png'
@@ -65,20 +62,11 @@ function linkGrid (args, content) {
 
     result += `<div class="item" title="${item.owner || item.site}"${item.color}>`
 
-    if (urlparam.protocol && urlparam.hostname !== siteHost) {
-      const durl = Buffer.from(item.url).toString('base64')
-      result += `<span class="image" data-url="${durl}" data-background-image="${item_image}"></span>
-          <div class="info">
-          <span class="title" data-url="${durl}">${item.site}</span>
-          <p class="desc">${item.desc || item.url}</p>
-          </div></div>`
-    } else {
-      result += `<a href="${item.url}" class="image" data-background-image="${item_image}"></a>
-          <div class="info">
-          <a href="${item.url}" class="title">${item.site}</a>
-          <p class="desc">${item.desc || item.url}</p>
-          </div></div>`
-    }
+    result += `<a href="${item.url}" class="image" data-background-image="${item_image}"></a>
+        <div class="info">
+        <a href="${item.url}" class="title">${item.site}</a>
+        <p class="desc">${item.desc || item.url}</p>
+        </div></div>`
   })
 
   return `<div class="links">${result}</div>`
