@@ -33,10 +33,10 @@ const randomBG = function (count = 1, image_server:string = null, image_list:str
 
   if (count && count > 1) {
     let shuffled = image_list.slice(0)
-    while (shuffled.length < 6) {
+    while (shuffled.length <= 6) {
       shuffled = shuffled.concat(image_list.slice(0))
     }
-    i = image_list.length
+    i = shuffled.length
     const min = i - count; let temp; let index
     while (i-- > min) {
       index = Math.floor((i + 1) * Math.random())
