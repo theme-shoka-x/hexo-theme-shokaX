@@ -80,7 +80,10 @@ AGPL许可证主要目的是限制修改后的分发行为，避免未经许可�
 | hexo-theme-shoka | amehime           | 本项目的父主题            |
 
 ## 开发者们
-[![](https://contributors-img.web.app/image?repo=theme-shoka-x/hexo-theme-shokaX)](https://github.com/theme-shoka-x/hexo-theme-shokaX/graphs/contributors)
+Hexo 主题： \
+[![](https://contributors-img.web.app/image?repo=theme-shoka-x/hexo-theme-shokaX)](https://github.com/theme-shoka-x/hexo-theme-shokaX/graphs/contributors) \
+ShokaX 文档： \
+[![](https://contributors-img.web.app/image?repo=theme-shoka-x/shokaX-docs)](https://github.com/theme-shoka-x/shokaX-docs/graphs/contributors) \
 
 ## 特别鸣谢
 [<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" width="25%">](https://jb.gg/OpenSourceSupport)
