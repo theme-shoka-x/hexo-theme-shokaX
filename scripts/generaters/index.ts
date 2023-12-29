@@ -100,7 +100,8 @@ hexo.extend.generator.register('index', function (locals) {
       data: {
         __index: true,
         catlist,
-        sticky
+        sticky,
+        current: 1,
       }
     }]
   }
