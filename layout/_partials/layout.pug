@@ -2,7 +2,7 @@ include ../_mixin/breadcrumb.pug
 include ../_mixin/sidebar.pug
 include ../_mixin/widgets.pug
 
-- var ignores = []
+- ignores = []
 if (theme.quicklink.ignores)
     - ignores.push(theme.quicklink.ignores)
 
@@ -40,7 +40,7 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
                         - var coverImage = theme.experiments.fixedCover || "https://7ed.net/bing/api"
                         img(src=coverImage)
                     else
-                        - var covers = _cover(page, 6)
+                        - var covers = _cover_index(page, 6)
                         if covers.length === 6
                             ul
                                 each image in covers
