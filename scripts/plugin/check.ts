@@ -21,7 +21,7 @@ Some features will be disabled or render incorrectly`)
     hexo.log.warn('[SXEC 201] Essential information(title, desc, lang, etc) config incorrectly, Page will render incorrectly')
   }
   if (hexo.theme.config.gitalk.clientID || hexo.theme.config.giscus.repo) {
-    hexo.log.info('You are using an untested feature and there may be undiscovered issues')
+    hexo.log.warn('You are using an deprecated feature and it was removed in the v0.3.10')
   }
 })
 

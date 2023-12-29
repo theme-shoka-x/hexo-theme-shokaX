@@ -1,6 +1,6 @@
 mixin CommentRender()
     != shokax_inject('comment')
-    - var tk = theme?.twikoo?.enable,wl = theme?.waline?.enable,gt=theme?.gitalk?.enable,gs=theme?.giscus?.enable
+    - var tk = theme?.twikoo?.enable,wl = theme?.waline?.enable
     if page.comment !== false && !theme.experiments.disableThemeComment
         if tk
             div(class="wrap" id="tcomments")
@@ -37,38 +37,5 @@ mixin CommentRender()
                         dark: 'html[data-theme="dark"]'
                     });
                 }, 1000)
-        else if gt
-            div(class="wrap" id="gtcomments")
-            script(type="text/javascript" data-pjax).
-                const gproxy = theme.gitalk.proxy || undefined
-                const gitalk = new Gitalk({
-                    clientID: '#{theme.gitalk.clientID}',
-                    clientSecret: '#{theme.gitalk.clientSecret}',
-                    repo: '#{theme.gitalk.repo}',
-                    owner: '#{theme.gitalk.owner}',
-                    admin: #{theme.gitalk.admin},
-                    id: location.pathname,      // Ensure uniqueness and length less than 50
-                    distractionFreeMode: false,  // Facebook-like distraction free mode
-                    proxy: "#{gproxy}"
-                });
-                gitalk.render("gtcomments")
-        else if gs
-            div(class="wrap giscus" id="gscomments")
-            script( src="https://giscus.app/client.js"
-                    data-repo="#{theme.giscus.repo}"
-                    data-repo-id="#{theme.giscus.repoId}"
-                    data-category="#{theme.giscus.category}"
-                    data-category-id="#{theme.giscus.categoryId}"
-                    data-mapping="#{theme.giscus.mapping}"
-                    data-strict="#{theme.giscus.strict}"
-                    data-reactions-enabled="#{theme.giscus.reactionsEnabled}"
-                    data-emit-metadata="#{theme.giscus.emitMetadata}"
-                    data-input-position="#{theme.giscus.inputPosition}"
-                    data-theme="#{theme.giscus.commentTheme}"
-                    data-lang="#{theme.giscus.lang}"
-                    data-loading="lazy"
-                    crossorigin="anonymous"
-                    async
-                    )
 
 

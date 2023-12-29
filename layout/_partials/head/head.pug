@@ -3,7 +3,7 @@
 - var siteTitle = config.title,noBaiduT = theme?.seo?.disable_baidu_transformation
 - var feedLink = full_url_for("/feed.json")
 - var tk= theme?.twikoo?.enable
-- var wl = theme.waline.enable,gt=theme?.gitalk?.enable
+- var wl = theme.waline.enable
 meta(charset="UTF-8")
 meta(name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2")
 meta(name="theme-color" content="#222")
@@ -54,9 +54,6 @@ if tk
     script(src=theme.twikoo.link)
 else if wl
     link(rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css")
-else if gt
-    link(rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css")
-    script(src="https://unpkg.com/gitalk/dist/gitalk.min.js")
 
 - var qw = theme?.qweather?.enable
 if qw
