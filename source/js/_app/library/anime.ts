@@ -92,7 +92,7 @@ export const pageScroll = (target: HTMLElement|number, offset?: number, complete
   // target: 滚动到的目标元素或坐标(number)
   // offset: 可选的偏移量
   // complete: 可选的回调函数，在动画完成时调用
-  const opt = {
+  anime({
     // 动画目标
     targets: typeof offset === 'number' && typeof target !== 'number' ? target.parentNode : document.scrollingElement,
     // 动画持续时间
@@ -106,7 +106,6 @@ export const pageScroll = (target: HTMLElement|number, offset?: number, complete
       // eslint-disable-next-line chai-friendly/no-unused-expressions
       complete && complete()
     }
-  }
-  anime(opt).play()
+  }).play()
   // 调用 anime.js 函数，并传入参数
 }
