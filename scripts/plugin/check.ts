@@ -7,7 +7,7 @@ hexo.on('generateBefore', function () {
     findProblem = true
     hexo.log.error('[SXEC 101] Highlight.js or Prismjs enabled. The code block will render incomplete')
   }
-  if (!hexo.config.autoprefixer || !hexo.config.markdown) {
+  if (!hexo.config.markdown) {
     findProblem = true
     hexo.log.error(`[SXEC 102] Critical rendering plugins are missing or incorrectly configured. 
 Some features will be disabled or render incorrectly`)
