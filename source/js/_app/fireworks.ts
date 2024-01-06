@@ -22,7 +22,7 @@ document.body.appendChild(canvasEl)
 // 获取 canvasEl 的 2D 绘图上下文，并赋值给 ctx
 const ctx = canvasEl.getContext('2d')
 // 设置烟花粒子的数量
-const numberOfParticules = 30
+const numberOfParticles = 30
 // 初始化鼠标指针的 x 坐标和 y 坐标
 let pointerX = 0
 let pointerY = 0
@@ -43,15 +43,15 @@ function setCanvasSize ():void {
 }
 
 // 更新鼠标/触摸坐标
-function updateCoords (e: any):void {
+function updateCoords (e: unknown):void {
   // 获取鼠标的 x 坐标，如果是移动端设备，则获取触摸点的 x 坐标
-  pointerX = e.clientX || (e.touches && e.touches[0].clientX)
+  pointerX = (e as MouseEvent).clientX || ((e as TouchEvent).touches && (e as TouchEvent).touches[0].clientX)
   // 获取鼠标的 y 坐标，如果是移动端设备，则获取触摸点的 y 坐标
-  pointerY = e.clientY || (e.touches && e.touches[0].clientY)
+  pointerY = (e as MouseEvent).clientY || ((e as TouchEvent).touches && (e as TouchEvent).touches[0].clientY)
 }
 
 // 设置烟花粒子的运动方向
-function setParticuleDirection (p:fireworksP):Object {
+function setParticleDirection (p:fireworksP):Object {
   // 使用 anime.random() 随机生成一个 0 到 360 的角度
   const angle = anime.random(0, 360) * Math.PI / 180
   // 使用 anime.random() 随机生成一个 50 到 180 的值
@@ -66,7 +66,7 @@ function setParticuleDirection (p:fireworksP):Object {
 }
 
 // 创建一个烟花粒子
-function createParticule (x:number, y:number):fireworksP {
+function createParticle (x:number, y:number):fireworksP {
   const p:fireworksP = {
     x,
     y,
@@ -85,8 +85,8 @@ function createParticule (x:number, y:number):fireworksP {
   p.color = colors[anime.random(0, colors.length - 1)]
   // 使用 anime.random() 随机生成烟花粒子的半径，范围在16~32之间
   p.radius = anime.random(16, 32)
-  // 使用 setParticuleDirection() 方法来设置烟花粒子的终点坐标
-  p.endPos = setParticuleDirection(p)
+  // 使用 setParticleDirection() 方法来设置烟花粒子的终点坐标
+  p.endPos = setParticleDirection(p)
   return p
 }
 
@@ -118,7 +118,7 @@ function createCircle (x:number, y:number):fireworksP {
 }
 
 // 渲染烟花粒子
-function renderParticule (targets:any):void {
+function renderParticle (targets: fireworksP[]):void {
   // 遍历所有可动画的对象
   for (const target of targets) {
     // 调用对象上的draw函数来绘制烟花粒子
@@ -127,25 +127,25 @@ function renderParticule (targets:any):void {
 }
 
 // 动画烟花粒子
-function animateParticules (x:number, y:number):void {
+function animateParticles (x:number, y:number):void {
   // 创建一个圆形
   const circle = createCircle(x, y)
   // 创建一个空数组用于存储烟花粒子
-  const particules = []
+  const particles = []
   // 循环创建烟花粒子
-  for (let i = 0; i < numberOfParticules; i++) {
-    particules.push(createParticule(x, y))
+  for (let i = 0; i < numberOfParticles; i++) {
+    particles.push(createParticle(x, y))
   }
   // 创建一个 anime.js 的时间线，并添加动画
   anime().timeline().add({
-    targets: particules,
+    targets: particles,
     // x 坐标移动到烟花粒子的终点坐标
     // 动画持续时间为 anime.random(1200, 1800)
     duration: anime.random(1200, 1800),
     // 动画缓动效果为 easeOutExpo
     easing: 'easeOutExpo',
     // 更新渲染函数
-    update: renderParticule,
+    update: renderParticle,
     x: p => p.endPos.x,
     y: p => p.endPos.y,
     // 半径变为0.1
@@ -156,7 +156,7 @@ function animateParticules (x:number, y:number):void {
     duration: anime.random(1200, 1800),
     easing: 'easeOutExpo',
     // 更新渲染函数
-    update: renderParticule,
+    update: renderParticle,
     radius: anime.random(80, 160),
     lineWidth: 0,
     // 透明度变化，最终值为0
@@ -200,7 +200,7 @@ export function initFireworks () {
     }
     render.play()
     updateCoords(e)
-    animateParticules(pointerX, pointerY)
+    animateParticles(pointerX, pointerY)
   }, false)
 
   setCanvasSize()
