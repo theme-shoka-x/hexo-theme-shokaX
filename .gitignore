@@ -17,3 +17,5 @@ test.html
 *.js
 !*.test.js
 test.ts
+*.d.ts
+*.tsbuildinfo

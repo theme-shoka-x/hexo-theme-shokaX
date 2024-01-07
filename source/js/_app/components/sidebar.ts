@@ -141,6 +141,7 @@ export const sidebarTOC = () => {
     return
   }
 
+  // @ts-ignore
   let sections = [...navItems]
   let activeLock = null
 

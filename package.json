@@ -8,7 +8,7 @@
     "license": "AGPL-3.0-or-later",
     "scripts": {
         "test": "mocha test",
-        "build": "pnpm install && tsc"
+        "build": "tsc --build --verbose"
     },
     "devDependencies": {
         "@types/chai": "^4.3.11",
@@ -19,9 +19,9 @@
         "@types/lozad": "^1.16.4",
         "@types/mocha": "^10.0.6",
         "@types/node": "^20.10.6",
-        "@typescript-eslint/eslint-plugin": "^6.17.0",
-        "@typescript-eslint/parser": "^6.17.0",
-        "chai": "^4.3.10",
+        "@typescript-eslint/eslint-plugin": "^6.18.0",
+        "@typescript-eslint/parser": "^6.18.0",
+        "chai": "^5.0.0",
         "eslint": "^8.56.0",
         "eslint-config-standard": "~17",
         "eslint-plugin-chai-friendly": "^0.7.2",
@@ -43,7 +43,7 @@
         "js-yaml": "^4.1.0",
         "lozad": "^1.16.0",
         "theme-shokax-anime": "^0.0.6",
-        "theme-shokax-pjax": "^0.0.2"
+        "theme-shokax-pjax": "^0.0.3"
     },
     "engines": {
         "node": ">=18.0.0"

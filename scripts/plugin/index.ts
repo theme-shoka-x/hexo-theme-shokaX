@@ -5,9 +5,10 @@
  */
 
 import injects from './lib/injects'
-import https from 'node:https'
+import { get } from 'node:https'
+// @ts-ignore
 import { version } from '../../package.json'
-import fs from 'node:fs'
+import * as fs from 'node:fs'
 
 hexo.on('generateBefore', () => {
   // 加载`theme_injects`过滤器
@@ -22,7 +23,7 @@ hexo.on('generateBefore', () => {
 
 hexo.on('generateAfter', () => {
   // 检查版本更新
-  https.get('https://api.github.com/repos/theme-shoka-x/hexo-theme-shokaX/releases/latest', {
+  get('https://api.github.com/repos/theme-shoka-x/hexo-theme-shokaX/releases/latest', {
     headers: {
       'User-Agent': 'Theme ShokaX Client'
     }

@@ -1,17 +1,23 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "CommonJS",
+    "target": "ES2022",
     "removeComments": true,
-    "strict": false,
     "esModuleInterop": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "declaration": true,
     "types": ["theme-shokax-anime","lozad","jquery","fancybox"],
     "skipLibCheck": true
   },
   "typeAcquisition": {
     "enable": true
   },
-  "include": ["source/js/**/*","scripts/**/*"]
+  "references": [
+    {
+      "path": "./source"
+    },
+    {
+      "path": "./scripts"
+    }
+  ]
 }

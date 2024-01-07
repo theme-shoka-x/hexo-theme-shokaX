@@ -1,7 +1,7 @@
 /* global hexo */
 import env from '../../package.json'
-import fs = require('hexo-fs')
-import esbuild = require('esbuild')
+import * as fs from 'hexo-fs'
+import { buildSync } from 'esbuild'
 
 hexo.extend.generator.register('script', function (locals) {
   const config = hexo.config
@@ -70,7 +70,7 @@ hexo.extend.generator.register('script', function (locals) {
     enterPoint = 'node_modules/hexo-theme-shokax/source/js/_app/pjax/siteInit.js'
   }
   text = 'const CONFIG = ' + JSON.stringify(siteConfig) + ';'
-  esbuild.buildSync({
+  buildSync({
     entryPoints: [enterPoint],
     bundle: true,
     outfile: 'shokax_temp.js',

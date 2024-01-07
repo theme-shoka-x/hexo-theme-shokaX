@@ -25,7 +25,9 @@ jobs:
         run: npm install pnpm -g
 
       - name: Build TypeScript files
-        run: pnpm run build
+        run: |
+          pnpm install
+          pnpm build
 
       - name: Create ZIP package
         run: zip -r shokaX.zip * -x '*.ts' "node_modules/*" ".github/*" "docs/*"
@@ -55,5 +57,5 @@ jobs:
 
       - name: Test
         run: |
-          tsc
+          pnpm build
           pnpm test

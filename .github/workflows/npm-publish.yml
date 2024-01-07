@@ -20,7 +20,9 @@ jobs:
         run: npm install pnpm -g
 
       - name: Build TypeScript files
-        run: pnpm run build
+        run: |
+          pnpm install
+          pnpm run build
 
       - run: npm publish
         env:
