@@ -20,7 +20,7 @@ Some features will be disabled or render incorrectly`)
     findProblem = true
     hexo.log.warn('[SXEC 201] Essential information(title, desc, lang, etc) config incorrectly, Page will render incorrectly')
   }
-  if (hexo.theme.config.gitalk.clientID || hexo.theme.config.giscus.repo) {
+  if (hexo.theme.config.gitalk?.clientID || hexo.theme.config.giscus?.repo) {
     findProblem = true
     hexo.log.warn('[SXEC 202] You are using an deprecated feature and it was removed in the v0.3.10')
   }
