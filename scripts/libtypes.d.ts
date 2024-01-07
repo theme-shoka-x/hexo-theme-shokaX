@@ -13,3 +13,5 @@ declare global {
 }
 
 declare const hexo: Hexo
+
+declare module '*.json';

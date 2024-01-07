@@ -1,7 +1,10 @@
 /* global hexo */
-import env from '../../package.json'
+// import env from '../../package.json'
 import * as fs from 'hexo-fs'
 import { buildSync } from 'esbuild'
+const env = {
+  version: '0.3.10'
+}
 
 hexo.extend.generator.register('script', function (locals) {
   const config = hexo.config

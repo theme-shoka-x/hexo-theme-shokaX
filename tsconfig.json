@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
+    "target": "ESNext",
+    "module": "CommonJS",
     "removeComments": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "declaration": true,
     "types": ["theme-shokax-anime","lozad","jquery","fancybox"],
     "skipLibCheck": true
   },

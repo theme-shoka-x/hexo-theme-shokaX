@@ -1,5 +1,3 @@
-import type Site from 'hexo'
-
 hexo.extend.generator.register('pages', function () {
   const config = hexo.config
 
