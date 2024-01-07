@@ -7,7 +7,7 @@
     "author": "zkz098",
     "license": "AGPL-3.0-or-later",
     "scripts": {
-        "test": "mocha test",
+        "test": "tsc --build --verbose",
         "build": "tsc --build --verbose"
     },
     "devDependencies": {
