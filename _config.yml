@@ -83,13 +83,34 @@ polyfill:
     - fetch
 
 # 显示的动画(烟花)
+# 参阅 https://github.com/D-Sketon/mouse-firework
 fireworks:
   enable: true
-  color:
-    - "rgba(255,182,185,.9)"
-    - "rgba(250,227,217,.9)"
-    - "rgba(187,222,214,.9)"
-    - "rgba(138,198,209,.9)"
+  options: 
+    excludeElements: ["a"]
+    particles:
+      - shape: circle
+        move: ["emit"]
+        easing: easeOutExpo
+        colors: 
+          - "rgba(255,182,185,.9)"
+          - "rgba(250,227,217,.9)"
+          - "rgba(187,222,214,.9)"
+          - "rgba(138,198,209,.9)"
+        number: 30
+        duration: [1200, 1800]
+        shapeOptions:
+          radius: [16, 32]
+      - shape: circle
+        move: ["diffuse"]
+        easing: easeOutExpo
+        colors: ["#fff"]
+        number: 1
+        duration: [1200, 1800]
+        shapeOptions:
+          radius: 20
+          alpha: 0.5
+          lineWidth: 6
 
 font:
   enable: true

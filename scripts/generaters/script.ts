@@ -47,8 +47,8 @@ hexo.extend.generator.register('script', function (locals) {
     disableVL: theme.disableVL,
     noPlayer: theme.experiments?.noPlayer,
     audio: undefined,
-    fireworks: (theme.fireworks && theme.fireworks.enable)
-      ? (theme.fireworks.color || ['rgba(255,182,185,.9)', 'rgba(250,227,217,.9)', 'rgba(187,222,214,.9)', 'rgba(138,198,209,.9)'])
+    fireworks: (theme.fireworks && theme.fireworks.enable && theme.fireworks.options)
+      ? theme.fireworks.options
       : undefined
   }
 

@@ -58,7 +58,7 @@ declare const LOCAL: {
 }
 declare const CONFIG: {
   hostname: string;
-  fireworks: string[];
+  fireworks: any;
   audio: AudioItem[];
   version: number
   root: string
