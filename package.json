@@ -8,7 +8,7 @@
     "license": "AGPL-3.0-or-later",
     "scripts": {
         "test": "tsc --build --verbose",
-        "build": "tsc --build --verbose"
+        "build": "cd ./source && tsc --build --verbose && cd ../scripts && tsc --build --verbose"
     },
     "devDependencies": {
         "@types/chai": "^4.3.11",
