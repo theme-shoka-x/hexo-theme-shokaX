@@ -42,7 +42,7 @@
         "hexo": "^7.0.0",
         "js-yaml": "^4.1.0",
         "lozad": "^1.16.0",
-        "mouse-firework": "^0.0.3",
+        "mouse-firework": "^0.0.4",
         "theme-shokax-anime": "^0.0.6",
         "theme-shokax-pjax": "^0.0.3"
     },
