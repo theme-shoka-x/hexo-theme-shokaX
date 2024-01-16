@@ -1,10 +1,7 @@
 /* global hexo */
 
-// import theme_env from '../../package.json'
+import theme_env from '../../package.json'
 import { htmlTag, url_for, stripHTML } from 'hexo-util'
-const theme_env = {
-  version: '0.3.10'
-}
 
 hexo.extend.helper.register('_new_comments', function (mode) {
   const root = this.config.url.replace(/^(https?:\/\/)?[^\/]*/, '')

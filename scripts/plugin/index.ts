@@ -7,10 +7,8 @@
 import injects from './lib/injects'
 import { get } from 'node:https'
 // @ts-ignore
-// import { version } from '../../package.json'
+import { version } from '../../package.json'
 import * as fs from 'node:fs'
-
-const version = '0.3.10'
 
 hexo.on('generateBefore', () => {
   // 加载`theme_injects`过滤器
