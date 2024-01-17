@@ -141,10 +141,10 @@ hexo.extend.helper.register('vendor_js', function () {
   const vendors = hexo.theme.config.vendors as VendorsConfig
   let res = ''
   for (const jsSync in vendors.js) {
-    res += htmlTag('script', { src: getVendorLink(vendors.js[jsSync]) }, '')
+    res += htmlTag('script', { src: getVendorLink(hexo, vendors.js[jsSync]) }, '')
   }
   for (const jsAsync in vendors.async_js) {
-    res += htmlTag('script', { src: getVendorLink(vendors.js[jsAsync]), async: true})
+    res += htmlTag('script', { src: getVendorLink(hexo, vendors.js[jsAsync]), async: true })
   }
   return res
 })

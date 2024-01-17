@@ -20,7 +20,7 @@ export interface VendorsConfig {
   }
 }
 
-export function getVendorLink (source:string) {
+export function getVendorLink (hexo: Hexo, source:string) {
   const VendorsCfg = hexo.theme.config.vendors as VendorsConfig
   const tagIdx = source.indexOf('|')
   if (tagIdx !== -1) {

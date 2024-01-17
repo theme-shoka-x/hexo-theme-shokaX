@@ -21,14 +21,14 @@ hexo.extend.generator.register('script', function (locals) {
     auto_dark: theme.auto_dark,
     auto_scroll: theme.auto_scroll,
     js: {
-      copy_tex: getVendorLink(theme.vendors.js.copy_tex),
-      fancybox: getVendorLink(theme.vendors.js.fancybox)
+      copy_tex: getVendorLink(hexo, theme.vendors.js.copy_tex),
+      fancybox: getVendorLink(hexo, theme.vendors.js.fancybox)
     },
     css: {
-      katex: getVendorLink(theme.vendors.css.katex),
+      katex: getVendorLink(hexo, theme.vendors.css.katex),
       mermaid: theme.css + '/mermaid.css',
-      fancybox: getVendorLink(theme.vendors.css.fancybox),
-      justifiedGallery: getVendorLink(theme.vendors.css.justifiedGallery)
+      fancybox: getVendorLink(hexo, theme.vendors.css.fancybox),
+      justifiedGallery: getVendorLink(hexo, theme.vendors.css.justifiedGallery)
     },
     loader: theme.loader,
     search: null,
