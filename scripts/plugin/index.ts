@@ -5,8 +5,6 @@
  */
 
 import injects from './lib/injects'
-import { get } from 'node:https'
-// @ts-ignore
 import { version } from '../../package.json'
 import * as fs from 'node:fs'
 
@@ -23,18 +21,10 @@ hexo.on('generateBefore', () => {
 
 hexo.on('generateAfter', () => {
   // 检查版本更新
-  get('https://api.github.com/repos/theme-shoka-x/hexo-theme-shokaX/releases/latest', {
-    headers: {
-      'User-Agent': 'Theme ShokaX Client'
-    }
-  }, (res) => {
-    let result = ''
-    res.on('data', (data) => {
-      result += data
-    })
-    res.on('end', () => {
+  fetch('https://api.github.com/repos/theme-shoka-x/hexo-theme-shokaX/releases/latest').then((res) => {
+    res.json().then((resp) => {
       try {
-        const latest = JSON.parse(result).tag_name.replace('v', '').split('.')
+        const latest = resp.tag_name.replace('v', '').split('.')
         const current = version.split('.')
         let isOutdated = false
         for (let i = 0; i < Math.max(latest.length, current.length); i++) {
@@ -50,13 +40,13 @@ hexo.on('generateAfter', () => {
           hexo.log.warn(`Your theme ShokaX is outdated. Current version: v${current.join('.')}, latest version: v${latest.join('.')}`)
           hexo.log.warn('Visit https://github.com/theme-shoka-x/hexo-theme-shokaX/releases for more information.')
         }
-      } catch (err) {
-        hexo.log.error('Failed to detect version info. Error message:')
-        hexo.log.error(err)
+      } catch (e) {
+        hexo.log.warn('Failed to detect version info. Error message:')
+        hexo.log.warn(e)
       }
+    }).catch((e) => {
+      hexo.log.warn('Failed to detect version info. Error message:')
+      hexo.log.warn(e)
     })
-  }).on('error', err => {
-    hexo.log.error('Failed to detect version info. Error message:')
-    hexo.log.error(err)
   })
 })
