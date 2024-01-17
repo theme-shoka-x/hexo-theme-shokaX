@@ -15,6 +15,9 @@ on:
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ "main" ]
+  push:
+    branches:
+      - 'main'
   schedule:
     - cron: '16 22 * * 0'
 
