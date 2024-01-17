@@ -5,14 +5,14 @@ import { getScript } from './scriptPjax'
  */
 const assetUrl = (asset: string, type: string): string => {
   const str = CONFIG[asset][type]
+  if (str.includes('http')) {
+    return str
+  }
   if (str.includes('gh') || str.includes('combine')) {
     return `https://cdn.jsdelivr.net/${str}`
   }
   if (str.includes('npm')) {
     return `https://cdn.jsdelivr.net/${str}`
-  }
-  if (str.includes('http')) {
-    return str
   }
   return `/${str}`
 }

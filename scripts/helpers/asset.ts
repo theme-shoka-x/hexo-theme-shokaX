@@ -143,9 +143,9 @@ hexo.extend.helper.register('vendor_js', function () {
   for (const jsSync in vendors.js) {
     res += htmlTag('script', { src: getVendorLink(hexo, vendors.js[jsSync]) }, '')
   }
-  for (const jsAsync in vendors.async_js) {
-    res += htmlTag('script', { src: getVendorLink(hexo, vendors.js[jsAsync]), async: true })
-  }
+  // for (const jsAsync in vendors.async_js) {
+  //   res += htmlTag('script', { src: getVendorLink(hexo, vendors.async_js[jsAsync]), async: true }, '')
+  // }
   return res
 })
 

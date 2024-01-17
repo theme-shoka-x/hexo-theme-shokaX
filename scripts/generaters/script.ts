@@ -21,8 +21,8 @@ hexo.extend.generator.register('script', function (locals) {
     auto_dark: theme.auto_dark,
     auto_scroll: theme.auto_scroll,
     js: {
-      copy_tex: getVendorLink(hexo, theme.vendors.js.copy_tex),
-      fancybox: getVendorLink(hexo, theme.vendors.js.fancybox)
+      copy_tex: getVendorLink(hexo, theme.vendors.async_js.copy_tex),
+      fancybox: getVendorLink(hexo, theme.vendors.async_js.fancybox)
     },
     css: {
       katex: getVendorLink(hexo, theme.vendors.css.katex),
@@ -75,14 +75,9 @@ hexo.extend.generator.register('script', function (locals) {
     bundle: true,
     outfile: 'shokax_temp.js',
     platform: 'browser',
+    format: 'iife',
     target: ['es2022'],
-    minify: true,
-    external: [
-      'mouse-firework',
-      'theme-shokax-anime',
-      'theme-shokax-pjax',
-      'lozad'
-    ]
+    minify: true
   })
   text += fs.readFileSync('shokax_temp.js')
   const result = hexo.render.renderSync({ text, engine: 'js' })
