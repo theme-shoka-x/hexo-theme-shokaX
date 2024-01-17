@@ -1,7 +1,9 @@
 /* global hexo */
 
+import type { VendorsConfig } from '../utils'
 import theme_env from '../../package.json'
 import { htmlTag, url_for, stripHTML } from 'hexo-util'
+import { getVendorLink } from '../utils'
 
 hexo.extend.helper.register('_new_comments', function (mode) {
   const root = this.config.url.replace(/^(https?:\/\/)?[^\/]*/, '')
@@ -120,28 +122,6 @@ hexo.extend.helper.register('_vendor_font', () => {
     : ''
 })
 
-// TODO 废弃方法
-hexo.extend.helper.register('_vendor_js', () => {
-  const config = hexo.theme.config.vendors.js
-
-  if (!config) return ''
-
-  // Get a font list from config
-  let vendorJs = ['pace', 'pjax', 'fetch', 'anime', 'algolia', 'instantsearch', 'lazyload', 'quicklink'].map(item => {
-    if (config[item]) {
-      return config[item]
-    }
-    return ''
-  })
-
-  vendorJs = vendorJs.filter(item => item !== '')
-  // @ts-ignore
-  vendorJs = [...new Set(vendorJs)]
-  // @ts-ignore
-  vendorJs = vendorJs.join(',')
-  return vendorJs ? htmlTag('script', { src: `https://cdn.jsdelivr.net/combine/${vendorJs}` }, '') : ''
-})
-
 hexo.extend.helper.register('_css', function (...urls) {
   const { statics, css } = hexo.theme.config
 
@@ -156,53 +136,17 @@ hexo.extend.helper.register('_js', function (...urls) {
 
   return urls.map(url => htmlTag('script', { src: url_for.call(this, `${statics}${js}/${url}?v=${theme_env.version}`) }, '')).join('')
 })
-hexo.extend.helper.register('_list_vendor_js', () => {
-  return hexo.theme.config.vendorsList.js
-})
 
-hexo.extend.helper.register('_adv_vendor_js', function (js_name) {
-  const srcHelpers = (src:string) => { return src.endsWith('/') ? src : src + '/' }
-  const config = hexo.theme.config.advVendors.js[js_name]
-  const themeConfig = hexo.theme.config
-  const src = config.src
-  const publicCdns = {
-    npm: srcHelpers(themeConfig.advVendors.npm),
-    gh: srcHelpers(themeConfig.advVendors.github),
-    combine: srcHelpers(themeConfig.advVendors.combine),
-    bytedance: 'https://lf9-cdn-tos.bytecdntp.com/cdn/expire-6-M/',
-    baomitu: 'https://lib.baomitu.com/'
+hexo.extend.helper.register('vendor_js', function () {
+  const vendors = hexo.theme.config.vendors as VendorsConfig
+  let res = ''
+  for (const jsSync in vendors.js) {
+    res += htmlTag('script', { src: getVendorLink(vendors.js[jsSync]) }, '')
   }
-  let result: string
-  if (src.startsWith('http')) {
-    result = src
-  } else if (src.startsWith('combine:')) {
-    hexo.log.info('The combine feature is not recommended!')
-    result = publicCdns.combine + src
-  } else if (src.startsWith('npm:')) {
-    result = publicCdns.npm + src.substring(4)
-  } else if (src.startsWith('gh:')) {
-    result = publicCdns.gh + src.substring(3)
-  } else if (src.startsWith('bytedance:')) {
-    result = publicCdns.bytedance + src.substring(10)
-  } else if (src.startsWith('baomitu:')) {
-    result = publicCdns.baomitu + src.substring(8)
-  } else {
-    result = '/' + src
+  for (const jsAsync in vendors.async_js) {
+    res += htmlTag('script', { src: getVendorLink(vendors.js[jsAsync]), async: true})
   }
-  const attr = {
-    src: result,
-    integrity: undefined,
-    async: undefined
-  }
-  if (config.async) attr.async = 'async'
-  if (config['data-pjax']) attr['data-pjax'] = 'data-pjax'
-  if (config['hash-value']) attr.integrity = config['hash-value']
-  if (config.deferLoad) {
-    return htmlTag('script', { 'data-pjax': true }, `
-        const script=document.createElement("script");script.src="${result}",script.async=true,document.body.appendChild(script)
-        `)
-  }
-  return htmlTag('script', attr, '')
+  return res
 })
 
 hexo.extend.helper.register('_striptags', function (data) {

@@ -4,6 +4,7 @@ import { vendorCss, vendorJs } from '../library/loadFile'
 export const postFancybox = (p:string) => {
   if ($dom(p + ' .md img')) {
     vendorCss('fancybox')
+    vendorCss('justifiedGallery')
     vendorJs('fancybox', () => {
       const q = jQuery.noConflict()
 

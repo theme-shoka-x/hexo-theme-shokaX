@@ -39,7 +39,6 @@ export const siteRefresh = (reload) => {
   vendorCss('katex')
   vendorJs('copy_tex')
   vendorCss('mermaid')
-  vendorJs('chart')
 
   if (reload !== 1) {
     $dom.each('script[data-pjax]', pjaxScript)

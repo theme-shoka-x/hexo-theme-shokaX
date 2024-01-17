@@ -368,8 +368,12 @@ advVendors:
       src: bytedance:??jquery/3.5.1/jquery.min.js,fancybox/3.5.7/jquery.fancybox.min.js,justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js
       async: true
     copy_tex:
-      src: bytedance:KaTeX/0.15.2/contrib/copy-tex.min.js
+      src: bytedance:KaTeX/0.16.7/contrib/copy-tex.min.js
       async: true
+#    mouse_firework:
+#      src: https://npm.webcache.cn/mouse-firework@0.0.4/dist/index.umd.js
+#    anime:
+#      src:
   css:
     katex:
       src: npm:katex@0.16.7/dist/katex.min.css
@@ -385,21 +389,46 @@ vendorsList:
     - quicklink
     - fancybox
     - copy_tex
+    - mouse_firework
+
+#vendors:
+#  css:
+#    katex: npm/katex@0.16.7/dist/katex.min.css # ok
+#    comment: css/comment.css
+#    fancybox: combine/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css # notok
+#
+#  js:
+#    pace: npm/pace-js@1.0.2/pace.min.js # ok
+#    fetch: npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js # ok
+#    algolia: npm/algoliasearch@4/dist/algoliasearch-lite.umd.js # ok
+#    instantsearch: npm/instantsearch.js@4/dist/instantsearch.production.min.js # ok
+#    quicklink: npm/quicklink@2/dist/quicklink.umd.js # ok
+#    fancybox: combine/npm/jquery@3.5.1/dist/jquery.min.js,npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js,npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js # notok
+##    valine: gh/amehime/MiniValine@4.2.2-beta10/dist/MiniValine.min.js # TODO 弃用
+#    copy_tex: npm/katex@0.16.7/dist/contrib/copy-tex.min.js # ok
+#    chart: npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js # ok
 
 vendors:
-  css:
-    katex: npm/katex@0.16.7/dist/katex.min.css # ok
-    comment: css/comment.css
-    fancybox: combine/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css # notok
-
+  cdns:
+    npm_webcache: https://npm.webcache.cn
+    bytedance: https://lf9-cdn-tos.bytecdntp.com/cdn/expire-6-M
+    cdnjs_webcache: https://cdnjs.webstatic.cn/ajax/libs
+    cdnjs: https://cdnjs.cloudflare.com/ajax/libs
+    unpkg: https://unpkg.com
   js:
-    pace: npm/pace-js@1.0.2/pace.min.js # ok
-    fetch: npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js # ok
-    algolia: npm/algoliasearch@4/dist/algoliasearch-lite.umd.js # ok
-    instantsearch: npm/instantsearch.js@4/dist/instantsearch.production.min.js # ok
-    quicklink: npm/quicklink@2/dist/quicklink.umd.js # ok
-    fancybox: combine/npm/jquery@3.5.1/dist/jquery.min.js,npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js,npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js # notok
-#    valine: gh/amehime/MiniValine@4.2.2-beta10/dist/MiniValine.min.js # TODO 弃用
-    copy_tex: npm/katex@0.16.7/dist/contrib/copy-tex.min.js # ok
-    chart: npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js # ok
-
+    pace: bytedance|pace/1.2.4/pace.min.js
+    pjax: npm_webcache|theme-shokax-pjax@0.0.3/pjax.shokax.min.js
+    anime: npm_webcache|theme-shokax-anime@0.0.6/anime.shokax.min.js
+    lozad: npm_webcache|lozad@1.16.0/dist/lozad.min.js
+    algolia: bytedance|algoliasearch/4.12.1/algoliasearch-lite.umd.min.js
+    instantsearch: bytedance|instantsearch.js/4.39.0/instantsearch.production.min.js
+    quicklink: npm_webcache|quicklink@2.3.0/quicklink.umd.min.js
+    mouse_firework: npm_webcache|mouse-firework@0.0.4/dist/index.umd.js
+  async_js:
+    fancybox: bytedance|??jquery/3.5.1/jquery.min.js,fancybox/3.5.7/jquery.fancybox.min.js,justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js
+    copy_tex: npm_webcache|katex@0.16.7/contrib/copy-tex.min.js
+  css:
+    katex: npm_webcache|katex@0.16.7/dist/katex.min.css
+    comment: css/comment.css
+    fancybox: npm_webcache|@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css
+    justifiedGallery: npm_webcache|justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css

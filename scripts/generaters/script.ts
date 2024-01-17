@@ -2,6 +2,7 @@
 import env from '../../package.json'
 import * as fs from 'hexo-fs'
 import { buildSync } from 'esbuild'
+import { getVendorLink } from '../utils'
 
 hexo.extend.generator.register('script', function (locals) {
   const config = hexo.config
@@ -20,15 +21,14 @@ hexo.extend.generator.register('script', function (locals) {
     auto_dark: theme.auto_dark,
     auto_scroll: theme.auto_scroll,
     js: {
-      chart: theme.vendors.js.chart,
-      copy_tex: theme.vendors.js.copy_tex,
-      fancybox: theme.vendors.js.fancybox
+      copy_tex: getVendorLink(theme.vendors.js.copy_tex),
+      fancybox: getVendorLink(theme.vendors.js.fancybox)
     },
     css: {
-      // valine: theme.css + '/comment.css',
-      katex: theme.vendors.css.katex,
+      katex: getVendorLink(theme.vendors.css.katex),
       mermaid: theme.css + '/mermaid.css',
-      fancybox: theme.vendors.css.fancybox
+      fancybox: getVendorLink(theme.vendors.css.fancybox),
+      justifiedGallery: getVendorLink(theme.vendors.css.justifiedGallery)
     },
     loader: theme.loader,
     search: null,
@@ -75,8 +75,14 @@ hexo.extend.generator.register('script', function (locals) {
     bundle: true,
     outfile: 'shokax_temp.js',
     platform: 'browser',
-    target: ['es2021'],
-    minify: true
+    target: ['es2022'],
+    minify: true,
+    external: [
+      'mouse-firework',
+      'theme-shokax-anime',
+      'theme-shokax-pjax',
+      'lozad'
+    ]
   })
   text += fs.readFileSync('shokax_temp.js')
   const result = hexo.render.renderSync({ text, engine: 'js' })
