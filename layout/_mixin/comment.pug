@@ -19,7 +19,7 @@ mixin CommentRender()
             - var meta = JSON.stringify(theme.waline.meta)
             - var requiredMeta = JSON.stringify(theme.waline.requiredMeta)
             script(type="module" data-pjax).
-                import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+                import { init } from 'https://cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.mjs';
 
                 setTimeout(function () {
                     init({
