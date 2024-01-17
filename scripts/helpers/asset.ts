@@ -41,7 +41,7 @@ hexo.extend.helper.register('_new_comments', function (mode) {
     return `
     <script type="module" data-pjax>
         let items = []
-        import { RecentComments } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs'
+        import { RecentComments } from 'https://cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.mjs'
         RecentComments({
           serverURL: '${hexo.theme.config.waline.serverURL.replace(/\/+$/, '')}',
           count: 10,
