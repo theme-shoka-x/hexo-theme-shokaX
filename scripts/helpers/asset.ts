@@ -50,7 +50,7 @@ hexo.extend.helper.register('_new_comments', function (mode) {
         }).then(({ comments }) => {
           comments.forEach(function (item) {
               let cText = (item.orig.length > 50) ? item.orig.substring(0,50)+'...' : item.orig
-              item.url = item.url !== '/' ?  '/' + item.url : item.url;
+              item.url = item.url.startsWith('/') ? item.url : '/' + item.url;
               const siteLink = item.url + "#" + item.objectId
               items.push({
                   href: siteLink,
