@@ -10,12 +10,10 @@ module.exports = {
     'standard',
     'plugin:@typescript-eslint/recommended',
     'plugin:vue/vue3-recommended',
-    'plugin:chai-friendly/recommended'
   ],
   plugins: [
     '@typescript-eslint',
-    'vue',
-    'chai-friendly'
+    'vue'
   ],
   parserOptions: {
     ecmaVersion: 12

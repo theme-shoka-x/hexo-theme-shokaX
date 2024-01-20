@@ -9,7 +9,7 @@ import yaml from 'js-yaml'
 hexo.extend.filter.register('before_generate', () => {
   if (hexo.config.theme_config) {
     // @ts-ignore
-    hexo.theme.config = deepMerge(hexo.theme.config, hexo.config.theme_config)
+    hexo.theme.config = deepMerge(hexo.theme.config, hexo.config.theme_config) as any
   }
 
   const data = hexo.locals.get('data')
@@ -29,7 +29,7 @@ hexo.extend.filter.register('before_generate', () => {
     }
   }
 
-  hexo.theme.config.style = {}
+  (hexo.theme.config as any).style = {}
 
   for (const style of ['iconfont', 'colors', 'custom']) {
     const custom_file = 'source/_data/' + style + '.styl'

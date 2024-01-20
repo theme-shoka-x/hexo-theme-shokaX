@@ -25,7 +25,7 @@ interface siteLink {
 }
 
 function linkGrid (args:string[], content:string) {
-  const theme = hexo.theme.config
+  const theme = hexo.theme.config as any
 
   if (!args[0] && !content) {
     return
