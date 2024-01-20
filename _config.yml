@@ -156,8 +156,9 @@ font:
     family: Inconsolata
 
 # project of https://www.iconfont.cn/
-# //at.alicdn.com/t/font_1832207_c8i9n1ulxlt.css => 1832207_c8i9n1ulxlt
-iconfont: "1832207_igi8uaupcus"
+# //at.alicdn.com/t/c/font_4415496_59g1326wajd.css => 4415496_59g1326wajd
+# 自定义iconfont图标参见文档教程
+iconfont: "4415496_59g1326wajd"
 
 menu:
   home: / || home
