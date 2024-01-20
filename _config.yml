@@ -348,66 +348,6 @@ quicklink:
 #! DO NOT EDIT THE FOLLOWING `vendors` SETTINGS
 #! UNLESS YOU KNOW WHAT YOU ARE DOING
 #! ---------------------------------------------------------------
-advVendors:
-  enable: true
-  github: "https://cdn.jsdelivr.net/gh/"
-  combine: "https://cdn.jsdelivr.net/"
-  npm: "https://unpkg.com/"
-  js:
-    pace:
-      src: bytedance:pace/1.0.2/pace.min.js
-    fetch:
-      src: npm:whatwg-fetch@3.4.0/dist/fetch.umd.js
-    algolia:
-      src: bytedance:algoliasearch/4.12.1/algoliasearch-lite.umd.min.js
-    instantsearch:
-      src: bytedance:instantsearch.js/4.39.0/instantsearch.production.min.js
-    quicklink:
-      src: bytedance:quicklink/2.2.0/quicklink.umd.min.js
-    fancybox:
-      src: bytedance:??jquery/3.5.1/jquery.min.js,fancybox/3.5.7/jquery.fancybox.min.js,justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js
-      async: true
-    copy_tex:
-      src: bytedance:KaTeX/0.16.7/contrib/copy-tex.min.js
-      async: true
-#    mouse_firework:
-#      src: https://npm.webcache.cn/mouse-firework@0.0.4/dist/index.umd.js
-#    anime:
-#      src:
-  css:
-    katex:
-      src: npm:katex@0.16.7/dist/katex.min.css
-    comment:
-      src: css/comment.css
-    fancybox:
-      src: combine:npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css
-vendorsList:
-  js:
-    - pace
-    - algolia
-    - instantsearch
-    - quicklink
-    - fancybox
-    - copy_tex
-    - mouse_firework
-
-#vendors:
-#  css:
-#    katex: npm/katex@0.16.7/dist/katex.min.css # ok
-#    comment: css/comment.css
-#    fancybox: combine/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css # notok
-#
-#  js:
-#    pace: npm/pace-js@1.0.2/pace.min.js # ok
-#    fetch: npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js # ok
-#    algolia: npm/algoliasearch@4/dist/algoliasearch-lite.umd.js # ok
-#    instantsearch: npm/instantsearch.js@4/dist/instantsearch.production.min.js # ok
-#    quicklink: npm/quicklink@2/dist/quicklink.umd.js # ok
-#    fancybox: combine/npm/jquery@3.5.1/dist/jquery.min.js,npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js,npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js # notok
-##    valine: gh/amehime/MiniValine@4.2.2-beta10/dist/MiniValine.min.js # TODO 弃用
-#    copy_tex: npm/katex@0.16.7/dist/contrib/copy-tex.min.js # ok
-#    chart: npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js # ok
-
 vendors:
   cdns:
     npm_webcache: https://npm.webcache.cn
