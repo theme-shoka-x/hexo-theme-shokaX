@@ -176,7 +176,7 @@ menu:
 # https://twikoo.js.org
 twikoo:
   enable: false
-  link: "https://cdn.staticfile.org/twikoo/1.6.10/twikoo.nocss.min.js"
+  link: "https://cdn.staticfile.org/twikoo/1.6.10/twikoo.all.min.js"
   mode: vercel # vercel或tencent
   envId: "https://114514.foo.bar" # twikoo环境ID,vercel填地址
   region:
