@@ -16,7 +16,7 @@ module.exports = {
     'vue'
   ],
   parserOptions: {
-    ecmaVersion: 12
+    ecmaVersion: 2022
   },
   rules: {
     camelcase: 'off',

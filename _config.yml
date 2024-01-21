@@ -156,9 +156,8 @@ font:
     family: Inconsolata
 
 # project of https://www.iconfont.cn/
-# //at.alicdn.com/t/c/font_4415496_59g1326wajd.css => 4415496_59g1326wajd
-# 自定义iconfont图标参见文档教程
-iconfont: "4415496_59g1326wajd"
+# //at.alicdn.com/t/font_1832207_c8i9n1ulxlt.css => 1832207_c8i9n1ulxlt
+iconfont: "1832207_igi8uaupcus"
 
 menu:
   home: / || home
@@ -176,7 +175,7 @@ menu:
 # https://twikoo.js.org
 twikoo:
   enable: false
-  link: "https://cdn.staticfile.org/twikoo/1.6.10/twikoo.all.min.js"
+  link: "https://cdn.staticfile.org/twikoo/1.6.30/twikoo.all.min.js"
   mode: vercel # vercel或tencent
   envId: "https://114514.foo.bar" # twikoo环境ID,vercel填地址
   region:

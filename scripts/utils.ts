@@ -21,7 +21,7 @@ export interface VendorsConfig {
 }
 
 export function getVendorLink (hexo: Hexo, source:string) {
-  const VendorsCfg = (hexo.theme.config as themePlus).vendors as VendorsConfig
+  const VendorsCfg = (hexo.theme.config as any).vendors as VendorsConfig
   const tagIdx = source.indexOf('|')
   if (tagIdx !== -1) {
     return `${VendorsCfg.cdns[source.substring(0, tagIdx)]}/${source.substring(tagIdx + 1)}`
