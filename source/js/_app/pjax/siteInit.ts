@@ -9,6 +9,7 @@ import { pagePosition } from '../globals/tools'
 import { initFireworks } from '../fireworks'
 import Pjax from 'theme-shokax-pjax'
 import { initVue } from '../library/vue'
+import { lazyLoad } from 'unlazy'
 
 const siteInit = () => {
   domInit()
@@ -38,6 +39,7 @@ const siteInit = () => {
   algoliaSearch(pjax)
 
   initFireworks()
+  lazyLoad()
 
   window.addEventListener('scroll', scrollHandle)
 

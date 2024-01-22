@@ -17,7 +17,6 @@ import { pagePosition, positionInit } from '../globals/tools'
 import { menuActive, sideBarTab, sidebarTOC } from '../components/sidebar'
 import { Loader, isOutime } from '../globals/thirdparty'
 import { tabFormat } from '../page/tab'
-import { lazyLoad } from 'unlazy'
 
 export const pjaxReload = () => {
   pagePosition()
@@ -68,6 +67,5 @@ export const siteRefresh = (reload) => {
 
   cardActive()
 
-  lazyLoad()
   isOutime()
 }

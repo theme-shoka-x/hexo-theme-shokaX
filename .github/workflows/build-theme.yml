@@ -30,7 +30,7 @@ jobs:
           pnpm build
 
       - name: Create ZIP package
-        run: zip -r shokaX.zip * -x '*.ts' '*.tsbuildinfo' "node_modules/*" ".github/*" "docs/*"
+        run: zip -r shokaX.zip * -x '*.ts' 'tsconfig.json' '*.tsbuildinfo' "node_modules/*" ".github/*" "docs/*"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3

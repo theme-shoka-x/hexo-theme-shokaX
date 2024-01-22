@@ -366,7 +366,7 @@ vendors:
 #    mouse_firework: npm_webcache|mouse-firework@0.0.4/dist/index.umd.js
   async_js:
     fancybox: bytedance|??jquery/3.5.1/jquery.min.js,fancybox/3.5.7/jquery.fancybox.min.js,justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js
-    copy_tex: npm_webcache|katex@0.16.7/contrib/copy-tex.min.js
+    copy_tex: npm_webcache|katex@0.16.7/dist/contrib/copy-tex.min.js
   css:
     katex: npm_webcache|katex@0.16.7/dist/katex.min.css
     comment: css/comment.css
