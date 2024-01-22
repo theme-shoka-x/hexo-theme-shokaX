@@ -14,7 +14,6 @@
         "@types/fancybox": "^3.5.6",
         "@types/jquery": "^3.5.29",
         "@types/js-yaml": "^4.0.9",
-        "@types/lozad": "^1.16.4",
         "@types/node": "^20.11.5",
         "@typescript-eslint/eslint-plugin": "^6.19.0",
         "@typescript-eslint/parser": "^6.19.0",
@@ -35,10 +34,10 @@
         "hexo-pagination": "^3.0.0",
         "hexo-util": "^3.2.0",
         "js-yaml": "^4.1.0",
-        "lozad": "^1.16.0",
         "mouse-firework": "^0.0.4",
         "theme-shokax-anime": "^0.0.6",
-        "theme-shokax-pjax": "^0.0.3"
+        "theme-shokax-pjax": "^0.0.3",
+        "unlazy": "^0.10.4"
     },
     "engines": {
         "node": ">=18.0.0"

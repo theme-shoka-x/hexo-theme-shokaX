@@ -6,7 +6,7 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "types": ["theme-shokax-anime","lozad","jquery","fancybox"],
+    "types": ["theme-shokax-anime", "jquery","fancybox"],
     "skipLibCheck": true
   },
   "typeAcquisition": {

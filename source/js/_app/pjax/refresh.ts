@@ -15,8 +15,10 @@ import {
 import { mediaPlayer } from '../player'
 import { pagePosition, positionInit } from '../globals/tools'
 import { menuActive, sideBarTab, sidebarTOC } from '../components/sidebar'
-import { Loader, isOutime, lazyload } from '../globals/thirdparty'
+import { Loader, isOutime } from '../globals/thirdparty'
 import { tabFormat } from '../page/tab'
+import { lazyLoad } from 'unlazy'
+
 export const pjaxReload = () => {
   pagePosition()
 
@@ -66,6 +68,6 @@ export const siteRefresh = (reload) => {
 
   cardActive()
 
-  lazyload.observe()
+  lazyLoad()
   isOutime()
 }

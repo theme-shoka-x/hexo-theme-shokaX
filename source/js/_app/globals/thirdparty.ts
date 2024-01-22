@@ -1,17 +1,7 @@
 // 与第三方js的交互或第三方嵌入js
 
-import lozad from 'lozad'
 import { loadCat } from './globalVars'
 import { transition } from '../library/anime'
-
-/**
- * 懒加载图片
- */
-export const lazyload = lozad('img, [data-background-image]', {
-  loaded (el: HTMLElement) {
-    el.addClass('lozaded')
-  }
-})
 
 // 加载动画
 export const Loader = {
