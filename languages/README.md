@@ -37,3 +37,4 @@ If you would like to customize the default translation, you do not need to modif
 - ### Nederlands (nl)
 - ### Polski (pl)
 - ### Türkçe (tr)
+- ### Bahasa Indonesia (id)
