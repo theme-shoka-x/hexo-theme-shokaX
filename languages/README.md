@@ -38,3 +38,4 @@ If you would like to customize the default translation, you do not need to modif
 - ### Polski (pl)
 - ### Türkçe (tr)
 - ### Bahasa Indonesia (id)
+- ### Tiếng Việt (vi)
