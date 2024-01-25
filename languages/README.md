@@ -35,3 +35,4 @@ If you would like to customize the default translation, you do not need to modif
 - ### हिंदी (hi)
 - ### 한국어 (ko)
 - ### Nederlands (nl)
+- ### Polski (pl)
