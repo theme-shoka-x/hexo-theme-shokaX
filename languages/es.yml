@@ -1,0 +1,153 @@
+---
+name: Español
+favicon:
+  show: (●´3｀●) Aquí vamos de nuevo.
+  hide: (´Д｀) Es un desastre.
+
+title:
+  archive: Archivo
+  category: Categoría
+  tag: Etiqueta
+  all: Todos
+  not_found: Σ( ° △ °|||)︴¡404! No se puede ver nada
+  category_in: Publicado en la categoría "%s"
+  tag_in: Publicado con la etiqueta "%s"
+  archive_in: Publicado en "%s"
+
+menu:
+  home: Inicio
+  posts: Publicaciones
+  archives: Archivos
+  categories: Categorías
+  tags: Etiquetas
+  about: Acerca de
+  search: Buscar
+  census: Estadísticas de visitas al blog
+  aboutsite: Acerca de este sitio
+  updata: Registro de actualizaciones
+  statistics: Estadísticas
+  admiration: Apreciación
+  friends: Amigos
+  privacy: Política de privacidad
+
+sidebar:
+  overview: Resumen
+  toc: Contenidos
+  related: Relacionado
+
+index:
+  sticky: Publicaciones destacadas
+  category: Categorías
+  posts: Lista de publicaciones
+  random_posts: Publicaciones aleatorias
+  recent_comments: Comentarios recientes
+
+post:
+  posted: Publicado en
+  edited: Editado en
+  created: Creado
+  modified: Modificado
+  edit: Editar esta publicación
+  in: En
+  read_more: Leer más
+  untitled: Sin título
+  sticky: Destacado
+  views: Vistas
+  related_posts: Publicaciones relacionadas
+  next: Siguiente publicación
+  prev: Publicación anterior
+  copyright:
+    author: Autor de la publicación
+    link: Enlace de la publicación
+    license_title: Aviso de derechos de autor
+    license_content: "Todos los artículos de este blog están licenciados bajo %s a menos que se indique adicionalmente."
+    nocopy: '<span class="red">Esta página está prohibida para reimpresión.</span>'
+
+footer:
+  powered: "Impulsado por %s"
+  total_views: Vistas totales
+  total_visitors: Visitantes totales
+
+counter:
+  index:
+    post: "%d publicaciones en total"
+    category: "%d subcategorías en total, "
+  tag_cloud:
+    zero: Sin etiquetas
+    one: 1 etiqueta en total
+    other: "%d etiquetas en total"
+  categories:
+    zero: Sin categorías
+    one: 1 categoría en total
+    other: "%d categorías en total"
+  archive_posts:
+    zero: Sin publicaciones.
+    one: 1 publicación.
+    other: "%d publicaciones en total."
+
+state:
+  posts: publicaciones
+  tags: etiquetas
+  categories: categorías
+
+search:
+  placeholder: Buscar publicaciones
+  empty: "No encontramos ningún resultado para la búsqueda: ${query}"
+  stats: "${hits} resultados encontrados en ${time} ms"
+
+cheers:
+  um: Um..
+  ok: OK
+  nice: Bonito
+  good: Bueno
+  great: Genial
+  excellent: Excelente
+
+keep_on: Sigue publicando.
+
+symbol:
+  comma: ", "
+  period: ". "
+  colon: ": "
+  year: "A"
+  month: "M"
+
+reward:
+  donate: Donar
+  text: Dame una taza de [café]~(￣▽￣)~*
+  wechatpay: WeChat Pay
+  alipay: Alipay
+  paypal: PayPal
+  bitcoin: Bitcoin
+
+follow_me:
+  welcome: Bienvenido a mis otros canales de publicación
+
+accessibility:
+  nav_toggle: Alternar barra de navegación
+  prev_page: Página anterior
+  next_page: Página siguiente
+
+symbols_count_time:
+  count: Cuenta de símbolos en el artículo
+  count_total: Cuenta total de símbolos
+  time: Tiempo de lectura
+  time_total: Tiempo total de lectura
+  time_minutes: mins.
+  word: palabras
+  view: veces
+
+tips:
+  copyright: "Copiado al portapapeles con éxito! <br> Todos los artículos de este blog están licenciados bajo %s."
+  nocopy: "Falló la copia al portapapeles! Esta página está prohibida para reimpresión."
+
+quiz:
+  choice: Opción múltiple
+  multiple: Respuesta múltiple
+  true_false: Verdadero/Falso
+  essay: Preguntas
+  gap_fill: Relleno de huecos
+  mistake: Respuesta incorrecta
+
+outime:
+  template: '<div class="note warning"><p><span class="label warning">Alerta de actualidad del artículo</span><br>Este es un artículo publicado hace {{publish}} días y actualizado por última vez hace {{updated}} días. Alguna información puede haber cambiado, así que por favor ten cuidado al revisarlo.</p></div>'
