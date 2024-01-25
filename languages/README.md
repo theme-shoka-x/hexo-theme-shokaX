@@ -26,3 +26,4 @@ If you would like to customize the default translation, you do not need to modif
 - ### 中文-繁体 (zh-HK)
 - ### 中文-台湾 (zh-TW)
 - ### Español (es)
+- ### Deutsch (de)
