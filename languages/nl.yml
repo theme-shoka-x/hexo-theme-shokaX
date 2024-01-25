@@ -1,0 +1,153 @@
+---
+name: Nederlands
+favicon:
+  show: (●´3｀●) Daar gaan we weer.
+  hide: (´Д｀) Het is een ramp!
+
+title:
+  archive: Archief
+  category: Categorie
+  tag: Tag
+  all: Alles
+  not_found: Σ( ° △ °|||)︴404! Er is niets te zien
+  category_in: Artikelen in de categorie "%s"
+  tag_in: Artikelen met de tag "%s"
+  archive_in: Artikelen gepost op "%s"
+
+menu:
+  home: Thuis
+  posts: Berichten
+  archives: Archieven
+  categories: Categorieën
+  tags: Tags
+  about: Over
+  search: Zoeken
+  census: Blogbezoekstatistieken
+  aboutsite: Over deze site
+  updata: Update logboek
+  statistics: Statistieken
+  admiration: Bewondering
+  friends: Vrienden
+  privacy: Privacybeleid
+
+sidebar:
+  overview: Overzicht
+  toc: Inhoudsopgave
+  related: Gerelateerde artikelen
+
+index:
+  sticky: Vastgezette berichten
+  category: Geselecteerde categorieën
+  posts: Lijst met berichten
+  random_posts: Willekeurige berichten
+  recent_comments: Recente reacties
+
+post:
+  posted: Geplaatst op
+  edited: Bewerkt op
+  created: Gemaakt
+  modified: Gewijzigd
+  edit: Bewerken
+  in: In
+  read_more: Lees meer
+  untitled: Zonder titel
+  sticky: Vastgezet
+  views: Weergaven
+  related_posts: Gerelateerde berichten
+  next: Volgend bericht
+  prev: Vorig bericht
+  copyright:
+    author: Auteur van het bericht
+    link: Link naar het bericht
+    license_title: Copyright notice
+    license_content: "Alle berichten op deze blog zijn gelicentieerd onder %s, tenzij anders vermeld."
+    nocopy: "<span class=\"red\">Deze pagina is verboden om te herdrukken.</span>"
+
+footer:
+  powered: "Aangedreven door %s"
+  total_views: Totaal aantal weergaven
+  total_visitors: Totaal aantal bezoekers
+
+counter:
+  index:
+    post: "Totaal %d berichten"
+    category:  "Totaal %d subcategorieën, "
+  tag_cloud:
+    zero: Geen tags
+    one: Totaal 1 tag
+    other: "Totaal %d tags"
+  categories:
+    zero: Geen categorieën
+    one: Totaal 1 categorie
+    other: "Totaal %d categorieën"
+  archive_posts:
+    zero: Geen berichten.
+    one: 1 bericht.
+    other: "Totaal %d berichten."
+
+state:
+  posts: Berichten
+  tags: Tags
+  categories: Categorieën
+
+search:
+  placeholder: Zoek berichten
+  empty: "We hebben geen resultaten gevonden voor de zoekopdracht: ${query}"
+  stats: "${hits} resultaten gevonden in ${time} ms"
+
+cheers:
+  um: Uh..
+  ok: OK
+  nice: Leuk
+  good: Goed
+  great: Geweldig
+  excellent: Uitstekend
+
+keep_on: Blijf posten.
+
+symbol:
+  comma: ", "
+  period: ". "
+  colon: ": "
+  year: "J"
+  month: "M"
+
+reward:
+  donate: Doneer
+  text: Trakteer me op een kopje [koffie]~(￣▽￣)~*
+  wechatpay: WeChat Pay
+  alipay: Alipay
+  paypal: PayPal
+  bitcoin: Bitcoin
+
+follow_me:
+  welcome: Welkom op mijn andere publicatiekanalen
+
+accessibility:
+  nav_toggle: Navigatiebalk schakelen
+  prev_page: Vorige pagina
+  next_page: Volgende pagina
+
+symbols_count_time:
+  count: Aantal symbolen in het bericht
+  count_total: Totaal aantal symbolen
+  time: Leestijd
+  time_total: Totale leestijd
+  time_minutes: min.
+  word: woorden
+  view: keer
+
+tips:
+  copyright: "Succesvol gekopieerd naar het klembord! <br> Alle berichten op deze blog zijn gelicentieerd onder %s."
+  nocopy: "Kopiëren naar het klembord is mislukt! Deze pagina is verboden om te herdrukken."
+
+quiz:
+  choice: Meerkeuzevraag
+  multiple: Meervoudige antwoordvraag
+  true_false: Waar/onwaar vraag
+  essay: Vragen
+  gap_fill: Gat invullen vraag
+  mistake: Opmerking over het verkeerde antwoord
+
+outime:
+  template: "<div class=\"note warning\"><p><span class=\"label warning\">Artikel tijdigheid waarschuwing</span><br>Dit is een artikel dat {{publish}} dagen geleden is gepost en {{updated}} dagen geleden voor het laatst is bijgewerkt. Sommige informatie kan zijn veranderd, dus wees voorzichtig bij het controleren.</p></div>"
