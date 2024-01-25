@@ -1,17 +1,24 @@
-# 公告
+# 📣 公告
 [关于ShokaX markdown扩展特性的讨论](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/177) \
 [关于删除部分评论系统的讨论](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/175)
+
 # hexo-theme-shokaX
 ![LICENSE](	https://img.shields.io/github/license/theme-shoka-x/hexo-theme-shokaX)
 ![stars](https://img.shields.io/github/stars/theme-shoka-x/hexo-theme-shokaX)
 ![version](https://shields.io/npm/v/hexo-theme-shokax)
 ![build](https://img.shields.io/github/actions/workflow/status/theme-shoka-x/hexo-theme-shokaX/build-theme.yml)
 
-语言(language): 简体中文 | [English](./README_en.MD) \
+#### 语言(language): 简体中文 | [English](./README_en.MD) \
 此项目是shoka的一个二次开发版(算精神续作),致力于提高性能和优化魔改体验 \
 诞生原因是目前shoka已经两年没有更新了,积压了大量BUG和功能请求。
 
 shokaX的社区资源导航和插件仓库为[awesome-shokaX](https://github.com/theme-shoka-x/awesome-shokaX)
+
+## 技术栈
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D)
+![Pug](https://img.shields.io/badge/Pug-FFF?style=for-the-badge&logo=pug&logoColor=A86454)
+![Stylus](https://img.shields.io/badge/stylus-%23ff6347.svg?style=for-the-badge&logo=stylus&logoColor=white)
 
 ## 💬 和shoka的区别
 原先shoka使用了javascript+Native+nunjucks的技术 \
@@ -61,7 +68,7 @@ SXC install shokaX
 - [Typescript 中文网](https://www.tslang.cn/docs/home.html)
 - [Easy hexo](https://easyhexo.com/)
 
-# 许可证
+# [许可证](https://github.com/theme-shoka-x/hexo-theme-shokaX/blob/main/LICENSE)
 许可证: AGPL 3 or later
 
 ## 特别说明

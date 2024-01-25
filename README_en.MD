@@ -7,11 +7,17 @@
 ![version](https://shields.io/npm/v/hexo-theme-shokax)
 ![build](https://img.shields.io/github/actions/workflow/status/theme-shoka-x/hexo-theme-shokaX/build-theme.yml)
 
-Language: [简体中文](./README.md) | English \
+#### Language: [简体中文](./README.md) | English \
 This project is a fork (spiritual successor) of Shoka, aimed at improving performance and optimizing the modified experience. \
 The reason for its creation is that Shoka has not been updated for two years, accumulating a large number of bugs and feature requests.
 
 The community resource guide and plugin repository for shokaX are available at [awesome-shokaX](https://github.com/theme-shoka-x/awesome-shokaX)
+
+## Technology Stack
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D)
+![Pug](https://img.shields.io/badge/Pug-FFF?style=for-the-badge&logo=pug&logoColor=A86454)
+![Stylus](https://img.shields.io/badge/stylus-%23ff6347.svg?style=for-the-badge&logo=stylus&logoColor=white)
 
 ## 💬 Differences from Shoka
 The original Shoka used a combination of JavaScript + Native + Nunjucks technologies. \
@@ -35,7 +41,7 @@ Notes:
 ## 🔧 How to Install
 Note: This project requires node.js 18.x or higher to run. \
 It is recommended to use [ShokaX-CLI](https://github.com/zkz098/shokaX-CLI) \
-[Click here](https://docs.kaitaku.xyz/guide/#%E9%85%8D%E7%BD%AE%E4%B8%BB%E9%A2%98) for the next configuration steps.
+[Click here](https://docs.kaitaku.xyz/en/guide/) for the next configuration steps.
 
 ## 📚 Sub-projects
 - [ShokaX docs](https://github.com/theme-shoka-x/shokaX-docs) ShokaX Theme Documentation (work in progress, contributions welcome!)
@@ -48,13 +54,15 @@ It is recommended to use [ShokaX-CLI](https://github.com/zkz098/shokaX-CLI) \
 [ShokaX Official Development Documentation](https://docs.kaitaku.xyz/develop/basic/)
 
 Recommended reading for contributing:
-- [Hexo Official Documentation](https://hexo.io/zh-cn/docs/templates)
-- [Stylus Chinese Documentation](http://stylus.bootcss.com/)
+- [Hexo Official Documentation]([https://hexo.io/zh-cn/docs/templates](https://hexo.io/docs/templates.html))
+- [Stylus Documentation](https://stylus-lang.com/)
+- [Stylus Chinese Documentation](https://stylus.bootcss.com/)
 - [Pug Template Engine Chinese Documentation](https://www.pugjs.cn/api/getting-started.html)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
 - [TypeScript Chinese Documentation](https://www.tslang.cn/docs/home.html)
 - [Easy Hexo](https://easyhexo.com/)
 
-# License
+# [License](https://github.com/theme-shoka-x/hexo-theme-shokaX/blob/main/LICENSE)
 License: AGPL 3 or later
 
 ## Special Note
