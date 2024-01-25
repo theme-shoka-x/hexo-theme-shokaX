@@ -1,0 +1,153 @@
+---
+name: 한국어
+favicon:
+  show: (●´3｀●) 다시 시작합시다.
+  hide: (´Д｀) 이건 재앙이야!
+
+title:
+  archive: 아카이브
+  category: 카테고리
+  tag: 태그
+  all: 모두
+  not_found: Σ( ° △ °|||)︴404! 아무것도 보이지 않습니다
+  category_in: 카테고리 "%s"의 게시물
+  tag_in: 태그 "%s"가 포함된 게시물
+  archive_in: "%s"에 게시된 게시물
+
+menu:
+  home: 홈
+  posts: 게시물
+  archives: 아카이브
+  categories: 카테고리
+  tags: 태그
+  about: 소개
+  search: 검색
+  census: 블로그 방문 통계
+  aboutsite: 이 사이트에 대하여
+  updata: 업데이트 로그
+  statistics: 통계
+  admiration: 감사
+  friends: 친구들
+  privacy: 개인정보 보호정책
+
+sidebar:
+  overview: 개요
+  toc: 목차
+  related: 관련 게시물
+
+index:
+  sticky: 고정 게시물
+  category: 선정된 카테고리
+  posts: 게시물 목록
+  random_posts: 무작위 게시물
+  recent_comments: 최근 댓글
+
+post:
+  posted: 게시됨
+  edited: 수정됨
+  created: 생성됨
+  modified: 수정됨
+  edit: 편집
+  in: 에
+  read_more: 더 읽기
+  untitled: 무제
+  sticky: 고정
+  views: 조회수
+  related_posts: 관련 게시물
+  next: 다음 게시물
+  prev: 이전 게시물
+  copyright:
+    author: 게시물 작성자
+    link: 게시물 링크
+    license_title: 저작권 고지
+    license_content: "이 블로그의 모든 게시물은 %s에 따라 라이선스가 부여되며, 별도로 명시되지 않는 한 예외는 없습니다."
+    nocopy: "<span class=\"red\">이 페이지는 재인쇄가 금지되어 있습니다.</span>"
+
+footer:
+  powered: "%s에 의해 구동됨"
+  total_views: 총 조회수
+  total_visitors: 총 방문자 수
+
+counter:
+  index:
+    post: "총 %d개의 게시물"
+    category:  "총 %d개의 하위 항목, "
+  tag_cloud:
+    zero: 태그 없음
+    one: 총 1개의 태그
+    other: "총 %d개의 태그"
+  categories:
+    zero: 카테고리 없음
+    one: 총 1개의 카테고리
+    other: "총 %d개의 카테고리"
+  archive_posts:
+    zero: 게시물 없음.
+    one: 1개의 게시물.
+    other: "총 %d개의 게시물."
+
+state:
+  posts: 게시물
+  tags: 태그
+  categories: 카테고리
+
+search:
+  placeholder: 게시물 검색
+  empty: "\"${query}\"에 대한 검색 결과가 없습니다"
+  stats: "${time}ms 안에 ${hits}개의 결과를 찾았습니다"
+
+cheers:
+  um: 음..
+  ok: 괜찮아
+  nice: 좋아
+  good: 좋아
+  great: 아주 좋아
+  excellent: 훌륭해
+
+keep_on: 계속해서 게시하십시오.
+
+symbol:
+  comma: ", "
+  period: ". "
+  colon: ": "
+  year: 년
+  month: 월
+
+reward:
+  donate: 기부
+  text: 저에게 [커피] 한 잔을 사주세요~(￣▽￣)~*
+  wechatpay: 위챗 페이
+  alipay: 알리페이
+  paypal: 페이팔
+  bitcoin: 비트코인
+
+follow_me:
+  welcome: 제 다른 출판 채널에 오신 것을 환영합니다
+
+accessibility:
+  nav_toggle: 내비게이션 바 전환
+  prev_page: 이전 페이지
+  next_page: 다음 페이지
+
+symbols_count_time:
+  count: 게시물의 기호 수
+  count_total: 총 기호 수
+  time: 읽는 데 걸리는 시간
+  time_total: 총 읽는 데 걸리는 시간
+  time_minutes: 분
+  word: 단어
+  view: 번
+
+tips:
+  copyright: "클립보드에 성공적으로 복사되었습니다! <br> 이 블로그의 모든 게시물은 %s에 따라 라이선스가 부여됩니다."
+  nocopy: "클립보드에 복사하는 데 실패했습니다! 이 페이지는 재인쇄가 금지되어 있습니다."
+
+quiz:
+  choice: 객관식 문제
+  multiple: 다중 선택 문제
+  true_false: 참/거짓 문제
+  essay: 답변형 문제
+  gap_fill: 빈칸 채우기 문제
+  mistake: 잘못된 답변 메모
+
+outime:
+  template: "<div class=\"note warning\"><p><span class=\"label warning\">게시물 시기성 경고</span><br>이것은 {{publish}}일 전에 게시되고 {{updated}}일 전에 마지막으로 업데이트된 게시물입니다. 일부 정보가 변경되었을 수 있으므로 확인할 때 주의하십시오.</p></div>"

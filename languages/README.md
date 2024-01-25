@@ -33,3 +33,4 @@ If you would like to customize the default translation, you do not need to modif
 - ### Русский (ru)
 - ### العربية (ar)
 - ### हिंदी (hi)
+- ### 한국어 (ko)
