@@ -39,12 +39,14 @@
         width: auto;
         height: auto;
         background: none;
-        border-radius: 10px;
+        border-radius: 0;
         border-bottom: .125rem solid transparent;
       }
 
       &.active::before {
         border-bottom-color: var(--primary-color);
+        left: 0;
+        right: 0;
       }
     }
   }

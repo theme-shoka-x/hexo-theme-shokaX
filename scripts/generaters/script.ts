@@ -77,7 +77,10 @@ hexo.extend.generator.register('script', function (locals) {
     platform: 'browser',
     format: 'iife',
     target: ['es2022'],
-    minify: true
+    minify: true,
+    define: {
+      __UNLAZY_LOGGING__: 'false'
+    }
   })
   text += fs.readFileSync('shokax_temp.js')
   const result = hexo.render.renderSync({ text, engine: 'js' })
