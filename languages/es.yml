@@ -82,7 +82,7 @@ counter:
     other: "%d categorías en total"
   archive_posts:
     zero: Sin publicaciones.
-    one: 1 publicación.
+    one: 1 publicación en total.
     other: "%d publicaciones en total."
 
 state:
