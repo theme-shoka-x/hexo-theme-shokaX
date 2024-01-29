@@ -100,7 +100,7 @@ export const visibilityListener = () => {
   document.addEventListener('visibilitychange', () => {
     switch (document.visibilityState) {
       case 'hidden':
-        iconNode.attr('href', statics + CONFIG.favicon.hidden)
+        iconNode.setAttribute('href', statics + CONFIG.favicon.hidden)
         document.title = LOCAL.favicon.hide
         if (CONFIG.loader.switch) {
           Loader.show()
@@ -108,7 +108,7 @@ export const visibilityListener = () => {
         clearTimeout(titleTime)
         break
       case 'visible':
-        iconNode.attr('href', statics + CONFIG.favicon.normal)
+        iconNode.setAttribute('href', statics + CONFIG.favicon.normal)
         document.title = LOCAL.favicon.show
         if (CONFIG.loader.switch) {
           Loader.hide(1000)

@@ -15,9 +15,6 @@ declare interface EventTarget {
   changeOrGetWidth(): number;
   getTop(): number;
   left(): number;
-  attr(type: string, value: string): EventTarget;
-  attr(type: string):string
-  attr(type:string, value:null):void
   insertAfter(element: HTMLElement): void;
   display(d: string): EventTarget;
   display():string

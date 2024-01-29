@@ -11,7 +11,7 @@ export const postFancybox = (p:string) => {
       $dom.each(p + ' p.gallery', (element) => {
         const box = document.createElement('div')
         box.className = 'gallery'
-        box.attr('data-height', String(element.attr('data-height') || 220))
+        box.setAttribute('data-height', String(element.getAttribute('data-height') || 220))
 
         box.innerHTML = element.innerHTML.replace(/<br>/g, '')
 
@@ -32,7 +32,7 @@ export const postFancybox = (p:string) => {
             captionClass = 'jg-caption'
           }
         }
-        if ((info = element.attr('title'))) {
+        if ((info = element.getAttribute('title'))) {
           $imageWrapLink.attr('data-caption', info)
           const para = document.createElement('span')
           const txt = document.createTextNode(info)
@@ -49,7 +49,7 @@ export const postFancybox = (p:string) => {
           rel: 'gallery-' + i
         }).on('jg.complete', function () {
           q(this).find('a').each((k, ele) => {
-            ele.attr('data-fancybox', 'gallery-' + i)
+            ele.setAttribute('data-fancybox', 'gallery-' + i)
           })
         })
       })
