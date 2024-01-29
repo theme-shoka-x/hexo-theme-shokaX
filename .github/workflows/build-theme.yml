@@ -33,7 +33,7 @@ jobs:
         run: zip -r shokaX.zip * -x '*.ts' 'tsconfig.json' '*.tsbuildinfo' "node_modules/*" ".github/*" "docs/*"
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: shokaX-stable
           path: shokaX.zip
