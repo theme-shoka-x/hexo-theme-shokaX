@@ -8,11 +8,11 @@ import { HTML } from './globalVars'
 export const changeTheme = (type?: string) => {
   const btn = <HTMLElement>$dom('.theme .ic')
   if (type === 'dark') {
-    HTML.attr('data-theme', type)
+    HTML.setAttribute('data-theme', type)
     btn.removeClass('i-sun')
     btn.addClass('i-moon')
   } else {
-    HTML.attr('data-theme', null)
+    HTML.removeAttribute('data-theme')
     btn.removeClass('i-moon')
     btn.addClass('i-sun')
   }
@@ -36,11 +36,11 @@ export const autoDarkmode = () => {
  * 更改主题的meta
  */
 export const changeMetaTheme = (color: string): void => {
-  if (HTML.attr('data-theme') === 'dark') {
+  if (HTML.getAttribute('data-theme') === 'dark') {
     color = '#222'
   }
 
-  $dom('meta[name="theme-color"]').attr('content', color)
+  $dom('meta[name="theme-color"]').setAttribute('content', color)
 }
 
 // 记忆日夜模式切换和系统亮暗模式监听

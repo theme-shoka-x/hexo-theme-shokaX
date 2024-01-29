@@ -56,7 +56,7 @@ export const sideBarTab = () => {
 
     const tab = document.createElement('li')
     const span = document.createElement('span')
-    const text = document.createTextNode(element.attr('data-title'))
+    const text = document.createTextNode(element.getAttribute('data-title'))
     span.appendChild(text)
     tab.appendChild(span)
     tab.addClass(item + ' item')
@@ -122,7 +122,7 @@ export const sidebarTOC = () => {
     while (!parent.matches('.contents')) {
       if (parent.matches('li')) {
         parent.addClass('active')
-        const t = $dom(parent.child('a.toc-link').attr('href'))
+        const t = $dom(parent.child('a.toc-link').getAttribute('href'))
         if (t) {
           t.addClass('active')
         }
@@ -145,13 +145,13 @@ export const sidebarTOC = () => {
 
   sections = sections.map((element, index) => {
     const link = element.child('a.toc-link')
-    const anchor = $dom(decodeURI(link.attr('href')))
+    const anchor = $dom(decodeURI(link.getAttribute('href')))
     if (!anchor) return null
     const alink = anchor.child('a.anchor')
 
     const anchorScroll = (event:MouseEvent) => {
       event.preventDefault()
-      const target = $dom(decodeURI(event.currentTarget.attr('href')))
+      const target = $dom(decodeURI((event.currentTarget as HTMLElement).getAttribute('href')))
 
       activeLock = index
       pageScroll(target, null, () => {
@@ -164,7 +164,7 @@ export const sidebarTOC = () => {
     link.addEventListener('click', anchorScroll)
     alink && alink.addEventListener('click', (event) => {
       anchorScroll(event)
-      clipBoard(CONFIG.hostname + '/' + LOCAL.path + event.currentTarget.attr('href'))
+      clipBoard(CONFIG.hostname + '/' + LOCAL.path + (event.currentTarget as HTMLElement).getAttribute('href'))
     })
     return anchor
   })

@@ -5,10 +5,10 @@ export const tabFormat = () => {
   // tab
   let first_tab:boolean
   $dom.each('div.tab', (element) => {
-    if (element.attr('data-ready')) { return }
+    if (element.getAttribute('data-ready')) { return }
 
-    const id = element.attr('data-id')
-    const title = element.attr('data-title')
+    const id = element.getAttribute('data-id')
+    const title = element.getAttribute('data-title')
     let box = $dom('#' + id)
     if (!box) {
       box = document.createElement('div')
@@ -54,6 +54,6 @@ export const tabFormat = () => {
     })
 
     box.appendChild(element)
-    element.attr('data-ready', String(true))
+    element.setAttribute('data-ready', String(true))
   })
 }

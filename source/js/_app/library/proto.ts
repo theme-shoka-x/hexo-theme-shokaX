@@ -57,24 +57,6 @@ export default function initProto () {
       return this.getBoundingClientRect().left
     },
     /**
-   * 该函数接受两个参数：`type`字符串和 `value`字符串的可选参数。该函数具有基于参数值的三个主要逻辑分支。 <br />
-   * 1. `value`如果是`null`，则该函数从当前上下文中删除具有`type`函数名称的属性。 <br />
-   * 2. `value`如果为真，则该函数将使用`type`参数指定的名称将属性设置为当前上下文中`value`参数的值。然后，该函数返回当前上下文。 <br />
-   * 3. `value`如果不是真，则该函数返回属性的值，该值具有当前上下文中的参数指定的名称。
-   */
-    attr (type: string, value?: string): void | EventTarget | string {
-      if (value === null) {
-        return this.removeAttribute(type)
-      }
-
-      if (value) {
-        this.setAttribute(type, value)
-        return this
-      } else {
-        return this.getAttribute(type)
-      }
-    },
-    /**
    * 将此节点插入父节点的下一个节点之前
    */
     insertAfter (element: HTMLElement): void {

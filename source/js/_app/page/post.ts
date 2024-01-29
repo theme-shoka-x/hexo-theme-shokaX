@@ -54,7 +54,7 @@ export const postBeauty = () => {
 
   $dom.each('ol[start]', (element) => {
     // @ts-ignore
-    element.style.counterReset = 'counter ' + parseInt(element.attr('start') - 1)
+    element.style.counterReset = 'counter ' + parseInt(element.getAttribute('start') - 1)
   })
 
   $dom.each('.md table', (element) => {
@@ -210,11 +210,11 @@ export const postBeauty = () => {
     if (quiz.hasClass('multi')) { type = 'multiple' }
     if (quiz.hasClass('fill')) { type = 'gap_fill' }
     if (quiz.hasClass('essay')) { type = 'essay' }
-    element.attr('data-type', LOCAL.quiz[type])
+    element.setAttribute('data-type', LOCAL.quiz[type])
   })
 
   $dom.asyncifyEach('.quiz .mistake', (element) => {
-    element.attr('data-type', LOCAL.quiz.mistake)
+    element.setAttribute('data-type', LOCAL.quiz.mistake)
   })
 
   $dom.each('div.tags a', (element) => {
@@ -223,10 +223,10 @@ export const postBeauty = () => {
 
   $dom.asyncifyEach('.md div.player', (element) => {
     mediaPlayer(element, {
-      type: element.attr('data-type'),
+      type: element.getAttribute('data-type'),
       mode: 'order',
       btns: []
-    }).player.load(JSON.parse(element.attr('data-src'))).fetch()
+    }).player.load(JSON.parse(element.getAttribute('data-src'))).fetch()
   })
 
   const angleDown = document.querySelectorAll('.show-btn .i-angle-down')

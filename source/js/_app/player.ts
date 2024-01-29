@@ -152,9 +152,9 @@ export const mediaPlayer = /* @__PURE__ */ (t, config?) => {
 
         progress.el = current.createChild('div', {
           className: 'progress'
-        })
+        });
 
-        progress.el.attr('data-dtime', utils.secondToTime(0))
+        (progress.el as HTMLElement).setAttribute('data-dtime', utils.secondToTime(0))
 
         progress.bar = progress.el.createChild('div', {
           className: 'bar'
@@ -168,8 +168,8 @@ export const mediaPlayer = /* @__PURE__ */ (t, config?) => {
       }
     },
     update (percent) {
-      progress.bar.changeOrGetWidth(Math.floor(percent * 100) + '%')
-      progress.el.attr('data-ptime', utils.secondToTime(percent * source.duration))
+      progress.bar.changeOrGetWidth(Math.floor(percent * 100) + '%');
+      (progress.el as HTMLElement).setAttribute('data-ptime', utils.secondToTime(percent * source.duration))
     },
     seeking (type) {
       if (type) { progress.el.addClass('seeking') } else { progress.el.removeClass('seeking') }
@@ -263,9 +263,8 @@ export const mediaPlayer = /* @__PURE__ */ (t, config?) => {
             innerHTML: '<ol></ol>'
           })
           if (t.player.group) {
-            tab.attr('data-title', t.player.options.rawList[item.group].title)
-            // @ts-ignore
-              .attr('data-id', t.player._id)
+            tab.setAttribute('data-title', t.player.options.rawList[item.group].title)
+            tab.setAttribute('data-id', t.player._id)
           }
         }
 
@@ -578,8 +577,8 @@ export const mediaPlayer = /* @__PURE__ */ (t, config?) => {
         this.stop()
       }
 
-      source.attr('src', item.url)
-      source.attr('title', item.name + ' - ' + item.artist)
+      source.setAttribute('src', item.url)
+      source.setAttribute('title', item.name + ' - ' + item.artist)
       this.volume($storage.get('_PlayerVolume') || '0.7')
       this.muted($storage.get('_PlayerMuted'))
 
@@ -744,16 +743,16 @@ export const mediaPlayer = /* @__PURE__ */ (t, config?) => {
     },
     ondurationchange () {
       if (source.duration !== 1) {
-        progress.el.attr('data-dtime', utils.secondToTime(source.duration))
+        progress.el.setAttribute('data-dtime', utils.secondToTime(source.duration))
       }
     },
     onloadedmetadata () {
       t.player.seek(0)
-      progress.el.attr('data-dtime', utils.secondToTime(source.duration))
+      progress.el.setAttribute('data-dtime', utils.secondToTime(source.duration))
     },
     onplay () {
       t.parentNode.addClass('playing')
-      showtip(this.attr('title'))
+      showtip(this.getAttribute('title'))
       NOWPLAYING = t
     },
     onpause () {

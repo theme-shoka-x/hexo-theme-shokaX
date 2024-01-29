@@ -10,7 +10,7 @@ export const Loader = {
   show () {
     clearTimeout(this.timer)
     document.body.removeClass('loaded')
-    loadCat.attr('style', 'display:block')
+    loadCat.setAttribute('style', 'display:block')
     Loader.lock = false
   },
   hide (sec?: number) {
