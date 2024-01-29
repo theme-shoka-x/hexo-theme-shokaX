@@ -58,44 +58,17 @@ export const positionInit = (comment?: boolean) => {
 }
 
 /*
-这段代码是用来复制文本的。它使用了浏览器的 Clipboard API，如果浏览器支持该 API 并且当前页面是安全协议 (https)，
-它将使用 Clipboard API 将文本复制到剪贴板。如果不支持，它会创建一个隐藏的文本区域并使用 document.execCommand('copy') 将文本复制到剪贴板。
-最后，它会回调传入的函数并传入一个布尔值表示是否成功复制。
+基于clipboard API的复制功能，仅在https环境下有效
 */
-export const clipBoard = (str: string, callback?: (result) => void) => {
+export const clipBoard = (str: string, callback?: (result:boolean) => void) => {
   if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(str).then(() => {
-      // eslint-disable-next-line chai-friendly/no-unused-expressions
       callback && callback(true)
     }, () => {
-      // eslint-disable-next-line chai-friendly/no-unused-expressions
       callback && callback(false)
     })
   } else {
-    // TODO 根据caniuse，需要此polyfill的设备不足5%，应考虑删除
-    const ta = <HTMLTextAreaElement><unknown>BODY.createChild('textarea', {
-      style: {
-        top: window.scrollY + 'px',
-        position: 'absolute',
-        opacity: '0'
-      },
-      readOnly: true,
-      value: str
-    })
-
-    const selection = document.getSelection()
-    const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false
-    ta.select()
-    ta.setSelectionRange(0, str.length)
-    ta.readOnly = false
-    const result = document.execCommand('copy')
-    // eslint-disable-next-line chai-friendly/no-unused-expressions
-    callback && callback(result)
-    ta.blur() // For iOS
-    if (selected) {
-      selection.removeAllRanges()
-      selection.addRange(selected)
-    }
-    BODY.removeChild(ta)
+    console.error('Too old browser, clipborad API not supported.')
+    callback && callback(false)
   }
 }

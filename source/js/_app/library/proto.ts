@@ -5,7 +5,7 @@ export default function initProto () {
   /**
    * 创建一个子节点并放置
    */
-    createChild (tag: string, obj: Object, positon?: string): HTMLElement {
+    createChild (tag: string, obj: ElementCreationOptions, positon?: string): HTMLElement {
       const child = document.createElement(tag)
       Object.assign(child, obj)
       switch (positon) {

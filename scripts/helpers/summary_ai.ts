@@ -8,7 +8,7 @@ let db:object
 function postMessage (path:string, content:string, dbPath:string, startMessage:string) {
   if (fs.existsSync('summary.json')) {
     // @ts-ignore
-    db = JSON.parse(fs.readFileSync('summary.json') as string)
+    db = JSON.parse(fs.readFileSync('summary.json', { encoding: 'utf-8' }))
   } else {
     db = {}
   }

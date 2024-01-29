@@ -1,5 +1,6 @@
 import anime from 'theme-shokax-anime'
 import { siteNavHeight } from '../globals/globalVars'
+import type { AnimeOptions } from 'theme-shokax-anime/dist/types'
 
 /**
  * 参数  动画效果
@@ -12,7 +13,7 @@ import { siteNavHeight } from '../globals/globalVars'
  * TODO 函数功能过于复杂，需要拆分
  */
 export const transition = (target: HTMLElement, type: number|string|Function, complete?: Function, begin?: Function): void => {
-  let animation
+  let animation:Partial<AnimeOptions>
   let display = 'none'
   switch (type) {
     case 0:
@@ -67,6 +68,7 @@ export const transition = (target: HTMLElement, type: number|string|Function, co
       }
       break
     default:
+      // @ts-ignore
       animation = type
       // @ts-ignore
       display = type.display
@@ -77,12 +79,10 @@ export const transition = (target: HTMLElement, type: number|string|Function, co
     duration: 200,
     easing: 'linear',
     begin () {
-      // eslint-disable-next-line chai-friendly/no-unused-expressions
       begin && begin()
     },
     complete () {
       target.display(display)
-      // eslint-disable-next-line chai-friendly/no-unused-expressions
       complete && complete()
     }
   }, animation)).play()
@@ -103,9 +103,7 @@ export const pageScroll = (target: HTMLElement|number, offset?: number, complete
     scrollTop: offset || (typeof target === 'number' ? target : (target ? target.getTop() + document.documentElement.scrollTop - siteNavHeight : 0)),
     // 完成回调函数
     complete () {
-      // eslint-disable-next-line chai-friendly/no-unused-expressions
       complete && complete()
     }
   }).play()
-  // 调用 anime.js 函数，并传入参数
 }

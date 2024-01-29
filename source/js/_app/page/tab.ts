@@ -3,7 +3,7 @@ import { $dom } from '../library/dom'
 
 export const tabFormat = () => {
   // tab
-  let first_tab
+  let first_tab:boolean
   $dom.each('div.tab', (element) => {
     if (element.attr('data-ready')) { return }
 

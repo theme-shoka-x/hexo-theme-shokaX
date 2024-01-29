@@ -44,8 +44,8 @@ export default function domInit () {
   goToComment.addEventListener('click', goToCommentHandle)
   showContents.addEventListener('click', sideBarToggleHandle)
 
-  if (typeof mediaPlayer !== 'undefined') {
-    mediaPlayer(toolPlayer)
+  if (typeof mediaPlayer !== 'undefined' && !CONFIG.noPlayer) {
+    /* @__PURE__ */ mediaPlayer(toolPlayer)
 
     $dom('main').addEventListener('click', () => {
       toolPlayer.player.mini()

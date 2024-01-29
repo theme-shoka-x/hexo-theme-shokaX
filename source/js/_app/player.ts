@@ -7,10 +7,7 @@ import { tabFormat } from './page/tab'
 
 let NOWPLAYING = null
 const isMobile = /mobile/i.test(window.navigator.userAgent)
-export const mediaPlayer = (t, config?) => {
-  if (CONFIG.noPlayer) {
-    return
-  }
+export const mediaPlayer = /* @__PURE__ */ (t, config?) => {
   const buttons = {
     el: {},
     create () {

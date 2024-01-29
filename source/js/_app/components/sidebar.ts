@@ -1,4 +1,3 @@
-
 /* 边栏分区 */
 
 import { Container, diffY, menuToggle, showContents, sideBar } from '../globals/globalVars'
@@ -98,7 +97,7 @@ export const sideBarTab = () => {
 }
 
 export const sidebarTOC = () => {
-  const activateNavByIndex = (index) => {
+  const activateNavByIndex = (index:number): void => {
     const target = navItems[index]
 
     if (!target) return
@@ -141,7 +140,6 @@ export const sidebarTOC = () => {
     return
   }
 
-  // @ts-ignore
   let sections = [...navItems]
   let activeLock = null
 
@@ -151,7 +149,7 @@ export const sidebarTOC = () => {
     if (!anchor) return null
     const alink = anchor.child('a.anchor')
 
-    const anchorScroll = (event) => {
+    const anchorScroll = (event:MouseEvent) => {
       event.preventDefault()
       const target = $dom(decodeURI(event.currentTarget.attr('href')))
 
@@ -173,22 +171,22 @@ export const sidebarTOC = () => {
 
   const tocElement = sideBar.child('.contents.panel')
 
-  const findIndex = (entries: any[]) => {
+  const findIndex = (entries: IntersectionObserverEntry[]) => {
     let index = 0
     let entry = entries[index]
 
     if (entry.boundingClientRect.top > 0) {
-      index = sections.indexOf(entry.target)
+      index = sections.indexOf(entry.target as HTMLElement)
       return index === 0 ? 0 : index - 1
     }
     for (; index < entries.length; index++) {
       if (entries[index].boundingClientRect.top <= 0) {
         entry = entries[index]
       } else {
-        return sections.indexOf(entry.target)
+        return sections.indexOf(entry.target as HTMLElement)
       }
     }
-    return sections.indexOf(entry.target)
+    return sections.indexOf(entry.target as HTMLElement)
   }
 
   const createIntersectionObserver = () => {

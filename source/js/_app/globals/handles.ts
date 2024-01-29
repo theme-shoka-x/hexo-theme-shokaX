@@ -94,46 +94,6 @@ export const scrollHandle = () => {
   }
 }
 
-/**
- * 此函数用于修改右键点击显示菜单 <br/>
- * 需要在document下存在如下元素:
- * - id为clickMenu的容器(右键菜单容器)
- * - class为clickSubmenu的容器(可以有0到无限个)(子菜单容器)
- * CSS应有如下class:
- * - clickMenu的active类(控制显示)
- */
-export const clickMenu = (): void => {
-  const menuElement = $dom('#clickMenu')
-  window.oncontextmenu = function (event) {
-    if (event.ctrlKey) { // 当按下ctrl键时不触发自定义菜单
-      return
-    }
-    event.preventDefault()
-    let x = event.offsetX // 触发点到页面窗口左边的距离
-    let y = event.offsetY
-    const winWidth = window.innerWidth // 窗口的内部宽度（包括滚动条）
-    const winHeight = window.innerHeight
-    const menuWidth = menuElement.offsetWidth // 菜单宽度
-    const menuHeight = menuElement.offsetHeight
-    x = winWidth - menuWidth >= x ? x : winWidth - menuWidth
-    y = winHeight - menuHeight >= y ? y : winHeight - menuHeight
-    menuElement.style.top = y + 'px'
-    menuElement.style.left = x + 'px'
-    menuElement.classList.add('active')
-    $dom.each('.clickSubmenu', (submenu) => {
-      if (x > (winWidth - menuWidth - submenu.offsetWidth)) {
-        submenu.style.left = '-200px'
-      } else {
-        submenu.style.left = ''
-        submenu.style.right = '-200px'
-      }
-    })
-  }
-  window.addEventListener('click', () => {
-    menuElement.classList.remove('active')
-  })
-}
-
 // 可见度监听(离开页面和返回时更改document的title)
 export const visibilityListener = () => {
   const iconNode = $dom('[rel="icon"]')
