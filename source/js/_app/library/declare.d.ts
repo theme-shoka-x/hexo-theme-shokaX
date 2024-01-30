@@ -100,10 +100,12 @@ declare const CONFIG: {
   }
   playerAPI: string
   disableVL: boolean
-  noPlayer: boolean // TODO 添加
 }
 declare const instantsearch: any
 
 declare function algoliasearch(appID: string, apiKey: string): any;
 
 declare const quicklink: any
+
+// esbuild 静态常量
+declare const __shokax_player__:boolean
