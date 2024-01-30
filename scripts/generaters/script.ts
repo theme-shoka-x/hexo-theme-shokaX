@@ -62,16 +62,25 @@ hexo.extend.generator.register('script', function (locals) {
 
   let text: string
   let enterPoint: string
-  if (fs.existsSync('themes/shokaX/source/js/_app/pjax/siteInit.js')) {
-    enterPoint = 'themes/shokaX/source/js/_app/pjax/siteInit.js'
+  if (fs.existsSync('themes/shokaX/source/js/_app/pjax/siteInit.ts')) {
+    enterPoint = 'themes/shokaX/source/js/_app/pjax/siteInit.ts'
   } else {
-    enterPoint = 'node_modules/hexo-theme-shokax/source/js/_app/pjax/siteInit.js'
+    enterPoint = 'node_modules/hexo-theme-shokax/source/js/_app/pjax/siteInit.ts'
   }
   text = 'const CONFIG = ' + JSON.stringify(siteConfig) + ';'
   buildSync({
     entryPoints: [enterPoint],
     bundle: true,
     outfile: 'shokax_temp.js',
+    tsconfigRaw: {
+      compilerOptions: {
+        target: 'ES2022',
+        esModuleInterop: true,
+        module: 'ESNext',
+        moduleResolution: 'Node',
+        skipLibCheck: true
+      }
+    },
     platform: 'browser',
     format: 'iife',
     target: ['es2022'],
