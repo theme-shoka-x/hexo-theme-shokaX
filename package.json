@@ -9,7 +9,7 @@
     "packageManager": "pnpm@8.14.1",
     "scripts": {
         "test": "tsc --build --verbose",
-        "build": "./scripts && tsc --build --verbose"
+        "build": "cd ./scripts && tsc --build --verbose"
     },
     "devDependencies": {
         "@types/fancybox": "^3.5.6",
