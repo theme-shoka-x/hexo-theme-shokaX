@@ -3,17 +3,17 @@ mixin CommentRender()
     - var tk = theme?.twikoo?.enable,wl = theme?.waline?.enable
     if page.comment !== false && !theme.experiments.disableThemeComment
         if tk
-            div(class="wrap" id="tcomments")
+            div(class="wrap" id="comments")
             script(type="text/javascript" data-pjax).
                 setTimeout(function () {
                     twikoo.init({
                         envId: '#{ theme.twikoo.envId }',
-                        el: '#tcomments',
+                        el: '#comments',
                         region: '#{theme.twikoo.region}'
                     })
                 }, 1000)
         else if wl
-            div(class="wrap" id="wcomments")
+            div(class="wrap" id="comments")
             - var locale = JSON.stringify(theme.waline.locale)
             - var emoji = JSON.stringify(theme.waline.emoji)
             - var meta = JSON.stringify(theme.waline.meta)
@@ -23,7 +23,7 @@ mixin CommentRender()
 
                 setTimeout(function () {
                     init({
-                        el: '#wcomments',
+                        el: '#comments',
                         serverURL: '#{theme.waline.serverURL.replace(/\/+$/, '')}',
                         lang: '#{theme.waline.lang}',
                         locale: !{locale},
