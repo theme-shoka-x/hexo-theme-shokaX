@@ -109,3 +109,7 @@ declare const quicklink: any
 
 // esbuild 静态常量
 declare const __shokax_player__:boolean
+declare const __shokax_fireworks__:boolean
+declare const __shokax_search__:boolean
+declare const __shokax_VL__:boolean
+declare const __shokax_outime__:boolean

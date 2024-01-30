@@ -41,7 +41,6 @@ hexo.extend.generator.register('script', function (locals) {
       priority: theme.quicklink.priority
     },
     playerAPI: theme.playerAPI,
-    disableVL: theme.disableVL,
     audio: undefined,
     fireworks: (theme.fireworks && theme.fireworks.enable && theme.fireworks.options)
       ? theme.fireworks.options
@@ -63,23 +62,36 @@ hexo.extend.generator.register('script', function (locals) {
 
   let text: string
   let enterPoint: string
-  if (fs.existsSync('themes/shokaX/source/js/_app/pjax/siteInit.js')) {
-    enterPoint = 'themes/shokaX/source/js/_app/pjax/siteInit.js'
+  if (fs.existsSync('themes/shokaX/source/js/_app/pjax/siteInit.ts')) {
+    enterPoint = 'themes/shokaX/source/js/_app/pjax/siteInit.ts'
   } else {
-    enterPoint = 'node_modules/hexo-theme-shokax/source/js/_app/pjax/siteInit.js'
+    enterPoint = 'node_modules/hexo-theme-shokax/source/js/_app/pjax/siteInit.ts'
   }
   text = 'const CONFIG = ' + JSON.stringify(siteConfig) + ';'
   buildSync({
     entryPoints: [enterPoint],
     bundle: true,
     outfile: 'shokax_temp.js',
+    tsconfigRaw: {
+      compilerOptions: {
+        target: 'ES2022',
+        esModuleInterop: true,
+        module: 'ESNext',
+        moduleResolution: 'Node',
+        skipLibCheck: true
+      }
+    },
     platform: 'browser',
     format: 'iife',
     target: ['es2022'],
     minify: true,
     define: {
       __UNLAZY_LOGGING__: 'false',
-      __shokax_player__: theme.experiments.noPlayer ? 'false' : 'true'
+      __shokax_player__: theme.experiments.noPlayer ? 'false' : 'true',
+      __shokax_VL__: theme.disableVL ? 'false' : 'true',
+      __shokax_fireworks__: (theme.fireworks && theme.fireworks.enable && theme.fireworks.options) ? 'true' : 'false',
+      __shokax_search__: config?.algolia ? 'true' : 'false',
+      __shokax_outime__: theme.outime.enable ? 'true' : 'false'
     }
   })
   text += fs.readFileSync('shokax_temp.js')

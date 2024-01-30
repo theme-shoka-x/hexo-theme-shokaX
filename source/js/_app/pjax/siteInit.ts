@@ -6,10 +6,10 @@ import { pjax, setPjax } from '../globals/globalVars'
 import { autoDarkmode, themeColorListener } from '../globals/themeColor'
 import { resizeHandle, scrollHandle, visibilityListener } from '../globals/handles'
 import { pagePosition } from '../globals/tools'
-import { initFireworks } from '../fireworks'
 import Pjax from 'theme-shokax-pjax'
 import { initVue } from '../library/vue'
 import { lazyLoad } from 'unlazy'
+import firework from 'mouse-firework'
 
 const siteInit = () => {
   domInit()
@@ -31,14 +31,17 @@ const siteInit = () => {
   quicklink.listen(CONFIG.quicklink)
   autoDarkmode()
 
-  if (!CONFIG.disableVL) {
+  if (__shokax_VL__) {
     visibilityListener()
   }
   themeColorListener()
+  if (__shokax_search__) {
+    algoliaSearch(pjax)
+  }
 
-  algoliaSearch(pjax)
-
-  initFireworks()
+  if (__shokax_fireworks__) {
+    firework(CONFIG.fireworks)
+  }
   lazyLoad()
 
   window.addEventListener('scroll', scrollHandle)
@@ -52,7 +55,6 @@ const siteInit = () => {
   window.addEventListener('beforeunload', () => {
     pagePosition()
   })
-  // clickMenu() TODO 暂时禁用
   siteRefresh(1)
 }
 

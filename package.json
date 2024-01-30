@@ -1,6 +1,6 @@
 {
     "name": "hexo-theme-shokax",
-    "version": "0.3.13",
+    "version": "0.4.1",
     "description": "a hexo theme based on shoka",
     "main": "index.js",
     "repository": "https://github.com/theme-shoka-x/hexo-theme-shokaX",
@@ -9,15 +9,15 @@
     "packageManager": "pnpm@8.14.1",
     "scripts": {
         "test": "tsc --build --verbose",
-        "build": "cd ./source && tsc --build --verbose && cd ../scripts && tsc --build --verbose"
+        "build": "cd ./scripts && tsc --build --verbose"
     },
     "devDependencies": {
         "@types/fancybox": "^3.5.6",
         "@types/jquery": "^3.5.29",
         "@types/js-yaml": "^4.0.9",
         "@types/node": "^20.11.10",
-        "@typescript-eslint/eslint-plugin": "^6.19.1",
-        "@typescript-eslint/parser": "^6.19.1",
+        "@typescript-eslint/eslint-plugin": "^6.20.0",
+        "@typescript-eslint/parser": "^6.20.0",
         "eslint": "^8.56.0",
         "eslint-config-standard": "~17",
         "eslint-plugin-import": "^2.29.1",

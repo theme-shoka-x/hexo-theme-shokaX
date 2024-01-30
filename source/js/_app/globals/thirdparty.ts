@@ -33,33 +33,31 @@ export const Loader = {
 
 export const isOutime = (): void => {
   let updateTime: Date
-  if (CONFIG.outime.enable && LOCAL.outime) {
-    const times = document.getElementsByTagName('time')
-    if (times.length === 0) {
-      return
-    }
-    const posts = document.getElementsByClassName('body md')
-    if (posts.length === 0) {
-      return
-    }
+  const times = document.getElementsByTagName('time')
+  if (times.length === 0) {
+    return
+  }
+  const posts = document.getElementsByClassName('body md')
+  if (posts.length === 0) {
+    return
+  }
 
-    const now = Date.now() // 当前时间戳
-    const pubTime = new Date(times[0].dateTime) // 文章发布时间戳
-    if (times.length === 1) {
-      updateTime = pubTime // 文章发布时间亦是最后更新时间
-    } else {
-      updateTime = new Date(times[1].dateTime) // 文章最后更新时间戳
-    }
+  const now = Date.now() // 当前时间戳
+  const pubTime = new Date(times[0].dateTime) // 文章发布时间戳
+  if (times.length === 1) {
+    updateTime = pubTime // 文章发布时间亦是最后更新时间
+  } else {
+    updateTime = new Date(times[1].dateTime) // 文章最后更新时间戳
+  }
+  // @ts-ignore
+  const interval = parseInt(String(now - updateTime)) // 时间差
+  const days = parseInt(String(CONFIG.outime.days)) || 30 // 设置时效，默认硬编码 30 天
+  // 最后一次更新时间超过 days 天（毫秒）
+  if (interval > (days * 86400000)) {
     // @ts-ignore
-    const interval = parseInt(String(now - updateTime)) // 时间差
-    const days = parseInt(String(CONFIG.outime.days)) || 30 // 设置时效，默认硬编码 30 天
-    // 最后一次更新时间超过 days 天（毫秒）
-    if (interval > (days * 86400000)) {
-      // @ts-ignore
-      const publish = parseInt(String((now - pubTime) / 86400000))
-      const updated = parseInt(String(interval / 86400000))
-      const template = LOCAL.template.replace('{{publish}}', String(publish)).replace('{{updated}}', String(updated))
-      posts[0].insertAdjacentHTML('afterbegin', template)
-    }
+    const publish = parseInt(String((now - pubTime) / 86400000))
+    const updated = parseInt(String(interval / 86400000))
+    const template = LOCAL.template.replace('{{publish}}', String(publish)).replace('{{updated}}', String(updated))
+    posts[0].insertAdjacentHTML('afterbegin', template)
   }
 }

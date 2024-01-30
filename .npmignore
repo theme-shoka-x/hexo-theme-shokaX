@@ -1,4 +1,3 @@
-*.ts
 .npmrc
 .eslintrc.cjs
 .editorconfig
@@ -8,3 +7,5 @@ tsconfig.json
 pnpm-lock.yaml
 qodana.yaml
 *.tsbuildinfo
+scripts/*.ts
+source/*.js
