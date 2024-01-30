@@ -1,4 +1,3 @@
-import loadComments from './comment'
 import { $dom } from '../library/dom'
 import { postFancybox } from './fancybox'
 import { clipBoard, showtip } from '../globals/tools'
@@ -7,8 +6,6 @@ import { pageScroll, transition } from '../library/anime'
 import { mediaPlayer } from '../player'
 
 export const postBeauty = () => {
-  loadComments()
-
   if (!$dom('.md')) { return }
 
   postFancybox('.post.block')
