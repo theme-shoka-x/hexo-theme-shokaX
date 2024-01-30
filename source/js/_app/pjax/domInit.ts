@@ -45,7 +45,7 @@ export default function domInit () {
   showContents.addEventListener('click', sideBarToggleHandle)
 
   if (__shokax_player__) {
-    /* @__PURE__ */ mediaPlayer(toolPlayer)
+    mediaPlayer(toolPlayer)
 
     $dom('main').addEventListener('click', () => {
       toolPlayer.player.mini()

@@ -41,7 +41,6 @@ hexo.extend.generator.register('script', function (locals) {
       priority: theme.quicklink.priority
     },
     playerAPI: theme.playerAPI,
-    disableVL: theme.disableVL,
     audio: undefined,
     fireworks: (theme.fireworks && theme.fireworks.enable && theme.fireworks.options)
       ? theme.fireworks.options
@@ -79,7 +78,11 @@ hexo.extend.generator.register('script', function (locals) {
     minify: true,
     define: {
       __UNLAZY_LOGGING__: 'false',
-      __shokax_player__: theme.experiments.noPlayer ? 'false' : 'true'
+      __shokax_player__: theme.experiments.noPlayer ? 'false' : 'true',
+      __shokax_VL__: theme.disableVL ? 'false' : 'true',
+      __shokax_fireworks__: (theme.fireworks && theme.fireworks.enable && theme.fireworks.options) ? 'true' : 'false',
+      __shokax_search__: config?.algolia ? 'true' : 'false',
+      __shokax_outime__: theme.outime.enable ? 'true' : 'false'
     }
   })
   text += fs.readFileSync('shokax_temp.js')

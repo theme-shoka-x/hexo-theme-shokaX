@@ -12,7 +12,6 @@ import {
   sideBar,
   toolPlayer
 } from '../globals/globalVars'
-import { mediaPlayer } from '../player'
 import { pagePosition, positionInit } from '../globals/tools'
 import { menuActive, sideBarTab, sidebarTOC } from '../components/sidebar'
 import { Loader, isOutime } from '../globals/thirdparty'
@@ -67,5 +66,7 @@ export const siteRefresh = (reload) => {
 
   cardActive()
 
-  isOutime()
+  if (__shokax_outime__) {
+    isOutime()
+  }
 }
