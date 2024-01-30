@@ -42,7 +42,6 @@ hexo.extend.generator.register('script', function (locals) {
     },
     playerAPI: theme.playerAPI,
     disableVL: theme.disableVL,
-    noPlayer: theme.experiments?.noPlayer,
     audio: undefined,
     fireworks: (theme.fireworks && theme.fireworks.enable && theme.fireworks.options)
       ? theme.fireworks.options
@@ -79,7 +78,8 @@ hexo.extend.generator.register('script', function (locals) {
     target: ['es2022'],
     minify: true,
     define: {
-      __UNLAZY_LOGGING__: 'false'
+      __UNLAZY_LOGGING__: 'false',
+      __shokax_player__: theme.experiments.noPlayer ? 'false' : 'true'
     }
   })
   text += fs.readFileSync('shokax_temp.js')
