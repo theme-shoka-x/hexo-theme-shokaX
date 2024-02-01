@@ -7,5 +7,5 @@ tsconfig.json
 pnpm-lock.yaml
 qodana.yaml
 *.tsbuildinfo
-scripts/*.ts
+scripts/**/*.ts
 source/*.js
