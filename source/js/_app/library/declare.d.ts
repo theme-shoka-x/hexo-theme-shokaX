@@ -99,7 +99,6 @@ declare const CONFIG: {
     priority: string
   }
   playerAPI: string
-  disableVL: boolean
 }
 declare const instantsearch: any
 
@@ -113,3 +112,6 @@ declare const __shokax_fireworks__:boolean
 declare const __shokax_search__:boolean
 declare const __shokax_VL__:boolean
 declare const __shokax_outime__:boolean
+declare const __shokax_tabs__: boolean
+declare const __shokax_quiz__: boolean
+declare const __shokax_fancybox__: boolean

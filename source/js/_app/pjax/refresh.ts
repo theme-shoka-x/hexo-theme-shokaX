@@ -54,7 +54,10 @@ export const siteRefresh = (reload) => {
   sidebarTOC()
 
   postBeauty()
-  tabFormat()
+  if (__shokax_tabs__) {
+    tabFormat()
+  }
+
   if (__shokax_player__) {
     toolPlayer.player.load(LOCAL.audio || CONFIG.audio || {})
   }

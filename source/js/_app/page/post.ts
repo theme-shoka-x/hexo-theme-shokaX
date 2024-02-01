@@ -8,9 +8,11 @@ import { mediaPlayer } from '../player'
 export const postBeauty = () => {
   if (!$dom('.md')) { return }
 
-  postFancybox('.post.block')
+  if (__shokax_fancybox__) {
+    postFancybox('.post.block')
+  }
 
-  $dom('.post.block').oncopy = async (event) => {
+  $dom('.post.block').oncopy = (event) => {
     showtip(LOCAL.copyright)
 
     if (LOCAL.nocopy) {
@@ -18,7 +20,7 @@ export const postBeauty = () => {
       return
     }
 
-    const copyright = await $dom.asyncify('#copyright')
+    const copyright = $dom('#copyright')
     if (window.getSelection().toString().length > 30 && copyright) {
       event.preventDefault()
       const author = '# ' + copyright.child('.author').innerText
@@ -163,7 +165,7 @@ export const postBeauty = () => {
     }
   })
 
-  $dom.asyncifyEach('pre.mermaid > svg', (element) => {
+  $dom.each('pre.mermaid > svg', (element) => {
     const temp = <SVGAElement><unknown>element
     temp.style.maxWidth = ''
   })
@@ -183,43 +185,53 @@ export const postBeauty = () => {
   })
 
   // quiz
-  $dom.asyncifyEach('.quiz > ul.options li', (element) => {
-    element.addEventListener('click', () => {
-      if (element.hasClass('correct')) {
-        element.toggleClass('right')
-        element.parentNode.parentNode.addClass('show')
-      } else {
-        element.toggleClass('wrong')
+  if (__shokax_quiz__) {
+    $dom.each('.quiz > ul.options li', (element) => {
+      element.addEventListener('click', () => {
+        if (element.hasClass('correct')) {
+          element.toggleClass('right')
+          element.parentNode.parentNode.addClass('show')
+        } else {
+          element.toggleClass('wrong')
+        }
+      })
+    })
+
+    $dom.each('.quiz > p', (element) => {
+      element.addEventListener('click', () => {
+        element.parentNode.toggleClass('show')
+      })
+    })
+
+    $dom.each('.quiz > p:first-child', (element) => {
+      const quiz = element.parentNode
+      let type = 'choice'
+      if (quiz.hasClass('true') || quiz.hasClass('false')) {
+        type = 'true_false'
       }
+      if (quiz.hasClass('multi')) {
+        type = 'multiple'
+      }
+      if (quiz.hasClass('fill')) {
+        type = 'gap_fill'
+      }
+      if (quiz.hasClass('essay')) {
+        type = 'essay'
+      }
+      element.setAttribute('data-type', LOCAL.quiz[type])
     })
-  })
 
-  $dom.asyncifyEach('.quiz > p', (element) => {
-    element.addEventListener('click', () => {
-      element.parentNode.toggleClass('show')
+    $dom.each('.quiz .mistake', (element) => {
+      element.setAttribute('data-type', LOCAL.quiz.mistake)
     })
-  })
-
-  $dom.asyncifyEach('.quiz > p:first-child', (element) => {
-    const quiz = element.parentNode
-    let type = 'choice'
-    if (quiz.hasClass('true') || quiz.hasClass('false')) { type = 'true_false' }
-    if (quiz.hasClass('multi')) { type = 'multiple' }
-    if (quiz.hasClass('fill')) { type = 'gap_fill' }
-    if (quiz.hasClass('essay')) { type = 'essay' }
-    element.setAttribute('data-type', LOCAL.quiz[type])
-  })
-
-  $dom.asyncifyEach('.quiz .mistake', (element) => {
-    element.setAttribute('data-type', LOCAL.quiz.mistake)
-  })
+  }
 
   $dom.each('div.tags a', (element) => {
     element.className = ['primary', 'success', 'info', 'warning', 'danger'][Math.floor(Math.random() * 5)]
   })
 
   if (__shokax_player__) {
-    $dom.asyncifyEach('.md div.player', (element) => {
+    $dom.each('.md div.player', (element) => {
       mediaPlayer(element, {
         type: element.getAttribute('data-type'),
         mode: 'order',
