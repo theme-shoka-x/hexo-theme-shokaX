@@ -21,7 +21,6 @@ pwa:
 
 # 实验性特性
 experiments:
-  noPlayer: false # 禁用音乐播放器
   gradient: false # 使用CSS渐变作为文章封面
   fixedCover: "" # 主页面cover(为空则使用bing随机图片)
   debug: false # 使用debug模式启动
@@ -31,6 +30,17 @@ experiments:
   # 具体见https://docs.kaitaku.xyz/guide/theme.html#%E9%95%BF%E6%96%87%E7%AB%A0%E4%BC%98%E5%8C%96
   mobileWidth: 820px # 移动版和桌面版导航栏最短切换长度
 
+# ShokaX 模块化分包引入设置
+# 请关闭所有不使用的模块以优化主题 js 体积和性能
+modules:
+  player: true # 启用音乐播放器
+  fireworks: true # 启用鼠标点击烟花特效
+  unlazyHash: false # 启用unlazy hash预览图支持
+  visibilityListener: true # 启用可见度监听器
+  tabs: true # 启用选项卡扩展支持，如需开启 summary 功能请一并开启
+  quiz: true # 启用文章内问题扩展支持
+  fancybox: true # 启用 fancybox 支持（不建议禁用）
+
 # 优化性能区
 performance:
   # 使用preconnect预加载的网址(不建议超过三个)
@@ -38,14 +48,10 @@ performance:
     - "https://lf9-cdn-tos.bytecdntp.com"
   # 使用dns-prefetch预解析的网址
   dnsPrefetch:
-    - "https://cdn.jsdelivr.net"
-    - "https://unpkg.com"
 
 playerAPI: "https://api.injahow.cn" # 结尾不带/,只填写域名
 # 如果条件允许,请参考 https://github.com/injahow/meting-api 自建API
 # 使用vercel自行部署,请参考: https://github.com/xizeyoupan/Meting-API
-
-disableVL: false # 禁用可见度监听
 
 icon:
   favicon: "/favicon.ico"

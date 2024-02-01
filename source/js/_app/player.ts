@@ -289,8 +289,9 @@ export const mediaPlayer = (t, config?) => {
 
         return item
       })
-
-      tabFormat()
+      if (__shokax_tabs__) {
+        tabFormat()
+      }
     },
     current () {
       return this.data[this.index]

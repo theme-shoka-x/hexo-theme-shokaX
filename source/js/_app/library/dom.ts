@@ -23,18 +23,4 @@ $dom.each = (selector: string, callback: (value: HTMLElement, key: number, paren
   $dom.all(selector, element).forEach(callback)
 }
 
-// TODO 异步化意义不明确，代码实现存在问题
-
-$dom.asyncify = async (selector: string, element: Document = document): Promise<HTMLElement | null> => {
-  if (selector[0] === '#') {
-    return element.getElementById(selector.substring(1))
-  }
-
-  return element.querySelector(selector) as HTMLElement
-}
-
-$dom.asyncifyEach = (selector: string, callback?: (value: HTMLElement, key: number, parent: NodeListOf<Element>) => void, element?: Document): void => {
-  $dom.all(selector, element).forEach(callback)
-}
-
 export { $dom, getDocHeight }

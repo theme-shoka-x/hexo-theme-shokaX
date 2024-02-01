@@ -87,11 +87,15 @@ hexo.extend.generator.register('script', function (locals) {
     minify: true,
     define: {
       __UNLAZY_LOGGING__: 'false',
-      __shokax_player__: theme.experiments.noPlayer ? 'false' : 'true',
-      __shokax_VL__: theme.disableVL ? 'false' : 'true',
-      __shokax_fireworks__: (theme.fireworks && theme.fireworks.enable && theme.fireworks.options) ? 'true' : 'false',
+      __UNLAZY_HASH_DECODING__: theme.modules.unlazyHash ? 'true' : 'false',
+      __shokax_player__: theme.modules.player ? 'true' : 'false',
+      __shokax_VL__: theme.modules.visibilityListener ? 'true' : 'false',
+      __shokax_fireworks__: (theme.fireworks && theme.fireworks.enable && theme.fireworks.options && theme.modules.fireworks) ? 'true' : 'false',
       __shokax_search__: config?.algolia ? 'true' : 'false',
-      __shokax_outime__: theme.outime.enable ? 'true' : 'false'
+      __shokax_outime__: theme.outime.enable ? 'true' : 'false',
+      __shokax_tabs__: theme.modules.tabs ? 'true' : 'false',
+      __shokax_quiz__: theme.modules.quiz ? 'true' : 'false',
+      __shokax_fancybox__: theme.modules.fancybox ? 'true' : 'false'
     }
   })
   text += fs.readFileSync('shokax_temp.js')
