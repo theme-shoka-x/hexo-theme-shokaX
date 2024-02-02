@@ -85,6 +85,8 @@ hexo.extend.generator.register('script', function (locals) {
     format: 'iife',
     target: ['es2022'],
     minify: true,
+    legalComments: 'eof',
+    mainFields: ['module', 'main'],
     define: {
       __UNLAZY_LOGGING__: 'false',
       __UNLAZY_HASH_DECODING__: theme.modules.unlazyHash ? 'true' : 'false',

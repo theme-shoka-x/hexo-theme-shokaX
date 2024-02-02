@@ -1,6 +1,3 @@
-'use strict'
-/* global hexo */
-
 const prepareQuery = (categories, parent) => {
   const query = {
     parent: undefined
@@ -16,7 +13,6 @@ const prepareQuery = (categories, parent) => {
 }
 
 hexo.extend.helper.register('_list_categories', function (depth = 0) {
-  // let hexo = this
   const categories = this.site.categories
 
   if (!categories || !categories.length) return ''
@@ -63,7 +59,6 @@ hexo.extend.helper.register('_list_categories', function (depth = 0) {
 })
 
 hexo.extend.helper.register('_category_prev', function (name) {
-  // let hexo = this
   const categories = this.site.categories
   if (!categories || !categories.length) return ''
 

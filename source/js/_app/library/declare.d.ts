@@ -27,6 +27,8 @@ declare interface EventTarget {
   hasClass(className: string): boolean;
 }
 
+type walineMeta = 'nick'|'mail'|'link'
+
 declare const LOCAL: {
   path: string;
   ignores: Array<(uri:string)=>boolean>;
@@ -92,7 +94,18 @@ declare const CONFIG: {
     fancybox: string
   }
   search: any,
-  valine: string
+  waline: {
+    serverURL: string
+    lang: string
+    locale: object
+    emoji: boolean
+    meta: walineMeta[]
+    requiredMeta: walineMeta[]
+    wordLimit: number
+    pageSize: number
+    pageview: boolean
+  }
+  walinePageView: boolean
   quicklink: {
     ignores: any
     timeout: number
@@ -115,3 +128,4 @@ declare const __shokax_outime__:boolean
 declare const __shokax_tabs__: boolean
 declare const __shokax_quiz__: boolean
 declare const __shokax_fancybox__: boolean
+declare const __shokax_waline__:boolean

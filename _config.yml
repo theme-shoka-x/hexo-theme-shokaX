@@ -270,7 +270,7 @@ footer:
   icp: # ICP备案
     enable: false
     # 请在登录后从 https://beian.mps.gov.cn/web/business/businessHome/website 下载对应图标
-    icon: "beian.webp" #网安备案图片
+    icon: "" #网安备案图片
     icpnumber: "xxx" # ICP备案号
     beian: "xxx" # 网安备案号
     recordcode: "xxx" # 网安备案链接中的recordcode参数
