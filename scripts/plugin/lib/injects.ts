@@ -1,4 +1,4 @@
-'use strict'
+
 
 /*!
   inject.js in next-theme/hexo-theme-next by next-theme

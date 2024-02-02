@@ -38,7 +38,7 @@ each prelink in prelinks
 each dnsLink in dnslinks
     link(rel="dns-prefetch" href=dnsLink)
 
-- var fontConfig = theme?.font?.loadFromGoogle
+- var fontConfig = theme.font?.loadFromGoogle
 if fontConfig
     != _vendor_font()
 != _css('app.css')
