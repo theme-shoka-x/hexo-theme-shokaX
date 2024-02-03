@@ -18,7 +18,7 @@ import {
   setSiteNavHeight,
   setHeaderHightInner,
   setHeaderHight,
-  setOWinHeight, setOWinWidth, setDiffY, setTitleTime
+  setOWinHeight, setOWinWidth, setDiffY, setTitleTime, CONFIG
 } from './globalVars'
 import { changeMetaTheme } from './themeColor'
 import { Loader } from './thirdparty'

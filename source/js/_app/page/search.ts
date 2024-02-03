@@ -1,6 +1,10 @@
-import { BODY, setSiteSearch, siteSearch } from '../globals/globalVars'
+import { BODY, CONFIG, setSiteSearch, siteSearch } from '../globals/globalVars'
 import { transition } from '../library/anime'
 import { $dom } from '../library/dom'
+import { searchBox, configure, stats, hits, pagination } from 'instantsearch.js/es/widgets'
+import type { HitHighlightResult } from 'instantsearch.js/es/types/results'
+import instantsearch from 'instantsearch.js'
+import algoliasearch from 'algoliasearch/lite'
 
 export function algoliaSearch (pjax) {
   if (CONFIG.search === null) { return }
@@ -15,8 +19,9 @@ export function algoliaSearch (pjax) {
   const search = instantsearch({
     indexName: CONFIG.search.indexName,
     searchClient: algoliasearch(CONFIG.search.appID, CONFIG.search.apiKey),
+    // TODO 移除弃用函数
     searchFunction (helper) {
-      const searchInput = <HTMLInputElement><unknown>$dom('.search-input')
+      const searchInput = $dom('.search-input') as HTMLInputElement
       if (searchInput.value) {
         helper.search()
       }
@@ -29,11 +34,11 @@ export function algoliaSearch (pjax) {
 
   // Registering Widgets
   search.addWidgets([
-    instantsearch.widgets.configure({
+    configure({
       hitsPerPage: CONFIG.search.hits.per_page || 10
     }),
 
-    instantsearch.widgets.searchBox({
+    searchBox({
       container: '.search-input-container',
       placeholder: LOCAL.search.placeholder,
       // Hide default icons of algolia search
@@ -45,24 +50,24 @@ export function algoliaSearch (pjax) {
       }
     }),
 
-    instantsearch.widgets.stats({
+    stats({
       container: '#search-stats',
       templates: {
         text (data) {
           const stats = LOCAL.search.stats
-            .replace(/\$\{hits}/, data.nbHits)
-            .replace(/\$\{time}/, data.processingTimeMS)
+            .replace(/\$\{hits}/, data.nbHits.toString())
+            .replace(/\$\{time}/, data.processingTimeMS.toString())
           return stats + '<span class="algolia-powered"></span><hr>'
         }
       }
     }),
 
-    instantsearch.widgets.hits({
+    hits({
       container: '#search-hits',
       templates: {
         item (data) {
           const cats = data.categories ? '<span>' + data.categories.join('<i class="ic i-angle-right"></i>') + '</span>' : ''
-          return '<a href="' + CONFIG.root + data.path + '">' + cats + data._highlightResult.title.value + '</a>'
+          return '<a href="' + CONFIG.root + data.path + '">' + cats + (data._highlightResult.title as HitHighlightResult).value + '</a>'
         },
         empty (data) {
           return '<div id="hits-empty">' +
@@ -75,7 +80,7 @@ export function algoliaSearch (pjax) {
       }
     }),
 
-    instantsearch.widgets.pagination({
+    pagination({
       container: '#search-pagination',
       scrollTo: false,
       showFirst: false,

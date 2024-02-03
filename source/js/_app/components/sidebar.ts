@@ -1,6 +1,6 @@
 /* 边栏分区 */
 
-import { Container, diffY, menuToggle, showContents, sideBar } from '../globals/globalVars'
+import { CONFIG, Container, diffY, menuToggle, showContents, sideBar } from '../globals/globalVars'
 import { clipBoard } from '../globals/tools'
 import { pageScroll, transition } from '../library/anime'
 import { $dom } from '../library/dom'

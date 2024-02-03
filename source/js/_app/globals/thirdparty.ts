@@ -1,6 +1,6 @@
 // 与第三方js的交互或第三方嵌入js
 
-import { loadCat } from './globalVars'
+import { CONFIG, loadCat } from './globalVars'
 import { transition } from '../library/anime'
 
 // 加载动画

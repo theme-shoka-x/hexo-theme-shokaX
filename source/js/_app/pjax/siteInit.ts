@@ -1,15 +1,13 @@
 import domInit from './domInit'
 import { pjaxReload, siteRefresh } from './refresh'
 import { cloudflareInit } from '../library/scriptPjax'
-import { algoliaSearch } from '../page/search'
-import { pjax, setPjax } from '../globals/globalVars'
+import { CONFIG, pjax, setPjax } from '../globals/globalVars'
 import { autoDarkmode, themeColorListener } from '../globals/themeColor'
 import { resizeHandle, scrollHandle, visibilityListener } from '../globals/handles'
 import { pagePosition } from '../globals/tools'
 import Pjax from 'theme-shokax-pjax'
 import { initVue } from '../library/vue'
 import { lazyLoad } from 'unlazy'
-import firework from 'mouse-firework'
 
 const siteInit = () => {
   domInit()
@@ -28,7 +26,10 @@ const siteInit = () => {
   }))
 
   CONFIG.quicklink.ignores = LOCAL.ignores
-  quicklink.listen(CONFIG.quicklink)
+  import('quicklink').then(({ listen }) => {
+    listen(CONFIG.quicklink)
+  })
+
   autoDarkmode()
 
   if (__shokax_VL__) {
@@ -36,11 +37,15 @@ const siteInit = () => {
   }
   themeColorListener()
   if (__shokax_search__) {
-    algoliaSearch(pjax)
+    import('../page/search').then(({ algoliaSearch }) => {
+      algoliaSearch(pjax)
+    })
   }
 
   if (__shokax_fireworks__) {
-    firework(CONFIG.fireworks)
+    import('mouse-firework').then((firework) => {
+      firework.default(CONFIG.fireworks)
+    })
   }
   lazyLoad()
 

@@ -1,6 +1,6 @@
 import { $storage } from '../library/storage'
 import { $dom } from '../library/dom'
-import { HTML } from './globalVars'
+import { CONFIG, HTML } from './globalVars'
 
 /**
  * 更改日夜模式

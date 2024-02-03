@@ -364,9 +364,9 @@ vendors:
 #    pjax: npm_webcache|theme-shokax-pjax@0.0.3/pjax.shokax.min.js
 #    anime: npm_webcache|theme-shokax-anime@0.0.6/anime.shokax.min.js
 #    lozad: npm_webcache|lozad@1.16.0/dist/lozad.min.js
-    algolia: bytedance|algoliasearch/4.12.1/algoliasearch-lite.umd.min.js
-    instantsearch: bytedance|instantsearch.js/4.39.0/instantsearch.production.min.js
-    quicklink: npm_webcache|quicklink@2.3.0/dist/quicklink.umd.js
+#    algolia: bytedance|algoliasearch/4.12.1/algoliasearch-lite.umd.min.js
+#    instantsearch: bytedance|instantsearch.js/4.39.0/instantsearch.production.min.js
+#    quicklink: npm_webcache|quicklink@2.3.0/dist/quicklink.umd.js
 #    mouse_firework: npm_webcache|mouse-firework@0.0.4/dist/index.umd.js
   async_js:
     fancybox: bytedance|??jquery/3.5.1/jquery.min.js,fancybox/3.5.7/jquery.fancybox.min.js,justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js

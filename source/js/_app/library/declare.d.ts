@@ -55,7 +55,7 @@ declare const LOCAL: {
     show: string
   }
 }
-declare const CONFIG: {
+interface configType {
   hostname: string;
   fireworks: any;
   audio: AudioItem[];
@@ -109,16 +109,10 @@ declare const CONFIG: {
   quicklink: {
     ignores: any
     timeout: number
-    priority: string
+    priority: boolean
   }
   playerAPI: string
 }
-declare const instantsearch: any
-
-declare function algoliasearch(appID: string, apiKey: string): any;
-
-declare const quicklink: any
-
 // esbuild 静态常量
 declare const __shokax_player__:boolean
 declare const __shokax_fireworks__:boolean
@@ -129,3 +123,4 @@ declare const __shokax_tabs__: boolean
 declare const __shokax_quiz__: boolean
 declare const __shokax_fancybox__: boolean
 declare const __shokax_waline__:boolean
+declare const shokax_CONFIG:configType

@@ -67,11 +67,10 @@ hexo.extend.generator.register('script', function (locals) {
   } else {
     enterPoint = 'node_modules/hexo-theme-shokax/source/js/_app/pjax/siteInit.ts'
   }
-  text = 'const CONFIG = ' + JSON.stringify(siteConfig) + ';'
   buildSync({
     entryPoints: [enterPoint],
     bundle: true,
-    outfile: 'shokax_temp.js',
+    outdir: 'shokaxTemp',
     tsconfigRaw: {
       compilerOptions: {
         target: 'ES2022',
@@ -97,12 +96,16 @@ hexo.extend.generator.register('script', function (locals) {
       __shokax_outime__: theme.outime.enable ? 'true' : 'false',
       __shokax_tabs__: theme.modules.tabs ? 'true' : 'false',
       __shokax_quiz__: theme.modules.quiz ? 'true' : 'false',
-      __shokax_fancybox__: theme.modules.fancybox ? 'true' : 'false'
+      __shokax_fancybox__: theme.modules.fancybox ? 'true' : 'false',
+      shokax_CONFIG: JSON.stringify(siteConfig)
+    },
+    alias: {
+      'algoliasearch/lite': 'algoliasearch/dist/algoliasearch-lite.esm.browser.js'
     }
   })
-  text += fs.readFileSync('shokax_temp.js')
-  const result = hexo.render.renderSync({ text, engine: 'js' })
-  fs.unlinkSync('shokax_temp.js')
+  // text += fs.readFileSync('shokax_temp.js')
+  const result = hexo.render.renderSync({ text: '', engine: 'js' })
+  // fs.unlinkSync('shokax_temp.js')
   return {
     path: theme.js + '/app.js',
     data: function () {
