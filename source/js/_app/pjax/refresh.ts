@@ -7,7 +7,7 @@ import { resizeHandle } from '../globals/handles'
 import {
   CONFIG,
   loadCat,
-  menuToggle,
+  menuToggle, pjax,
   setLocalHash, setLocalUrl, setOriginTitle,
   sideBar,
   toolPlayer

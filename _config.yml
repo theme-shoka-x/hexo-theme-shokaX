@@ -30,7 +30,7 @@ experiments:
 
 homeConfig:
   gradient: false # 使用CSS渐变作为文章封面
-  # fixedCover 性能比默认的更好，且开启时将启用LCP优化和预加载
+  # fixedCover 性能比默认的更好，且开启时将启用LCP优化和预加载 TODO
   fixedCover: "" # 主页面cover(为空则使用bing随机图片)
 
 # ShokaX 模块化分包引入设置
@@ -54,6 +54,7 @@ performance:
   # 使用preconnect预加载的网址(不建议超过三个)
   preConnect:
     - "https://lf9-cdn-tos.bytecdntp.com"
+    - "https://at.alicdn.com"
   # 使用dns-prefetch预解析的网址
   dnsPrefetch:
 
