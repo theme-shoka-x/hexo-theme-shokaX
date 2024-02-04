@@ -37,9 +37,9 @@ export const createChild = function (parent: HTMLElement, tag: string, obj: obje
 export const wrapObject = function (parent: HTMLElement, obj: any): void {
   const box = document.createElement('div')
   Object.assign(box, obj)
-  parent.insertBefore(box, obj)
-  parent.removeChild(obj)
-  box.appendChild(obj)
+  parent.parentNode.insertBefore(box, parent)
+  parent.parentNode.removeChild(parent)
+  box.appendChild(parent)
 }
 
 export const getHeight = function (el: HTMLElement): number {

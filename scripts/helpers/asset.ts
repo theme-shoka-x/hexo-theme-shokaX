@@ -5,43 +5,9 @@ import theme_env from '../../package.json'
 import { htmlTag, url_for, stripHTML } from 'hexo-util'
 import { getVendorLink } from '../utils'
 
+// TODO 弃用函数
 hexo.extend.helper.register('_new_comments', function (mode) {
-  const root = this.config.url.replace(/^(https?:\/\/)?[^\/]*/, '')
-  if (mode === 'twikoo') {
-    return `<script data-pjax type="module">
-            let comments = []
-           twikoo.getRecentComments({
-           envId: "${hexo.theme.config?.twikoo?.envId}",
-           pageSize: 10
-           }).then(function (res) {
-                res.forEach(function (item) {
-                    let cText = item.commentText
-                    if (item.commentText.length > 50) {
-                        cText = item.commentText.substring(0,50)+'...'
-                    }
-                    const siteLink = item.url + "#" + item.id
-                    comments.push({
-                        href: siteLink,
-                        nick: item.nick,
-                        time: item.relativeTime,
-                        text: cText
-                    })
-                });
-                Vue.createApp({
-                  data() {
-                      return {
-                          coms: comments,
-                          root: '${root}'
-                      }
-                  }
-                  }).mount('#new-comment')
-            }).catch(function (err) {
-                console.error(err)
-            })
-        </script>`
-  } else {
-    console.log(`${mode} is not supported recent comment`)
-  }
+  return ''
 })
 
 hexo.extend.helper.register('_safedump', (source) => {

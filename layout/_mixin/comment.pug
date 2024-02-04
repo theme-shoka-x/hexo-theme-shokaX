@@ -1,41 +1,6 @@
 mixin CommentRender()
     != shokax_inject('comment')
-    - var tk = theme?.twikoo?.enable,wl = theme?.waline?.enable
-    if page.comment !== false && !theme.experiments.disableThemeComment
-        if tk
-            div(class="wrap" id="comments")
-            script(type="text/javascript" data-pjax).
-                setTimeout(function () {
-                    twikoo.init({
-                        envId: '#{ theme.twikoo.envId }',
-                        el: '#comments',
-                        region: '#{theme.twikoo.region}'
-                    })
-                }, 1000)
-        else if wl
-            div(class="wrap" id="comments")
-            - var locale = JSON.stringify(theme.waline.locale)
-            - var emoji = JSON.stringify(theme.waline.emoji)
-            - var meta = JSON.stringify(theme.waline.meta)
-            - var requiredMeta = JSON.stringify(theme.waline.requiredMeta)
-            script(type="module" data-pjax).
-                import { init } from 'https://npm.webcache.cn/@waline/client@v2/dist/waline.mjs';
-
-                setTimeout(function () {
-                    init({
-                        el: '#comments',
-                        serverURL: '#{theme.waline.serverURL.replace(/\/+$/, '')}',
-                        lang: '#{theme.waline.lang}',
-                        locale: !{locale},
-                        emoji: !{emoji},
-                        meta: !{meta},
-                        requiredMeta: !{requiredMeta},
-                        wordLimit: #{theme.waline.wordLimit},
-                        pageSize: #{theme.waline.pageSize},
-                        pageview: #{theme.waline.pageview},
-                        path: window.location.pathname,
-                        dark: 'html[data-theme="dark"]'
-                    });
-                }, 1000)
+    if page.comment !== false
+        div(class="wrap" id="comments")
 
 

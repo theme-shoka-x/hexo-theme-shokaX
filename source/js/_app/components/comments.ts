@@ -1,5 +1,6 @@
 import { CONFIG } from '../globals/globalVars'
 import { init, pageviewCount, RecentComments } from '@waline/client'
+
 import { createApp } from 'vue'
 
 // await import('@waline/client/style')

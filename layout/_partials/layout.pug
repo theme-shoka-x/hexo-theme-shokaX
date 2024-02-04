@@ -82,6 +82,7 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
 
         script(data-config type="text/javascript").
             var LOCAL = {
+                ispost: !{is_post()},
                     path: `#{_permapath(page.path)}`,
                     favicon: {
                     show: `#{__('favicon.show')}`,

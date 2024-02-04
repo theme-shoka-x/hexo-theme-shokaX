@@ -44,7 +44,22 @@ hexo.extend.generator.register('script', function (locals) {
     audio: undefined,
     fireworks: (theme.fireworks && theme.fireworks.enable && theme.fireworks.options)
       ? theme.fireworks.options
-      : undefined
+      : undefined,
+    waline: {
+      serverURL: theme.waline.serverURL,
+      lang: theme.waline.lang,
+      locale: theme.waline.locale,
+      emoji: theme.waline.emoji,
+      meta: theme.waline.meta,
+      requiredMeta: theme.waline.requiredMeta,
+      wordLimit: theme.waline.wordLimit,
+      pageSize: theme.waline.pageSize,
+      pageview: theme.waline.pageview
+    },
+    twikoo: {
+      envId: theme.twikoo.envId,
+      region: theme.twikoo.region
+    },
   }
 
   if (config?.algolia) {
@@ -97,8 +112,10 @@ hexo.extend.generator.register('script', function (locals) {
       __shokax_tabs__: theme.modules.tabs ? 'true' : 'false',
       __shokax_quiz__: theme.modules.quiz ? 'true' : 'false',
       __shokax_fancybox__: theme.modules.fancybox ? 'true' : 'false',
+      __shokax_waline__: theme.waline.enable ? 'true' : 'false',
+      __shokax_twikoo__: theme.twikoo.enable ? 'true' : 'false',
       shokax_CONFIG: JSON.stringify(siteConfig),
-      shokax_siteURL: `\`${config.url}\``
+      shokax_siteURL: "'" + config.url + "'"
     },
     alias: {
       'algoliasearch/lite': 'algoliasearch/dist/algoliasearch-lite.esm.browser.js'

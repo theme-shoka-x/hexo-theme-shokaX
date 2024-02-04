@@ -50,8 +50,6 @@ if theme.polyfill.enable
 != _js('siteInit.js')
 
 include pwa.pug
-if tk
-    script(src=theme.twikoo.link )
 else if wl
     link(rel="stylesheet" href="https://npm.webcache.cn/@waline/client@v2/dist/waline.css" media="none" onload="this.media='all'")
 
