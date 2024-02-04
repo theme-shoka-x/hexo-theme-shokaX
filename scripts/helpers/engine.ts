@@ -57,7 +57,7 @@ const randomBG = function (count = 1, image_server:string = null, image_list:str
 
 hexo.extend.helper.register('preloadjs', function () {
   const { statics, js } = hexo.theme.config
-  let res:string
+  let res = ''
   fs.readdirSync('./shokaxTemp').forEach((file) => {
     if (file.endsWith('.js')) {
       res += htmlTag('link', { rel: 'modulepreload', href: url_for.call(this, `${statics}${js}/${file}`) }, '')

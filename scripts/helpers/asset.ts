@@ -61,7 +61,7 @@ hexo.extend.helper.register('_css', function (...urls) {
   return urls.map(url => htmlTag('link', {
     rel: 'stylesheet',
     href: url_for.call(this, `${statics}${css}/${url}?v=${theme_env.version}`)
-  })).join('')
+  }), '').join('')
 })
 
 hexo.extend.helper.register('_js', function (...urls) {
