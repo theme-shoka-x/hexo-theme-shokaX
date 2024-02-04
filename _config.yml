@@ -21,14 +21,17 @@ pwa:
 
 # 实验性特性
 experiments:
-  gradient: false # 使用CSS渐变作为文章封面
-  fixedCover: "" # 主页面cover(为空则使用bing随机图片)
   debug: false # 使用debug模式启动
   disableThemeComment: false # 禁用主题评论系统(一般用于关闭评论或让插件接管评论系统)
   usingRelative: false # _image.yml 使用相对路径
   optimizeLongPosts: false # 优化长文章，这能让长文章的FPS提升70%-150%并解决假死问题，但存在一些副作用
   # 具体见https://docs.kaitaku.xyz/guide/theme.html#%E9%95%BF%E6%96%87%E7%AB%A0%E4%BC%98%E5%8C%96
   mobileWidth: 820px # 移动版和桌面版导航栏最短切换长度
+
+homeConfig:
+  gradient: false # 使用CSS渐变作为文章封面
+  # fixedCover 性能比默认的更好，且开启时将启用LCP优化和预加载
+  fixedCover: "" # 主页面cover(为空则使用bing随机图片)
 
 # ShokaX 模块化分包引入设置
 # 请关闭所有不使用的模块以优化主题 js 体积和性能
@@ -45,7 +48,7 @@ styles:
   postprocess: true # 启用后处理器
   modules:
     mermaid: false
-    
+
 # 优化性能区
 performance:
   # 使用preconnect预加载的网址(不建议超过三个)

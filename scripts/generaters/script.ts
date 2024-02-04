@@ -148,8 +148,10 @@ hexo.extend.generator.register('script', function (locals) {
         }
       })
     }
-    fs.unlinkSync(`./shokaxTemp/${file}`)
   })
-  fs.rmSync('./shokaxTemp', { force: true, recursive: true })
   return res
+})
+
+hexo.extend.filter.register('before_exit', function () {
+  fs.rmSync('./shokaxTemp', { force: true, recursive: true })
 })

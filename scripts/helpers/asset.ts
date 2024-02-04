@@ -67,14 +67,14 @@ hexo.extend.helper.register('_css', function (...urls) {
 hexo.extend.helper.register('_js', function (...urls) {
   const { statics, js } = hexo.theme.config
 
-  return urls.map(url => htmlTag('script', { src: url_for.call(this, `${statics}${js}/${url}?v=${theme_env.version}`), type: 'module',fetchpriority: 'high' }, '')).join('')
+  return urls.map(url => htmlTag('script', { src: url_for.call(this, `${statics}${js}/${url}?v=${theme_env.version}`), type: 'module', fetchpriority: 'high', defer: true }, '')).join('')
 })
 
 hexo.extend.helper.register('vendor_js', function () {
   const vendors = hexo.theme.config.vendors as VendorsConfig
   let res = ''
   for (const jsSync in vendors.js) {
-    res += htmlTag('script', { src: getVendorLink(hexo, vendors.js[jsSync]) }, '')
+    res += htmlTag('script', { src: getVendorLink(hexo, vendors.js[jsSync]), async: true }, '')
   }
   // for (const jsAsync in vendors.async_js) {
   //   res += htmlTag('script', { src: getVendorLink(hexo, vendors.async_js[jsAsync]), async: true }, '')
