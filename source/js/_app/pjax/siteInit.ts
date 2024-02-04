@@ -49,13 +49,21 @@ const siteInit = () => {
   }
   lazyLoad()
 
-  window.addEventListener('scroll', scrollHandle)
+  window.addEventListener('scroll', scrollHandle, {
+    passive: true
+  })
 
-  window.addEventListener('resize', resizeHandle)
+  window.addEventListener('resize', resizeHandle, {
+    passive: true
+  })
 
-  window.addEventListener('pjax:send', pjaxReload)
+  window.addEventListener('pjax:send', pjaxReload, {
+    passive: true
+  })
 
-  window.addEventListener('pjax:success', siteRefresh) // 默认会传入一个event参数
+  window.addEventListener('pjax:success', siteRefresh, {
+    passive: true
+  }) // 默认会传入一个event参数
 
   window.addEventListener('beforeunload', () => {
     pagePosition()

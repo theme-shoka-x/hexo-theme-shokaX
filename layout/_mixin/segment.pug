@@ -1,6 +1,6 @@
 include postmeta.pug
 
-mixin SMRender(item)
+mixin SMRender(item, lazy)
     - var link1 = item.link || item.path
     - var gradient = theme?.experiments?.gradient
     if item.link
@@ -11,7 +11,10 @@ mixin SMRender(item)
             div(class="cover" style=`background: linear-gradient(to bottom right, ${random_color()}, ${random_color()});`)
         else
             div(class="cover")
-                != _url(link1, '<img loading="lazy" data-src="'+ _cover(item) +'" alt="article cover">', {itemprop: 'url', title: postText})
+                if lazy
+                    != _url(link1, '<img loading="lazy" decoding="async" data-src="'+ _cover(item) +'" alt="article cover">', {itemprop: 'url', title: postText})
+                else
+                    != _url(link1, '<img loading="eager" decoding="async" src="'+ _cover(item) +'" alt="article cover">', {itemprop: 'url', title: postText})
         div(class="info")
             +PMRender(item)
             h3

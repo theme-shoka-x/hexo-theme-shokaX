@@ -12,7 +12,7 @@ block content
                 - var sticky = page.sticky.toArray()
                 div(class="segments sticky")
                     each post in sticky
-                        +SMRender(post)
+                        +SMRender(post, false)
             if page.catlist.length > 0
                 h2(class="divider")
                     != __('index.category')
@@ -27,7 +27,7 @@ block content
                     != __('index.posts')
             div(class="segments posts")
                 each post in posts
-                    +SMRender(post)
+                    +SMRender(post, true)
     include _partials/pagination.pug
 
 
