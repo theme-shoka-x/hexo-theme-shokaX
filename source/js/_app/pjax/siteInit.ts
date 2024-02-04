@@ -49,6 +49,14 @@ const siteInit = () => {
   }
   lazyLoad()
 
+  if (__shokax_waline__) {
+    import('../components/comments').then(async ({ walineComment, walinePageview, walineRecentComments }) => {
+      walineComment()
+      walinePageview()
+      await walineRecentComments()
+    })
+  }
+
   window.addEventListener('scroll', scrollHandle)
 
   window.addEventListener('resize', resizeHandle)

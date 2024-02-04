@@ -124,3 +124,4 @@ declare const __shokax_quiz__: boolean
 declare const __shokax_fancybox__: boolean
 declare const __shokax_waline__:boolean
 declare const shokax_CONFIG:configType
+declare const shokax_siteURL:string

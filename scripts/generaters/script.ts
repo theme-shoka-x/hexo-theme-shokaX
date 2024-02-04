@@ -97,7 +97,8 @@ hexo.extend.generator.register('script', function (locals) {
       __shokax_tabs__: theme.modules.tabs ? 'true' : 'false',
       __shokax_quiz__: theme.modules.quiz ? 'true' : 'false',
       __shokax_fancybox__: theme.modules.fancybox ? 'true' : 'false',
-      shokax_CONFIG: JSON.stringify(siteConfig)
+      shokax_CONFIG: JSON.stringify(siteConfig),
+      shokax_siteURL: `\`${config.url}\``
     },
     alias: {
       'algoliasearch/lite': 'algoliasearch/dist/algoliasearch-lite.esm.browser.js'
