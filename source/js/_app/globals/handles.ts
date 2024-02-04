@@ -22,14 +22,15 @@ import {
 } from './globalVars'
 import { changeMetaTheme } from './themeColor'
 import { Loader } from './thirdparty'
+import {getHeight, setWidth} from '../library/proto'
 
 export const resizeHandle = () => {
   // 获取 siteNav 的高度
-  setSiteNavHeight(siteNav.changeOrGetHeight())
+  setSiteNavHeight(getHeight(siteNav))
   // 获取 siteHeader 的高度
-  setHeaderHightInner(siteHeader.changeOrGetHeight())
+  setHeaderHightInner(getHeight(siteHeader))
   // 获取 #waves 的高度
-  setHeaderHight(headerHightInner + $dom('#waves').changeOrGetHeight())
+  setHeaderHight(headerHightInner + getHeight($dom('#waves')))
 
   // 判断窗口宽度是否改变
   if (oWinWidth !== window.innerWidth) {
@@ -90,7 +91,7 @@ export const scrollHandle = () => {
   }
   // 更新百分比进度条的宽度
   if ($dom('#sidebar').hasClass('affix') || $dom('#sidebar').hasClass('on')) {
-    $dom('.percent').changeOrGetWidth(scrollPercent)
+    setWidth($dom('.percent'), scrollPercent)
   }
 }
 

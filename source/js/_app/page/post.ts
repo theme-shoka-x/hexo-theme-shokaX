@@ -4,6 +4,7 @@ import { clipBoard, showtip } from '../globals/tools'
 import { BODY } from '../globals/globalVars'
 import { pageScroll, transition } from '../library/anime'
 import { mediaPlayer } from '../player'
+import { getDisplay, setDisplay, wrapObject } from '../library/proto'
 
 export const postBeauty = () => {
   if (!$dom('.md')) { return }
@@ -57,7 +58,7 @@ export const postBeauty = () => {
   })
 
   $dom.each('.md table', (element) => {
-    element.wrapObject({
+    wrapObject(element, {
       className: 'table-container'
     })
   })
@@ -174,11 +175,11 @@ export const postBeauty = () => {
     element.addEventListener('click', (event) => {
       event.preventDefault()
       const qr = $dom('#qr')
-      if (qr.display() === 'inline-flex') {
+      if (getDisplay(qr) === 'inline-flex') {
         transition(qr, 0)
       } else {
         transition(qr, 1, () => {
-          qr.display('inline-flex')
+          setDisplay(qr, 'inline-flex')
         }) // slideUpBigIn
       }
     })

@@ -5,12 +5,13 @@ import { searchBox, configure, stats, hits, pagination } from 'instantsearch.js/
 import type { HitHighlightResult } from 'instantsearch.js/es/types/results'
 import instantsearch from 'instantsearch.js'
 import algoliasearch from 'algoliasearch/lite'
+import {createChild} from "../library/proto";
 
 export function algoliaSearch (pjax) {
   if (CONFIG.search === null) { return }
 
   if (!siteSearch) {
-    setSiteSearch(BODY.createChild('div', {
+    setSiteSearch(createChild(BODY, 'div', {
       id: 'search',
       innerHTML: '<div class="inner"><div class="header"><span class="icon"><i class="ic i-search"></i></span><div class="search-input-container"></div><span class="close-btn"><i class="ic i-times-circle"></i></span></div><div class="results"><div class="inner"><div id="search-stats"></div><div id="search-hits"></div><div id="search-pagination"></div></div></div></div>'
     }))

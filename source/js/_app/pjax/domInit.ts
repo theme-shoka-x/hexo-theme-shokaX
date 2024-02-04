@@ -15,21 +15,22 @@ import {
 import { Loader } from '../globals/thirdparty'
 import { $dom } from '../library/dom'
 import { mediaPlayer } from '../player'
+import { child, createChild } from '../library/proto'
 
 export default function domInit () {
   $dom.each('.overview .menu > .item', (el) => {
-    siteNav.child('.menu').appendChild(el.cloneNode(true))
+    child(siteNav, '.menu').appendChild(el.cloneNode(true))
   })
 
   loadCat.addEventListener('click', Loader.vanish)
   menuToggle.addEventListener('click', sideBarToggleHandle)
   $dom('.dimmer').addEventListener('click', sideBarToggleHandle)
 
-  quickBtn.child('.down').addEventListener('click', goToBottomHandle)
-  quickBtn.child('.up').addEventListener('click', backToTopHandle)
+  child(quickBtn, '.down').addEventListener('click', goToBottomHandle)
+  child(quickBtn, '.up').addEventListener('click', backToTopHandle)
 
   if (!toolBtn) {
-    setToolBtn(siteHeader.createChild('div', {
+    setToolBtn(createChild(siteHeader, 'div', {
       id: 'tool',
       innerHTML: '<div class="item player"></div><div class="item contents"><i class="ic i-list-ol"></i></div><div class="item chat"><i class="ic i-comments"></i></div><div class="item back-to-top"><i class="ic i-arrow-up"></i><span>0%</span></div>'
     }))

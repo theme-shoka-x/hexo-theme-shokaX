@@ -10,8 +10,8 @@ import { initVue } from '../library/vue'
 import { lazyLoad } from 'unlazy'
 
 const siteInit = () => {
-  domInit()
   initVue()
+  domInit()
 
   setPjax(new Pjax({
     selectors: [

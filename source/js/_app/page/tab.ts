@@ -1,5 +1,6 @@
 import { pageScroll } from '../library/anime'
 import { $dom } from '../library/dom'
+import { createChild } from '../library/proto'
 
 export const tabFormat = () => {
   // tab
@@ -29,13 +30,13 @@ export const tabFormat = () => {
 
     let ul = box.child('.nav ul')
     if (!ul) {
-      ul = box.createChild('div', {
+      ul = createChild(box, 'div', {
         className: 'nav',
         innerHTML: '<ul></ul>'
       }).child('ul')
     }
 
-    const li = ul.createChild('li', {
+    const li = createChild(ul, 'li', {
       innerHTML: title
     })
 

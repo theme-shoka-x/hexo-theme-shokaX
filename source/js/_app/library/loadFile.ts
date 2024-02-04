@@ -1,5 +1,6 @@
 import { getScript } from './scriptPjax'
 import { CONFIG } from '../globals/globalVars'
+import { createChild } from './proto'
 
 /**
  * 用途是根据不同的资源名称和类型生成相应的资源 URL。
@@ -32,7 +33,7 @@ export const vendorCss = (type: string, condition?: string): void => {
   }
 
   if (LOCAL[type]) {
-    document.head.createChild('link', {
+    createChild(document.head, 'link', {
       rel: 'stylesheet',
       href: assetUrl('css', type)
     })

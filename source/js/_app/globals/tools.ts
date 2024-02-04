@@ -2,6 +2,7 @@ import { pageScroll } from '../library/anime'
 import { $dom } from '../library/dom'
 import { $storage } from '../library/storage'
 import { BODY, CONFIG, LOCAL_HASH, LOCAL_URL, scrollAction, setLocalHash } from './globalVars'
+import { createChild } from '../library/proto'
 
 // 显示提示(现阶段用于版权及复制结果提示)
 export const showtip = (msg: string): void | never => {
@@ -9,7 +10,7 @@ export const showtip = (msg: string): void | never => {
     return
   }
 
-  const tipbox = BODY.createChild('div', {
+  const tipbox = createChild(BODY, 'div', {
     innerHTML: msg,
     className: 'tip'
   })
