@@ -134,7 +134,7 @@ hexo.extend.helper.register('_css', function (...urls) {
 hexo.extend.helper.register('_js', function (...urls) {
   const { statics, js } = hexo.theme.config
 
-  return urls.map(url => htmlTag('script', { src: url_for.call(this, `${statics}${js}/${url}?v=${theme_env.version}`) }, '')).join('')
+  return urls.map(url => htmlTag('script', { src: url_for.call(this, `${statics}${js}/${url}?v=${theme_env.version}`), type: 'module',fetchpriority: 'high' }, '')).join('')
 })
 
 hexo.extend.helper.register('vendor_js', function () {

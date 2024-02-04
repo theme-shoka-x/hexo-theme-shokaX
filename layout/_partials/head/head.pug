@@ -38,10 +38,16 @@ each prelink in prelinks
 each dnsLink in dnslinks
     link(rel="dns-prefetch" href=dnsLink)
 
-- var fontConfig = theme?.font?.loadFromGoogle
+- var fontConfig = theme.font?.loadFromGoogle
 if fontConfig
     != _vendor_font()
 != _css('app.css')
+
+if theme.polyfill.enable
+    script(src=`https://polyfill.io/v3/polyfill.min.js?features=${theme.polyfill.features}` defer)
+
+!= vendor_js()
+!= _js('siteInit.js')
 
 include pwa.pug
 if tk

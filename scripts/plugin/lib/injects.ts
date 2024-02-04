@@ -1,5 +1,3 @@
-'use strict'
-
 /*!
   inject.js in next-theme/hexo-theme-next by next-theme
   under GNU AFFERO GENERAL PUBLIC LICENSE v3.0 OR LATER

@@ -5,7 +5,7 @@
 import pagination from 'hexo-pagination'
 
 // @ts-ignore
-const fmtNum = num => {
+const fmtNum = (num:number) => {
   return num < 10 ? '0' + num : num
 }
 

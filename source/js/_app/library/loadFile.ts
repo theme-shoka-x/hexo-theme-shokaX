@@ -1,4 +1,5 @@
 import { getScript } from './scriptPjax'
+import { CONFIG } from '../globals/globalVars'
 
 /**
  * 用途是根据不同的资源名称和类型生成相应的资源 URL。

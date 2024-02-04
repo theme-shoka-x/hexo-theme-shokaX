@@ -1,7 +1,7 @@
 import { pageScroll } from '../library/anime'
 import { $dom } from '../library/dom'
 import { $storage } from '../library/storage'
-import { BODY, LOCAL_HASH, LOCAL_URL, scrollAction, setLocalHash } from './globalVars'
+import { BODY, CONFIG, LOCAL_HASH, LOCAL_URL, scrollAction, setLocalHash } from './globalVars'
 
 // 显示提示(现阶段用于版权及复制结果提示)
 export const showtip = (msg: string): void | never => {

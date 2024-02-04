@@ -3,9 +3,9 @@ import { transition } from './anime'
 import { $dom } from './dom'
 import { BODY } from '../globals/globalVars'
 import { changeTheme } from '../globals/themeColor'
-
+import { createApp } from 'vue'
 export function initVue () {
-  Vue.createApp(
+  createApp(
     {
       data () {
         return {
