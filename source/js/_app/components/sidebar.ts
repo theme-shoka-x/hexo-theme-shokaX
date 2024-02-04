@@ -4,7 +4,9 @@ import { CONFIG, Container, diffY, menuToggle, showContents, sideBar } from '../
 import { clipBoard } from '../globals/tools'
 import { pageScroll, transition } from '../library/anime'
 import { $dom } from '../library/dom'
+import initProto, { child, getHeight, setDisplay } from '../library/proto'
 
+initProto()
 export const sideBarToggleHandle = (event:Event, force?:number) => {
   if (sideBar.hasClass('on')) {
     sideBar.removeClass('on')
@@ -31,7 +33,7 @@ export const sideBarToggleHandle = (event:Event, force?:number) => {
 }
 
 export const sideBarTab = () => {
-  const sideBarInner = sideBar.child('.inner')
+  const sideBarInner = child(sideBar, '.inner')
 
   if (sideBar.child('.tab')) {
     sideBarInner.removeChild(sideBar.child('.tab'))
@@ -45,13 +47,13 @@ export const sideBarTab = () => {
 
     if (element.innerHTML.trim().length < 1) {
       if (item === 'contents') {
-        showContents.display('none')
+        setDisplay(showContents, 'none')
       }
       return
     }
 
     if (item === 'contents') {
-      showContents.display('')
+      setDisplay(showContents, '')
     }
 
     const tab = document.createElement('li')
@@ -212,7 +214,7 @@ export const backToTopHandle = () => {
 }
 
 export const goToBottomHandle = () => {
-  pageScroll(parseInt(String(Container.changeOrGetHeight())))
+  pageScroll(parseInt(String(getHeight(Container))))
 }
 
 export const goToCommentHandle = () => {

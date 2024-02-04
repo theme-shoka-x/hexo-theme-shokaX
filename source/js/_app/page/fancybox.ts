@@ -1,5 +1,6 @@
 import { $dom } from '../library/dom'
 import { vendorCss, vendorJs } from '../library/loadFile'
+import { insertAfter } from '../library/proto'
 
 export const postFancybox = (p:string) => {
   if ($dom(p + ' .md img')) {
@@ -38,7 +39,7 @@ export const postFancybox = (p:string) => {
           const txt = document.createTextNode(info)
           para.appendChild(txt)
           para.addClass(captionClass)
-          element.insertAfter(para)
+          insertAfter(element, para)
         }
       })
 

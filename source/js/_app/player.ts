@@ -1,9 +1,10 @@
-import { originTitle } from './globals/globalVars'
+import { CONFIG, originTitle } from './globals/globalVars'
 import { showtip } from './globals/tools'
 import { pageScroll } from './library/anime'
 import { $dom } from './library/dom'
 import { $storage } from './library/storage'
 import { tabFormat } from './page/tab'
+import { createChild, getLeft, getWidth, setDisplay, setWidth } from './library/proto'
 
 let NOWPLAYING = null
 
@@ -16,7 +17,7 @@ export const mediaPlayer = (t, config?) => {
       t.player.options.btns.forEach((item) => {
         if (buttons.el[item]) { return }
 
-        buttons.el[item] = t.createChild('div', {
+        buttons.el[item] = createChild(t, 'div', {
           className: item + ' btn',
           onclick (event) {
             t.player.fetch().then(() => {
@@ -64,7 +65,7 @@ export const mediaPlayer = (t, config?) => {
 
         opt.className = item + opt.className + ' btn'
 
-        that.btns[item] = that.el.createChild('div', opt)
+        that.btns[item] = createChild(that.el, 'div', opt)
       })
 
       that.btns.volume.bar = that.btns.volume.child('.bar')
@@ -130,10 +131,10 @@ export const mediaPlayer = (t, config?) => {
     },
     update (percent) {
       controller.btns.volume.className = 'volume ' + (!source.muted && percent > 0 ? 'on' : 'off') + ' btn'
-      controller.btns.volume.bar.changeOrGetWidth(Math.floor(percent * 100) + '%')
+      setWidth(controller.btns.volume.bar, Math.floor(percent * 100) + '%')
     },
     percent (e, el) {
-      let percentage = ((e.clientX || e.changedTouches[0].clientX) - el.left()) / el.changeOrGetWidth()
+      let percentage = ((e.clientX || e.changedTouches[0].clientX) - getLeft(el)) / getWidth(el)
       percentage = Math.max(percentage, 0)
       return Math.min(percentage, 1)
     }
@@ -151,13 +152,13 @@ export const mediaPlayer = (t, config?) => {
           progress.el.remove()
         }
 
-        progress.el = current.createChild('div', {
+        progress.el = createChild(current, 'div', {
           className: 'progress'
         });
 
         (progress.el as HTMLElement).setAttribute('data-dtime', utils.secondToTime(0))
 
-        progress.bar = progress.el.createChild('div', {
+        progress.bar = createChild(progress.el, 'div', {
           className: 'bar'
         })
 
@@ -169,14 +170,14 @@ export const mediaPlayer = (t, config?) => {
       }
     },
     update (percent) {
-      progress.bar.changeOrGetWidth(Math.floor(percent * 100) + '%');
+      setWidth(progress.bar, Math.floor(percent * 100) + '%');
       (progress.el as HTMLElement).setAttribute('data-ptime', utils.secondToTime(percent * source.duration))
     },
     seeking (type) {
       if (type) { progress.el.addClass('seeking') } else { progress.el.removeClass('seeking') }
     },
     percent (e, el) {
-      let percentage = ((e.clientX || e.changedTouches[0].clientX) - el.left()) / el.changeOrGetWidth()
+      let percentage = ((e.clientX || e.changedTouches[0].clientX) - getLeft(el)) / getWidth(el)
       percentage = Math.max(percentage, 0)
       return Math.min(percentage, 1)
     },
@@ -258,7 +259,7 @@ export const mediaPlayer = (t, config?) => {
         const id = 'list-' + t.player._id + '-' + item.group
         let tab = $dom('#' + id)
         if (!tab) {
-          tab = el.createChild('div', {
+          tab = createChild(el, 'div', {
             id,
             className: t.player.group ? 'tab' : '',
             innerHTML: '<ol></ol>'
@@ -269,7 +270,7 @@ export const mediaPlayer = (t, config?) => {
           }
         }
 
-        item.el = tab.child('ol').createChild('li', {
+        item.el = createChild(tab.child('ol'), 'li', {
           title: item.name + ' - ' + item.artist,
           innerHTML: '<span class="info"><span>' + item.name + '</span><span>' + item.artist + '</span></span>',
           onclick (event) {
@@ -329,7 +330,7 @@ export const mediaPlayer = (t, config?) => {
     create () {
       if (this.el) { return }
 
-      this.el = t.createChild('div', {
+      this.el = createChild(t, 'div', {
         className: 'player-info',
         innerHTML: (t.player.options.type === 'audio' ? '<div class="preview"></div>' : '') + '<div class="controller"></div><div class="playlist"></div>'
       }, 'after')
@@ -469,7 +470,7 @@ export const mediaPlayer = (t, config?) => {
         this.pause()
       }
       for (const el in buttons.el) {
-        buttons.el[el].display(d)
+        setDisplay(buttons.el[el], d)
       }
       return this
     },
@@ -662,7 +663,7 @@ export const mediaPlayer = (t, config?) => {
           lrc += '<p' + (index === 0 ? ' class="current"' : '') + '>' + line[1] + '</p>'
         })
 
-        this.el = box.createChild('div', {
+        this.el = createChild(box, 'div', {
           className: 'inner',
           innerHTML: lrc
         }, 'replace')
@@ -783,7 +784,7 @@ export const mediaPlayer = (t, config?) => {
     buttons.create()
 
     // 初始化audio or video
-    source = t.createChild(t.player.options.type, events)
+    source = createChild(t, t.player.options.type, events)
     // 初始化播放列表、预览、控件按钮等
     info.create()
 

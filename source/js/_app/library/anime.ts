@@ -1,6 +1,7 @@
 import anime from 'theme-shokax-anime'
 import { siteNavHeight } from '../globals/globalVars'
 import type { AnimeOptions } from 'theme-shokax-anime/dist/types'
+import {getTop, setDisplay} from './proto'
 
 /**
  * 参数  动画效果
@@ -26,7 +27,7 @@ export const transition = (target: HTMLElement, type: number|string|Function, co
     case 'bounceUpIn':
       animation = {
         begin (anim) {
-          target.display('block')
+          setDisplay(target, 'block')
         },
         translateY: [
           { value: -60, duration: 200 },
@@ -41,7 +42,7 @@ export const transition = (target: HTMLElement, type: number|string|Function, co
     case 'shrinkIn':
       animation = {
         begin (anim) {
-          target.display('block')
+          setDisplay(target, 'block')
         },
         scale: [
           { value: 1.1, duration: 300 },
@@ -54,7 +55,7 @@ export const transition = (target: HTMLElement, type: number|string|Function, co
     case 'slideRightIn':
       animation = {
         begin (anim) {
-          target.display('block')
+          setDisplay(target, 'block')
         },
         translateX: ['100%', '0%'],
         opacity: [0, 1]
@@ -82,7 +83,7 @@ export const transition = (target: HTMLElement, type: number|string|Function, co
       begin && begin()
     },
     complete () {
-      target.display(display)
+      setDisplay(target, display)
       complete && complete()
     }
   }, animation)).play()
@@ -100,7 +101,7 @@ export const pageScroll = (target: HTMLElement|number, offset?: number, complete
     // 动画缓动函数
     easing: 'easeInOutQuad',
     // 如果 offset 存在，则滚动到 offset，如果 target 是数字，则滚动到 target，如果 target 是 DOM 元素，则滚动到下述表达式
-    scrollTop: offset || (typeof target === 'number' ? target : (target ? target.getTop() + document.documentElement.scrollTop - siteNavHeight : 0)),
+    scrollTop: offset || (typeof target === 'number' ? target : (target ? getTop(target) + document.documentElement.scrollTop - siteNavHeight : 0)),
     // 完成回调函数
     complete () {
       complete && complete()

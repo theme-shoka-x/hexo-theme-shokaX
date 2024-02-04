@@ -1,84 +1,82 @@
 import { $dom } from './dom'
 
+export const insertAfter = function (el: HTMLElement, element: HTMLElement): void {
+  const parent = el.parentNode
+  if (parent.lastChild === el) {
+    parent.appendChild(element)
+  } else {
+    parent.insertBefore(element, el.nextSibling)
+  }
+}
+
+/**
+ * 创建一个子节点并放置
+ */
+export const createChild = function (parent: HTMLElement, tag: string, obj: object, positon?: string): HTMLElement {
+  const child = document.createElement(tag)
+  Object.assign(child, obj)
+  switch (positon) {
+    case 'after':
+      insertAfter(parent, child)
+      break
+    case 'replace':
+      parent.innerHTML = ''
+      parent.appendChild(child)
+      break
+    default:
+      parent.appendChild(child)
+  }
+  return child
+}
+
+/**
+ *  此方法使用`<div>`包装一个 DOM 元素
+ * @param parent
+ * @param obj 需要被包装的对象
+ */
+export const wrapObject = function (parent: HTMLElement, obj: any): void {
+  const box = document.createElement('div')
+  Object.assign(box, obj)
+  parent.insertBefore(box, obj)
+  parent.removeChild(obj)
+  box.appendChild(obj)
+}
+
+export const getHeight = function (el: HTMLElement): number {
+  return el.getBoundingClientRect().height
+}
+
+export const setWidth = function (el: HTMLElement, w: number|string): void {
+  el.style.width = typeof w === 'number' ? w + 'rem' : w
+}
+
+export const getWidth = function (el: HTMLElement): number {
+  return el.getBoundingClientRect().width
+}
+
+export const getTop = function (el: HTMLElement): number {
+  return el.getBoundingClientRect().top
+}
+
+export const getLeft = function (el: HTMLElement): number {
+  return el.getBoundingClientRect().left
+}
+
+export const getDisplay = function (el: HTMLElement): string {
+  return el.style.display
+}
+
+export const setDisplay = function (el: HTMLElement, d: string): HTMLElement {
+  el.style.display = d
+  return el
+}
+
+// TODO 未完成迁移
+export const child = function (el: HTMLElement, selector: string): HTMLElement {
+  return $dom(selector, (el as unknown as Document))
+}
 export default function initProto () {
   Object.assign(HTMLElement.prototype, {
-  /**
-   * 创建一个子节点并放置
-   */
-    createChild (tag: string, obj: ElementCreationOptions, positon?: string): HTMLElement {
-      const child = document.createElement(tag)
-      Object.assign(child, obj)
-      switch (positon) {
-        case 'after':
-          this.insertAfter(child)
-          break
-        case 'replace':
-          this.innerHTML = ''
-          this.appendChild(child)
-          break
-        default:
-          this.appendChild(child)
-      }
-      return child
-    },
-    /**
-     *  此方法使用`<div>`包装一个 DOM 元素
-     * @param obj 需要被包装的对象
-     */
-    wrapObject (obj: HTMLElement) {
-      const box = document.createElement('div')
-      Object.assign(box, obj)
-      this.parentNode.insertBefore(box, this)
-      this.parentNode.removeChild(this)
-      box.appendChild(this)
-    },
-    changeOrGetHeight (h?: number | string): number {
-      if (h) {
-      // TODO 0rem是期望的值吗?
-        this.style.height = typeof h === 'number' ? h + 'rem' : h
-      }
-      return this.getBoundingClientRect().height
-    },
-    /**
-   此函数将元素的宽度设置为指定值,如果未提供值,则返回元素的宽度.<br />
-   宽度可以作为数字提供(假定它以`rem`为单位).作为字符串提供则直接设置为元素宽度
-   */
-    changeOrGetWidth (w?: number | string): number {
-      if (w) {
-      // TODO 0rem是期望的值吗?
-        this.style.width = typeof w === 'number' ? w + 'rem' : w
-      }
-      return this.getBoundingClientRect().width
-    },
-    getTop (): number {
-      return this.getBoundingClientRect().top
-    },
-    left (): number {
-      return this.getBoundingClientRect().left
-    },
-    /**
-   * 将此节点插入父节点的下一个节点之前
-   */
-    insertAfter (element: HTMLElement): void {
-      const parent = this.parentNode
-      if (parent.lastChild === this) {
-        parent.appendChild(element)
-      } else {
-        parent.insertBefore(element, this.nextSibling)
-      }
-    },
-    /**
-   * 当d为空时返回此节点的CSSStyle display属性 <br />
-   * 反之,将d设置为此节点的CSSStyle display属性
-   */
-    display (d?: string): string | EventTarget {
-      if (d == null) {
-        return this.style.display
-      } else {
-        this.style.display = d
-        return this
-      }
-    },
     /**
    * 找到此节点第一个符合selector选择器的子节点
    */
