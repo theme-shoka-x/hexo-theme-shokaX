@@ -39,39 +39,6 @@ hexo.extend.helper.register('_new_comments', function (mode) {
                 console.error(err)
             })
         </script>`
-  } else if (mode === 'waline') {
-    return `
-    <script type="module" data-pjax>
-        let items = []
-        import { RecentComments } from 'https://npm.webcache.cn/@waline/client@v2/dist/waline.mjs'
-        RecentComments({
-          serverURL: '${hexo.theme.config.waline.serverURL.replace(/\/+$/, '')}',
-          count: 10,
-        }).then(({ comments }) => {
-          comments.forEach(function (item) {
-              let cText = (item.orig.length > 50) ? item.orig.substring(0,50)+'...' : item.orig
-              item.url = item.url.startsWith('/') ? item.url : '/' + item.url;
-              const siteLink = item.url + "#" + item.objectId
-              items.push({
-                  href: siteLink,
-                  nick: item.nick,
-                  time: item.insertedAt.split('T').shift(),
-                  text: cText
-              })
-          })
-          Vue.createApp({
-            data() {
-                return {
-                    coms: items,
-                    root: '${root}'
-                }
-            }
-          }).mount('#new-comment')
-        }).catch(function (err) {
-          console.error(err)
-        })
-    </script>
-    `
   } else {
     console.log(`${mode} is not supported recent comment`)
   }
