@@ -59,7 +59,9 @@ hexo.extend.helper.register('preloadjs', function () {
   const { statics, js } = hexo.theme.config
   let res:string
   fs.readdirSync('./shokaxTemp').forEach((file) => {
-    res += htmlTag('link', { rel: 'modulepreload', href: url_for.call(this, `${statics}${js}/${file}`) }, '')
+    if (file.endsWith('.js')) {
+      res += htmlTag('link', { rel: 'modulepreload', href: url_for.call(this, `${statics}${js}/${file}`) }, '')
+    }
   })
   return res
 })

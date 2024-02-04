@@ -151,7 +151,3 @@ hexo.extend.generator.register('script', function (locals) {
   })
   return res
 })
-
-hexo.extend.filter.register('before_exit', function () {
-  fs.rmSync('./shokaxTemp', { force: true, recursive: true })
-})
