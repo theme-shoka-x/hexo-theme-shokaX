@@ -1,6 +1,6 @@
 {
     "name": "hexo-theme-shokax",
-    "version": "0.4.0-alpha.2",
+    "version": "0.4.0-alpha.3",
     "description": "a hexo theme based on shoka",
     "main": "index.js",
     "repository": "https://github.com/theme-shoka-x/hexo-theme-shokaX",
@@ -43,7 +43,7 @@
         "quicklink": "^2.3.0",
         "theme-shokax-anime": "^0.0.6",
         "theme-shokax-pjax": "^0.0.3",
-        "twikoo": "github:twikoojs/twikoo",
+        "twikoo": "^1.6.31",
         "unlazy": "^0.10.4"
     },
     "engines": {

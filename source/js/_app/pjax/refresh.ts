@@ -57,6 +57,21 @@ export const siteRefresh = (reload) => {
     postBeauty()
   })
 
+  if (__shokax_waline__ && LOCAL.ispost) {
+    import('../components/comments').then(async ({ walineComment, walinePageview, walineRecentComments }) => {
+      walineComment()
+      walinePageview()
+      await walineRecentComments()
+    })
+  }
+
+  if (__shokax_twikoo__ && LOCAL.ispost) {
+    import('../components/tcomments').then(async ({ twikooComment, twikooRecentComments }) => {
+      twikooComment()
+      await twikooRecentComments()
+    })
+  }
+
   if (__shokax_tabs__) {
     tabFormat()
   }

@@ -30,6 +30,7 @@ declare interface EventTarget {
 type walineMeta = 'nick'|'mail'|'link'
 
 declare const LOCAL: {
+  ispost: boolean;
   path: string;
   ignores: Array<(uri:string)=>boolean>;
   audio: string[];
@@ -105,6 +106,10 @@ interface configType {
     pageSize: number
     pageview: boolean
   }
+  twikoo: {
+    envId: string
+    region: string
+  }
   walinePageView: boolean
   quicklink: {
     ignores: any
@@ -123,5 +128,6 @@ declare const __shokax_tabs__: boolean
 declare const __shokax_quiz__: boolean
 declare const __shokax_fancybox__: boolean
 declare const __shokax_waline__:boolean
+declare const __shokax_twikoo__:boolean
 declare const shokax_CONFIG:configType
 declare const shokax_siteURL:string
