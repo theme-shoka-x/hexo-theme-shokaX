@@ -1,6 +1,6 @@
 /* global hexo */
 import env from '../../package.json'
-import * as fs from 'hexo-fs'
+import fs from 'node:fs'
 import { buildSync } from 'esbuild'
 import { getVendorLink } from '../utils'
 
@@ -60,7 +60,6 @@ hexo.extend.generator.register('script', function (locals) {
     siteConfig.audio = theme.audio
   }
 
-  let text: string
   let enterPoint: string
   if (fs.existsSync('themes/shokaX/source/js/_app/pjax/siteInit.ts')) {
     enterPoint = 'themes/shokaX/source/js/_app/pjax/siteInit.ts'
@@ -81,11 +80,12 @@ hexo.extend.generator.register('script', function (locals) {
       }
     },
     platform: 'browser',
-    format: 'iife',
+    format: 'esm',
     target: ['es2022'],
     minify: true,
-    legalComments: 'eof',
+    legalComments: 'linked',
     mainFields: ['module', 'main'],
+    splitting: true,
     define: {
       __UNLAZY_LOGGING__: 'false',
       __UNLAZY_HASH_DECODING__: theme.modules.unlazyHash ? 'true' : 'false',
@@ -103,13 +103,35 @@ hexo.extend.generator.register('script', function (locals) {
       'algoliasearch/lite': 'algoliasearch/dist/algoliasearch-lite.esm.browser.js'
     }
   })
-  // text += fs.readFileSync('shokax_temp.js')
-  const result = hexo.render.renderSync({ text: '', engine: 'js' })
-  // fs.unlinkSync('shokax_temp.js')
-  return {
-    path: theme.js + '/app.js',
-    data: function () {
-      return result
+  const res = []
+  fs.readdirSync('./shokaxTemp').forEach((file) => {
+    const fileText = fs.readFileSync(`./shokaxTemp/${file}`, { encoding: 'utf-8' })
+    if (file.endsWith('js')) {
+      const result = hexo.render.renderSync({ text: fileText, engine: 'js' })
+      res.push({
+        path: theme.js + '/' + file,
+        data: function () {
+          return result
+        }
+      })
+    } else if (file.endsWith('css')) {
+      const result = hexo.render.renderSync({ text: fileText, engine: 'css' })
+      res.push({
+        path: theme.css + '/' + file,
+        data: function () {
+          return result
+        }
+      })
+    } else {
+      res.push({
+        path: theme.js + '/' + file,
+        data: function () {
+          return fileText
+        }
+      })
     }
-  }
+    fs.unlinkSync(`./shokaxTemp/${file}`)
+  })
+  fs.rmSync('./shokaxTemp', { force: true, recursive: true })
+  return res
 })

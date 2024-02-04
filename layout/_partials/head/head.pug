@@ -43,6 +43,12 @@ if fontConfig
     != _vendor_font()
 != _css('app.css')
 
+if theme.polyfill.enable
+    script(src=`https://polyfill.io/v3/polyfill.min.js?features=${theme.polyfill.features}` defer)
+
+!= vendor_js()
+!= _js('siteInit.js')
+
 include pwa.pug
 if tk
     script(src=theme.twikoo.link )
