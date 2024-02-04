@@ -104,7 +104,7 @@ hexo.extend.helper.register('_cover_index', function (item) {
   } else if (item.photos && item.photos.length > 0) {
     return this._image_url(item.photos[0], item.path)
   } else {
-    return randomBG(1, image_server, index_images.length === 0 ? image_list : index_images)
+    return randomBG(6, image_server, index_images.length === 0 ? image_list : index_images)
   }
 })
 
