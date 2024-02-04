@@ -17,3 +17,25 @@ If you would like to customize the default translation, you do not need to modif
       menu:
         schedule: Calendar
     ```
+
+# Current language packs
+
+- ### English (en)
+- ### 日本語 (ja)
+- ### 中文-简体 (zh-CN)
+- ### 中文-繁体 (zh-HK)
+- ### 中文-台湾 (zh-TW)
+- ### Español (es)
+- ### Deutsch (de)
+- ### Français (fr)
+- ### Italiano (it)
+- ### Português (pt)
+- ### Русский (ru)
+- ### العربية (ar)
+- ### हिंदी (hi)
+- ### 한국어 (ko)
+- ### Nederlands (nl)
+- ### Polski (pl)
+- ### Türkçe (tr)
+- ### Bahasa Indonesia (id)
+- ### Tiếng Việt (vi)

@@ -1,0 +1,153 @@
+---
+name: Italiano
+favicon:
+  show: (●´3｀●) Ecco che si riparte.
+  hide: (´Д｀) È un disastro!
+
+title:
+  archive: Archivio
+  category: Categoria
+  tag: Tag
+  all: Tutto
+  not_found: Σ( ° △ °|||)︴404! Non si vede nulla
+  category_in: Articoli nella categoria "%s"
+  tag_in: Articoli con il tag "%s"
+  archive_in: Articoli pubblicati il "%s"
+
+menu:
+  home: Home
+  posts: Articoli
+  archives: Archivi
+  categories: Categorie
+  tags: Tags
+  about: Informazioni
+  search: Ricerca
+  census: Statistiche di visita del blog
+  aboutsite: Informazioni su questo sito
+  updata: Registro degli aggiornamenti
+  statistics: Statistiche
+  admiration: Apprezzamento
+  friends: Amici
+  privacy: Politica sulla privacy
+
+sidebar:
+  overview: Panoramica
+  toc: Indice
+  related: Articoli correlati
+
+index:
+  sticky: Articoli in evidenza
+  category: Categorie selezionate
+  posts: Elenco degli articoli
+  random_posts: Articoli casuali
+  recent_comments: Commenti recenti
+
+post:
+  posted: Pubblicato il
+  edited: Modificato il
+  created: Creato
+  modified: Modificato
+  edit: Modifica
+  in: In
+  read_more: Leggi di più
+  untitled: Senza titolo
+  sticky: In evidenza
+  views: Visualizzazioni
+  related_posts: Articoli correlati
+  next: Articolo successivo
+  prev: Articolo precedente
+  copyright:
+    author: Autore dell'articolo
+    link: Link all'articolo
+    license_title: Avviso di copyright
+    license_content: "Tutti gli articoli di questo blog sono sotto licenza %s, a meno che non sia indicato diversamente."
+    nocopy: '<span class="red">Questa pagina è vietata alla riproduzione.</span>'
+
+footer:
+  powered: "Alimentato da %s"
+  total_views: Visualizzazioni totali
+  total_visitors: Visitatori totali
+
+counter:
+  index:
+    post: "%d articoli in totale"
+    category: "%d sottocategorie in totale, "
+  tag_cloud:
+    zero: Nessun tag
+    one: 1 tag in totale
+    other: "%d tag in totale"
+  categories:
+    zero: Nessuna categoria
+    one: 1 categoria in totale
+    other: "%d categorie in totale"
+  archive_posts:
+    zero: Nessun articolo.
+    one: 1 articolo.
+    other: "%d articoli in totale."
+
+state:
+  posts: Articoli
+  tags: Tags
+  categories: Categorie
+
+search:
+  placeholder: Ricerca articoli
+  empty: "Non abbiamo trovato nessun risultato per la ricerca: ${query}"
+  stats: "${hits} risultati trovati in ${time} ms"
+
+cheers:
+  um: Eh..
+  ok: OK
+  nice: Bello
+  good: Buono
+  great: Ottimo
+  excellent: Eccellente
+
+keep_on: Continua a postare.
+
+symbol:
+  comma: ", "
+  period: ". "
+  colon: ": "
+  year: "A"
+  month: "M"
+
+reward:
+  donate: Dona
+  text: Offrimi una tazza di [caffè]~(￣▽￣)~*
+  wechatpay: WeChat Pay
+  alipay: Alipay
+  paypal: PayPal
+  bitcoin: Bitcoin
+
+follow_me:
+  welcome: Benvenuto nei miei altri canali di pubblicazione
+
+accessibility:
+  nav_toggle: Attiva/disattiva la barra di navigazione
+  prev_page: Pagina precedente
+  next_page: Pagina successiva
+
+symbols_count_time:
+  count: Numero di simboli nell'articolo
+  count_total: Numero totale di simboli
+  time: Tempo di lettura
+  time_total: Tempo totale di lettura
+  time_minutes: min.
+  word: parole
+  view: volte
+
+tips:
+  copyright: "Copiato con successo negli appunti! <br> Tutti gli articoli di questo blog sono sotto licenza %s."
+  nocopy: "Copia negli appunti fallita! Questa pagina è vietata alla riproduzione."
+
+quiz:
+  choice: Domanda a scelta multipla
+  multiple: Domanda a risposta multipla
+  true_false: Domanda vero/falso
+  essay: Domande
+  gap_fill: Domanda a riempimento di spazi
+  mistake: Nota sulla risposta sbagliata
+
+outime:
+  template: '<div class="note warning"><p><span class="label warning">Avviso di tempestività dell''articolo</span><br>Questo è un articolo pubblicato {{publish}} giorni fa e aggiornato l''ultima volta {{updated}} giorni fa. Alcune informazioni potrebbero essere cambiate, quindi fate attenzione a verificarle.</p></div>'
