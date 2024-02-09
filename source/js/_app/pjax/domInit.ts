@@ -92,24 +92,6 @@ export default function domInit () {
       root: null,
       threshold: 0.2
     }).observe(document.querySelector('.with-love'))
-
-    // 懒加载背景图
-    const lazyBgEls = $dom.all('[data-background-image]')
-    const lazyBg = new IntersectionObserver(function (entries,observer) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target as HTMLElement
-          el.style.backgroundImage = `url(${el.getAttribute('data-background-image')})`
-          observer.unobserve(el)
-        }
-      })
-    }, {
-      root: null,
-      threshold: 0.2
-    })
-    lazyBgEls.forEach(el => {
-      lazyBg.observe(el)
-    })
   }
   createIntersectionObserver()
 }

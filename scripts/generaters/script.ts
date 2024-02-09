@@ -59,7 +59,7 @@ hexo.extend.generator.register('script', function (locals) {
     twikoo: {
       envId: theme.twikoo.envId,
       region: theme.twikoo.region
-    },
+    }
   }
 
   if (config?.algolia) {
