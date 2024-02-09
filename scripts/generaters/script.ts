@@ -59,7 +59,7 @@ hexo.extend.generator.register('script', function (locals) {
     twikoo: {
       envId: theme.twikoo.envId,
       region: theme.twikoo.region
-    },
+    }
   }
 
   if (config?.algolia) {
@@ -148,8 +148,6 @@ hexo.extend.generator.register('script', function (locals) {
         }
       })
     }
-    fs.unlinkSync(`./shokaxTemp/${file}`)
   })
-  fs.rmSync('./shokaxTemp', { force: true, recursive: true })
   return res
 })

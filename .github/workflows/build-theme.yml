@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - refactor_comment
   pull_request:
     branches: [ "main" ]
 

@@ -2,6 +2,8 @@
 
 // @ts-ignore
 import { htmlTag, url_for } from 'hexo-util'
+import fs from 'node:fs'
+import theme_env from '../../package.json'
 
 const randomServer = parseInt(String(Math.random() * 4), 10) + 1
 
@@ -52,6 +54,17 @@ const randomBG = function (count = 1, image_server:string = null, image_list:str
 
   return parseImage(image_list[Math.floor(Math.random() * image_list.length)], 'mw690')
 }
+
+hexo.extend.helper.register('preloadjs', function () {
+  const { statics, js } = hexo.theme.config
+  let res = ''
+  fs.readdirSync('./shokaxTemp').forEach((file) => {
+    if (file.endsWith('.js')) {
+      res += htmlTag('link', { rel: 'modulepreload', href: url_for.call(this, `${statics}${js}/${file}`) }, '')
+    }
+  })
+  return res
+})
 
 // 注册hexo主题中的URL帮助方法
 hexo.extend.helper.register('_url', function (path, text, options = {}) {
@@ -104,7 +117,7 @@ hexo.extend.helper.register('_cover_index', function (item) {
   } else if (item.photos && item.photos.length > 0) {
     return this._image_url(item.photos[0], item.path)
   } else {
-    return randomBG(1, image_server, index_images.length === 0 ? image_list : index_images)
+    return randomBG(6, image_server, index_images.length === 0 ? image_list : index_images)
   }
 })
 

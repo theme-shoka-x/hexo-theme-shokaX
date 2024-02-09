@@ -42,16 +42,11 @@ each dnsLink in dnslinks
 if fontConfig
     != _vendor_font()
 != _css('app.css')
-
-if theme.polyfill.enable
-    script(src=`https://polyfill.io/v3/polyfill.min.js?features=${theme.polyfill.features}` defer)
-
-!= vendor_js()
-!= _js('siteInit.js')
+!= preloadjs()
 
 include pwa.pug
-else if wl
-    link(rel="stylesheet" href="https://npm.webcache.cn/@waline/client@v2/dist/waline.css" media="none" onload="this.media='all'")
+if wl
+    link(rel="stylesheet" href="https://npm.webcache.cn/@waline/client@3.0.0-alpha.11/dist/waline.css" media="none" onload="this.media='all'")
 
 - var qw = theme?.qweather?.enable
 if qw

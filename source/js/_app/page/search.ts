@@ -5,18 +5,8 @@ import { searchBox, configure, stats, hits, pagination } from 'instantsearch.js/
 import type { HitHighlightResult } from 'instantsearch.js/es/types/results'
 import instantsearch from 'instantsearch.js'
 import algoliasearch from 'algoliasearch/lite'
-import {createChild} from "../library/proto";
 
 export function algoliaSearch (pjax) {
-  if (CONFIG.search === null) { return }
-
-  if (!siteSearch) {
-    setSiteSearch(createChild(BODY, 'div', {
-      id: 'search',
-      innerHTML: '<div class="inner"><div class="header"><span class="icon"><i class="ic i-search"></i></span><div class="search-input-container"></div><span class="close-btn"><i class="ic i-times-circle"></i></span></div><div class="results"><div class="inner"><div id="search-stats"></div><div id="search-hits"></div><div id="search-pagination"></div></div></div></div>'
-    }))
-  }
-
   const search = instantsearch({
     indexName: CONFIG.search.indexName,
     searchClient: algoliasearch(CONFIG.search.appID, CONFIG.search.apiKey),
@@ -103,16 +93,6 @@ export function algoliaSearch (pjax) {
   ])
 
   search.start()
-
-  // Handle and trigger popup window
-  $dom.each('.search', (element) => {
-    element.addEventListener('click', () => {
-      document.body.style.overflow = 'hidden'
-      transition(siteSearch, 'shrinkIn', () => {
-        $dom('.search-input').focus()
-      }) // transition.shrinkIn
-    })
-  })
 
   // Monitor main search box
   const onPopupClose = () => {

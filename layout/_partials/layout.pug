@@ -35,18 +35,18 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
 
                     != partial('_partials/header.pug', {}, {cache: true})
                 div(id="imgs" class="pjax")
-                    if theme.experiments.gradient || theme.experiments.fixedCover
+                    if theme.homeConfig.gradient || theme.homeConfig.fixedCover
                         //- cover不可用时用Bing随机图片代替
-                        - var coverImage = theme.experiments.fixedCover || "https://7ed.net/bing/api"
-                        img(src=coverImage)
+                        - var coverImage = theme.homeConfig.fixedCover || "https://7ed.net/bing/api"
+                        img(src=coverImage loading="eager" decoding="async" fetchpriority="high")
                     else
                         - var covers = _cover_index(page, 6)
                         if covers.length === 6
                             ul
                                 each image in covers
-                                    li(class="item" data-background-image=image)
+                                    li(class="item" style=`background-image: url("${image}");`)
                         else
-                            img(src=covers)
+                            img(src=covers loading="eager" decoding="async" fetchpriority="high")
             div(id="waves")
                 svg(class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto")
                     defs
@@ -119,10 +119,12 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
         != partial('_partials/third-party/baidu-analytics.pug', {}, {cache: true})
         != partial('_partials/third-party/clarity.pug', {}, {cache: true})
         != partial('_partials/third-party/google-analytics.pug', {}, {cache: true})
-        if theme.twikoo.enable
-            != _new_comments('twikoo')
-        else if theme.waline.enable
-            != _new_comments('waline')
+
+        != vendor_js()
+        if theme.polyfill.enable
+            script(src=`https://polyfill.io/v3/polyfill.min.js?features=${theme.polyfill.features}` defer)
+
+        != _js('siteInit.js')
 
         != shokax_inject('bodyEnd')
 

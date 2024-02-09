@@ -22,7 +22,7 @@ import {
 } from './globalVars'
 import { changeMetaTheme } from './themeColor'
 import { Loader } from './thirdparty'
-import {getHeight, setWidth} from '../library/proto'
+import { getHeight, setWidth } from '../library/proto'
 
 export const resizeHandle = () => {
   // 获取 siteNav 的高度
@@ -119,5 +119,5 @@ export const visibilityListener = () => {
         }, 2000))
         break
     }
-  })
+  }, { passive: true })
 }

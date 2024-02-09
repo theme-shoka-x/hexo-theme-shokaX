@@ -76,6 +76,7 @@ export default function domInit () {
       root: null,
       threshold: 0.2
     }).observe(document.getElementById('waves'))
+
     // sakura在视口外时停止动画
     new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
