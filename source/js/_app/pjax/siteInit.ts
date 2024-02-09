@@ -7,7 +7,6 @@ import { resizeHandle, scrollHandle, visibilityListener } from '../globals/handl
 import { pagePosition } from '../globals/tools'
 import Pjax from 'theme-shokax-pjax'
 import { initVue } from '../library/vue'
-import { lazyLoad } from 'unlazy'
 import { $dom } from '../library/dom'
 import { createChild } from '../library/proto'
 import { transition } from '../library/anime'
@@ -72,7 +71,6 @@ const siteInit = () => {
       firework.default(CONFIG.fireworks)
     })
   }
-  lazyLoad()
 
   window.addEventListener('scroll', scrollHandle, {
     passive: true

@@ -16,6 +16,7 @@ import { pagePosition, positionInit } from '../globals/tools'
 import { menuActive, sideBarTab, sidebarTOC } from '../components/sidebar'
 import { Loader, isOutime } from '../globals/thirdparty'
 import { tabFormat } from '../page/tab'
+import { lazyLoad } from 'unlazy'
 
 export const pjaxReload = () => {
   pagePosition()
@@ -41,7 +42,6 @@ export const siteRefresh = (reload) => {
   vendorCss('mermaid')
 
   // 懒加载背景图
-  console.log('lazyBg')
   const lazyBg = new IntersectionObserver(function (entries, observer) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -102,6 +102,8 @@ export const siteRefresh = (reload) => {
     comment.observe($dom('#copyright'))
   }
 
+  lazyLoad()
+
   if (__shokax_waline__) {
     import('../components/comments').then(async ({ walinePageview, walineRecentComments }) => {
       await walineRecentComments()
@@ -121,7 +123,7 @@ export const siteRefresh = (reload) => {
   if (__shokax_player__) {
     toolPlayer.player.load(LOCAL.audio || CONFIG.audio || {})
   }
-  Loader.hide()
+  Loader.hide(500)
 
   setTimeout(() => {
     positionInit()
