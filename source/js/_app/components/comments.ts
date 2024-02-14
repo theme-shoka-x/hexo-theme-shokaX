@@ -3,9 +3,6 @@ import { init, pageviewCount, RecentComments } from '@waline/client'
 
 import { createApp } from 'vue'
 
-// await import('@waline/client/style')
-// fixme 处理样式引入问题
-
 export const walineComment = function () {
   init({
     el: '#comments',
