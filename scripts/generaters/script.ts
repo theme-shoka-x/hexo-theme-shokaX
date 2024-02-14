@@ -99,7 +99,7 @@ hexo.extend.generator.register('script', function (locals) {
     target: ['es2022'],
     minify: true,
     legalComments: 'linked',
-    mainFields: ['module', 'main'],
+    mainFields: ['module', 'browser', 'main'],
     splitting: true,
     define: {
       __UNLAZY_LOGGING__: 'false',

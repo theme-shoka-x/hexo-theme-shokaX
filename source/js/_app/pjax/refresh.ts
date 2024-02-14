@@ -131,7 +131,7 @@ export const siteRefresh = (reload) => {
 
   cardActive()
 
-  if (__shokax_outime__) {
+  if (__shokax_outime__ && LOCAL.ispost) {
     isOutime()
   }
 }
