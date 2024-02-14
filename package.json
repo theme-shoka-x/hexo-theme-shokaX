@@ -1,6 +1,6 @@
 {
     "name": "hexo-theme-shokax",
-    "version": "0.4.0-beta.1",
+    "version": "0.4.0",
     "description": "a hexo theme based on shoka",
     "main": "index.js",
     "repository": "https://github.com/theme-shoka-x/hexo-theme-shokaX",
@@ -19,21 +19,21 @@
         "@types/quicklink": "^2.3.4",
         "@typescript-eslint/eslint-plugin": "^6.20.0",
         "@typescript-eslint/parser": "^6.20.0",
-        "@waline/client": "3.0.0-alpha.11",
         "eslint": "^8.56.0",
         "eslint-config-standard": "~17",
         "eslint-plugin-import": "^2.29.1",
         "eslint-plugin-n": "^16.6.2",
         "eslint-plugin-promise": "^6.1.1",
         "eslint-plugin-vue": "^9.20.1",
-        "typescript": "^5.3.3",
-        "vue": "^3.4.15"
+        "typescript": "^5.3.3"
     },
     "dependencies": {
+        "@waline/client": "3.0.0-alpha.11",
+        "vue": "^3.4.15",
         "@algolia/client-search": "^4.22.1",
         "algoliasearch": "4.22.1",
         "esbuild": "^0.20.0",
-        "hexo": "7.0.0",
+        "hexo": "^7.0.0",
         "hexo-fs": "^4.1.1",
         "hexo-pagination": "^3.0.0",
         "hexo-util": "^3.2.0",
@@ -44,7 +44,11 @@
         "theme-shokax-anime": "^0.0.6",
         "theme-shokax-pjax": "^0.0.3",
         "twikoo": "^1.6.31",
-        "unlazy": "^0.10.4"
+        "unlazy": "^0.10.4",
+        "hexo-lightning-minify": "latest",
+        "hexo-algoliasearch": "latest",
+        "hexo-feed": "latest",
+        "hexo-renderer-pug": "latest"
     },
     "engines": {
         "node": ">=18.0.0"
