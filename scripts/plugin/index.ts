@@ -22,10 +22,10 @@ hexo.on('generateBefore', () => {
 
 hexo.on('generateAfter', () => {
   // 检查版本更新
-  fetch('https://api.github.com/repos/theme-shoka-x/hexo-theme-shokaX/releases/latest').then((res) => {
+  fetch('https://registry.npmmirror.com/hexo-theme-shokax').then((res) => {
     res.json().then((resp) => {
       try {
-        const latest = resp.tag_name.replace('v', '').split('.')
+        const latest = resp['dist-tags'].latest
         const current = version.split('.')
         let isOutdated = false
         for (let i = 0; i < Math.max(latest.length, current.length); i++) {
