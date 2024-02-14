@@ -50,7 +50,9 @@ hexo.extend.helper.register('_vendor_font', () => {
   return fontFamilies
     ? htmlTag('link', {
       rel: 'stylesheet',
-      href: `${fontHost}/css?family=${fontFamilies.concat(fontDisplay, fontSubset)}`
+      href: `${fontHost}/css?family=${fontFamilies.concat(fontDisplay, fontSubset)}`,
+      media: 'none',
+      onload: "this.media='all'"
     })
     : ''
 })
