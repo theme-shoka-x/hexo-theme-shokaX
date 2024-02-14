@@ -33,7 +33,7 @@
         "@algolia/client-search": "^4.22.1",
         "algoliasearch": "4.22.1",
         "esbuild": "^0.20.0",
-        "hexo": "^7.0.0",
+        "hexo": "7.0.0",
         "hexo-fs": "^4.1.1",
         "hexo-pagination": "^3.0.0",
         "hexo-util": "^3.2.0",
