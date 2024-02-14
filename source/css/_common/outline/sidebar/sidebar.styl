@@ -44,11 +44,16 @@
   overflow: hidden;
 
   .inner {
+    margin-top: 2.5rem;
     overflow-x: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     width: auto;
     height: 100%;
+
+    +tablet-mobile() {
+      margin-top: 0;
+    }
 
     &::-webkit-scrollbar {
       display: none;
