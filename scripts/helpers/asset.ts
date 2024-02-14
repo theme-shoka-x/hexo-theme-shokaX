@@ -5,11 +5,6 @@ import theme_env from '../../package.json'
 import { htmlTag, url_for, stripHTML } from 'hexo-util'
 import { getVendorLink } from '../utils'
 
-// TODO 弃用函数
-hexo.extend.helper.register('_new_comments', function (mode) {
-  return ''
-})
-
 hexo.extend.helper.register('_safedump', (source) => {
   return JSON.stringify(source)
 })
@@ -50,7 +45,9 @@ hexo.extend.helper.register('_vendor_font', () => {
   return fontFamilies
     ? htmlTag('link', {
       rel: 'stylesheet',
-      href: `${fontHost}/css?family=${fontFamilies.concat(fontDisplay, fontSubset)}`
+      href: `${fontHost}/css?family=${fontFamilies.concat(fontDisplay, fontSubset)}`,
+      media: 'none',
+      onload: "this.media='all'"
     })
     : ''
 })
@@ -76,9 +73,6 @@ hexo.extend.helper.register('vendor_js', function () {
   for (const jsSync in vendors.js) {
     res += htmlTag('script', { src: getVendorLink(hexo, vendors.js[jsSync]), async: true }, '')
   }
-  // for (const jsAsync in vendors.async_js) {
-  //   res += htmlTag('script', { src: getVendorLink(hexo, vendors.async_js[jsAsync]), async: true }, '')
-  // }
   return res
 })
 
