@@ -8,7 +8,7 @@ mixin item(name, path, parent, sublist)
     if parent
         li(class="item dropdown")
             if itemURL === '/'
-                a(href="javascript:void(0);")
+                a(href="#" onclick="return false;")
                     != menuIcon + menuText
             else
                 != _url(itemURL, menuIcon + menuText, {rel: 'section'})

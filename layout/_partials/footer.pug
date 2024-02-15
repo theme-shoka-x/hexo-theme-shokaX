@@ -15,7 +15,8 @@ div(class="status")
                 i(class="ic i-chart-area")
             span(title=__('symbols_count_time.count_total'))
                 != `${ symbolsCountTotal(site) } ${__('symbols_count_time.word')}`
-            span(class="post-meta-divider") |
+            span(class="post-meta-divider")
+                != " | "
             span(class="post-meta-item-icon")
                 i(class="ic i-coffee")
             span(title=__('symbols_count_time.time_total'))
@@ -27,14 +28,14 @@ div(class="status")
             != __('footer.powered', _url('https://hexo.io', 'Hexo') + ' & Theme.' + _url('https://github.com/theme-shoka-x/hexo-theme-shokaX/', 'ShokaX'))
     if theme.footer.icp.enable
         br
-        span(style="display:inline;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;")
+        span(style="display:inline;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:var(--grey-5);")
             a(href="https://beian.miit.gov.cn")
                 != theme.footer.icp.icpnumber
             - var beianN = theme.footer.icp?.beian, RC=theme.footer.icp?.recordcode
             if beianN && RC
                 br
                 a(target="_blank" href=`https://beian.mps.gov.cn/#/query/webSearch?code=${RC}`)
-                    img(loading="lazy" decoding="async" data-src=theme.statics + theme.assets + '/' + theme.footer.icp.icon style="max-width: 2em;display:inline;" width="20" height="20")
+                    img(loading="lazy" decoding="async" data-src=theme.statics + theme.assets + '/' + theme.footer.icp.icon style="max-width: 2em;display:inline;" width="20" height="20" alt="备案")
                     != beianN
     != shokax_inject('status')
 

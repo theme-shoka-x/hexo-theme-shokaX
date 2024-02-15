@@ -228,7 +228,7 @@ export const menuActive = () => {
     if (!target) return
     const isSamePath = target.pathname === location.pathname || target.pathname === location.pathname.replace('index.html', '')
     const isSubPath = !CONFIG.root.startsWith(target.pathname) && location.pathname.startsWith(target.pathname)
-    const active = target.hostname === location.hostname && (isSamePath || isSubPath)
+    const active = !target.onclick && target.hostname === location.hostname && (isSamePath || isSubPath)
     element.toggleClass('active', active)
     if (element.parentNode.child('.active') && parentItem.hasClass('dropdown')) {
       parentItem.removeClass('active').addClass('expand')
