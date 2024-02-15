@@ -1,7 +1,8 @@
 import { CONFIG } from '../globals/globalVars'
-import { init, pageviewCount, RecentComments } from '@waline/client'
+import { init, RecentComments } from '@waline/client'
+import { pageviewCount } from '@waline/client/pageview'
 
-import { createApp } from 'vue'
+import { $dom } from '../library/dom'
 
 export const walineComment = function () {
   init({
@@ -21,6 +22,7 @@ export const walineComment = function () {
 }
 
 export const walinePageview = function () {
+  // TODO waline 上游此模块存在问题
   pageviewCount({
     serverURL: CONFIG.waline.serverURL,
     path: window.location.pathname
@@ -34,24 +36,54 @@ export const walineRecentComments = async function () {
     serverURL: CONFIG.waline.serverURL.replace(/\/+$/, ''),
     count: 10
   })
-  comments.forEach(function (item) {
+  // TODO 疑似 waline API 返回格式与文档不一致，需要确认是否为上游问题
+  // @ts-ignore
+  comments.data.forEach(function (item) {
     let cText = (item.orig.length > 50) ? item.orig.substring(0, 50) + '...' : item.orig
     item.url = item.url.startsWith('/') ? item.url : '/' + item.url
     const siteLink = item.url + '#' + item.objectId
+
+    const time = new Date(item.time)
+    const now = new Date()
+    const diff = now.valueOf() - time.valueOf()
+    let dateStr:string
+    if (diff < 3600000) {
+      dateStr = `${Math.floor(diff / 60000)} 分钟前`
+    } else if (diff < 86400000) {
+      dateStr = `${Math.floor(diff / 3600000)} 小时前`
+    } else if (diff < 2592000000) {
+      dateStr = `${Math.floor(diff / 86400000)} 天前`
+    } else {
+      dateStr = `${time.getFullYear()}-${time.getMonth() + 1}-${time.getDate()}`
+    }
+
     items.push({
       href: siteLink,
       nick: item.nick,
-      // @ts-ignore
-      time: item.insertedAt.split('T').shift(),
+      time: dateStr,
       text: cText
     })
   })
-  createApp({
-    data () {
-      return {
-        coms: items,
-        root
-      }
-    }
-  }).mount('#new-comment')
+  const newComments = new DocumentFragment()
+  items.forEach(function (item) {
+    const commentEl = document.createElement('li')
+    const commentLink = document.createElement('a')
+    const commentTime = document.createElement('span')
+    const commentText = document.createElement('span')
+
+    commentText.innerText = item.text
+    commentTime.className = 'breadcrumb'
+    commentTime.innerText = `${item.nick} @ ${item.time}`
+    commentLink.href = root + item.href
+    commentLink['data-pjax-state'] = 'data-pjax-state'
+    commentEl.className = 'item'
+
+    commentText.appendChild(document.createElement('br'))
+    commentLink.appendChild(commentTime)
+    commentLink.appendChild(commentText)
+    commentEl.appendChild(commentLink)
+    newComments.appendChild(commentEl)
+  })
+
+  $dom('#new-comment').appendChild(newComments)
 }
