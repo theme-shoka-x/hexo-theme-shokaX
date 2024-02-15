@@ -11,6 +11,13 @@ else if page.tags && page.tags.length
 else if config.keywords
     meta(name="keywords" content=config.keywords)
 
+if page.description
+    meta(name="description" content=page.description)
+else if page.excerpt
+    meta(name="description" content=page.excerpt)
+else if config.description
+    meta(name="description" content=config.description)
+
 != canonical()
 
 if theme.open_graph
