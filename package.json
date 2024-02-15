@@ -28,7 +28,7 @@
         "typescript": "^5.3.3"
     },
     "dependencies": {
-        "@waline/client": "3.0.0-alpha.11",
+        "@waline/client": "^3.0.1",
         "vue": "^3.4.15",
         "@algolia/client-search": "^4.22.1",
         "algoliasearch": "4.22.1",

@@ -1,6 +1,6 @@
 import twikoo from 'twikoo'
 import { CONFIG } from '../globals/globalVars'
-import { createApp } from 'vue'
+import { $dom } from '../library/dom'
 
 export const twikooComment = function () {
   twikoo.init({
@@ -30,12 +30,26 @@ export const twikooRecentComments = async function () {
       text: cText
     })
   })
-  createApp({
-    data () {
-      return {
-        coms: comments,
-        root
-      }
-    }
-  }).mount('#new-comment')
+  const newComments = new DocumentFragment()
+  comments.forEach(function (item) {
+    const commentEl = document.createElement('li')
+    const commentLink = document.createElement('a')
+    const commentTime = document.createElement('span')
+    const commentText = document.createElement('span')
+
+    commentText.innerText = item.text
+    commentTime.className = 'breadcrumb'
+    commentTime.innerText = `${item.nick} @ ${item.time}`
+    commentLink.href = root + item.href
+    commentLink['data-pjax-state'] = 'data-pjax-state'
+    commentEl.className = 'item'
+
+    commentText.appendChild(document.createElement('br'))
+    commentLink.appendChild(commentTime)
+    commentLink.appendChild(commentText)
+    commentEl.appendChild(commentLink)
+    newComments.appendChild(commentEl)
+  })
+
+  $dom('#new-comment').appendChild(newComments)
 }
