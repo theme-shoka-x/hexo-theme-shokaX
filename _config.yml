@@ -234,16 +234,17 @@ summary:
 # Value before `||` delimiter is the target permalink,
 # secend value is the name of Font icon.
 social:
-   github: https://github.com/name || github || "#191717"
+  github: https://github.com/yourname || github || "#191717"
+  #gitee: https://gitee.com/yourname || gitee || "#e60026"
   #google: https://plus.google.com/yourname || google
   #twitter: https://twitter.com/yourname || twitter || "#00aff0"
   #zhihu: https://www.zhihu.com/people/yourname || zhihu || "#1e88e5"
   #music: https://music.163.com/#/user/home?id=yourid || cloud-music || "#e60026"
   #weibo: https://weibo.com/yourname || weibo || "#ea716e"
   #about: https://about.me/yourname || address-card || "#3b5998"
-  #  email: mailto:foo@xxx.com || envelope || "#55acd5"
+  #email: mailto:foo@xxx.com || envelope || "#55acd5"
   #facebook: https://www.facebook.com/yourname || facebook
-  #  stackoverflow: https://stackoverflow.com/ || stack-overflow
+  #stackoverflow: https://stackoverflow.com/ || stack-overflow
   #youtube: https://youtube.com/yourname || youtube
   #instagram: https://instagram.com/yourname || instagram
   #skype: skype:yourname?call|chat || skype
@@ -370,13 +371,13 @@ vendors:
     unpkg: https://unpkg.com
   js:
     pace: bytedance|pace/1.2.4/pace.min.js
-#    pjax: npm_webcache|theme-shokax-pjax@0.0.3/pjax.shokax.min.js
-#    anime: npm_webcache|theme-shokax-anime@0.0.6/anime.shokax.min.js
-#    lozad: npm_webcache|lozad@1.16.0/dist/lozad.min.js
-#    algolia: bytedance|algoliasearch/4.12.1/algoliasearch-lite.umd.min.js
-#    instantsearch: bytedance|instantsearch.js/4.39.0/instantsearch.production.min.js
-#    quicklink: npm_webcache|quicklink@2.3.0/dist/quicklink.umd.js
-#    mouse_firework: npm_webcache|mouse-firework@0.0.4/dist/index.umd.js
+    # pjax: npm_webcache|theme-shokax-pjax@0.0.3/pjax.shokax.min.js
+    # anime: npm_webcache|theme-shokax-anime@0.0.6/anime.shokax.min.js
+    # lozad: npm_webcache|lozad@1.16.0/dist/lozad.min.js
+    # algolia: bytedance|algoliasearch/4.12.1/algoliasearch-lite.umd.min.js
+    # instantsearch: bytedance|instantsearch.js/4.39.0/instantsearch.production.min.js
+    # quicklink: npm_webcache|quicklink@2.3.0/dist/quicklink.umd.js
+    # mouse_firework: npm_webcache|mouse-firework@0.0.4/dist/index.umd.js
   async_js:
     fancybox: bytedance|??jquery/3.5.1/jquery.min.js,fancybox/3.5.7/jquery.fancybox.min.js,justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js
     copy_tex: npm_webcache|katex@0.16.7/dist/contrib/copy-tex.min.js
