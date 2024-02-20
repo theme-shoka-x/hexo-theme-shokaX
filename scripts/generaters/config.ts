@@ -44,7 +44,9 @@ hexo.extend.filter.register('before_generate', () => {
     hexo.theme.config.image_list = yaml.load(fs.readFileSync(path.join(__dirname, '../../_images.yml'), { encoding: 'utf-8' }))
   }
 
-  if (fs.existsSync(path.join(__dirname, '../../_images_index.yml'))) {
+  if (data.images_index && data.images_index.length > 0) {
+    hexo.theme.config.index_images = data.images_index;
+  } else if (fs.existsSync(path.join(__dirname, '../../_images_index.yml'))) {
     hexo.theme.config.index_images = yaml.load(fs.readFileSync(path.join(__dirname, '../../_images_index.yml'), { encoding: 'utf-8' }))
   } else {
     hexo.theme.config.index_images = data.index_images || []
