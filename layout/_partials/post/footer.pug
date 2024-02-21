@@ -4,7 +4,8 @@ div(class="meta")
             span(class="icon")
                 i(class="ic i-eye")
             span 此文章已被阅读次数:
-            span(id="twikoo_visitors" class="waline-pageview-count" data-path=post.path) 正在加载...
+            - var prefixedPath = post.path.startsWith('/') ? post.path : '/' + post.path
+            span(id="twikoo_visitors" class="waline-pageview-count" data-path=prefixedPath) 正在加载...
         span(class="item")
             span(class="icon")
                 i(class="ic i-calendar-check")
