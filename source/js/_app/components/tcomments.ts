@@ -1,4 +1,4 @@
-import twikoo from 'twikoo'
+import * as twikoo from 'twikoo'
 import { CONFIG } from '../globals/globalVars'
 import { $dom } from '../library/dom'
 
