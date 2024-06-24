@@ -1,50 +1,50 @@
 {
     "name": "hexo-theme-shokax",
-    "version": "0.4.2",
+    "version": "0.4.3",
     "description": "a hexo theme based on shoka",
     "main": "index.js",
     "repository": "https://github.com/theme-shoka-x/hexo-theme-shokaX",
     "author": "zkz098",
     "license": "AGPL-3.0-or-later",
-    "packageManager": "pnpm@8.14.1",
+    "packageManager": "pnpm@9.4.0",
     "scripts": {
         "test": "tsc --build --verbose",
         "build": "cd ./scripts && tsc --build --verbose"
     },
     "devDependencies": {
-        "@types/fancybox": "^3.5.6",
-        "@types/jquery": "^3.5.29",
+        "@types/fancybox": "^3.5.7",
+        "@types/jquery": "^3.5.30",
         "@types/js-yaml": "^4.0.9",
-        "@types/node": "^20.11.10",
+        "@types/node": "^20.14.8",
         "@types/quicklink": "^2.3.4",
-        "@typescript-eslint/eslint-plugin": "^7.0.1",
-        "@typescript-eslint/parser": "^7.0.2",
+        "@typescript-eslint/eslint-plugin": "^7.13.1",
+        "@typescript-eslint/parser": "^7.13.1",
         "eslint": "^9.5.0",
         "eslint-config-standard": "~17",
         "eslint-plugin-import": "^2.29.1",
         "eslint-plugin-n": "^17.9.0",
-        "eslint-plugin-promise": "^6.1.1",
-        "eslint-plugin-vue": "^9.20.1",
-        "typescript": "^5.3.3"
+        "eslint-plugin-promise": "^6.2.0",
+        "eslint-plugin-vue": "^9.26.0",
+        "typescript": "^5.5.2"
     },
     "dependencies": {
-        "@waline/client": "^3.1.2",
-        "vue": "^3.4.15",
-        "@algolia/client-search": "^4.22.1",
+        "@waline/client": "^3.2.2",
+        "vue": "^3.4.30",
+        "@algolia/client-search": "^4.23.3",
         "algoliasearch": "4.23.3",
         "esbuild": "^0.21.5",
         "hexo": "7.2.0",
-        "hexo-fs": "^4.1.1",
+        "hexo-fs": "^4.1.3",
         "hexo-pagination": "^3.0.0",
-        "hexo-util": "^3.2.0",
-        "instantsearch.js": "^4.64.2",
+        "hexo-util": "^3.3.0",
+        "instantsearch.js": "^4.72.1",
         "js-yaml": "^4.1.0",
         "mouse-firework": "^0.0.5",
         "quicklink": "^2.3.0",
         "theme-shokax-anime": "^0.0.6",
         "theme-shokax-pjax": "^0.0.3",
-        "twikoo": "^1.6.31",
-        "unlazy": "^0.11.1",
+        "twikoo": "^1.6.36",
+        "unlazy": "^0.11.3",
         "hexo-lightning-minify": "latest",
         "hexo-algoliasearch": "latest",
         "hexo-feed": "latest",
@@ -53,5 +53,18 @@
     "engines": {
         "node": ">=18.0.0"
     },
-    "engineStrict": true
+    "engineStrict": true,
+    "pnpm": {
+        "overrides": {
+            "array-includes": "npm:@nolyfill/array-includes@latest",
+            "array.prototype.findlastindex": "npm:@nolyfill/array.prototype.findlastindex@latest",
+            "array.prototype.flat": "npm:@nolyfill/array.prototype.flat@latest",
+            "array.prototype.flatmap": "npm:@nolyfill/array.prototype.flatmap@latest",
+            "hasown": "npm:@nolyfill/hasown@latest",
+            "is-regex": "npm:@nolyfill/is-regex@latest",
+            "object.fromentries": "npm:@nolyfill/object.fromentries@latest",
+            "object.groupby": "npm:@nolyfill/object.groupby@latest",
+            "object.values": "npm:@nolyfill/object.values@latest"
+        }
+    }
 }

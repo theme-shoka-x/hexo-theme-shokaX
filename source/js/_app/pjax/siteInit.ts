@@ -55,6 +55,7 @@ const siteInit = () => {
       })
 
       // Handle and trigger popup window
+      // search 只有一个，不需要 each
       $dom.each('.search', (element) => {
         element.addEventListener('click', () => {
           document.body.style.overflow = 'hidden'

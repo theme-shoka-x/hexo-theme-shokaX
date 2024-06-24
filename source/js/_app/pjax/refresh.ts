@@ -72,35 +72,33 @@ export const siteRefresh = (reload) => {
   sideBarTab()
   sidebarTOC()
 
-  if (LOCAL.ispost) {
-    import('../page/post').then(({ postBeauty }) => {
-      postBeauty()
-    })
+  import('../page/post').then(({ postBeauty }) => {
+    postBeauty()
+  })
 
-    const comment = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          if (__shokax_waline__) {
-            import('../components/comments').then(({ walinePageview, walineComment }) => {
-              walinePageview()
-              walineComment()
-            })
-          }
-          if (__shokax_twikoo__) {
-            import('../components/tcomments').then(({ twikooComment }) => {
-              twikooComment()
-            })
-          }
-          comment.disconnect()
+  const comment = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        if (__shokax_waline__) {
+          import('../components/comments').then(({ walinePageview, walineComment }) => {
+            walinePageview()
+            walineComment()
+          })
         }
-      })
-    }, {
-      root: null,
-      threshold: 0.2
+        if (__shokax_twikoo__) {
+          import('../components/tcomments').then(({ twikooComment }) => {
+            twikooComment()
+          })
+        }
+        comment.disconnect()
+      }
     })
+  }, {
+    root: null,
+    threshold: 0.2
+  })
 
-    comment.observe($dom('#copyright'))
-  }
+  comment.observe($dom('#copyright'))
 
   lazyLoad()
 
