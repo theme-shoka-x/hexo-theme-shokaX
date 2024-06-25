@@ -7,8 +7,6 @@ interface AudioItem {
 }
 
 declare interface EventTarget {
-  createChild(tag: string, obj: Object, positon?: string): HTMLElement;
-  wrapObject(obj: Object): void;
   changeOrGetHeight(h: number | string): void;
   changeOrGetHeight(): number;
   changeOrGetWidth(w: number | string): void;
@@ -18,7 +16,6 @@ declare interface EventTarget {
   insertAfter(element: HTMLElement): void;
   display(d: string): EventTarget;
   display():string
-  child(selector: string): HTMLElement;
   find(selector: string): NodeListOf<HTMLElement>;
   _class(type: string, className: string, display?: boolean): void;
   addClass(className: string): EventTarget;

@@ -1,5 +1,4 @@
 import { sideBarToggleHandle } from '../components/sidebar'
-import { getDocHeight } from '../library/dom'
 import {
   backToTop,
   diffY,
@@ -48,7 +47,7 @@ export const scrollHandle = () => {
   // 获取窗口高度
   const winHeight = window.innerHeight
   // 获取文档高度
-  const docHeight = getDocHeight()
+  const docHeight = (document.querySelector('main > .inner') as HTMLElement).offsetHeight
   // 计算可见内容高度
   const contentVisibilityHeight = docHeight > winHeight ? docHeight - winHeight : document.body.scrollHeight - winHeight
   // 判断页面是否滚动超过 headerHightInner

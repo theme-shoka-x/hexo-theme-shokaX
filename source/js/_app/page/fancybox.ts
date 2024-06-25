@@ -2,6 +2,7 @@ import { $dom } from '../library/dom'
 import { vendorCss, vendorJs } from '../library/loadFile'
 import { insertAfter } from '../library/proto'
 
+// TODO 使用LightGallery/PhotoSwipe替换Fancybox
 export const postFancybox = (p:string) => {
   if (document.querySelector(p + ' .md img')) {
     vendorCss('fancybox')
