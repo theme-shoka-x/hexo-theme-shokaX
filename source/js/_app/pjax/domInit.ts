@@ -15,19 +15,19 @@ import {
 import { Loader } from '../globals/thirdparty'
 import { $dom } from '../library/dom'
 import { mediaPlayer } from '../player'
-import { child, createChild } from '../library/proto'
+import { createChild } from '../library/proto'
 
 export default function domInit () {
   $dom.each('.overview .menu > .item', (el) => {
-    child(siteNav, '.menu').appendChild(el.cloneNode(true))
+    siteNav.querySelector('.menu').appendChild(el.cloneNode(true))
   })
 
   loadCat.addEventListener('click', Loader.vanish)
   menuToggle.addEventListener('click', sideBarToggleHandle)
   document.querySelector('.dimmer').addEventListener('click', sideBarToggleHandle)
 
-  child(quickBtn, '.down').addEventListener('click', goToBottomHandle)
-  child(quickBtn, '.up').addEventListener('click', backToTopHandle)
+  quickBtn.querySelector('.down').addEventListener('click', goToBottomHandle)
+  quickBtn.querySelector('.up').addEventListener('click', backToTopHandle)
 
   if (!toolBtn) {
     setToolBtn(createChild(siteHeader, 'div', {
@@ -36,10 +36,10 @@ export default function domInit () {
     }))
   }
 
-  setToolPlayer(toolBtn.child('.player'))
-  setBackToTop(toolBtn.child('.back-to-top'))
-  setGoToComment(toolBtn.child('.chat'))
-  setShowContents(toolBtn.child('.contents'))
+  setToolPlayer(toolBtn.querySelector('.player'))
+  setBackToTop(toolBtn.querySelector('.back-to-top'))
+  setGoToComment(toolBtn.querySelector('.chat'))
+  setShowContents(toolBtn.querySelector('.contents'))
 
   backToTop.addEventListener('click', backToTopHandle)
   goToComment.addEventListener('click', goToCommentHandle)

@@ -88,8 +88,8 @@ export const scrollHandle = () => {
   // 计算滚动百分比
   const scrollPercent = Math.round(Math.min(100 * window.scrollY / contentVisibilityHeight, 100)) + '%'
   // 更新回到顶部按钮的文字
-  if (backToTop.child('span').innerText !== scrollPercent) {
-    backToTop.child('span').innerText = scrollPercent
+  if (backToTop.querySelector('span').innerText !== scrollPercent) {
+    backToTop.querySelector('span').innerText = scrollPercent
   }
   // 更新百分比进度条的宽度
   if (document.getElementById('sidebar').hasClass('affix') || document.getElementById('sidebar').hasClass('on')) {

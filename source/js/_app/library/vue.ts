@@ -2,11 +2,11 @@ import { $storage } from './storage'
 import { transition } from './anime'
 import { BODY } from '../globals/globalVars'
 import { changeTheme } from '../globals/themeColor'
-import { child, createChild, setDisplay } from './proto'
+import { createChild, setDisplay } from './proto'
 export function initVue () {
   function changeThemeByBtn () {
     let c: { (): void; (): void; (): void }
-    const btn = child(document.querySelector('.theme'), '.ic')
+    const btn = document.querySelector('.theme').querySelector('.ic')
 
     const neko = createChild(BODY, 'div', {
       id: 'neko',
@@ -45,5 +45,5 @@ export function initVue () {
       setDisplay(neko, 'block')
     })
   }
-  child(document.getElementById('rightNav'), '.theme .ic').addEventListener('click', changeThemeByBtn)
+  document.getElementById('rightNav').querySelector('.theme .ic').addEventListener('click', changeThemeByBtn)
 }

@@ -24,9 +24,9 @@ export const postBeauty = () => {
     const copyright = document.getElementById('copyright')
     if (window.getSelection().toString().length > 30 && copyright) {
       event.preventDefault()
-      const author = '# ' + copyright.child('.author').innerText
-      const link = '# ' + copyright.child('.link').innerText
-      const license = '# ' + copyright.child('.license').innerText
+      const author = '# ' + (copyright.querySelector('.author') as HTMLElement).innerText
+      const link = '# ' + (copyright.querySelector('.link') as HTMLElement).innerText
+      const license = '# ' + (copyright.querySelector('.license') as HTMLElement).innerText
       const htmlData = author + '<br>' + link + '<br>' + license + '<br><br>' + window.getSelection().toString().replace(/\r\n/g, '<br>')
 
       const textData = author + '\n' + link + '\n' + license + '\n\n' + window.getSelection().toString().replace(/\r\n/g, '\n')
@@ -68,12 +68,12 @@ export const postBeauty = () => {
   })
 
   $dom.each('figure.highlight', (element) => {
-    const code_container = element.child('.code-container')
-    const caption = element.child('figcaption')
+    const code_container = element.querySelector('.code-container') as HTMLElement
+    const caption = element.querySelector('figcaption')
 
     element.insertAdjacentHTML('beforeend', '<div class="operation"><span class="breakline-btn"><i class="ic i-align-left"></i></span><span class="copy-btn"><i class="ic i-clipboard"></i></span><span class="fullscreen-btn"><i class="ic i-expand"></i></span></div>')
 
-    const copyBtn = element.child('.copy-btn')
+    const copyBtn = element.querySelector('.copy-btn')
     if (LOCAL.nocopy) {
       copyBtn.remove()
     } else {
@@ -86,42 +86,42 @@ export const postBeauty = () => {
         })
 
         clipBoard(code, (result) => {
-          target.child('.ic').className = result ? 'ic i-check' : 'ic i-times'
+          target.querySelector('.ic').className = result ? 'ic i-check' : 'ic i-times'
           target.blur()
           showtip(LOCAL.copyright)
         })
       }, { passive: true })
       copyBtn.addEventListener('mouseleave', (event) => {
         setTimeout(() => {
-          event.target.child('.ic').className = 'ic i-clipboard'
+          (event.target as HTMLElement).querySelector('.ic').className = 'ic i-clipboard'
         }, 1000)
       })
     }
 
-    const breakBtn = element.child('.breakline-btn')
+    const breakBtn = element.querySelector('.breakline-btn')
     breakBtn.addEventListener('click', (event) => {
-      const target = event.currentTarget
+      const target = event.currentTarget as HTMLElement
       if (element.hasClass('breakline')) {
         element.removeClass('breakline')
-        target.child('.ic').className = 'ic i-align-left'
+        target.querySelector('.ic').className = 'ic i-align-left'
       } else {
         element.addClass('breakline')
-        target.child('.ic').className = 'ic i-align-justify'
+        target.querySelector('.ic').className = 'ic i-align-justify'
       }
     })
 
-    const fullscreenBtn = element.child('.fullscreen-btn')
+    const fullscreenBtn = element.querySelector('.fullscreen-btn')
     const removeFullscreen = () => {
       element.removeClass('fullscreen')
       element.scrollTop = 0
       BODY.removeClass('fullscreen')
-      fullscreenBtn.child('.ic').className = 'ic i-expand'
+      fullscreenBtn.querySelector('.ic').className = 'ic i-expand'
     }
     const fullscreenHandle = () => {
       if (element.hasClass('fullscreen')) {
         removeFullscreen()
         if (code_container && code_container.find('tr').length > 15) {
-          const showBtn = code_container.child('.show-btn')
+          const showBtn = code_container.querySelector('.show-btn')
           code_container.style.maxHeight = '300px'
           showBtn.removeClass('open')
         }
@@ -129,9 +129,9 @@ export const postBeauty = () => {
       } else {
         element.addClass('fullscreen')
         BODY.addClass('fullscreen')
-        fullscreenBtn.child('.ic').className = 'ic i-compress'
+        fullscreenBtn.querySelector('.ic').className = 'ic i-compress'
         if (code_container && code_container.find('tr').length > 15) {
-          const showBtn = code_container.child('.show-btn')
+          const showBtn = code_container.querySelector('.show-btn')
           code_container.style.maxHeight = ''
           showBtn.addClass('open')
         }
@@ -143,7 +143,7 @@ export const postBeauty = () => {
     if (code_container && code_container.find('tr').length > 15) {
       code_container.style.maxHeight = '300px'
       code_container.insertAdjacentHTML('beforeend', '<div class="show-btn"><i class="ic i-angle-down"></i></div>')
-      const showBtn = code_container.child('.show-btn')
+      const showBtn = code_container.querySelector('.show-btn')
 
       const hideCode = () => {
         code_container.style.maxHeight = '300px'

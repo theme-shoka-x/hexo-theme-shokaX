@@ -4,7 +4,7 @@ import { CONFIG, Container, diffY, menuToggle, showContents, sideBar } from '../
 import { clipBoard } from '../globals/tools'
 import { pageScroll, transition } from '../library/anime'
 import { $dom } from '../library/dom'
-import initProto, { child, getHeight, setDisplay } from '../library/proto'
+import initProto, { getHeight, setDisplay } from '../library/proto'
 
 initProto()
 export const sideBarToggleHandle = (event:Event, force?:number) => {
@@ -33,17 +33,17 @@ export const sideBarToggleHandle = (event:Event, force?:number) => {
 }
 
 export const sideBarTab = () => {
-  const sideBarInner = child(sideBar, '.inner')
+  const sideBarInner = sideBar.querySelector('.inner')
 
-  if (sideBar.child('.tab')) {
-    sideBarInner.removeChild(sideBar.child('.tab'))
+  if (sideBar.querySelector('.tab')) {
+    sideBarInner.removeChild(sideBar.querySelector('.tab'))
   }
 
   const list = document.createElement('ul'); let active = 'active'
   list.className = 'tab';
 
   ['contents', 'related', 'overview'].forEach((item) => {
-    const element = sideBar.child('.panel.' + item)
+    const element = sideBar.querySelector('.panel.' + item)
 
     if (element.innerHTML.trim().length < 1) {
       if (item === 'contents') {
@@ -81,7 +81,7 @@ export const sideBarTab = () => {
         element.removeClass('active')
       })
 
-      sideBar.child('.panel.' + target.className.replace(' item', '')).addClass('active')
+      sideBar.querySelector('.panel.' + target.className.replace(' item', '')).addClass('active')
 
       target.addClass('active')
     })
@@ -91,10 +91,10 @@ export const sideBarTab = () => {
   })
 
   if (list.childNodes.length > 1) {
-    sideBarInner.insertBefore(list, sideBarInner.childNodes[0])
-    sideBar.child('.panels').style.paddingTop = ''
+    sideBarInner.insertBefore(list, sideBarInner.childNodes[0]);
+    (sideBar.querySelector('.panels') as HTMLElement).style.paddingTop = ''
   } else {
-    sideBar.child('.panels').style.paddingTop = '.625rem'
+    (sideBar.querySelector('.panels') as HTMLElement).style.paddingTop = '.625rem'
   }
 }
 
@@ -124,7 +124,7 @@ export const sidebarTOC = () => {
     while (!parent.matches('.contents')) {
       if (parent.matches('li')) {
         parent.addClass('active')
-        const t = document.querySelector(parent.child('a.toc-link').getAttribute('href'))
+        const t = document.querySelector(parent.querySelector('a.toc-link').getAttribute('href'))
         if (t) {
           t.addClass('active')
         }
@@ -146,10 +146,10 @@ export const sidebarTOC = () => {
   let activeLock = null
 
   sections = sections.map((element, index) => {
-    const link = element.child('a.toc-link')
+    const link = element.querySelector('a.toc-link')
     const anchor = document.querySelector(decodeURI(link.getAttribute('href')))
     if (!anchor) return null
-    const alink = anchor.child('a.anchor')
+    const alink = anchor.querySelector('a.anchor')
 
     const anchorScroll = (event:MouseEvent) => {
       event.preventDefault()
@@ -171,7 +171,7 @@ export const sidebarTOC = () => {
     return anchor
   })
 
-  const tocElement = sideBar.child('.contents.panel')
+  const tocElement = sideBar.querySelector('.contents.panel')
 
   const findIndex = (entries: IntersectionObserverEntry[]) => {
     let index = 0
@@ -223,14 +223,14 @@ export const goToCommentHandle = () => {
 
 export const menuActive = () => {
   $dom.each('.menu .item:not(.title)', (element) => {
-    const target = <HTMLAnchorElement> element.child('a[href]')
+    const target = <HTMLAnchorElement> element.querySelector('a[href]')
     const parentItem = element.parentNode.parentNode
     if (!target) return
     const isSamePath = target.pathname === location.pathname || target.pathname === location.pathname.replace('index.html', '')
     const isSubPath = !CONFIG.root.startsWith(target.pathname) && location.pathname.startsWith(target.pathname)
     const active = !target.onclick && target.hostname === location.hostname && (isSamePath || isSubPath)
     element.toggleClass('active', active)
-    if (element.parentNode.child('.active') && parentItem.hasClass('dropdown')) {
+    if (element.parentNode.querySelector('.active') && parentItem.hasClass('dropdown')) {
       parentItem.removeClass('active').addClass('expand')
     } else {
       parentItem.removeClass('expand')

@@ -68,7 +68,7 @@ export const mediaPlayer = (t, config?) => {
         that.btns[item] = createChild(that.el, 'div', opt)
       })
 
-      that.btns.volume.bar = that.btns.volume.child('.bar')
+      that.btns.volume.bar = that.btns.volume.querySelector('.bar')
     },
     events: {
       mode (e) {
@@ -217,11 +217,11 @@ export const mediaPlayer = (t, config?) => {
 
       preview.el.innerHTML = '<div class="cover"><div class="disc"><img src="' + (current.cover) + '" class="blur"  alt="music cover"/></div></div>' +
                 '<div class="info"><h4 class="title">' + current.name + '</h4><span>' + current.artist + '</span>' +
-                '<div class="lrc"></div></div>'
+                '<div class="lrc"></div></div>';
 
-      preview.el.child('.cover').addEventListener('click', t.player.options.events['play-pause'])
+      (preview.el as HTMLElement).querySelector('.cover').addEventListener('click', t.player.options.events['play-pause'])
 
-      lyrics.create(preview.el.child('.lrc'))
+      lyrics.create((preview.el as HTMLElement).querySelector('.lrc'))
     }
   }
   let source
@@ -270,7 +270,7 @@ export const mediaPlayer = (t, config?) => {
           }
         }
 
-        item.el = createChild(tab.child('ol'), 'li', {
+        item.el = createChild(tab.querySelector('ol'), 'li', {
           title: item.name + ' - ' + item.artist,
           innerHTML: '<span class="info"><span>' + item.name + '</span><span>' + item.artist + '</span></span>',
           onclick (event) {
@@ -299,13 +299,13 @@ export const mediaPlayer = (t, config?) => {
     },
     scroll () {
       const item = this.current()
-      let li = this.el.child('li.active')
+      let li = this.el.querySelector('li.active')
       li && li.removeClass('active')
-      let tab = this.el.child('.tab.active')
+      let tab = this.el.querySelector('.tab.active')
       tab && tab.removeClass('active')
-      li = this.el.find('.nav li')[item.group]
+      li = this.el.querySelectorAll('.nav li')[item.group]
       li && li.addClass('active')
-      tab = this.el.find('.tab')[item.group]
+      tab = this.el.querySelectorAll('.tab')[item.group]
       tab && tab.addClass('active')
 
       pageScroll(item.el, item.el.offsetTop)
@@ -335,9 +335,9 @@ export const mediaPlayer = (t, config?) => {
         innerHTML: (t.player.options.type === 'audio' ? '<div class="preview"></div>' : '') + '<div class="controller"></div><div class="playlist"></div>'
       }, 'after')
 
-      preview.el = this.el.child('.preview')
-      playlist.el = this.el.child('.playlist')
-      controller.el = this.el.child('.controller')
+      preview.el = this.el.querySelector('.preview')
+      playlist.el = this.el.querySelector('.playlist')
+      controller.el = this.el.querySelector('.controller')
     },
     hide () {
       const el = this.el

@@ -17,7 +17,7 @@ export const tabFormat = () => {
       box.id = id
       box.innerHTML = '<div class="show-btn"></div>'
 
-      const showBtn = box.child('.show-btn')
+      const showBtn = box.querySelector('.show-btn')
       showBtn.addEventListener('click', () => {
         pageScroll(box)
       })
@@ -28,12 +28,12 @@ export const tabFormat = () => {
       first_tab = false
     }
 
-    let ul = box.child('.nav ul')
+    let ul = box.querySelector('.nav ul')
     if (!ul) {
       ul = createChild(box, 'div', {
         className: 'nav',
         innerHTML: '<ul></ul>'
-      }).child('ul')
+      }).querySelector('ul')
     }
 
     const li = createChild(ul, 'li', {

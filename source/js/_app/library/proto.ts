@@ -1,6 +1,6 @@
 import { $dom } from './dom'
 
-export const insertAfter = function (el: HTMLElement, element: HTMLElement): void {
+export const insertAfter = function (el: Element, element: HTMLElement): void {
   const parent = el.parentNode
   if (parent.lastChild === el) {
     parent.appendChild(element)
@@ -12,7 +12,7 @@ export const insertAfter = function (el: HTMLElement, element: HTMLElement): voi
 /**
  * 创建一个子节点并放置
  */
-export const createChild = function (parent: HTMLElement, tag: string, obj: object, positon?: string): HTMLElement {
+export const createChild = function (parent: Element, tag: string, obj: object, positon?: string): HTMLElement {
   const child = document.createElement(tag)
   Object.assign(child, obj)
   switch (positon) {
@@ -71,10 +71,6 @@ export const setDisplay = function (el: HTMLElement, d: string): HTMLElement {
   return el
 }
 
-// TODO 未完成迁移
-export const child = function (el: HTMLElement, selector: string): HTMLElement {
-  return $dom(selector, (el as unknown as Document))
-}
 export default function initProto () {
   Object.assign(HTMLElement.prototype, {
     /**
