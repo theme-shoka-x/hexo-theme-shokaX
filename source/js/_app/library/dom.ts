@@ -1,4 +1,4 @@
-const getDocHeight = () => $dom('main > .inner').offsetHeight
+const getDocHeight = () => document.querySelector('main > .inner').offsetHeight
 /**
  * 获取一个dom选择器对应的元素
  */

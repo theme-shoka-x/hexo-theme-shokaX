@@ -3,7 +3,7 @@ import { vendorCss, vendorJs } from '../library/loadFile'
 import { insertAfter } from '../library/proto'
 
 export const postFancybox = (p:string) => {
-  if ($dom(p + ' .md img')) {
+  if (document.querySelector(p + ' .md img')) {
     vendorCss('fancybox')
     vendorCss('justifiedGallery')
     vendorJs('fancybox', () => {

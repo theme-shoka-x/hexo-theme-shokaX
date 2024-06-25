@@ -85,5 +85,5 @@ export const walineRecentComments = async function () {
     newComments.appendChild(commentEl)
   })
 
-  $dom('#new-comment').appendChild(newComments)
+  document.getElementById("new-comment").appendChild(newComments)
 }

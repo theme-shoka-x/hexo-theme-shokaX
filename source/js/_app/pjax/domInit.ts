@@ -24,7 +24,7 @@ export default function domInit () {
 
   loadCat.addEventListener('click', Loader.vanish)
   menuToggle.addEventListener('click', sideBarToggleHandle)
-  $dom('.dimmer').addEventListener('click', sideBarToggleHandle)
+  document.querySelector('.dimmer').addEventListener('click', sideBarToggleHandle)
 
   child(quickBtn, '.down').addEventListener('click', goToBottomHandle)
   child(quickBtn, '.up').addEventListener('click', backToTopHandle)
@@ -48,7 +48,7 @@ export default function domInit () {
   if (__shokax_player__) {
     mediaPlayer(toolPlayer)
 
-    $dom('main').addEventListener('click', () => {
+    document.querySelector('main').addEventListener('click', () => {
       toolPlayer.player.mini()
     })
   }

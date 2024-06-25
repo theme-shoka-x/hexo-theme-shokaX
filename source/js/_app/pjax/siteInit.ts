@@ -40,7 +40,7 @@ const siteInit = () => {
   themeColorListener()
 
   if (__shokax_search__) {
-    $dom('li.item.search > i').addEventListener('click', () => {
+    document.querySelector('li.item.search > i').addEventListener('click', () => {
       if (CONFIG.search === null) { return }
 
       if (!siteSearch) {
@@ -55,12 +55,12 @@ const siteInit = () => {
       })
 
       // Handle and trigger popup window
-      // search 只有一个，不需要 each
+      // TODO search 只有一个，不需要 each
       $dom.each('.search', (element) => {
         element.addEventListener('click', () => {
           document.body.style.overflow = 'hidden'
           transition(siteSearch, 'shrinkIn', () => {
-            $dom('.search-input').focus()
+            (document.querySelector('.search-input') as HTMLInputElement).focus()
           }) // transition.shrinkIn
         })
       })

@@ -1,6 +1,5 @@
 import * as twikoo from 'twikoo'
 import { CONFIG } from '../globals/globalVars'
-import { $dom } from '../library/dom'
 
 export const twikooComment = function () {
   twikoo.init({
@@ -51,5 +50,5 @@ export const twikooRecentComments = async function () {
     newComments.appendChild(commentEl)
   })
 
-  $dom('#new-comment').appendChild(newComments)
+  document.getElementById('new-comment').appendChild(newComments)
 }

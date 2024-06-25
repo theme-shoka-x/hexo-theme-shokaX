@@ -7,13 +7,13 @@ import { mediaPlayer } from '../player'
 import { getDisplay, setDisplay, wrapObject } from '../library/proto'
 
 export const postBeauty = () => {
-  if (!$dom('.md')) { return }
+  if (!document.querySelector('.md')) { return }
 
   if (__shokax_fancybox__) {
     postFancybox('.post.block')
   }
 
-  $dom('.post.block').oncopy = (event) => {
+  (document.querySelector('.post.block') as HTMLTextAreaElement).oncopy = (event) => {
     showtip(LOCAL.copyright)
 
     if (LOCAL.nocopy) {
@@ -21,7 +21,7 @@ export const postBeauty = () => {
       return
     }
 
-    const copyright = $dom('#copyright')
+    const copyright = document.getElementById('copyright')
     if (window.getSelection().toString().length > 30 && copyright) {
       event.preventDefault()
       const author = '# ' + copyright.child('.author').innerText
@@ -174,7 +174,7 @@ export const postBeauty = () => {
   $dom.each('.reward button', (element) => {
     element.addEventListener('click', (event) => {
       event.preventDefault()
-      const qr = $dom('#qr')
+      const qr = document.getElementById('qr')
       if (getDisplay(qr) === 'inline-flex') {
         transition(qr, 0)
       } else {

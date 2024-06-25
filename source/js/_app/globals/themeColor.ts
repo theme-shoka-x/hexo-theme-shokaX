@@ -1,12 +1,11 @@
 import { $storage } from '../library/storage'
-import { $dom } from '../library/dom'
 import { CONFIG, HTML } from './globalVars'
 
 /**
  * 更改日夜模式
  */
 export const changeTheme = (type?: string) => {
-  const btn = <HTMLElement>$dom('.theme .ic')
+  const btn = document.querySelector('.theme .ic')
   if (type === 'dark') {
     HTML.setAttribute('data-theme', type)
     btn.removeClass('i-sun')
@@ -40,7 +39,7 @@ export const changeMetaTheme = (color: string): void => {
     color = '#222'
   }
 
-  $dom('meta[name="theme-color"]').setAttribute('content', color)
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', color)
 }
 
 // 记忆日夜模式切换和系统亮暗模式监听

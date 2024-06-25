@@ -12,7 +12,7 @@ export function algoliaSearch (pjax) {
     searchClient: algoliasearch(CONFIG.search.appID, CONFIG.search.apiKey),
     // TODO 移除弃用函数
     searchFunction (helper) {
-      const searchInput = $dom('.search-input') as HTMLInputElement
+      const searchInput = document.querySelector('.search-input') as HTMLInputElement
       if (searchInput.value) {
         helper.search()
       }
@@ -20,7 +20,7 @@ export function algoliaSearch (pjax) {
   })
 
   search.on('render', () => {
-    pjax.refresh($dom('#search-hits'))
+    pjax.refresh(document.getElementById("search-hits"))
   })
 
   // Registering Widgets
@@ -105,7 +105,7 @@ export function algoliaSearch (pjax) {
       onPopupClose()
     }
   })
-  $dom('.close-btn').addEventListener('click', onPopupClose)
+  document.querySelector('.close-btn').addEventListener('click', onPopupClose)
   window.addEventListener('pjax:success', onPopupClose)
   window.addEventListener('keyup', (event) => {
     if (event.key === 'Escape') {

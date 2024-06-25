@@ -10,7 +10,7 @@ export const tabFormat = () => {
 
     const id = element.getAttribute('data-id')
     const title = element.getAttribute('data-title')
-    let box = $dom('#' + id)
+    let box = document.getElementById(id)
     if (!box) {
       box = document.createElement('div')
       box.className = 'tabs'

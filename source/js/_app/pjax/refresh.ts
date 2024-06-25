@@ -27,7 +27,7 @@ export const pjaxReload = () => {
       menuToggle.removeClass('close')
     }) // 'transition.slideRightOut'
   }
-  const mainNode = $dom('#main')
+  const mainNode = document.getElementById('main')
   mainNode.innerHTML = ''
   mainNode.appendChild(loadCat.lastChild.cloneNode(true))
   pageScroll(0)
@@ -76,7 +76,7 @@ export const siteRefresh = (reload) => {
     postBeauty()
   })
 
-  const cpel = $dom('#copyright')
+  const cpel = document.getElementById('copyright')
   if (cpel) {
     const comment = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {

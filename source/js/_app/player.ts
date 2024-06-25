@@ -257,7 +257,7 @@ export const mediaPlayer = (t, config?) => {
         if (item.el) { return null }
 
         const id = 'list-' + t.player._id + '-' + item.group
-        let tab = $dom('#' + id)
+        let tab = document.getElementById(id)
         if (!tab) {
           tab = createChild(el, 'div', {
             id,

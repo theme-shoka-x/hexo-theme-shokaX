@@ -1,5 +1,5 @@
 import { sideBarToggleHandle } from '../components/sidebar'
-import { $dom, getDocHeight } from '../library/dom'
+import { getDocHeight } from '../library/dom'
 import {
   backToTop,
   diffY,
@@ -24,13 +24,15 @@ import { changeMetaTheme } from './themeColor'
 import { Loader } from './thirdparty'
 import { getHeight, setWidth } from '../library/proto'
 
+const wavesEle = document.getElementById('waves')
+
 export const resizeHandle = () => {
   // 获取 siteNav 的高度
   setSiteNavHeight(getHeight(siteNav))
   // 获取 siteHeader 的高度
   setHeaderHightInner(getHeight(siteHeader))
   // 获取 #waves 的高度
-  setHeaderHight(headerHightInner + getHeight($dom('#waves')))
+  setHeaderHight(headerHightInner + getHeight(wavesEle))
 
   // 判断窗口宽度是否改变
   if (oWinWidth !== window.innerWidth) {
@@ -90,14 +92,14 @@ export const scrollHandle = () => {
     backToTop.child('span').innerText = scrollPercent
   }
   // 更新百分比进度条的宽度
-  if ($dom('#sidebar').hasClass('affix') || $dom('#sidebar').hasClass('on')) {
-    setWidth($dom('.percent'), scrollPercent)
+  if (document.getElementById('sidebar').hasClass('affix') || document.getElementById('sidebar').hasClass('on')) {
+    setWidth(document.querySelector('.percent'), scrollPercent)
   }
 }
 
 // 可见度监听(离开页面和返回时更改document的title)
 export const visibilityListener = () => {
-  const iconNode = $dom('[rel="icon"]')
+  const iconNode = document.querySelector('[rel="icon"]')
   document.addEventListener('visibilitychange', () => {
     switch (document.visibilityState) {
       case 'hidden':

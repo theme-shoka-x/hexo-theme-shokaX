@@ -1,7 +1,7 @@
 import { $dom } from '../library/dom'
 
 export const cardActive = () => {
-  if (!$dom('.index.wrap')) { return }
+  if (!document.querySelector('.index.wrap')) { return }
   const io = new IntersectionObserver((entries) => {
     entries.forEach((article) => {
       if (article.target.hasClass('show')) {
@@ -22,13 +22,14 @@ export const cardActive = () => {
     io.observe(article)
   })
 
-  $dom('.index.wrap .item:first-child').addClass('show')
+  document.querySelector('.index.wrap .item:first-child').addClass('show')
 
   $dom.each('.cards .item', (element) => {
     ['mouseenter', 'touchstart'].forEach((item) => {
       element.addEventListener(item, () => {
-        if ($dom('.cards .item.active')) {
-          $dom('.cards .item.active').removeClass('active')
+        const cardEle = document.querySelector('.cards .item.active')
+        if (cardEle) {
+          cardEle.removeClass('active')
         }
         element.addClass('active')
       }, { passive: true })

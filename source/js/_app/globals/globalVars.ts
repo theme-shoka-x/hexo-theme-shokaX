@@ -10,20 +10,20 @@ export let diffY = 0
 export let originTitle: string, titleTime: NodeJS.Timeout
 export const BODY = document.getElementsByTagName('body')[0]
 export const HTML = document.documentElement
-export const Container = $dom('#container')
-export const loadCat = $dom('#loading')
-export const siteNav = $dom('#nav')
-export const siteHeader = $dom('#header')
+export const Container = document.getElementById('container')
+export const loadCat = document.getElementById('loading')
+export const siteNav = document.getElementById('nav')
+export const siteHeader = document.getElementById('header')
 export const menuToggle = siteNav.child('.toggle')
-export const quickBtn = $dom('#quick')
-export const sideBar = $dom('#sidebar')
-export const siteBrand = $dom('#brand')
-export let toolBtn = $dom('#tool')
+export const quickBtn = document.getElementById('quick')
+export const sideBar = document.getElementById('sidebar')
+export const siteBrand = document.getElementById('brand')
+export let toolBtn = document.getElementById('tool')
 export let toolPlayer
 export let backToTop: HTMLElement
 export let goToComment
 export let showContents
-export let siteSearch = $dom('#search')
+export let siteSearch = document.getElementById('search')
 export let siteNavHeight: number, headerHightInner: number, headerHight: number
 export let oWinHeight = window.innerHeight
 export let oWinWidth = window.innerWidth

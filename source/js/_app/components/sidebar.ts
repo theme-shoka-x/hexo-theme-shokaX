@@ -124,7 +124,7 @@ export const sidebarTOC = () => {
     while (!parent.matches('.contents')) {
       if (parent.matches('li')) {
         parent.addClass('active')
-        const t = $dom(parent.child('a.toc-link').getAttribute('href'))
+        const t = document.querySelector(parent.child('a.toc-link').getAttribute('href'))
         if (t) {
           t.addClass('active')
         }
@@ -147,13 +147,13 @@ export const sidebarTOC = () => {
 
   sections = sections.map((element, index) => {
     const link = element.child('a.toc-link')
-    const anchor = $dom(decodeURI(link.getAttribute('href')))
+    const anchor = document.querySelector(decodeURI(link.getAttribute('href')))
     if (!anchor) return null
     const alink = anchor.child('a.anchor')
 
     const anchorScroll = (event:MouseEvent) => {
       event.preventDefault()
-      const target = $dom(decodeURI((event.currentTarget as HTMLElement).getAttribute('href')))
+      const target = document.querySelector(decodeURI((event.currentTarget as HTMLElement).getAttribute('href')))
 
       activeLock = index
       pageScroll(target, null, () => {
@@ -218,7 +218,7 @@ export const goToBottomHandle = () => {
 }
 
 export const goToCommentHandle = () => {
-  pageScroll($dom('#comments'))
+  pageScroll(document.getElementById('comments'))
 }
 
 export const menuActive = () => {

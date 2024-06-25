@@ -42,7 +42,7 @@ export const positionInit = (comment?: boolean) => {
   }
 
   if (anchor) {
-    target = $dom(decodeURI(anchor))
+    target = document.querySelector(decodeURI(anchor))
   } else {
     target = CONFIG.auto_scroll ? parseInt($storage.get(LOCAL_URL)) : 0
   }
