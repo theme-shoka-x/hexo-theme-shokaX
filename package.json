@@ -27,7 +27,7 @@
         "eslint-plugin-vue": "^9.26.0",
         "typescript": "^5.5.2"
     },
-    "peerDependencies": {
+    "dependencies": {
         "@waline/client": "^3.2.2",
         "vue": "^3.4.30",
         "@algolia/client-search": "^4.23.3",
