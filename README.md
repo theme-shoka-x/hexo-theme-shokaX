@@ -1,4 +1,5 @@
 # 📣 公告
+[你的 ShokaX 和 Shoka 站点可能正在遭遇供应链攻击](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/293)
 [关于 ShokaX 部署平台和 Astro 迁移的调查](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/229)
 
 # hexo-theme-shokaX
