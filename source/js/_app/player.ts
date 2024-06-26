@@ -1,7 +1,6 @@
 import { CONFIG, originTitle } from './globals/globalVars'
 import { showtip } from './globals/tools'
 import { pageScroll } from './library/anime'
-import { $dom } from './library/dom'
 import { $storage } from './library/storage'
 import { tabFormat } from './page/tab'
 import { createChild, getLeft, getWidth, setDisplay, setWidth } from './library/proto'

@@ -133,7 +133,7 @@ export const sidebarTOC = () => {
     }
     // Scrolling to center active TOC element if TOC content is taller than viewport.
     if (getComputedStyle(sideBar).display !== 'none' && tocElement.hasClass('active')) {
-      pageScroll(tocElement, target.offsetTop - (tocElement.offsetHeight / 4))
+      pageScroll((tocElement as HTMLElement), target.offsetTop - ((tocElement as HTMLElement).offsetHeight / 4))
     }
   }
   const navItems = $dom.all('.contents li')
@@ -142,7 +142,7 @@ export const sidebarTOC = () => {
     return
   }
 
-  let sections = [...navItems]
+  let sections = [...navItems] as HTMLElement[]
   let activeLock = null
 
   sections = sections.map((element, index) => {
@@ -156,7 +156,7 @@ export const sidebarTOC = () => {
       const target = document.querySelector(decodeURI((event.currentTarget as HTMLElement).getAttribute('href')))
 
       activeLock = index
-      pageScroll(target, null, () => {
+      pageScroll((target as HTMLElement), null, () => {
         activateNavByIndex(index)
         activeLock = null
       })
@@ -165,10 +165,10 @@ export const sidebarTOC = () => {
     // TOC item animation navigate.
     link.addEventListener('click', anchorScroll)
     alink && alink.addEventListener('click', (event) => {
-      anchorScroll(event)
+      anchorScroll(<MouseEvent>event)
       clipBoard(CONFIG.hostname + '/' + LOCAL.path + (event.currentTarget as HTMLElement).getAttribute('href'))
     })
-    return anchor
+    return (anchor as HTMLElement)
   })
 
   const tocElement = sideBar.querySelector('.contents.panel')
