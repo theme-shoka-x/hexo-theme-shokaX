@@ -1,4 +1,5 @@
 # 📣 Announcement
+* [Your sites using the ShokaX and Shoka themes may be experiencing a Supply Chain Attack.](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/293)
 * [ShokaX is looking for community maintainers](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/137)
 
 # hexo-theme-shokaX
