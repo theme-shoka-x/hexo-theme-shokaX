@@ -33,10 +33,6 @@ async function deleteFileRecursive(dir) {
 const execShell = promisify(child_process.exec)
 
 console.log('ShokaX ToolBox - Compiler')
-console.log('Installing compiler dependencies...')
-
-await execShell(`${CONFIG.pm} typescript esbuild -g`)
-
 console.log('Start compiling...')
 
 let hexoRoot = path.join(import.meta.url, './../../')
@@ -48,7 +44,7 @@ if (hexoRoot.startsWith('file://')) {
 if (CONFIG.legacyScript) {
     console.log('Simulating legacy script compiler...')
     const sPath = path.join(hexoRoot, 'scripts/')
-    await execShell(`cd ${sPath} && tsc --build`)
+    await execShell(`cd ${sPath} && pnpm --package=typescript dlx tsc --build`)
     console.log('Deleting typescript files...')
     await deleteFileRecursive(sPath)
     console.log('Finished compiling.')
