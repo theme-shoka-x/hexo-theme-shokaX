@@ -29,13 +29,13 @@ async function deleteFileRecursive(dir) {
       }
   }
 }
+console.log('ShokaX ToolBox - Compiler')
 
 const execShell = promisify(child_process.exec)
 
-console.log('ShokaX ToolBox - Compiler')
 console.log('Start compiling...')
 
-let hexoRoot = path.join(import.meta.url, './../../../').trim()
+let hexoRoot = path.join(import.meta.url, './../../../../').trim()
 if (hexoRoot.startsWith('file:/')) {
     hexoRoot = hexoRoot.slice(5); // 去除 'file://'
 } else if (hexoRoot.startsWith('file:\\')) {
@@ -43,11 +43,19 @@ if (hexoRoot.startsWith('file:/')) {
 }
 if (CONFIG.legacyScript) {
     console.log('Simulating legacy script compiler...')
-    const sPath = path.join(hexoRoot, 'scripts').trim()
-    await execShell('cd ' + sPath.trim() + ' && pnpm --package=typescript dlx tsc --build'.trim())
-    console.log('Deleting typescript files...')
-    await deleteFileRecursive(sPath)
-    console.log('Finished compiling.')
+    let sPath = path.join(import.meta.url, './../../scripts/').trim()
+    if (sPath.startsWith('file:/')) {
+        sPath = sPath.slice(5); // 去除 'file://'
+    } else if (sPath.startsWith('file:\\')) {
+        sPath = sPath.slice(8); // 去除 'file:\'
+    }
+    child_process.exec('pnpm --package=typescript dlx tsc --build'.trim(), {
+        cwd: sPath
+    }, async (code, stdout, stderr) => {
+        console.log('Deleting typescript files...')
+        await deleteFileRecursive(sPath)
+        console.log('Finished compiling.')
+    })
 } else {
     throw Error('Not implemented yet.')
 }
