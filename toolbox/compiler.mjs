@@ -61,11 +61,15 @@ if (CONFIG.legacyScript) {
 }
 
 if (CONFIG.depsHoist) {
-    const deps = JSON.parse(await fs.readFile(path.join(hexoRoot,'package.json').trim(), 'utf-8')).dependencies
-    const depsList = Object.keys(deps).map(d => `${d}@${deps[d]}`)
-    console.log('Hoisting dependencies...')
-    await execShell(`pnpm add ${depsList.join(' ')}`.trim())
-    console.log('Finished hoisting dependencies.')
+    try {
+        const deps = JSON.parse(await fs.readFile(path.join(hexoRoot, 'package.json').trim(), 'utf-8')).dependencies
+        const depsList = Object.keys(deps).map(d => `${d}@${deps[d]}`)
+        console.log('Hoisting dependencies...')
+        await execShell(`pnpm add ${depsList.join(' ')}`.trim())
+        console.log('Finished hoisting dependencies.')
+    } catch (e) {
+        console.log('Skipping hoisting dependencies.')
+    }
 }
 
 console.log('Done.')
