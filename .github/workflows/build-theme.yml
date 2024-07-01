@@ -28,6 +28,7 @@ jobs:
       - name: Build TypeScript files
         run: |
           pnpm install
+          echo "NO_DEPS_HOIST=true" >> $GITHUB_ENV
           pnpm build
 
       - name: Create ZIP package
@@ -38,25 +39,3 @@ jobs:
         with:
           name: shokaX-stable
           path: shokaX.zip
-
-#  test:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Setup Node.js
-#        uses: actions/setup-node@v3
-#        with:
-#          node-version: 18
-#          registry-url: https://registry.npmjs.org/
-#
-#      - name: Get theme
-#        uses: actions/checkout@v3
-#
-#      - name: Init environment
-#        run: |
-#          npm install pnpm -g
-#          pnpm install
-#
-#      - name: Test
-#        run: |
-#          pnpm build
-#          pnpm test

@@ -5,9 +5,10 @@ compatibility: ShokaX v0.4.x
 import path from "node:path";
 import { promisify } from "node:util";
 import fs from 'fs/promises'
+import child_process from 'child_process'
 
 const CONFIG = {
-  depsHoist: true,
+  depsHoist: !(process.env.NO_DEPS_HOIST === 'true'),
   minify: false,
   legacyScript: true,
   pm: 'pnpm add' // or yarn add / npm install
@@ -29,7 +30,7 @@ async function deleteFileRecursive(dir) {
   }
 }
 
-const execShell = promisify(await import('child_process').exec)
+const execShell = promisify(child_process.exec)
 
 console.log('ShokaX ToolBox - Compiler')
 console.log('Installing compiler dependencies...')
@@ -38,7 +39,12 @@ await execShell(`${CONFIG.pm} typescript esbuild -g`)
 
 console.log('Start compiling...')
 
-const hexoRoot = path.join(import.meta.url, './../../')
+let hexoRoot = path.join(import.meta.url, './../../')
+if (hexoRoot.startsWith('file://')) {
+    hexoRoot = hexoRoot.slice(9); // 去除 'file://'
+} else if (hexoRoot.startsWith('file:\\')) {
+    hexoRoot = hexoRoot.slice(8); // 去除 'file:\'
+}
 if (CONFIG.legacyScript) {
     console.log('Simulating legacy script compiler...')
     const sPath = path.join(hexoRoot, 'scripts/')
