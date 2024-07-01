@@ -35,7 +35,7 @@ const execShell = promisify(child_process.exec)
 console.log('ShokaX ToolBox - Compiler')
 console.log('Start compiling...')
 
-let hexoRoot = path.join(import.meta.url, './../../../')
+let hexoRoot = path.join(import.meta.url, './../../../').trim()
 if (hexoRoot.startsWith('file://')) {
     hexoRoot = hexoRoot.slice(9); // 去除 'file://'
 } else if (hexoRoot.startsWith('file:\\')) {
@@ -43,7 +43,7 @@ if (hexoRoot.startsWith('file://')) {
 }
 if (CONFIG.legacyScript) {
     console.log('Simulating legacy script compiler...')
-    const sPath = path.join(hexoRoot, 'scripts/')
+    const sPath = path.join(hexoRoot, 'scripts/').trim()
     await execShell(`cd ${sPath} && pnpm --package=typescript dlx tsc --build`)
     console.log('Deleting typescript files...')
     await deleteFileRecursive(sPath)
@@ -53,10 +53,10 @@ if (CONFIG.legacyScript) {
 }
 
 if (CONFIG.depsHoist) {
-    const deps = JSON.parse(await fs.readFile(path.join(hexoRoot,'package.json'), 'utf-8')).dependencies
+    const deps = JSON.parse(await fs.readFile(path.join(hexoRoot,'package.json').trim(), 'utf-8')).dependencies
     const depsList = Object.keys(deps).map(d => `${d}@${deps[d]}`)
     console.log('Hoisting dependencies...')
-    await execShell(`pnpm add ${depsList.join(' ')}`)
+    await execShell(`pnpm add ${depsList.join(' ')}`.trim())
     console.log('Finished hoisting dependencies.')
 }
 
