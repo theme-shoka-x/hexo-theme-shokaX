@@ -36,15 +36,15 @@ console.log('ShokaX ToolBox - Compiler')
 console.log('Start compiling...')
 
 let hexoRoot = path.join(import.meta.url, './../../../').trim()
-if (hexoRoot.startsWith('file://')) {
-    hexoRoot = hexoRoot.slice(9); // 去除 'file://'
+if (hexoRoot.startsWith('file:/')) {
+    hexoRoot = hexoRoot.slice(5); // 去除 'file://'
 } else if (hexoRoot.startsWith('file:\\')) {
     hexoRoot = hexoRoot.slice(8); // 去除 'file:\'
 }
 if (CONFIG.legacyScript) {
     console.log('Simulating legacy script compiler...')
     const sPath = path.join(hexoRoot, 'scripts/').trim()
-    await execShell(`cd ${sPath} && pnpm --package=typescript dlx tsc --build`)
+    await execShell(`cd ${sPath} && pnpm --package=typescript dlx tsc --build`.trim())
     console.log('Deleting typescript files...')
     await deleteFileRecursive(sPath)
     console.log('Finished compiling.')
