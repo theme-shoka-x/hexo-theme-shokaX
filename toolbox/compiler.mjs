@@ -43,7 +43,7 @@ if (hexoRoot.startsWith('file:/')) {
 }
 if (CONFIG.legacyScript) {
     console.log('Simulating legacy script compiler...')
-    const sPath = path.join(hexoRoot, 'scripts/').trim()
+    const sPath = path.join(hexoRoot, 'scripts').trim()
     await execShell(`cd ${sPath} && pnpm --package=typescript dlx tsc --build`.trim())
     console.log('Deleting typescript files...')
     await deleteFileRecursive(sPath)
