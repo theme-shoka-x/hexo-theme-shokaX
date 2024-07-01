@@ -4,7 +4,7 @@ import { createChild } from './proto'
 
 /**
  * 用途是根据不同的资源名称和类型生成相应的资源 URL。
- * @deprecated Use smart bundle and import() instead. Will be removed in the v0.5
+ * @deprecated Use smart bundle and import() instead.
  */
 const assetUrl = (asset: string, type: string): string => {
   const str = CONFIG[asset][type]
@@ -31,9 +31,6 @@ export const vendorJs = (type: string, callback?: Function, condition?: string) 
   }
 }
 
-/**
- @deprecated Use smart bundle and import() instead. Will be removed in the v0.5
- */
 export const vendorCss = (type: string, condition?: string): void => {
   if (window['css' + type]) {
     return

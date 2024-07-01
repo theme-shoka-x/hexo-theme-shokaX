@@ -80,10 +80,8 @@ interface configType {
     switch: boolean
   }
   js: {
-    chart: string
     copy_tex: string
     fancybox: string
-    echarts: string
   }
   css: {
     valine: string

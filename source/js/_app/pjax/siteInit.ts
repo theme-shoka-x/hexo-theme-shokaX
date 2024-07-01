@@ -11,7 +11,7 @@ import { $dom } from '../library/dom'
 import { createChild } from '../library/proto'
 import { transition } from '../library/anime'
 
-const siteInit = () => {
+const siteInit = async () => {
   initVue()
   domInit()
 
@@ -28,7 +28,7 @@ const siteInit = () => {
   }))
 
   CONFIG.quicklink.ignores = LOCAL.ignores
-  import('quicklink').then(({ listen }) => {
+  import('quicklink').then(({listen}) => {
     listen(CONFIG.quicklink)
   })
 
@@ -41,7 +41,9 @@ const siteInit = () => {
 
   if (__shokax_search__) {
     document.querySelector('li.item.search > i').addEventListener('click', () => {
-      if (CONFIG.search === null) { return }
+      if (CONFIG.search === null) {
+        return
+      }
 
       if (!siteSearch) {
         setSiteSearch(createChild(BODY, 'div', {
@@ -50,7 +52,7 @@ const siteInit = () => {
         }))
       }
 
-      import('../page/search').then(({ algoliaSearch }) => {
+      import('../page/search').then(({algoliaSearch}) => {
         algoliaSearch(pjax)
       })
 
@@ -64,7 +66,7 @@ const siteInit = () => {
           }) // transition.shrinkIn
         })
       })
-    }, { once: true, capture: true })
+    }, {once: true, capture: true})
   }
 
   if (__shokax_fireworks__) {
@@ -92,7 +94,7 @@ const siteInit = () => {
   window.addEventListener('beforeunload', () => {
     pagePosition()
   })
-  siteRefresh(1)
+  await siteRefresh(1)
 }
 
 cloudflareInit()

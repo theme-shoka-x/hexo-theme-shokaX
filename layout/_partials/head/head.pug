@@ -43,10 +43,9 @@ if fontConfig
     != _vendor_font()
 != _css('app.css')
 != preloadjs()
+!= load_async_css()
 
 include pwa.pug
-if wl
-    link(rel="stylesheet" href="https://npm.webcache.cn/@waline/client@3.0.0-alpha.11/dist/waline.css" media="none" onload="this.media='all'")
 
 - var qw = theme?.qweather?.enable
 if qw

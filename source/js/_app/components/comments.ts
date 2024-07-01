@@ -1,8 +1,7 @@
 import { CONFIG } from '../globals/globalVars'
 import { init, RecentComments } from '@waline/client'
 import { pageviewCount } from '@waline/client/pageview'
-
-import { $dom } from '../library/dom'
+await import('@waline/client/style')
 
 export const walineComment = function () {
   init({

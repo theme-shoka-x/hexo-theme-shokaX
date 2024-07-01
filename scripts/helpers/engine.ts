@@ -66,6 +66,17 @@ hexo.extend.helper.register('preloadjs', function () {
   return res
 })
 
+hexo.extend.helper.register('load_async_css', function (){
+  const { statics, css } = hexo.theme.config
+  let res = ''
+  fs.readdirSync('./shokaxTemp').forEach((file) => {
+    if (file.endsWith('.css')) {
+      res += htmlTag('link', { rel: 'stylesheet', href: url_for.call(this, `${statics}${css}/${file}`), media: 'none', onload: "this.media='all'" }, '')
+    }
+  })
+  return res
+})
+
 // 注册hexo主题中的URL帮助方法
 hexo.extend.helper.register('_url', function (path, text, options = {}) {
   // 如果未提供URL路径，则返回

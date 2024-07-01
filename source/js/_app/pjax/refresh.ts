@@ -33,12 +33,14 @@ export const pjaxReload = () => {
   pageScroll(0)
 }
 
-export const siteRefresh = (reload) => {
+export const siteRefresh = async (reload) => {
   setLocalHash(0)
   setLocalUrl(window.location.href)
 
-  vendorCss('katex')
-  vendorJs('copy_tex')
+  vendorCss('katex');
+  // await import('katex/dist/katex.min.css')
+  // vendorJs('copy_tex')
+  await import('katex/dist/contrib/copy-tex.mjs')
   vendorCss('mermaid')
 
   // 懒加载背景图
@@ -72,7 +74,7 @@ export const siteRefresh = (reload) => {
   sideBarTab()
   sidebarTOC()
 
-  import('../page/post').then(({ postBeauty }) => {
+  import('../page/post').then(({postBeauty}) => {
     postBeauty()
   })
 
@@ -106,13 +108,13 @@ export const siteRefresh = (reload) => {
   lazyLoad()
 
   if (__shokax_waline__) {
-    import('../components/comments').then(async ({ walinePageview, walineRecentComments }) => {
+    import('../components/comments').then(async ({walineRecentComments}) => {
       await walineRecentComments()
     })
   }
 
   if (__shokax_twikoo__) {
-    import('../components/tcomments').then(async ({ twikooRecentComments }) => {
+    import('../components/tcomments').then(async ({twikooRecentComments}) => {
       await twikooRecentComments()
     })
   }
@@ -124,7 +126,7 @@ export const siteRefresh = (reload) => {
   if (__shokax_player__) {
     toolPlayer.player.load(LOCAL.audio || CONFIG.audio || {})
   }
-  Loader.hide(500)
+  Loader.hide(100)
 
   setTimeout(() => {
     positionInit()

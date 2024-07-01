@@ -6,6 +6,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import points from './injects-point'
+import type Hexo from "hexo";
 const defaultExtname = '.pug'
 
 interface viewConfig {
@@ -17,12 +18,12 @@ interface viewConfig {
 class StylusInject {
   files: Array<string>
   base_dir: string
-  constructor (base_dir) {
+  constructor (base_dir:string) {
     this.base_dir = base_dir
     this.files = []
   }
 
-  push (file) {
+  push (file:string) {
     this.files.push(path.resolve(this.base_dir, file))
   }
 }
@@ -31,12 +32,12 @@ class StylusInject {
 class ViewInject {
   base_dir:string
   raws: Array<object>
-  constructor (base_dir) {
+  constructor (base_dir:string) {
     this.base_dir = base_dir
     this.raws = []
   }
 
-  raw (name, raw, ...args) {
+  raw (name:string, raw:string, ...args) {
     // Set default extname
     if (path.extname(name) === '') {
       name += defaultExtname
@@ -44,7 +45,7 @@ class ViewInject {
     this.raws.push({ name, raw, args })
   }
 
-  file (name, file, ...args) {
+  file (name:string, file:string, ...args) {
     // Set default extname from file's extname
     if (path.extname(name) === '') {
       name += path.extname(file)
@@ -55,7 +56,7 @@ class ViewInject {
 }
 
 // Init injects
-function initInject (base_dir) {
+function initInject (base_dir:string) {
   const injects = {}
   points.styles.forEach(item => {
     injects[item] = new StylusInject(base_dir)
@@ -66,7 +67,7 @@ function initInject (base_dir) {
   return injects
 }
 
-export default (hexo) => {
+export default (hexo:Hexo) => {
   // Exec theme_inject filter
   const injects = initInject(hexo.base_dir)
   hexo.execFilterSync('theme_inject', injects)
