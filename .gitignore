@@ -19,3 +19,4 @@ test.html
 test.ts
 *.d.ts
 *.tsbuildinfo
+!/toolbox/*

@@ -37,7 +37,6 @@
         "hexo-algoliasearch": "latest",
         "hexo-feed": "latest",
         "hexo-fs": "^4.1.3",
-        "hexo-lightning-minify": "latest",
         "hexo-pagination": "^3.0.0",
         "hexo-renderer-pug": "latest",
         "hexo-util": "^3.3.0",
