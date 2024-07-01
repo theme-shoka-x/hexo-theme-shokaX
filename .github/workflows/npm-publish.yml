@@ -20,6 +20,7 @@ jobs:
 
       - name: Build TypeScript files
         run: |
+          pnpm setup
           pnpm install
           echo "NO_DEPS_HOIST=true" >> $GITHUB_ENV
           pnpm run build
