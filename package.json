@@ -9,7 +9,8 @@
     "packageManager": "pnpm@9.4.0",
     "scripts": {
         "test": "tsc --build --verbose",
-        "build": "node ./toolbox/compiler.mjs"
+        "build": "node ./toolbox/compiler.mjs",
+        "postinstall": "node ./toolbox/hoistdep.mjs"
     },
     "devDependencies": {
         "@types/fancybox": "^3.5.7",

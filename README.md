@@ -10,7 +10,7 @@
 
 #### 语言(language): 简体中文 | [English](./README_en.MD) \
 此项目是shoka的一个二次开发版(算精神续作),致力于提高性能和优化魔改体验 \
-诞生原因是目前shoka已经两年没有更新了,积压了大量BUG和功能请求。
+诞生原因是目前shoka已经三年没有更新了,积压了大量BUG和功能请求。
 
 shokaX的社区资源导航和插件仓库为[awesome-shokaX](https://github.com/theme-shoka-x/awesome-shokaX)
 
