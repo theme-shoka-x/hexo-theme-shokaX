@@ -1,6 +1,7 @@
 /*
 ShokaX ToolBox - Compiler
 compatibility: ShokaX v0.4.x
+NEED PNPM INSTALLED
  */
 import path from "node:path";
 import { promisify } from "node:util";
@@ -11,7 +12,6 @@ const CONFIG = {
   depsHoist: !(process.env.NO_DEPS_HOIST === 'true'),
   minify: false,
   legacyScript: true,
-  pm: 'pnpm add' // or yarn add / npm install
 }
 
 async function deleteFileRecursive(dir) {
@@ -35,7 +35,7 @@ const execShell = promisify(child_process.exec)
 console.log('ShokaX ToolBox - Compiler')
 console.log('Start compiling...')
 
-let hexoRoot = path.join(import.meta.url, './../../')
+let hexoRoot = path.join(import.meta.url, './../../../')
 if (hexoRoot.startsWith('file://')) {
     hexoRoot = hexoRoot.slice(9); // 去除 'file://'
 } else if (hexoRoot.startsWith('file:\\')) {
@@ -56,7 +56,7 @@ if (CONFIG.depsHoist) {
     const deps = JSON.parse(await fs.readFile(path.join(hexoRoot,'package.json'), 'utf-8')).dependencies
     const depsList = Object.keys(deps).map(d => `${d}@${deps[d]}`)
     console.log('Hoisting dependencies...')
-    await execShell(`${CONFIG.pm} ${depsList.join(' ')}`)
+    await execShell(`pnpm add ${depsList.join(' ')}`)
     console.log('Finished hoisting dependencies.')
 }
 
