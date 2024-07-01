@@ -1,9 +1,6 @@
 import fs from "fs/promises";
 import path from "node:path";
-import {promisify} from "node:util";
 import child_process from "child_process";
-
-const execShell = promisify(child_process.exec)
 
 let hexoRoot = path.join(import.meta.url, './../../../../').trim()
 if (hexoRoot.startsWith('file:/')) {
@@ -31,10 +28,18 @@ export async function hoistDeps() {
     pm = "npm install"
   }
   try {
-    const deps = JSON.parse(await fs.readFile(path.join(hexoRoot, 'package.json').trim(), 'utf-8')).dependencies
+    // TODO 使用本地 package.json 解析
+    const res = await (await fetch('https://registry.npmmirror.com/hexo-theme-shokax')).json()
+    const latestV = res['dist-tags'].latest
+    const deps = res.versions[latestV].dependencies
     const depsList = Object.keys(deps).map(d => `${d}@${deps[d]}`)
-    await execShell(`${pm} ${depsList.join(' ')}`.trim())
+    child_process.exec(`${pm} ${depsList.join(' ')}`.trim(), {
+      cwd: hexoRoot
+    }, (code, stdout, stderr) => {
+
+    })
   } catch (e) {
-    console.log('Skipping hoisting dependencies.')
+    throw e
+    // console.log('Skipping hoisting dependencies.')
   }
 }
