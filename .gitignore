@@ -20,3 +20,4 @@ test.ts
 *.d.ts
 *.tsbuildinfo
 !/toolbox/*
+*.exe

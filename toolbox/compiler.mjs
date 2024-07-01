@@ -9,7 +9,7 @@ import fs from 'fs/promises'
 import child_process from 'child_process'
 
 const CONFIG = {
-  depsHoist: !(process.env.NO_DEPS_HOIST === 'true'),
+  depsHoist: !process.env.NO_DEPS_HOIST,
   minify: false,
   legacyScript: true,
 }
