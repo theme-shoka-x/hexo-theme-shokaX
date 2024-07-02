@@ -1,6 +1,6 @@
 import fs from "fs/promises";
 import child_process from "child_process";
-import { dirname, resolve } from 'path';
+import { dirname, resolve, join } from 'path';
 
 async function findScaffoldsDir(startPath) {
   let currentPath = resolve(startPath);
@@ -26,9 +26,11 @@ async function findScaffoldsDir(startPath) {
   return null;
 }
 
+const hexoRoot = await findScaffoldsDir(process.cwd())
+
 async function checkFileAccessible(file) {
   try {
-    await fs.access(file)
+    await fs.access(join((hexoRoot || ''),file))
   } catch {
     return false
   }
@@ -50,7 +52,6 @@ export async function hoistDeps() {
   const latestV = res['dist-tags'].latest
   const deps = res.versions[latestV].dependencies
   const depsList = Object.keys(deps).map(d => `${d}@${deps[d]}`)
-  const hexoRoot = await findScaffoldsDir(process.cwd())
   child_process.exec(`${pm} ${depsList.join(' ')}`.trim(), {
     cwd: hexoRoot
   }, (code, stdout, stderr) => {

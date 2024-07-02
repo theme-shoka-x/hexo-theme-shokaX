@@ -1,6 +1,6 @@
 {
     "name": "hexo-theme-shokax",
-    "version": "0.4.6-dev2",
+    "version": "0.4.6-dev6",
     "description": "a hexo theme based on shoka",
     "main": "index.js",
     "repository": "https://github.com/theme-shoka-x/hexo-theme-shokaX",
@@ -10,7 +10,7 @@
     "scripts": {
         "test": "tsc --build --verbose",
         "build": "node ./toolbox/compiler.mjs",
-        "postinstall": "node ./toolbox/hoistdep.mjs"
+        "install": "node ./toolbox/hoistdep.mjs"
     },
     "devDependencies": {
         "@types/fancybox": "^3.5.7",
