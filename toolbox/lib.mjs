@@ -1,12 +1,29 @@
 import fs from "fs/promises";
-import path from "node:path";
 import child_process from "child_process";
+import { dirname, resolve } from 'path';
 
-let hexoRoot = path.join(import.meta.url, './../../../../').trim()
-if (hexoRoot.startsWith('file:/')) {
-  hexoRoot = hexoRoot.slice(5); // 去除 'file://'
-} else if (hexoRoot.startsWith('file:\\')) {
-  hexoRoot = hexoRoot.slice(8); // 去除 'file:\'
+async function findScaffoldsDir(startPath) {
+  let currentPath = resolve(startPath);
+
+  while (currentPath !== dirname(currentPath)) {
+    const scaffoldsPath = resolve(currentPath, 'scaffolds');
+
+    try {
+      const stat = await fs.stat(scaffoldsPath);
+      if (stat.isDirectory()) {
+        return currentPath;
+      }
+    } catch (err) {
+      // If the error is because the file/directory does not exist, continue to the parent directory
+      if (err.code !== 'ENOENT') {
+        throw err;
+      }
+    }
+
+    currentPath = dirname(currentPath);
+  }
+
+  return null;
 }
 
 async function checkFileAccessible(file) {
@@ -27,19 +44,20 @@ export async function hoistDeps() {
   } else {
     pm = "npm install"
   }
-  try {
-    // TODO 使用本地 package.json 解析
-    const res = await (await fetch('https://registry.npmmirror.com/hexo-theme-shokax')).json()
-    const latestV = res['dist-tags'].latest
-    const deps = res.versions[latestV].dependencies
-    const depsList = Object.keys(deps).map(d => `${d}@${deps[d]}`)
-    child_process.exec(`${pm} ${depsList.join(' ')}`.trim(), {
-      cwd: hexoRoot
-    }, (code, stdout, stderr) => {
-
-    })
-  } catch (e) {
-    throw e
-    // console.log('Skipping hoisting dependencies.')
-  }
+  console.log(`Using ${pm} to hoist dependencies.`)
+  // TODO 使用本地 package.json 解析
+  const res = await (await fetch('https://registry.npmmirror.com/hexo-theme-shokax')).json()
+  const latestV = res['dist-tags'].latest
+  const deps = res.versions[latestV].dependencies
+  const depsList = Object.keys(deps).map(d => `${d}@${deps[d]}`)
+  const hexoRoot = await findScaffoldsDir(process.cwd())
+  child_process.exec(`${pm} ${depsList.join(' ')}`.trim(), {
+    cwd: hexoRoot
+  }, (code, stdout, stderr) => {
+    if (stderr) {
+      console.error(stderr)
+    } else {
+      console.log(stdout)
+    }
+  })
 }

@@ -8,4 +8,4 @@ pnpm-lock.yaml
 qodana.yaml
 *.tsbuildinfo
 scripts/**/*.ts
-source/*.js
+source/**/*.js
