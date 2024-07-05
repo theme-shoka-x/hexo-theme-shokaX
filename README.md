@@ -14,12 +14,6 @@
 
 shokaX的社区资源导航和插件仓库为[awesome-shokaX](https://github.com/theme-shoka-x/awesome-shokaX)
 
-## 技术栈
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D)
-![Pug](https://img.shields.io/badge/Pug-FFF?style=for-the-badge&logo=pug&logoColor=A86454)
-![Stylus](https://img.shields.io/badge/stylus-%23ff6347.svg?style=for-the-badge&logo=stylus&logoColor=white)
-
 ## 💬 和shoka的区别
 原先shoka使用了javascript+Native+nunjucks的技术 \
 而shokaX则使用了typescript+Vue 3+Pug的技术搭配 \
@@ -43,30 +37,13 @@ shokaX的社区资源导航和插件仓库为[awesome-shokaX](https://github.com
 
 ## 🔧 如何安装?
 注意: 本项目需要 node.js 18.x 或更高版本才能运行 \
-建议使用[ShokaX-CLI](https://github.com/zkz098/shokaX-CLI) ,执行下列命令即可:
-```bash
-npm i shokax-cli --location=global
-# hexo init 初始化环境
-SXC install shokaX
-```
-[点此](https://docs.kaitaku.xyz/guide/#%E9%85%8D%E7%BD%AE%E4%B8%BB%E9%A2%98)以进行下一步配置
+见文档中[如何安装](https://docs-hexo.shokax.top/getting-started/)部分
 
 ## 📚子项目
 - [ShokaX docs](https://github.com/theme-shoka-x/shokaX-docs) ShokaX 主题文档 (正在编写中，欢迎加入！)
 - [HRMNMI](https://github.com/theme-shoka-x/hexo-renderer-multi-next-markdown-it) ShokaX 正在使用的 markdown 渲染器 (等待重构)
-- [ShokaX CLI](https://github.com/theme-shoka-x/shokaX-CLI) ShokaX 命令行安装程序
 - [ShokaX Pjax](https://github.com/theme-shoka-x/theme-shokax-pjax) ShokaX 提供的高效 Pjax 实现
 - [ShokaX Anime](https://github.com/theme-shoka-x/theme-shokax-anime) ShokaX 提供的精简版 Anime.js 实现
-
-## 🛠️二次开发
-[ShokaX官方开发文档](https://docs.kaitaku.xyz/develop/basic/)
-
-参与开发建议阅读的文档:
-- [Hexo 官方文档](https://hexo.io/zh-cn/docs/templates)
-- [Stylus 中文网](http://stylus.bootcss.com/)
-- [Pug 模板引擎中文文档](https://www.pugjs.cn/api/getting-started.html)
-- [Typescript 中文网](https://www.tslang.cn/docs/home.html)
-- [Easy hexo](https://easyhexo.com/)
 
 # [许可证](https://github.com/theme-shoka-x/hexo-theme-shokaX/blob/main/LICENSE)
 许可证: AGPL 3 or later

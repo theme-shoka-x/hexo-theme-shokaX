@@ -373,9 +373,9 @@ vendors:
     pace: bytedance|pace/1.2.4/pace.min.js
   async_js:
     fancybox: bytedance|??jquery/3.5.1/jquery.min.js,fancybox/3.5.7/jquery.fancybox.min.js,justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js
-#    copy_tex: npm_webcache|katex@0.16.7/dist/contrib/copy-tex.min.js
+    copy_tex: npm_webcache|katex@0.16.7/dist/contrib/copy-tex.min.js
   css:
-#    katex: npm_webcache|katex@0.16.7/dist/katex.min.css
+    katex: npm_webcache|katex@0.16.7/dist/katex.min.css
     comment: css/comment.css
     fancybox: npm_webcache|@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css
     justifiedGallery: npm_webcache|justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css
