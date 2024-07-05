@@ -1,7 +1,6 @@
 /*
 ShokaX ToolBox - Compiler
 compatibility: ShokaX v0.4.x
-NEED PNPM INSTALLED
  */
 import path from "node:path";
 import fs from 'fs/promises'
@@ -46,10 +45,10 @@ if (CONFIG.legacyScript) {
     } else if (sPath.startsWith('file:\\')) {
         sPath = sPath.slice(8); // 去除 'file:\'
     }
-    child_process.exec('pnpm install',{
+    child_process.exec('npm install',{
         cwd: path.join(sPath,'./../')
     }, (code, stdout, stderr) => {
-        child_process.exec('pnpm --package=typescript dlx tsc --build'.trim(), {
+        child_process.exec('"yes" | npx -p typescript tsc --build'.trim(), {
             cwd: sPath
         }, async (code, stdout, stderr) => {
             console.log('Deleting typescript files...')
