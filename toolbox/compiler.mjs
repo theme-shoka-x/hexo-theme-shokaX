@@ -46,12 +46,16 @@ if (CONFIG.legacyScript) {
     } else if (sPath.startsWith('file:\\')) {
         sPath = sPath.slice(8); // 去除 'file:\'
     }
-    child_process.exec('pnpm --package=typescript dlx tsc --build'.trim(), {
-        cwd: sPath
-    }, async (code, stdout, stderr) => {
-        console.log('Deleting typescript files...')
-        await deleteFileRecursive(sPath)
-        console.log('Finished compiling.')
+    child_process.exec('pnpm install',{
+        cwd: path.join(sPath,'./../')
+    }, (code, stdout, stderr) => {
+        child_process.exec('pnpm --package=typescript dlx tsc --build'.trim(), {
+            cwd: sPath
+        }, async (code, stdout, stderr) => {
+            console.log('Deleting typescript files...')
+            await deleteFileRecursive(sPath)
+            console.log('Finished compiling.')
+        })
     })
 } else {
     throw Error('Not implemented yet.')
