@@ -5,11 +5,8 @@ compatibility: ShokaX v0.4.x
 import path from "node:path";
 import fs from 'fs/promises'
 import child_process from 'child_process'
-import {hoistDeps} from "./lib.mjs";
 
 const CONFIG = {
-  depsHoist: true,
-  minify: false,
   legacyScript: true,
 }
 
@@ -58,15 +55,6 @@ if (CONFIG.legacyScript) {
     })
 } else {
     throw Error('Not implemented yet.')
-}
-
-if (CONFIG.depsHoist) {
-    try {
-        await hoistDeps()
-        console.log('Finished hoisting dependencies.')
-    } catch (e) {
-        console.log('Skipping hoisting dependencies.')
-    }
 }
 
 console.log('Done.')
