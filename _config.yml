@@ -44,16 +44,11 @@ modules:
   quiz: true # 启用文章内问题扩展支持
   fancybox: true # 启用 fancybox 支持（不建议禁用）
 
-styles:
-  postprocess: true # 启用后处理器
-  modules:
-    mermaid: false
-
 # 优化性能区
 performance:
   # 使用preconnect预加载的网址(不建议超过三个)
   preConnect:
-    - "https://lf9-cdn-tos.bytecdntp.com"
+    - "https://s4.zstatic.net"
     - "https://at.alicdn.com"
   # 使用dns-prefetch预解析的网址
   dnsPrefetch:
