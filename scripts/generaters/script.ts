@@ -26,7 +26,11 @@ hexo.extend.generator.register('script', function (locals) {
     },
     css: {
       katex: getVendorLink(hexo, theme.vendors.css.katex),
-      mermaid: theme.css + '/mermaid.css',
+      mermaid: {
+        url: theme.css + '/mermaid.css',
+        local: true,
+        sri: ''
+      },
       fancybox: getVendorLink(hexo, theme.vendors.css.fancybox),
       justifiedGallery: getVendorLink(hexo, theme.vendors.css.justifiedGallery)
     },

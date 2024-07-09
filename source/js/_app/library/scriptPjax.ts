@@ -10,13 +10,13 @@ export function cloudflareInit () {
     window.addEventListener('load', function () {
       if (inCloudFlare) {
         window.dispatchEvent(new Event('DOMContentLoaded'))
-        console.log('%c ☁️cloudflare patch ' + '%c running(rocket & minify)', 'color: white; background: #ff8c00; padding: 5px 3px;', 'padding: 4px;border:1px solid #ff8c00')
+        console.log('%c ☁️cloudflare patch ' + '%c running', 'color: white; background: #ff8c00; padding: 5px 3px;', 'padding: 4px;border:1px solid #ff8c00')
       }
     })
   }
 }
 
-export const getScript = (url: string, callback?: Function, condition?: string): void => {
+export const getScript = (url: string,sri: string, callback?: Function, condition?: string): void => {
   // url: 脚本文件的URL地址
   // callback: 当脚本加载完成时要执行的回调函数
   // condition: 可选的条件参数，如果存在，则执行callback
@@ -39,6 +39,8 @@ export const getScript = (url: string, callback?: Function, condition?: string):
       }
     }
     script.src = url
+    script.integrity = sri
+    script.crossOrigin = 'anonymous'
     document.head.appendChild(script)
   }
 }

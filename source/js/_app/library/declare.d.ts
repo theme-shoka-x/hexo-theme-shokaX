@@ -1,6 +1,9 @@
-/*
-对注释的说明: 部分注释为openai-chatgpt生成的注释,可能存在描述或语义的问题
- */
+type vendorUrl = {
+  url: string
+  local: boolean
+  sri?: string
+}
+
 interface AudioItem {
   title: string;
   list: string[];
@@ -80,14 +83,14 @@ interface configType {
     switch: boolean
   }
   js: {
-    copy_tex: string
-    fancybox: string
+    copy_tex: vendorUrl
+    fancybox: vendorUrl
   }
   css: {
-    valine: string
-    katex: string
-    mermaid: string
-    fancybox: string
+    valine: vendorUrl
+    katex: vendorUrl
+    mermaid: vendorUrl
+    fancybox: vendorUrl
   }
   search: any,
   waline: {

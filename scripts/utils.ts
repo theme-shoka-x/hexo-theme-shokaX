@@ -20,12 +20,31 @@ export interface VendorsConfig {
   }
 }
 
-export function getVendorLink (hexo: Hexo, source:string) {
-  const VendorsCfg = (hexo.theme.config as any).vendors as VendorsConfig
-  const tagIdx = source.indexOf('|')
-  if (tagIdx !== -1) {
-    return `${VendorsCfg.cdns[source.substring(0, tagIdx)]}/${source.substring(tagIdx + 1)}`
+type vendorSource = {
+  source: string
+  url: string
+  sri?: string
+}
+
+type vendorUrl = {
+  url: string
+  local: boolean
+  sri?: string
+}
+
+export function getVendorLink (hexo: Hexo, source:vendorSource):vendorUrl {
+  const vendorsCfg = (hexo.theme.config as any).vendors as VendorsConfig
+  if (source.source === "local") {
+    return {
+      url: source.url,
+      local: true,
+      sri: ''
+    }
   } else {
-    return source
+    return {
+        url: vendorsCfg.cdns[source.source] + '/' + source.url,
+        local: false,
+        sri: source.sri
+    }
   }
 }

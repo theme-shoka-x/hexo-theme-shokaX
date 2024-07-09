@@ -4,28 +4,22 @@ import { createChild } from './proto'
 
 /**
  * 用途是根据不同的资源名称和类型生成相应的资源 URL。
- * @deprecated Use smart bundle and import() instead.
  */
 const assetUrl = (asset: string, type: string): string => {
-  const str = CONFIG[asset][type]
-  if (str.includes('http')) {
+  const str = CONFIG[asset][type].url as string
+  if (str.startsWith('https')) {
     return str
   }
-  if (str.includes('gh') || str.includes('combine')) {
-    return `https://cdn.jsdelivr.net/${str}`
-  }
-  if (str.includes('npm')) {
-    return `https://cdn.jsdelivr.net/${str}`
+  if (str.startsWith('http')) {
+    console.warn(`Upgrade vendor ${asset}/${type} to HTTPS, Please use HTTPS url instead of HTTP url.`)
+    return str.replace('http', 'https')
   }
   return `/${str}`
 }
 
-/**
- @deprecated Use smart bundle and import() instead. Will be removed in the v0.5
- */
 export const vendorJs = (type: string, callback?: Function, condition?: string) => {
   if (LOCAL[type]) {
-    getScript(assetUrl('js', type), callback || function () {
+    getScript(assetUrl('js', type),CONFIG['js'][type].sri, callback || function () {
       window[type] = true
     }, condition || window[type])
   }
@@ -37,10 +31,16 @@ export const vendorCss = (type: string, condition?: string): void => {
   }
 
   if (LOCAL[type]) {
-    createChild(document.head, 'link', {
+    const attr:any = {
       rel: 'stylesheet',
-      href: assetUrl('css', type)
-    })
+      href: assetUrl('css', type),
+    }
+    const vendor = CONFIG['css'][type] as vendorUrl
+    if (!vendor.local) {
+      attr.integrity = vendor.sri
+      attr.crossOrigin = 'anonymous'
+    }
+    createChild(document.head, 'link', attr)
 
     window['css' + type] = true
   }

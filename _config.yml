@@ -364,18 +364,43 @@ quicklink:
 #! ---------------------------------------------------------------
 vendors:
   cdns:
-    npm_webcache: https://npm.webcache.cn
-    bytedance: https://lf9-cdn-tos.bytecdntp.com/cdn/expire-6-M
-    cdnjs_webcache: https://cdnjs.webstatic.cn/ajax/libs
-    cdnjs: https://cdnjs.cloudflare.com/ajax/libs
-    unpkg: https://unpkg.com
+    cdnjs: https://s4.zstatic.net/ajax/libs
   js:
-    pace: bytedance|pace/1.2.4/pace.min.js
+    pace:
+      source: cdnjs
+      url: pace/1.2.4/pace.min.js
+      sri: "sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8"
   async_js:
-    fancybox: bytedance|??jquery/3.5.1/jquery.min.js,fancybox/3.5.7/jquery.fancybox.min.js,justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js
-    copy_tex: npm_webcache|katex@0.16.7/dist/contrib/copy-tex.min.js
+    jquery:
+      source: cdnjs
+      url: jquery/3.5.1/jquery.min.js
+      sri: "sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2"
+    fancybox:
+      source: cdnjs
+      url: fancybox/3.5.7/jquery.fancybox.min.js
+      sri: "sha384-Zm+UU4tdcfAm29vg+MTbfu//q5B/lInMbMCr4T8c9rQFyOv6PlfQYpB5wItcXWe7"
+    justifiedGallery:
+      source: cdnjs
+      url: justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js
+      sri: "sha384-TOxsBplaL96/QDWPIUg+ye3v89qSE3s22XNtJMmCeZEep3cVDmXy1zEfZvVv+y2m"
+    copy_tex:
+      source: cdnjs
+      url: KaTeX/0.16.9/contrib/copy-tex.min.js
+      sri: "sha384-ww/583aHhxWkz5DEVn6OKtNiIaLi2iBRNZXfJRiY1Ai7tnJ9UXpEsyvOITVpTl4A"
   css:
-    katex: npm_webcache|katex@0.16.7/dist/katex.min.css
-    comment: css/comment.css
-    fancybox: npm_webcache|@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css
-    justifiedGallery: npm_webcache|justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css
+    katex:
+      source: cdnjs
+      url: KaTeX/0.16.9/katex.min.css
+      sri: "sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"
+    comment:
+      source: local
+      url: css/comment.css
+      sri: ""
+    fancybox:
+      source: cdnjs
+      url: fancybox/3.5.7/jquery.fancybox.min.css
+      sri: "sha384-Q8BgkilbsFGYNNiDqJm69hvDS7NCJWOodvfK/cwTyQD4VQA0qKzuPpvqNER1UC0F"
+    justifiedGallery:
+      source: cdnjs
+      url: justifiedGallery/3.8.1/css/justifiedGallery.min.css
+      sri: "sha384-V/1Ew9pYm8xpy/L9i078ZXT6HSEOrGC6KNFYLbXOdtqb3+c6brpGqVzZtEPSQOiz"
