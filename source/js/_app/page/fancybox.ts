@@ -7,6 +7,8 @@ export const postFancybox = (p:string) => {
   if (document.querySelector(p + ' .md img')) {
     vendorCss('fancybox')
     vendorCss('justifiedGallery')
+    vendorJs('jquery')
+    vendorJs('justifiedGallery')
     vendorJs('fancybox', () => {
       const q = jQuery.noConflict()
 
