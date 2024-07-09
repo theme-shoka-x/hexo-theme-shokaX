@@ -67,13 +67,15 @@ hexo.extend.helper.register('_js', function (...urls) {
   return urls.map(url => htmlTag('script', { src: url_for.call(this, `${statics}${js}/${url}?v=${theme_env.version}`), type: 'module', fetchpriority: 'high', defer: true }, '')).join('')
 })
 
-hexo.extend.helper.register('vendor_js', function () {
-  const vendors = hexo.theme.config.vendors as VendorsConfig
-  let res = ''
-  for (const jsSync in vendors.js) {
-    res += htmlTag('script', { src: getVendorLink(hexo, vendors.js[jsSync]), async: true }, '')
-  }
-  return res
+type vendorSource = {
+  source: string
+  url: string
+  sri?: string
+}
+
+hexo.extend.helper.register('vendor_js', function (vendor: string) {
+  const res = getVendorLink(hexo, hexo.theme.config.vendors.js[vendor])
+  return htmlTag('script', { src: res.url, integrity: res.sri, crossorigin: 'anonymous', fetchpriority: 'high'}, '')
 })
 
 hexo.extend.helper.register('_striptags', function (data) {
