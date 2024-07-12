@@ -124,7 +124,7 @@ export const sidebarTOC = () => {
     while (!parent.matches('.contents')) {
       if (parent.matches('li')) {
         parent.addClass('active')
-        const t = document.querySelector(parent.querySelector('a.toc-link').getAttribute('href'))
+        const t = document.querySelector(decodeURIComponent(parent.querySelector('a.toc-link').getAttribute('href')))
         if (t) {
           t.addClass('active')
         }

@@ -365,11 +365,11 @@ vendors:
       source: cdnjs
       url: pace/1.2.4/pace.min.js
       sri: "sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8"
-  async_js:
     jquery:
       source: cdnjs
       url: jquery/3.5.1/jquery.min.js
       sri: "sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2"
+  async_js:
     fancybox:
       source: cdnjs
       url: fancybox/3.5.7/jquery.fancybox.min.js
