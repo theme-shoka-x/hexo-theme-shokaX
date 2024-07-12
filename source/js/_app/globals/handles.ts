@@ -68,7 +68,7 @@ export const scrollHandle = () => {
   toolBtn.toggleClass('affix', startScroll)
   // 控制侧边栏的显示隐藏，当滚动高度大于 headerHight 且窗口宽度大于 991px 时显示
   siteBrand.toggleClass('affix', startScroll)
-  sideBar.toggleClass('affix', window.scrollY > headerHight && document.body.offsetWidth > 991)
+  sideBar.toggleClass('affix', window.scrollY > headerHight && document.body.offsetWidth >= 991)
   // 初始化滚动时导航栏的显示方向
   if (typeof scrollAction.y === 'undefined') {
     scrollAction.y = window.scrollY
