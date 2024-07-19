@@ -1,6 +1,6 @@
 {
     "name": "hexo-theme-shokax",
-    "version": "0.4.10",
+    "version": "0.4.11",
     "description": "a hexo theme based on shoka",
     "main": "index.js",
     "repository": "https://github.com/theme-shoka-x/hexo-theme-shokaX",
@@ -16,15 +16,12 @@
         "@types/jquery": "^3.5.30",
         "@types/js-yaml": "^4.0.9",
         "@types/katex": "^0.16.7",
-        "@types/node": "^20.14.10",
+        "@types/node": "^20.14.11",
         "@types/quicklink": "^2.3.4",
-        "@typescript-eslint/eslint-plugin": "^7.16.0",
-        "@typescript-eslint/parser": "^7.16.0",
-        "eslint": "^9.6.0",
+        "@typescript-eslint/eslint-plugin": "^7.16.1",
+        "@typescript-eslint/parser": "^7.16.1",
+        "eslint": "^9.7.0",
         "eslint-config-standard": "~17",
-        "eslint-plugin-import": "^2.29.1",
-        "eslint-plugin-n": "^17.9.0",
-        "eslint-plugin-promise": "^6.4.0",
         "eslint-plugin-vue": "^9.27.0",
         "typescript": "^5.5.3"
     },
@@ -40,16 +37,16 @@
         "hexo-pagination": "^4.0.0",
         "hexo-renderer-pug": "^3.0.0",
         "hexo-util": "^3.3.0",
-        "instantsearch.js": "^4.73.1",
+        "instantsearch.js": "^4.73.2",
         "js-yaml": "^4.1.0",
         "katex": "^0.16.11",
-        "mouse-firework": "^0.0.5",
+        "mouse-firework": "^0.0.6",
         "quicklink": "^2.3.0",
-        "theme-shokax-anime": "^0.0.6",
+        "theme-shokax-anime": "^0.0.7",
         "theme-shokax-pjax": "^0.0.3",
         "twikoo": "^1.6.38",
         "unlazy": "^0.11.3",
-        "vue": "^3.4.31"
+        "vue": "^3.4.32"
     },
     "engines": {
         "node": ">=18.0.0"
