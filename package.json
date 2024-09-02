@@ -28,7 +28,7 @@
     "dependencies": {
         "@algolia/client-search": "^4.24.0",
         "@waline/client": "^3.3.0",
-        "algoliasearch": "4.24.0",
+        "algoliasearch": "5.2.4",
         "esbuild": "^0.23.0",
         "hexo": "^7.3.0",
         "hexo-algoliasearch": "^2.0.1",
