@@ -12,30 +12,12 @@ const CONFIG = {
   legacyScript: false,
 }
 
-async function deleteFileRecursive(dir) {
-  const files = await fs.readdir(dir)
-  for (const f of files) {
-      const fullPath = path.join(dir, f)
-      const stat = await fs.lstat(fullPath)
-      if (stat.isDirectory()) {
-        await deleteFileRecursive(fullPath)
-      } else {
-        const fileExt = path.extname(f)
-        if (fileExt === '.ts' || fileExt === '.json' || fileExt === '.tsbuildinfo') {
-          await fs.unlink(fullPath)
-        }
-      }
-  }
-}
 console.log('ShokaX ToolBox - Compiler')
 console.log('Start compiling...')
 
-let hexoRoot = path.join(import.meta.url, './../../../../').trim()
-if (hexoRoot.startsWith('file:/')) {
-    hexoRoot = hexoRoot.slice(5); // 去除 'file://'
-} else if (hexoRoot.startsWith('file:\\')) {
-    hexoRoot = hexoRoot.slice(8); // 去除 'file:\'
-}
+const entryPoints = await glob('./scripts/**/*.ts');
+const jsons = await glob('./scripts/**/*.json');
+
 if (CONFIG.legacyScript) {
     console.log('Simulating legacy script compiler...')
     let sPath = path.join(import.meta.url, './../../scripts/').trim()
@@ -51,14 +33,18 @@ if (CONFIG.legacyScript) {
             cwd: sPath
         }, async (code, stdout, stderr) => {
             console.log('Deleting typescript files...')
-            await deleteFileRecursive(sPath)
+            for (const entry of entryPoints) {
+                await fs.unlink(entry)
+            }
+            for (const entry of jsons) {
+                await fs.unlink(entry)
+            }
             console.log('Finished compiling.')
         })
     })
 } else {
     console.log('RUN THIS SCRIPT IN YOUR SHOKAX THEME ROOT DIRECTORY!')
     console.log('Using esbuild compiler...')
-    const entryPoints = glob.sync('./scripts/**/*.ts');
     buildSync({
         entryPoints: entryPoints,
         outdir: 'scripts',
@@ -68,7 +54,12 @@ if (CONFIG.legacyScript) {
         platform: 'node',
         loader: { '.ts': 'ts' },
     })
-    await deleteFileRecursive('./scripts/')
+    entryPoints.forEach(async (entry) => {
+        await fs.unlink(entry)
+    })
+    jsons.forEach(async (entry)=>{
+        await fs.unlink(entry)
+    })
     console.log('Finished compiling.')
 }
 
