@@ -5,9 +5,11 @@ compatibility: ShokaX v0.4.x
 import path from "node:path";
 import fs from 'fs/promises'
 import child_process from 'child_process'
+import { buildSync } from 'esbuild'
+import { glob } from 'glob'
 
 const CONFIG = {
-  legacyScript: true,
+  legacyScript: false,
 }
 
 async function deleteFileRecursive(dir) {
@@ -54,7 +56,20 @@ if (CONFIG.legacyScript) {
         })
     })
 } else {
-    throw Error('Not implemented yet.')
+    console.log('RUN THIS SCRIPT IN YOUR SHOKAX THEME ROOT DIRECTORY!')
+    console.log('Using esbuild compiler...')
+    const entryPoints = glob.sync('./scripts/**/*.ts');
+    buildSync({
+        entryPoints: entryPoints,
+        outdir: 'scripts',
+        bundle: false,
+        format: 'cjs',
+        target: ['esnext'],
+        platform: 'node',
+        loader: { '.ts': 'ts' },
+    })
+    await deleteFileRecursive('./scripts/')
+    console.log('Finished compiling.')
 }
 
 console.log('Done.')
