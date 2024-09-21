@@ -124,7 +124,7 @@ export const sidebarTOC = () => {
     while (!parent.matches('.contents')) {
       if (parent.matches('li')) {
         parent.addClass('active')
-        const t = document.querySelector(decodeURIComponent(parent.querySelector('a.toc-link').getAttribute('href')))
+        const t = document.getElementById(decodeURIComponent(parent.querySelector('a.toc-link').getAttribute('href').replace('#', '')))
         if (t) {
           t.addClass('active')
         }
@@ -147,13 +147,13 @@ export const sidebarTOC = () => {
 
   sections = sections.map((element, index) => {
     const link = element.querySelector('a.toc-link')
-    const anchor = document.querySelector(decodeURI(link.getAttribute('href')))
+    const anchor = document.getElementById(decodeURI(link.getAttribute('href').replace('#', '')))
     if (!anchor) return null
     const alink = anchor.querySelector('a.anchor')
 
     const anchorScroll = (event:MouseEvent) => {
       event.preventDefault()
-      const target = document.querySelector(decodeURI((event.currentTarget as HTMLElement).getAttribute('href')))
+      const target = document.getElementById(decodeURI((event.currentTarget as HTMLElement).getAttribute('href').replace('#', '')))
 
       activeLock = index
       pageScroll((target as HTMLElement), null, () => {
