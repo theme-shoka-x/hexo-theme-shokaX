@@ -476,7 +476,7 @@ export const mediaPlayer = (t, config?) => {
     fetch () {
       return new Promise<boolean>((resolve, reject) => {
         if (playlist.data.length > 0) {
-          resolve(true)
+          resolve(false)
         } else {
           if (this.options.rawList) {
             const promises = []
