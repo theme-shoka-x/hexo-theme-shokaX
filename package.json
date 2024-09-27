@@ -30,7 +30,7 @@
         "@algolia/client-search": "^5.5.3",
         "@waline/client": "^3.3.2",
         "algoliasearch": "5.5.3",
-        "esbuild": "^0.23.1",
+        "esbuild": "^0.24.0",
         "hexo": "^7.3.0",
         "hexo-algoliasearch": "^2.0.1",
         "hexo-feed": "^1.1.2",
