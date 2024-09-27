@@ -8,16 +8,19 @@ if (theme.quicklink.ignores)
 
 - var covers = _cover_index(page, 6)
 - var enableFixedCover = theme.homeConfig?.fixedCover
+- var enablePreload = theme.experiments?.coverConfig?.enablePreload
+- var enableCover = theme.experiments?.coverConfig?.enableCover
 
 doctype html
 html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'filter: grayscale(1);':'' )
     head
         != partial('_partials/head/head.pug', {}, {cache: true})
-        if enableFixedCover
-            link(rel="preload" href=theme.homeConfig.fixedCover as="image" fetchpriority="high")
-        else
-            each image in covers
-                link(rel="preload" href=image as="image" fetchpriority="high")
+        if enablePreload && enableCover
+            if enableFixedCover
+                link(rel="preload" href=theme.homeConfig.fixedCover as="image" fetchpriority="high")
+            else
+                each image in covers
+                    link(rel="preload" href=image as="image" fetchpriority="high")
 
         != partial('_partials/head/head_com.pug')
         != shokax_inject('head')
@@ -44,17 +47,18 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
 
                     != partial('_partials/header.pug', {}, {cache: true})
                 div(id="imgs" class="pjax")
-                    if theme.homeConfig.gradient || enableFixedCover
-                        //- cover不可用时用Bing随机图片代替
-                        - var coverImage = theme.homeConfig?.fixedCover || "https://7ed.net/bing/api"
-                        img(src=coverImage loading="eager" decoding="async" fetchpriority="high" alt=title)
-                    else
-                        if covers.length === 6
-                            ul
-                                each image in covers
-                                    li(class="item" style=`background-image: url("${image}");`)
+                    if enableCover
+                        if theme.homeConfig.gradient || enableFixedCover
+                            //- cover不可用时用Bing随机图片代替
+                            - var coverImage = theme.homeConfig?.fixedCover || "https://7ed.net/bing/api"
+                            img(src=coverImage loading="eager" decoding="async" fetchpriority="high" alt=title)
                         else
-                            img(src=covers loading="eager" decoding="async" fetchpriority="high" alt=title)
+                            if covers.length === 6
+                                ul
+                                    each image in covers
+                                        li(class="item" style=`background-image: url("${image}");`)
+                            else
+                                img(src=covers loading="eager" decoding="async" fetchpriority="high" alt=title)
             div(id="waves")
                 svg(class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto")
                     defs
