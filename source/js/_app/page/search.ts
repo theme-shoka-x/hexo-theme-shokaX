@@ -1,10 +1,9 @@
-import { BODY, CONFIG, setSiteSearch, siteSearch } from '../globals/globalVars'
+import { CONFIG, siteSearch } from '../globals/globalVars'
 import { transition } from '../library/anime'
-import { $dom } from '../library/dom'
 import { searchBox, configure, stats, hits, pagination } from 'instantsearch.js/es/widgets'
 import type { HitHighlightResult } from 'instantsearch.js/es/types/results'
 import instantsearch from 'instantsearch.js'
-import algoliasearch from 'algoliasearch/lite'
+import { liteClient as algoliasearch } from 'algoliasearch/lite'
 
 export function algoliaSearch (pjax) {
   const search = instantsearch({

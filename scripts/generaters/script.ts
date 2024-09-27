@@ -120,9 +120,6 @@ hexo.extend.generator.register('script', function (locals) {
       __shokax_twikoo__: theme.twikoo.enable ? 'true' : 'false',
       shokax_CONFIG: JSON.stringify(siteConfig),
       shokax_siteURL: "'" + config.url + "'"
-    },
-    alias: {
-      'algoliasearch/lite': 'algoliasearch/dist/algoliasearch-lite.esm.browser.js'
     }
   })
   const res = []
