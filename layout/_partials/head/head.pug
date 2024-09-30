@@ -45,6 +45,9 @@ if fontConfig
 != preloadjs()
 != load_async_css()
 
+if theme.experiments.cloudflarePatch
+    != _js('cf-patch.js')
+
 include pwa.pug
 
 - var qw = theme?.qweather?.enable

@@ -1,6 +1,5 @@
 /* global hexo */
 
-import type { VendorsConfig } from '../utils'
 import theme_env from '../../package.json'
 import { htmlTag, url_for, stripHTML } from 'hexo-util'
 import { getVendorLink } from '../utils'

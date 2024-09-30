@@ -79,10 +79,12 @@ hexo.extend.generator.register('script', function (locals) {
     siteConfig.audio = theme.audio
   }
 
-  let enterPoint: string
+  let enterPoint: string, patchDir: string
   if (fs.existsSync('themes/shokaX/source/js/_app/pjax/siteInit.ts')) {
+    patchDir = 'themes/shokaX/source/js/_app/components/cloudflare.ts'
     enterPoint = 'themes/shokaX/source/js/_app/pjax/siteInit.ts'
   } else {
+    patchDir = 'node_modules/hexo-theme-shokax/source/js/_app/components/cloudflare.ts'
     enterPoint = 'node_modules/hexo-theme-shokax/source/js/_app/pjax/siteInit.ts'
   }
   buildSync({
@@ -150,5 +152,31 @@ hexo.extend.generator.register('script', function (locals) {
       })
     }
   })
+  if (theme.experiments.cloudflarePatch) {
+    const result = buildSync({
+      entryPoints: [patchDir],
+      bundle: true,
+      platform: "browser",
+      format: "iife",
+      tsconfigRaw: {
+        compilerOptions: {
+          target: 'ES2022',
+          esModuleInterop: true,
+          module: 'ESNext',
+          moduleResolution: 'Node',
+          skipLibCheck: true
+        }
+      },
+      target: ['es2022'],
+      minify: true,
+      outfile: 'cf-patch.js'
+    })
+    res.push({
+      path: theme.js + '/cf-patch.js',
+      data: function () {
+        return result
+      }
+    })
+  }
   return res
 })

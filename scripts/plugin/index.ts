@@ -12,6 +12,9 @@ hexo.on('generateBefore', () => {
   // 加载`theme_injects`过滤器
   injects(hexo)
   fs.rmSync('./shokaxTemp', { force: true, recursive: true })
+  if (fs.existsSync('cf-patch.js')) {
+    fs.unlinkSync('cf-patch.js')
+  }
   if (fs.existsSync('request.lock')) {
     fs.unlinkSync('request.lock')
   }
