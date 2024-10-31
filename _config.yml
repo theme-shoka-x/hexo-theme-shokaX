@@ -33,6 +33,7 @@ experiments:
     enableCover: true # 是否开启头图
     enablePreload: true #是否开启预加载头图
     enableNextGradientCover: false # 使用CSS渐变作为上/下一页封面
+  copyrightLength: 50 # 自定义复制时显示copyright的长度
 
 homeConfig:
   gradient: false # 使用CSS渐变作为文章封面
@@ -101,13 +102,13 @@ polyfill:
 # 参阅 https://github.com/D-Sketon/mouse-firework
 fireworks:
   enable: true
-  options: 
+  options:
     excludeElements: ["a"]
     particles:
       - shape: circle
         move: ["emit"]
         easing: easeOutExpo
-        colors: 
+        colors:
           - "rgba(255,182,185,.9)"
           - "rgba(250,227,217,.9)"
           - "rgba(187,222,214,.9)"
@@ -226,7 +227,6 @@ summary:
   openai:
     remote: "https://api.openai.com"
     apikey: "key"
-
 
 # Social Links
 # Usage: `Key: permalink || icon || color`

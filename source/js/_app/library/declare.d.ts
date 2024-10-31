@@ -115,6 +115,9 @@ interface configType {
     priority: boolean
   }
   playerAPI: string
+  experiments: {
+    copyrightLength: number;
+  }
 }
 // esbuild 静态常量
 declare const __shokax_player__:boolean
