@@ -387,6 +387,14 @@ vendors:
       source: cdnjs
       url: KaTeX/0.16.9/contrib/copy-tex.min.js
       sri: "sha384-ww/583aHhxWkz5DEVn6OKtNiIaLi2iBRNZXfJRiY1Ai7tnJ9UXpEsyvOITVpTl4A"
+    fancybox:
+      source: cdnjs
+      url: fancybox/3.5.7/jquery.fancybox.min.js
+      sri: "sha384-Zm+UU4tdcfAm29vg+MTbfu//q5B/lInMbMCr4T8c9rQFyOv6PlfQYpB5wItcXWe7"
+    justifiedGallery:
+      source: cdnjs
+      url: justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js
+      sri: "sha384-TOxsBplaL96/QDWPIUg+ye3v89qSE3s22XNtJMmCeZEep3cVDmXy1zEfZvVv+y2m"
   css:
     katex:
       source: cdnjs
