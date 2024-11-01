@@ -1,11 +1,13 @@
-name: Node.js Package
+name: Nodejs Package on Dev Version
 
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - develop
 
 jobs:
   publish:
+    if: "contains(github.event.head_commit.message, '[publish dev]')"
     runs-on: ubuntu-latest
 
     steps:
@@ -21,14 +23,9 @@ jobs:
       - name: Build TypeScript files
         run: |
           pnpm install
+          node ./toolbox/dev-version.js
           pnpm run build
 
-      - run: npm publish
-        if: "!github.event.release.prerelease"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
-
-      - run: npm publish --tag beta
-        if: "github.event.release.prerelease"
+      - run: npm publish --tag dev
         env:
           NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
