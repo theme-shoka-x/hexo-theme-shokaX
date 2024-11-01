@@ -1,7 +1,7 @@
 import { $dom } from '../library/dom'
 import { postFancybox } from './fancybox'
 import { clipBoard, showtip } from '../globals/tools'
-import { BODY } from '../globals/globalVars'
+import { CONFIG, BODY } from '../globals/globalVars'
 import { pageScroll, transition } from '../library/anime'
 import { mediaPlayer } from '../player'
 import { getDisplay, setDisplay, wrapObject } from '../library/proto'
@@ -22,7 +22,7 @@ export const postBeauty = () => {
     }
 
     const copyright = document.getElementById('copyright')
-    if (window.getSelection().toString().length > 30 && copyright) {
+    if (window.getSelection().toString().length > CONFIG.experiments.copyrightLength && copyright) {
       event.preventDefault()
       const author = '# ' + (copyright.querySelector('.author') as HTMLElement).innerText
       const link = '# ' + (copyright.querySelector('.link') as HTMLElement).innerText

@@ -45,6 +45,9 @@ hexo.extend.generator.register('script', function (locals) {
       priority: theme.quicklink.priority
     },
     playerAPI: theme.playerAPI,
+    experiments: {
+      copyrightLength: theme.experiments.copyrightLength,
+    },
     audio: undefined,
     fireworks: (theme.fireworks && theme.fireworks.enable && theme.fireworks.options)
       ? theme.fireworks.options
