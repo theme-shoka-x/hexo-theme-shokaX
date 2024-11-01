@@ -1,6 +1,8 @@
 import { CONFIG } from '../globals/globalVars'
 import { init, RecentComments } from '@waline/client'
+// @ts-ignore
 import { pageviewCount } from '@waline/client/pageview'
+// @ts-ignore
 await import('@waline/client/style')
 
 export const walineComment = function () {
