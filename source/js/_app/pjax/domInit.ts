@@ -45,13 +45,13 @@ export default function domInit () {
   goToComment.addEventListener('click', goToCommentHandle)
   showContents.addEventListener('click', sideBarToggleHandle)
 
-  if (__shokax_player__) {
-    mediaPlayer(toolPlayer)
-
-    document.querySelector('main').addEventListener('click', () => {
-      toolPlayer.player.mini()
-    })
-  }
+  // if (__shokax_player__) {
+  //   mediaPlayer(toolPlayer)
+  //
+  //   document.querySelector('main').addEventListener('click', () => {
+  //     toolPlayer.player.mini()
+  //   })
+  // }
 
   const createIntersectionObserver = () => {
     // waves在视口外时停止动画

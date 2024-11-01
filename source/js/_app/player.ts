@@ -1,3 +1,5 @@
+// 临时性弃用，等待重构
+
 import { CONFIG, originTitle } from './globals/globalVars'
 import { showtip } from './globals/tools'
 import { pageScroll } from './library/anime'

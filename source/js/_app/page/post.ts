@@ -231,15 +231,15 @@ export const postBeauty = () => {
     element.className = ['primary', 'success', 'info', 'warning', 'danger'][Math.floor(Math.random() * 5)]
   })
 
-  if (__shokax_player__) {
-    $dom.each('.md div.player', (element) => {
-      mediaPlayer(element, {
-        type: element.getAttribute('data-type'),
-        mode: 'order',
-        btns: []
-      }).player.load(JSON.parse(element.getAttribute('data-src'))).fetch()
-    })
-  }
+  // if (__shokax_player__) {
+  //   $dom.each('.md div.player', (element) => {
+  //     mediaPlayer(element, {
+  //       type: element.getAttribute('data-type'),
+  //       mode: 'order',
+  //       btns: []
+  //     }).player.load(JSON.parse(element.getAttribute('data-src'))).fetch()
+  //   })
+  // }
 
   const angleDown = document.querySelectorAll('.show-btn .i-angle-down')
   if (angleDown.length) {
