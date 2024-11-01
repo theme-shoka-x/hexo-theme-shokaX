@@ -1,43 +1,22 @@
-# 📣 公告
-[你的 ShokaX 和 Shoka 站点可能正在遭遇供应链攻击](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/293) \
-[关于 ShokaX 部署平台和 Astro 迁移的调查](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/229)
+**🏗️ 当前分支为 ShokaX 0.5 Dev分支，不建议普通用户使用** \
+此分支为 ShokaX 0.5 实验性变更分支，确保0.5开发期间0.4的维护不受影响
 
-# hexo-theme-shokaX
-![LICENSE](	https://img.shields.io/github/license/theme-shoka-x/hexo-theme-shokaX)
-![stars](https://img.shields.io/github/stars/theme-shoka-x/hexo-theme-shokaX)
-![version](https://shields.io/npm/v/hexo-theme-shokax)
-![build](https://img.shields.io/github/actions/workflow/status/theme-shoka-x/hexo-theme-shokaX/build-theme.yml)
-
-#### 语言(language): 简体中文 | [English](./README_en.MD) \
-此项目是shoka的一个二次开发版(算精神续作),致力于提高性能和优化魔改体验 \
-诞生原因是目前shoka已经三年没有更新了,积压了大量BUG和功能请求。
-
-shokaX的社区资源导航和插件仓库为[awesome-shokaX](https://github.com/theme-shoka-x/awesome-shokaX)
-
-## 💬 和shoka的区别
-原先shoka使用了javascript+Native+nunjucks的技术 \
-而shokaX则使用了typescript+Vue 3+Pug的技术搭配 \
-更改了大量难以访问的CDN链接
-
-## ✨ 功能清单 
-
-|   功能名称   | 实现状态 |     功能名称     | 实现状态 |
-|:--------:|:----:|:------------:|:----:|
-|  PWA支持   |  ✅   |    JSD拆分     |  ✅   |
-|  注入API   |  ✅   |    社区插件系统    |  ✅   |
-|  自定义字体   |  ✅*  |    自定义样式     |  ✅*  |
-| 多种评论系统支持 |  ✅   |   AI生成文章概括   |  🔬  |
-|  底部备案号   |  ✅   |    自定义页尾     |  ✅*  |
-| CSS渐变封面  |  ✅   | typescript支持 |  ✅   |
-
-备注:
-- *: 需要使用注入API实现
-- 🔬: 实验中，可能存在问题
-
-
-## 🔧 如何安装?
-注意: 本项目需要 node.js 18.x 或更高版本才能运行 \
-见文档中[如何安装](https://docs-hexo.shokax.top/getting-started/)部分
+计划更改：
+- 移除 pjax
+- 移除 quicklink
+- 移除 assetUrl 为基的动态 Vendor 机制
+- 移除 ShokaX Inject
+- 引入新的 Inject 类技术 (长期)
+- 引入新的工作流程
+- 引入 CI 自动测试
+- 优化 menu 配置格式
+- 优化和异步化 Smart Bundle 技术
+- 优化 CSS 结构和加载
+- 修复/重置 fancybox
+- 修复模板长期遗留问题
+- 修复 images 遗留问题
+- 规范化配置文件
+- 规范化文档
 
 ## 📚子项目
 - [ShokaX docs](https://github.com/theme-shoka-x/shokaX-docs) ShokaX 主题文档 (正在编写中，欢迎加入！)
