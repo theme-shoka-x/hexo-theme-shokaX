@@ -74,7 +74,6 @@ export const walineRecentComments = async function () {
     commentTime.className = 'breadcrumb'
     commentTime.innerText = `${item.nick} @ ${item.time}`
     commentLink.href = root + item.href
-    commentLink['data-pjax-state'] = 'data-pjax-state'
     commentEl.className = 'item'
 
     commentText.appendChild(document.createElement('br'))

@@ -2,7 +2,6 @@ import { $dom } from '../library/dom'
 import { cardActive } from '../page/common'
 import { pageScroll, transition } from '../library/anime'
 import { vendorCss, vendorJs } from '../library/loadFile'
-import { pjaxScript } from '../library/scriptPjax'
 import { resizeHandle } from '../globals/handles'
 import {
   CONFIG,
@@ -60,10 +59,6 @@ export const siteRefresh = async (reload) => {
   document.querySelectorAll('[data-background-image]').forEach(el => {
     lazyBg.observe(el)
   })
-
-  if (reload !== 1) {
-    $dom.each('script[data-pjax]', pjaxScript)
-  }
 
   setOriginTitle(document.title)
 

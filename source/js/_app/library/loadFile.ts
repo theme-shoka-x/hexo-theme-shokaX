@@ -1,4 +1,3 @@
-import { getScript } from './scriptPjax'
 import { CONFIG } from '../globals/globalVars'
 import { createChild } from './proto'
 
@@ -19,9 +18,7 @@ const assetUrl = (asset: string, type: string): string => {
 
 export const vendorJs = (type: string, callback?: Function, condition?: string) => {
   if (LOCAL[type]) {
-    getScript(assetUrl('js', type),CONFIG['js'][type].sri, callback || function () {
-      window[type] = true
-    }, condition || window[type])
+    assetUrl('js', type)
   }
 }
 

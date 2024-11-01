@@ -1,5 +1,3 @@
-import { $dom } from '../library/dom'
-import Pjax from 'theme-shokax-pjax'
 import initProto from '../library/proto'
 
 export const CONFIG = shokax_CONFIG
@@ -29,7 +27,6 @@ export let oWinHeight = window.innerHeight
 export let oWinWidth = window.innerWidth
 export let LOCAL_HASH = 0
 export let LOCAL_URL = window.location.href
-export let pjax:Pjax
 
 export function setSiteNavHeight (value:number):void {
   siteNavHeight = value
@@ -64,10 +61,6 @@ export function setLocalHash (value:number):void {
 
 export function setLocalUrl (value:string):void {
   LOCAL_URL = value
-}
-
-export function setPjax (value:Pjax):void {
-  pjax = value
 }
 
 export function setOriginTitle (value:string):void {

@@ -1,11 +1,10 @@
 import domInit from './domInit'
-import { pjaxReload, siteRefresh } from './refresh'
+import { siteRefresh } from './refresh'
 import { cloudflareInit } from '../components/cloudflare'
-import { BODY, CONFIG, pjax, setPjax, setSiteSearch, siteSearch } from '../globals/globalVars'
+import { BODY, CONFIG, setSiteSearch, siteSearch } from '../globals/globalVars'
 import { autoDarkmode, themeColorListener } from '../globals/themeColor'
 import { resizeHandle, scrollHandle, visibilityListener } from '../globals/handles'
 import { pagePosition } from '../globals/tools'
-import Pjax from 'theme-shokax-pjax'
 import { initVue } from '../library/vue'
 import { $dom } from '../library/dom'
 import { createChild } from '../library/proto'
@@ -14,18 +13,6 @@ import { transition } from '../library/anime'
 const siteInit = async () => {
   initVue()
   domInit()
-
-  setPjax(new Pjax({
-    selectors: [
-      'head title',
-      '.languages',
-      '.twikoo',
-      '.pjax',
-      '.leancloud-recent-comment',
-      'script[data-config]'
-    ],
-    cacheBust: false
-  }))
 
   CONFIG.quicklink.ignores = LOCAL.ignores
   import('quicklink').then(({listen}) => {
@@ -53,7 +40,7 @@ const siteInit = async () => {
       }
 
       import('../page/search').then(({algoliaSearch}) => {
-        algoliaSearch(pjax)
+        algoliaSearch()
       })
 
       // Handle and trigger popup window
@@ -83,13 +70,13 @@ const siteInit = async () => {
     passive: true
   })
 
-  window.addEventListener('pjax:send', pjaxReload, {
-    passive: true
-  })
+  // window.addEventListener('pjax:send', pjaxReload, {
+  //   passive: true
+  // })
 
-  window.addEventListener('pjax:success', siteRefresh, {
-    passive: true
-  }) // 默认会传入一个event参数
+  // window.addEventListener('pjax:success', siteRefresh, {
+  //   passive: true
+  // }) // 默认会传入一个event参数
 
   window.addEventListener('beforeunload', () => {
     pagePosition()
