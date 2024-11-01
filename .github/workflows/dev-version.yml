@@ -23,7 +23,7 @@ jobs:
       - name: Build TypeScript files
         run: |
           pnpm install
-          node ./toolbox/dev-version.js
+          node ./toolbox/dev-version.mjs
           pnpm run build
 
       - run: npm publish --tag dev
