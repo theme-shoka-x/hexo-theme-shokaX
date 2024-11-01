@@ -374,7 +374,6 @@ vendors:
       source: cdnjs
       url: jquery/3.5.1/jquery.min.js
       sri: "sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2"
-  async_js:
     fancybox:
       source: cdnjs
       url: fancybox/3.5.7/jquery.fancybox.min.js
@@ -383,6 +382,7 @@ vendors:
       source: cdnjs
       url: justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js
       sri: "sha384-TOxsBplaL96/QDWPIUg+ye3v89qSE3s22XNtJMmCeZEep3cVDmXy1zEfZvVv+y2m"
+  async_js:
     copy_tex:
       source: cdnjs
       url: KaTeX/0.16.9/contrib/copy-tex.min.js

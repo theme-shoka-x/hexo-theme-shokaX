@@ -1,46 +1,23 @@
-import { $dom } from '../library/dom'
 import { cardActive } from '../page/common'
-import { pageScroll, transition } from '../library/anime'
-import { vendorCss, vendorJs } from '../library/loadFile'
 import { resizeHandle } from '../globals/handles'
 import {
   CONFIG,
-  loadCat,
-  menuToggle,
   setLocalHash, setLocalUrl, setOriginTitle,
-  sideBar,
   toolPlayer
 } from '../globals/globalVars'
-import { pagePosition, positionInit } from '../globals/tools'
+import { positionInit } from '../globals/tools'
 import { menuActive, sideBarTab, sidebarTOC } from '../components/sidebar'
 import { Loader, isOutime } from '../globals/thirdparty'
 import { tabFormat } from '../page/tab'
 import { lazyLoad } from 'unlazy'
 
-export const pjaxReload = () => {
-  pagePosition()
-
-  if (sideBar.hasClass('on')) {
-    transition(sideBar, 0, () => {
-      sideBar.removeClass('on')
-      menuToggle.removeClass('close')
-    }) // 'transition.slideRightOut'
-  }
-  const mainNode = document.getElementById('main')
-  mainNode.innerHTML = ''
-  mainNode.appendChild(loadCat.lastChild.cloneNode(true))
-  pageScroll(0)
-}
-
 export const siteRefresh = async (reload) => {
   setLocalHash(0)
   setLocalUrl(window.location.href)
 
-  vendorCss('katex');
-  // await import('katex/dist/katex.min.css')
-  // vendorJs('copy_tex')
+  // @ts-ignore
+  await import('katex/dist/katex.min.css')
   await import('katex/dist/contrib/copy-tex.mjs')
-  vendorCss('mermaid')
 
   // 懒加载背景图
   const lazyBg = new IntersectionObserver(function (entries, observer) {
