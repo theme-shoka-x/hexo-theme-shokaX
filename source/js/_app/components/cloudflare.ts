@@ -1,6 +1,6 @@
 // rocket-loader & Auto minify(cloudflare) 补丁
 // cloudflare 的上述功能会导致DOMContentLoaded事件无法触发，此补丁会将DOMContentLoaded重定向为load事件
-function cloudflareInit () {
+export function cloudflareInit () {
   let inCloudFlare = true
   window.addEventListener('DOMContentLoaded', function () {
     inCloudFlare = false

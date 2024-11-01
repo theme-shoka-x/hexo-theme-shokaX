@@ -1,6 +1,6 @@
 import domInit from './domInit'
 import { pjaxReload, siteRefresh } from './refresh'
-import { cloudflareInit } from '../library/scriptPjax'
+import { cloudflareInit } from '../components/cloudflare'
 import { BODY, CONFIG, pjax, setPjax, setSiteSearch, siteSearch } from '../globals/globalVars'
 import { autoDarkmode, themeColorListener } from '../globals/themeColor'
 import { resizeHandle, scrollHandle, visibilityListener } from '../globals/handles'

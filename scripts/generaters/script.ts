@@ -177,7 +177,7 @@ hexo.extend.generator.register('script', function (locals) {
     res.push({
       path: theme.js + '/cf-patch.js',
       data: function () {
-        return result
+          return fs.readFileSync('./cf-patch.js', { encoding: 'utf-8' })
       }
     })
   }
