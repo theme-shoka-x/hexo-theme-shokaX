@@ -14,11 +14,6 @@ const siteInit = async () => {
   initVue()
   domInit()
 
-  CONFIG.quicklink.ignores = LOCAL.ignores
-  import('quicklink').then(({listen}) => {
-    listen(CONFIG.quicklink)
-  })
-
   autoDarkmode()
 
   if (__shokax_VL__) {
@@ -70,18 +65,11 @@ const siteInit = async () => {
     passive: true
   })
 
-  // window.addEventListener('pjax:send', pjaxReload, {
-  //   passive: true
-  // })
-
-  // window.addEventListener('pjax:success', siteRefresh, {
-  //   passive: true
-  // }) // 默认会传入一个event参数
-
   window.addEventListener('beforeunload', () => {
     pagePosition()
   })
   await siteRefresh(1)
+  // TODO 修复内页跳转后重复出现加载动画的问题
 }
 
 cloudflareInit()

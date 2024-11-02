@@ -109,11 +109,6 @@ interface configType {
     region: string
   }
   walinePageView: boolean
-  quicklink: {
-    ignores: any
-    timeout: number
-    priority: boolean
-  }
   playerAPI: string
   experiments: {
     copyrightLength: number;

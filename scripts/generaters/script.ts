@@ -40,10 +40,6 @@ hexo.extend.generator.register('script', function (locals) {
       enable: theme.outime.enable,
       days: theme.outime.days
     },
-    quicklink: {
-      timeout: theme.quicklink.timeout,
-      priority: theme.quicklink.priority
-    },
     playerAPI: theme.playerAPI,
     experiments: {
       copyrightLength: theme.experiments.copyrightLength,

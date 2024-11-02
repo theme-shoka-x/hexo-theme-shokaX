@@ -2,10 +2,6 @@ include ../_mixin/breadcrumb.pug
 include ../_mixin/sidebar.pug
 include ../_mixin/widgets.pug
 
-- ignores = []
-if (theme.quicklink.ignores)
-    - ignores.push(theme.quicklink.ignores)
-
 - var covers = _cover_index(page, 6)
 - var enableFixedCover = theme.homeConfig?.fixedCover
 - var enablePreload = theme.experiments?.coverConfig?.enablePreload
@@ -120,12 +116,7 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
                     essay: `#{__('quiz.essay')}`,
                     gap_fill: `#{__('quiz.gap_fill')}`,
                     mistake: `#{__('quiz.mistake')}`
-                },
-                ignores: [
-                    (uri) => uri.includes('#'),
-                    (uri) => new RegExp(LOCAL.path + '$').test(uri),
-                        !{JSON.stringify(ignores)}
-                ]
+                }
             };
 
         != partial('_partials/third-party/baidu-analytics.pug', {}, {cache: true})

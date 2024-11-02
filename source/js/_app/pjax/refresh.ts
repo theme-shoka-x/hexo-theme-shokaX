@@ -1,9 +1,7 @@
 import { cardActive } from '../page/common'
 import { resizeHandle } from '../globals/handles'
 import {
-  CONFIG,
   setLocalHash, setLocalUrl, setOriginTitle,
-  toolPlayer
 } from '../globals/globalVars'
 import { positionInit } from '../globals/tools'
 import { menuActive, sideBarTab, sidebarTOC } from '../components/sidebar'
@@ -95,10 +93,15 @@ export const siteRefresh = async (reload) => {
     tabFormat()
   }
 
-  if (__shokax_player__) {
-    toolPlayer.player.load(LOCAL.audio || CONFIG.audio || {})
+  // if (__shokax_player__) {
+  //   toolPlayer.player.load(LOCAL.audio || CONFIG.audio || {})
+  // }
+  if (sessionStorage.getItem('loaded') === 'true') {
+    Loader.hide(30)
+  } else {
+    sessionStorage.setItem('loaded', 'true')
+    Loader.hide(500)
   }
-  Loader.hide(100)
 
   setTimeout(() => {
     positionInit()
