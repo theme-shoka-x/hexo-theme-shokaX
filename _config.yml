@@ -346,18 +346,6 @@ search:
 # Dependencies: https://github.com/amehime/hexo-renderer-multi-markdown-it
 pangu: false
 
-# Quicklink Support
-# For more information: https://github.com/GoogleChromeLabs/quicklink
-quicklink:
-  # Custom a time in milliseconds by which the browser must execute prefetching.
-  timeout: 3000
-  # Default (true) will attempt to use the fetch() API if supported (rather than link[rel=prefetch]).
-  priority: true
-
-  # For more flexibility you can add some patterns (RegExp, Function, or Array) to ignores.
-  # See: https://github.com/GoogleChromeLabs/quicklink#custom-ignore-patterns
-  ignores:
-
 #! ---------------------------------------------------------------
 #! DO NOT EDIT THE FOLLOWING `vendors` SETTINGS
 #! UNLESS YOU KNOW WHAT YOU ARE DOING
