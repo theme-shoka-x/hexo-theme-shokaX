@@ -41,7 +41,6 @@ each dnsLink in dnslinks
 - var fontConfig = theme.font?.loadFromGoogle
 if fontConfig
     != _vendor_font()
-!= _css('app.css')
 != preloadjs()
 != load_async_css()
 
@@ -50,7 +49,6 @@ link(rel="stylesheet" media="none" onload="this.media='all'" href="https://s4.zs
 link(rel="stylesheet" media="none" onload="this.media='all'" href="https://s4.zstatic.net/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css")
 link(rel="stylesheet" media="none" onload="this.media='all'" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css")
 //link(rel="stylesheet" media="none" onload="this.media='all'" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css")
-!= _css('mermaid.css')
 if theme.experiments.cloudflarePatch
     != _js('cf-patch.js')
 

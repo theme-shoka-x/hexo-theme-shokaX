@@ -3,6 +3,10 @@ include _mixin/sidebar.pug
 include _mixin/comment.pug
 include _mixin/postmeta.pug
 
+block head
+    != _css('post.css')
+    != _css('mermaid.css')
+
 block title
     - var page_title = page.title
     if page.categories && page.categories.length

@@ -2,22 +2,22 @@
 此分支为 ShokaX 0.5 实验性变更分支，确保0.5开发期间0.4的维护不受影响
 
 计划更改：
-- 移除 pjax
-- 移除 quicklink
-- 移除 assetUrl 为基的动态 Vendor 机制
-- 移除 ShokaX Inject
-- 引入新的 Inject 类技术 (长期)
-- 引入新的工作流程
-- 引入 CI 自动测试
-- 重构 player (暂时移除)
-- 优化 menu 配置格式
-- 优化和异步化 Smart Bundle 技术
-- 优化 CSS 结构和加载
-- 修复/重置 fancybox
-- 修复模板长期遗留问题
-- 修复 images 遗留问题
-- 规范化配置文件
-- 规范化文档
+- [x] 移除 pjax
+- [x] 移除 quicklink
+- [x] 移除 assetUrl 为基的动态 Vendor 机制
+- [ ] 移除 ShokaX Inject
+- [ ] 引入新的 Inject 类技术 (长期)
+- [ ] 引入新的工作流程
+- [ ] 引入 CI 自动测试
+- [ ] 重构 player (暂时移除)
+- [ ] 优化 menu 配置格式
+- [ ] 优化和异步化 Smart Bundle 技术
+- [ ] 优化 CSS 结构和加载
+- [x] 修复/重置 fancybox
+- [ ] 修复模板长期遗留问题
+- [ ] 修复 images 遗留问题
+- [ ] 规范化配置文件
+- [ ] 规范化文档
 
 ## 📚子项目
 - [ShokaX docs](https://github.com/theme-shoka-x/shokaX-docs) ShokaX 主题文档 (正在编写中，欢迎加入！)
