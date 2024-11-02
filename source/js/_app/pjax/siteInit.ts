@@ -65,7 +65,7 @@ const siteInit = async () => {
     passive: true
   })
 
-  window.addEventListener('beforeunload', () => {
+  window.addEventListener('visibilitychange', () => {
     pagePosition()
   })
   await siteRefresh(1)
