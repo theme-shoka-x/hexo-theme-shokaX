@@ -9,16 +9,13 @@ import {
   showContents,
   siteHeader,
   siteNav,
-  toolBtn,
-  toolPlayer
+  toolBtn
 } from '../globals/globalVars'
 import { Loader } from '../globals/thirdparty'
-import { $dom } from '../library/dom'
-import { mediaPlayer } from '../player'
 import { createChild } from '../library/proto'
 
 export default function domInit () {
-  $dom.each('.overview .menu > .item', (el) => {
+  document.querySelectorAll('.overview .menu > .item').forEach((el) => {
     siteNav.querySelector('.menu').appendChild(el.cloneNode(true))
   })
 

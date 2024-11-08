@@ -3,7 +3,6 @@
 import { CONFIG, originTitle } from './globals/globalVars'
 import { showtip } from './globals/tools'
 import { pageScroll } from './library/anime'
-import { $storage } from './library/storage'
 import { tabFormat } from './page/tab'
 import { createChild, getLeft, getWidth, setDisplay, setWidth } from './library/proto'
 
@@ -85,7 +84,7 @@ export const mediaPlayer = (t, config?) => {
         }
 
         controller.btns.mode.className = 'mode ' + t.player.options.mode + ' btn'
-        $storage.set('_PlayerMode', t.player.options.mode)
+        localStorage.setItem('_PlayerMode', t.player.options.mode)
       },
       volume (e) {
         e.preventDefault()
@@ -148,7 +147,7 @@ export const mediaPlayer = (t, config?) => {
 
       if (current) {
         if (progress.el) {
-          progress.el.parentNode.removeClass('current')
+          progress.el.parentNode.classList.remove('current')
             .removeEventListener(utils.nameMap.dragStart, progress.drag)
           progress.el.remove()
         }
@@ -163,7 +162,7 @@ export const mediaPlayer = (t, config?) => {
           className: 'bar'
         })
 
-        current.addClass('current')
+        current.classList.add('current')
 
         current.addEventListener(utils.nameMap.dragStart, progress.drag)
 
@@ -175,7 +174,7 @@ export const mediaPlayer = (t, config?) => {
       (progress.el as HTMLElement).setAttribute('data-ptime', utils.secondToTime(percent * source.duration))
     },
     seeking (type) {
-      if (type) { progress.el.addClass('seeking') } else { progress.el.removeClass('seeking') }
+      if (type) { progress.el.classList.add('seeking') } else { progress.el.classList.remove('seeking') }
     },
     percent (e, el) {
       let percentage = ((e.clientX || e.changedTouches[0].clientX) - getLeft(el)) / getWidth(el)
@@ -301,13 +300,13 @@ export const mediaPlayer = (t, config?) => {
     scroll () {
       const item = this.current()
       let li = this.el.querySelector('li.active')
-      li && li.removeClass('active')
+      li && li.classList.remove('active')
       let tab = this.el.querySelector('.tab.active')
-      tab && tab.removeClass('active')
+      tab && tab.classList.remove('active')
       li = this.el.querySelectorAll('.nav li')[item.group]
-      li && li.addClass('active')
+      li && li.classList.add('active')
       tab = this.el.querySelectorAll('.tab')[item.group]
-      tab && tab.addClass('active')
+      tab && tab.classList.add('active')
 
       pageScroll(item.el, item.el.offsetTop)
 
@@ -321,7 +320,7 @@ export const mediaPlayer = (t, config?) => {
     },
     error () {
       const current = this.current()
-      current.el.removeClass('current').addClass('error')
+      current.el.classList.remove('current').classList.add('error')
       current.error = true
       this.errnum++
     }
@@ -342,9 +341,9 @@ export const mediaPlayer = (t, config?) => {
     },
     hide () {
       const el = this.el
-      el.addClass('hide')
+      el.classList.add('hide')
       window.setTimeout(() => {
-        el.removeClass('show hide')
+        el.classList.remove('show hide')
       }, 300)
     }
   }
@@ -362,10 +361,10 @@ export const mediaPlayer = (t, config?) => {
         }
       },
       music (event) {
-        if (info.el.hasClass('show')) {
+        if (info.el.classList.contains('show')) {
           info.hide()
         } else {
-          info.el.addClass('show')
+          info.el.classList.add('show')
           playlist.scroll().title()
         }
       }
@@ -409,7 +408,7 @@ export const mediaPlayer = (t, config?) => {
           const meta = utils.parse(raw)
           if (meta[0]) {
             const skey = JSON.stringify(meta)
-            const playlist = $storage.get(skey)
+            const playlist = localStorage.getItem(skey)
             if (playlist) {
               // list.push.apply(list, JSON.parse(playlist))
               list.push(...JSON.parse(playlist))
@@ -419,7 +418,7 @@ export const mediaPlayer = (t, config?) => {
                 .then((response) => {
                   return response.json()
                 }).then((json) => {
-                  $storage.set(skey, JSON.stringify(json))
+                  localStorage.setItem(skey, JSON.stringify(json))
                   // list.push.apply(list, json)
                   list.push(...json)
                   resolve(list)
@@ -583,8 +582,8 @@ export const mediaPlayer = (t, config?) => {
 
       source.setAttribute('src', item.url)
       source.setAttribute('title', item.name + ' - ' + item.artist)
-      this.volume($storage.get('_PlayerVolume') || '0.7')
-      this.muted($storage.get('_PlayerMuted'))
+      this.volume(localStorage.getItem('_PlayerVolume') || '0.7')
+      this.muted(localStorage.getItem('_PlayerMuted'))
 
       progress.create()
 
@@ -625,10 +624,10 @@ export const mediaPlayer = (t, config?) => {
     muted (status?) {
       if (status === 'muted') {
         source.muted = status
-        $storage.set('_PlayerMuted', status)
+        localStorage.setItem('_PlayerMuted', status)
         controller.update(0)
       } else {
-        $storage.del('_PlayerMuted')
+        localStorage.removeItem('_PlayerMuted')
         source.muted = false
         controller.update(source.volume)
       }
@@ -636,7 +635,7 @@ export const mediaPlayer = (t, config?) => {
     volume (percentage) {
       if (!isNaN(percentage)) {
         controller.update(percentage)
-        $storage.set('_PlayerVolume', percentage)
+        localStorage.setItem('_PlayerVolume', percentage)
         source.volume = percentage
       }
     },
@@ -684,8 +683,8 @@ export const mediaPlayer = (t, config?) => {
             const y = -(this.index - 1)
             this.el.style.transform = 'translateY(' + y + 'rem)'
             // this.el.style.webkitTransform = 'translateY(' + y + 'rem)';
-            this.el.getElementsByClassName('current')[0].removeClass('current')
-            this.el.getElementsByTagName('p')[i].addClass('current')
+            this.el.getElementsByClassName('current')[0].classList.remove('current')
+            this.el.getElementsByTagName('p')[i].classList.add('current')
           }
         }
       }
@@ -755,12 +754,12 @@ export const mediaPlayer = (t, config?) => {
       progress.el.setAttribute('data-dtime', utils.secondToTime(source.duration))
     },
     onplay () {
-      t.parentNode.addClass('playing')
+      t.parentNode.classList.add('playing')
       showtip(this.getAttribute('title'))
       NOWPLAYING = t
     },
     onpause () {
-      t.parentNode.removeClass('playing')
+      t.parentNode.classList.remove('playing')
       NOWPLAYING = null
     },
     ontimeupdate () {
@@ -779,7 +778,7 @@ export const mediaPlayer = (t, config?) => {
     if (t.player.created) { return }
 
     t.player.options = Object.assign(option, config)
-    t.player.options.mode = $storage.get('_PlayerMode') || t.player.options.mode
+    t.player.options.mode = localStorage.getItem('_PlayerMode') || t.player.options.mode
 
     // 初始化button、controls以及click事件
     buttons.create()
@@ -789,7 +788,7 @@ export const mediaPlayer = (t, config?) => {
     // 初始化播放列表、预览、控件按钮等
     info.create()
 
-    t.parentNode.addClass(t.player.options.type)
+    t.parentNode.classList.add(t.player.options.type)
 
     t.player.created = true
   }

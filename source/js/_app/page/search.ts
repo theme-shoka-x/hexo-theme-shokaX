@@ -101,7 +101,6 @@ export function algoliaSearch () {
     }
   })
   document.querySelector('.close-btn').addEventListener('click', onPopupClose)
-  // window.addEventListener('pjax:success', onPopupClose)
   window.addEventListener('keyup', (event) => {
     if (event.key === 'Escape') {
       onPopupClose()

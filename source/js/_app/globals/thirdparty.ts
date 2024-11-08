@@ -9,7 +9,7 @@ export const Loader = {
   lock: false,
   show () {
     clearTimeout(this.timer)
-    document.body.removeClass('loaded')
+    document.body.classList.remove('loaded')
     loadCat.setAttribute('style', 'display:block')
     Loader.lock = false
   },
@@ -26,7 +26,7 @@ export const Loader = {
     if (CONFIG.loader.start) {
       transition(loadCat, 0)
     }
-    document.body.addClass('loaded')
+    document.body.classList.add('loaded')
     Loader.lock = true
   }
 }

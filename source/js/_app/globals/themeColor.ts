@@ -1,4 +1,3 @@
-import { $storage } from '../library/storage'
 import { CONFIG, HTML } from './globalVars'
 
 /**
@@ -8,12 +7,12 @@ export const changeTheme = (type?: string) => {
   const btn = document.querySelector('.theme .ic')
   if (type === 'dark') {
     HTML.setAttribute('data-theme', type)
-    btn.removeClass('i-sun')
-    btn.addClass('i-moon')
+    btn.classList.remove('i-sun')
+    btn.classList.add('i-moon')
   } else {
     HTML.removeAttribute('data-theme')
-    btn.removeClass('i-moon')
-    btn.addClass('i-sun')
+    btn.classList.remove('i-moon')
+    btn.classList.add('i-sun')
   }
 }
 
@@ -52,7 +51,7 @@ export const themeColorListener = () => {
     }
   })
 
-  const t = $storage.get('theme')
+  const t = localStorage.getItem('theme')
   if (t) {
     changeTheme(t)
   } else {

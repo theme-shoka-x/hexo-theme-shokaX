@@ -1,14 +1,13 @@
 import domInit from './domInit'
-import { siteRefresh } from './refresh'
-import { cloudflareInit } from '../components/cloudflare'
-import { BODY, CONFIG, setSiteSearch, siteSearch } from '../globals/globalVars'
-import { autoDarkmode, themeColorListener } from '../globals/themeColor'
-import { resizeHandle, scrollHandle, visibilityListener } from '../globals/handles'
-import { pagePosition } from '../globals/tools'
-import { initVue } from '../library/vue'
-import { $dom } from '../library/dom'
-import { createChild } from '../library/proto'
-import { transition } from '../library/anime'
+import {siteRefresh} from './refresh'
+import {cloudflareInit} from '../components/cloudflare'
+import {BODY, CONFIG, setSiteSearch, siteSearch} from '../globals/globalVars'
+import {autoDarkmode, themeColorListener} from '../globals/themeColor'
+import {resizeHandle, scrollHandle, visibilityListener} from '../globals/handles'
+import {pagePosition} from '../globals/tools'
+import {initVue} from '../library/vue'
+import {createChild} from '../library/proto'
+import {transition} from '../library/anime'
 
 const siteInit = async () => {
   initVue()
@@ -39,15 +38,12 @@ const siteInit = async () => {
       })
 
       // Handle and trigger popup window
-      // TODO search 只有一个，不需要 each
-      $dom.each('.search', (element) => {
-        element.addEventListener('click', () => {
+      document.querySelector('.search').addEventListener('click', () => {
           document.body.style.overflow = 'hidden'
           transition(siteSearch, 'shrinkIn', () => {
             (document.querySelector('.search-input') as HTMLInputElement).focus()
           }) // transition.shrinkIn
         })
-      })
     }, {once: true, capture: true})
   }
 

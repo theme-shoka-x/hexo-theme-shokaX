@@ -1,11 +1,10 @@
 import { pageScroll } from '../library/anime'
-import { $dom } from '../library/dom'
 import { createChild } from '../library/proto'
 
 export const tabFormat = () => {
   // tab
   let first_tab:boolean
-  $dom.each('div.tab', (element) => {
+  document.querySelectorAll('div.tab').forEach((element) => {
     if (element.getAttribute('data-ready')) { return }
 
     const id = element.getAttribute('data-id')
@@ -41,17 +40,17 @@ export const tabFormat = () => {
     })
 
     if (first_tab) {
-      li.addClass('active')
-      element.addClass('active')
+      li.classList.add('active')
+      element.classList.add('active')
     }
 
     li.addEventListener('click', (event) => {
-      const target = event.currentTarget
-      box.find('.active').forEach((el) => {
-        el.removeClass('active')
+      const target = event.currentTarget as HTMLElement
+      box.querySelectorAll('.active').forEach((el) => {
+        el.classList.remove('active')
       })
-      element.addClass('active')
-      target.addClass('active')
+      element.classList.add('active')
+      target.classList.add('active')
     })
 
     box.appendChild(element)

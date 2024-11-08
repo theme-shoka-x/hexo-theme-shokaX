@@ -343,9 +343,6 @@ search:
   hits:
     per_page: 10
 
-# Dependencies: https://github.com/amehime/hexo-renderer-multi-markdown-it
-pangu: false
-
 #! ---------------------------------------------------------------
 #! DO NOT EDIT THE FOLLOWING `vendors` SETTINGS
 #! UNLESS YOU KNOW WHAT YOU ARE DOING
