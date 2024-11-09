@@ -46,6 +46,9 @@ block content
                 != _p('counter.tag_cloud', site.tags.length)
             div(class="tag cloud")
                 != tagcloud({min_font: theme.tagcloud.min,max_font: theme.tagcloud.max,amount: theme.tagcloud.amount,color: true,start_color: theme.tagcloud.start,end_color: theme.tagcloud.end})
+    else if page.type == '404'
+        div(class="collapse wrap")
+            img(loading="lazy" data-src=`${url_for(theme.statics + theme.assets + '/404.png') }` alt=`${ author } ${ __('title.not_found') }`)
     else
         div(class="page wrap")
             != partial('_partials/post/post.pug', {post: page})

@@ -109,6 +109,7 @@ symbol:
   comma: "、"
   period: "。"
   colon: "："
+  space: " "
   year: 年
   month: 月
 

@@ -109,6 +109,7 @@ symbol:
   comma: ", "
   period: ". "
   colon: ": "
+  space: " "
   year: "Y"
   month: "M"
 
