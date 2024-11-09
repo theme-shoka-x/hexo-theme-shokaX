@@ -1,13 +1,14 @@
 div(class="meta")
+    if theme.twikoo.enable || theme.waline.pageview
+        span(class="item")
+            span(class="icon")
+                i(class="ic i-eye")
+            span(class="text")
+                !=__('footer.total_views') + __('symbol.colon')
+            - var prefixedPath = post.path.startsWith('/') ? post.path : '/' + post.path
+            span(id="twikoo_visitors" class="waline-pageview-count" data-path=prefixedPath)
+                !=__('footer.loading')
     if date(post.date) !== date(post.updated) || time(post.date) !== time(post.updated)
-        if theme.twikoo.enable || theme.waline.pageview
-            span(class="item")
-                span(class="icon")
-                    i(class="ic i-eye")
-                span(class="text")
-                    !=__('footer.total_views') + __('symbol.colon')
-                - var prefixedPath = post.path.startsWith('/') ? post.path : '/' + post.path
-                span(id="twikoo_visitors" class="waline-pageview-count" data-path=prefixedPath) 正在加载...
         span(class="item")
             span(class="icon")
                 i(class="ic i-calendar-check")
