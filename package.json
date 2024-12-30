@@ -34,7 +34,7 @@
         "hexo": "^7.3.0",
         "hexo-algoliasearch": "^2.0.1",
         "hexo-feed": "^1.1.2",
-        "hexo-fs": "^4.1.3",
+        "hexo-fs": "^5.0.0",
         "hexo-pagination": "^4.0.0",
         "hexo-renderer-pug": "^3.0.0",
         "hexo-util": "^3.3.0",
