@@ -4,13 +4,11 @@
   https://github.com/next-theme/hexo-theme-next/blob/master/LICENSE.md
  */
 
-import injects from './lib/injects'
 import { version } from '../../package.json'
 import * as fs from 'node:fs'
 
 hexo.on('generateBefore', () => {
   // 加载`theme_injects`过滤器
-  injects(hexo)
   fs.rmSync('./shokaxTemp', { force: true, recursive: true })
   if (fs.existsSync('cf-patch.js')) {
     fs.unlinkSync('cf-patch.js')
@@ -25,7 +23,7 @@ hexo.on('generateBefore', () => {
 
 hexo.on('generateAfter', () => {
   // 检查版本更新
-  fetch('https://api.shokax.top/version/hexo', {headers: {
+  fetch('https://registry.npmmirror.com/hexo-theme-shokax/latest', {headers: {
     "User-Agent": "Mozilla/5.0 ShokaX Client (hexo-theme-shokax)"
     }}).then((res) => {
     res.json().then((resp) => {

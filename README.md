@@ -5,12 +5,11 @@
 - [x] 移除 pjax
 - [x] 移除 quicklink
 - [x] 移除 assetUrl 为基的动态 Vendor 机制
-- [ ] 移除 ShokaX Inject
+- [x] 移除 ShokaX Inject
 - [ ] 引入新的 Inject 类技术 (长期)
 - [ ] 引入新的工作流程
-- [ ] 引入 CI 自动测试
-- [ ] 进行组件化重构 & 引入 Vue
 - [ ] 重构 player (暂时移除)
+- [ ] 重构并修改代码块
 - [ ] 优化 menu 配置格式
 - [ ] 优化和异步化 Smart Bundle 技术
 - [ ] 优化 CSS 结构和加载
