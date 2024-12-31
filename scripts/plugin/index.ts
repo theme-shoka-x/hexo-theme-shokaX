@@ -25,8 +25,8 @@ hexo.on('generateBefore', () => {
 
 hexo.on('generateAfter', () => {
   // 检查版本更新
-  fetch('https://api.shokax.top/version/hexo', {headers: {
-    "User-Agent": "Mozilla/5.0 ShokaX Client (hexo-theme-shokax)"
+  fetch('https://registry.npmmirror.com/hexo-theme-shokax/latest', {headers: {
+    "User-Agent": "ShokaX Client (hexo-theme-shokax)"
     }}).then((res) => {
     res.json().then((resp) => {
       try {

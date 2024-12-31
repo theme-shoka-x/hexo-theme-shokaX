@@ -1,7 +1,3 @@
-# 📣 Announcement
-[Your ShokaX and Shoka sites might be under a supply chain attack](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/293) \
-[Survey on ShokaX deployment platform and Astro migration](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/229)
-
 # hexo-theme-shokaX
 ![LICENSE](https://img.shields.io/github/license/theme-shoka-x/hexo-theme-shokaX)
 ![stars](https://img.shields.io/github/stars/theme-shoka-x/hexo-theme-shokaX)

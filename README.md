@@ -1,7 +1,3 @@
-# 📣 公告
-[你的 ShokaX 和 Shoka 站点可能正在遭遇供应链攻击](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/293) \
-[关于 ShokaX 部署平台和 Astro 迁移的调查](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/229)
-
 # hexo-theme-shokaX
 ![LICENSE](	https://img.shields.io/github/license/theme-shoka-x/hexo-theme-shokaX)
 ![stars](https://img.shields.io/github/stars/theme-shoka-x/hexo-theme-shokaX)
@@ -9,15 +5,9 @@
 ![build](https://img.shields.io/github/actions/workflow/status/theme-shoka-x/hexo-theme-shokaX/build-theme.yml)
 
 #### 语言(language): 简体中文 | [English](./README_en.MD) \
-此项目是shoka的一个二次开发版(算精神续作),致力于提高性能和优化魔改体验 \
-诞生原因是目前shoka已经三年没有更新了,积压了大量BUG和功能请求。
+此项目是shoka的一个二次开发版(算精神续作),致力于提高性能和优化魔改体验 
 
 shokaX的社区资源导航和插件仓库为[awesome-shokaX](https://github.com/theme-shoka-x/awesome-shokaX)
-
-## 💬 和shoka的区别
-原先shoka使用了javascript+Native+nunjucks的技术 \
-而shokaX则使用了typescript+Vue 3+Pug的技术搭配 \
-更改了大量难以访问的CDN链接
 
 ## ✨ 功能清单 
 
