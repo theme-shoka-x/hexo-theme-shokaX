@@ -27,7 +27,7 @@ shokaX的社区资源导航和插件仓库为[awesome-shokaX](https://github.com
 
 ## 🔧 如何安装?
 注意: 本项目需要 node.js 18.x 或更高版本才能运行 \
-见文档中[如何安装](https://docs-hexo.shokax.top/getting-started/)部分
+见文档中[如何安装](https://hexo.docs.shokax.top/getting-started/)部分
 
 ## 📚子项目
 - [ShokaX docs](https://github.com/theme-shoka-x/shokaX-docs) ShokaX 主题文档 (正在编写中，欢迎加入！)
