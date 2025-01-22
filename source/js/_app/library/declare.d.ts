@@ -132,3 +132,4 @@ declare const __shokax_waline__:boolean
 declare const __shokax_twikoo__:boolean
 declare const shokax_CONFIG:configType
 declare const shokax_siteURL:string
+declare const __shokax_antiFakeWebsite__:boolean

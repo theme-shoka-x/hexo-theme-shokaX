@@ -34,6 +34,14 @@ export const pjaxReload = () => {
 }
 
 export const siteRefresh = async (reload) => {
+  if (__shokax_antiFakeWebsite__) {
+    if (window.location.origin !== CONFIG.hostname) {
+      window.location.href = CONFIG.hostname
+      /*! 我知道你正在试图去除这段代码，虽然我无法阻止你，但我劝你好自为之 */
+      alert('检测到非法仿冒网站，已自动跳转回正确首页;\nWe have detected a fake website, and you have been redirected to the correct homepage.')
+    }
+  }
+
   setLocalHash(0)
   setLocalUrl(window.location.href)
 

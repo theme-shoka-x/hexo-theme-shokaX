@@ -123,6 +123,7 @@ hexo.extend.generator.register('script', function (locals) {
       __shokax_fancybox__: theme.modules.fancybox ? 'true' : 'false',
       __shokax_waline__: theme.waline.enable ? 'true' : 'false',
       __shokax_twikoo__: theme.twikoo.enable ? 'true' : 'false',
+      __shokax_antiFakeWebsite__: theme.experiments.antiFakeWebsite ? 'true' : 'false',
       shokax_CONFIG: JSON.stringify(siteConfig),
       shokax_siteURL: "'" + config.url + "'"
     }

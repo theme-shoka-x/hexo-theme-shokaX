@@ -5,7 +5,7 @@
     "declaration": true,
     "esModuleInterop": true,
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "skipLibCheck": true
   },
   "include": [
