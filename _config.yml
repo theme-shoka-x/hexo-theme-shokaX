@@ -375,6 +375,14 @@ vendors:
       source: cdnjs
       url: jquery/3.5.1/jquery.min.js
       sri: "sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2"
+    fancybox:
+      source: cdnjs
+      url: fancybox/3.5.7/jquery.fancybox.min.js
+      sri: "sha384-Zm+UU4tdcfAm29vg+MTbfu//q5B/lInMbMCr4T8c9rQFyOv6PlfQYpB5wItcXWe7"
+    justifiedGallery:
+      source: cdnjs
+      url: justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js
+      sri: "sha384-TOxsBplaL96/QDWPIUg+ye3v89qSE3s22XNtJMmCeZEep3cVDmXy1zEfZvVv+y2m"
   async_js:
     fancybox:
       source: cdnjs

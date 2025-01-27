@@ -97,8 +97,8 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
         script(data-config type="text/javascript").
             var LOCAL = {
                 ispost: !{is_post()},
-                    path: `#{_permapath(page.path)}`,
-                    favicon: {
+                path: `#{_permapath(page.path)}`,
+                favicon: {
                     show: `#{__('favicon.show')}`,
                     hide: `#{__('favicon.hide')}`
                 },
@@ -136,6 +136,8 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
 
         != vendor_js('pace')
         != vendor_js('jquery')
+        != vendor_js('fancybox')
+        != vendor_js('justifiedGallery')
 
         if theme.polyfill.enable
             script(src=`https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?version=4.8.0&features=${theme.polyfill.features}` defer)

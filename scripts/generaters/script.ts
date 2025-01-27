@@ -20,10 +20,6 @@ hexo.extend.generator.register('script', function (locals) {
     darkmode: theme.darkmode,
     auto_dark: theme.auto_dark,
     auto_scroll: theme.auto_scroll,
-    js: {
-      copy_tex: getVendorLink(hexo, theme.vendors.async_js.copy_tex),
-      fancybox: getVendorLink(hexo, theme.vendors.async_js.fancybox)
-    },
     css: {
       katex: getVendorLink(hexo, theme.vendors.css.katex),
       mermaid: {
