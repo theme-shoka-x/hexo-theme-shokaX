@@ -94,6 +94,8 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
         else
             - audioValue = "undefined"
 
+        - var ccIcon = '<i class="ic i-creative-commons"></i>'
+        - var ccText = theme.creative_commons.license.toUpperCase()
         script(data-config type="text/javascript").
             var LOCAL = {
                 ispost: !{is_post()},
@@ -107,6 +109,8 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
                     empty: "!{__('search.empty')}",
                     stats: "!{__('search.stats')}"
                 },
+                nocopy: "!{!!page.nocopy}",
+                copyright: `!{page.copyright !== false ? (page.nocopy === true ? __("tips.nocopy") : __("tips.copyright", ccIcon + ccText)) : undefined}`,
                 copy_tex: #{!!page.math},
                 katex: #{!!page.math},
                 mermaid: #{!!page.mermaid},
