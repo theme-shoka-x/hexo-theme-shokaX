@@ -67,6 +67,7 @@ footer:
   powered: "基于 %s"
   total_views: 总访问量
   total_visitors: 总访客量
+  loading: "加载中..."
 
 counter:
   index:
@@ -109,6 +110,7 @@ symbol:
   comma: "，"
   period: "。"
   colon: "："
+  space: " "
   year: 年
   month: 月
 

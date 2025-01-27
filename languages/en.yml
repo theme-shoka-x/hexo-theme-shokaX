@@ -67,6 +67,7 @@ footer:
   powered: "Powered by %s"
   total_views: Total Views
   total_visitors: Total Visitors
+  loading: "Loading..."
 
 counter:
   index:
@@ -109,6 +110,7 @@ symbol:
   comma: ", "
   period: ". "
   colon: ": "
+  space: " "
   year: "Y"
   month: "M"
 
