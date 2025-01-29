@@ -46,7 +46,8 @@
         "theme-shokax-anime": "^0.0.7",
         "theme-shokax-pjax": "^0.0.3",
         "twikoo": "^1.6.41",
-        "unlazy": "^0.12.1"
+        "unlazy": "^0.12.1",
+        "dompurify": "^3.2.3"
     },
     "engines": {
         "node": ">=18.0.0"

@@ -1,6 +1,7 @@
 import { $dom } from '../library/dom'
 import { vendorCss, vendorJs } from '../library/loadFile'
 import { insertAfter } from '../library/proto'
+import DOMPurify from 'dompurify';
 
 // TODO 使用PhotoSwipe替换Fancybox
 export const postFancybox = (p:string) => {
@@ -20,7 +21,7 @@ export const postFancybox = (p:string) => {
 
     $dom.each(p + ' .md img:not(.emoji):not(.vemoji)', (element) => {
       const $image = $(element)
-      const imageLink = $image.attr('data-src') || $image.attr('src') // 替换
+      const imageLink = DOMPurify.sanitize($image.attr('data-src') || $image.attr('src')) // 替换
       const $imageWrapLink = $image.wrap('<a class="fancybox" href="' + imageLink + '" itemscope itemtype="https://schema.org/ImageObject" itemprop="url"></a>').parent('a')
       let info; let captionClass = 'image-info'
       if (!$image.is('a img')) {
