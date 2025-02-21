@@ -147,7 +147,9 @@ export const sidebarTOC = () => {
 
   sections = sections.map((element, index) => {
     const link = element.querySelector('a.toc-link')
-    const anchor = document.getElementById(decodeURI(link.getAttribute('href').replace('#', '')))
+    const linkHref = link.getAttribute('href')
+    if (!linkHref) return null
+    const anchor = document.getElementById(decodeURI(linkHref.replace('#', '')))
     if (!anchor) return null
     const alink = anchor.querySelector('a.anchor')
 
