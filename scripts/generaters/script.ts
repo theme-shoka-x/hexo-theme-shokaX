@@ -20,10 +20,6 @@ hexo.extend.generator.register('script', function (locals) {
     darkmode: theme.darkmode,
     auto_dark: theme.auto_dark,
     auto_scroll: theme.auto_scroll,
-    js: {
-      copy_tex: getVendorLink(hexo, theme.vendors.async_js.copy_tex),
-      fancybox: getVendorLink(hexo, theme.vendors.async_js.fancybox)
-    },
     css: {
       katex: getVendorLink(hexo, theme.vendors.css.katex),
       mermaid: {
@@ -119,6 +115,7 @@ hexo.extend.generator.register('script', function (locals) {
       __shokax_fancybox__: theme.modules.fancybox ? 'true' : 'false',
       __shokax_waline__: theme.waline.enable ? 'true' : 'false',
       __shokax_twikoo__: theme.twikoo.enable ? 'true' : 'false',
+      __shokax_antiFakeWebsite__: theme.experiments.antiFakeWebsite ? 'true' : 'false',
       shokax_CONFIG: JSON.stringify(siteConfig),
       shokax_siteURL: "'" + config.url + "'"
     }

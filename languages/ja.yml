@@ -67,6 +67,7 @@ footer:
   powered: "Powered by %s"
   total_views: 閲覧合計数
   total_visitors: 合計閲覧者数
+  loading: "ローディング..."
 
 counter:
   index:
@@ -109,6 +110,7 @@ symbol:
   comma: "、"
   period: "。"
   colon: "："
+  space: " "
   year: 年
   month: 月
 

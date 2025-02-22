@@ -1,10 +1,11 @@
 import { insertAfter } from '../library/proto'
+import DOMPurify from 'dompurify';
 
 // TODO 使用PhotoSwipe替换Fancybox
 export const postFancybox = (p:string) => {
   if (document.querySelector(p + ' .md img')) {
-    const q = jQuery.noConflict()
-
+    // vendorCss('fancybox')
+    // vendorCss('justifiedGallery')
     document.querySelectorAll(p + ' p.gallery').forEach((element) => {
       const box = document.createElement('div')
       box.className = 'gallery'
@@ -17,8 +18,8 @@ export const postFancybox = (p:string) => {
     })
 
     document.querySelectorAll(p + ' .md img:not(.emoji):not(.vemoji)').forEach((element) => {
-      const $image = q(element)
-      const imageLink = $image.attr('data-src') || $image.attr('src') // 替换
+      const $image = $(element)
+      const imageLink = DOMPurify.sanitize($image.attr('data-src') || $image.attr('src')) // 替换
       const $imageWrapLink = $image.wrap('<a class="fancybox" href="' + imageLink + '" itemscope itemtype="https://schema.org/ImageObject" itemprop="url"></a>').parent('a')
       let info; let captionClass = 'image-info'
       if (!$image.is('a img')) {
@@ -34,25 +35,25 @@ export const postFancybox = (p:string) => {
         const para = document.createElement('span')
         const txt = document.createTextNode(info)
         para.appendChild(txt)
-        para.classList.add(captionClass)
+        para.addClass(captionClass)
         insertAfter(element, para)
       }
     })
 
     document.querySelectorAll(p + ' div.gallery').forEach((el, i) => {
       // @ts-ignore
-      q(el).justifiedGallery({
-        rowHeight: q(el).data('height') || 120,
+      $(el).justifiedGallery({
+        rowHeight: $(el).data('height') || 120,
         rel: 'gallery-' + i
       }).on('jg.complete', function () {
-        q(this).find('a').each((k, ele) => {
+        $(this).find('a').each((k, ele) => {
           ele.setAttribute('data-fancybox', 'gallery-' + i)
         })
       })
     })
 
-    q.fancybox.defaults.hash = false
-    q(p + ' .fancybox').fancybox({
+    $.fancybox.defaults.hash = false
+    $(p + ' .fancybox').fancybox({
       loop: true,
       // @ts-ignore
       helpers: {

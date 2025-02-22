@@ -67,6 +67,7 @@ footer:
   powered: "基於 %s"
   total_views: 總瀏覽次數
   total_visitors: 訪客總數
+  loading: "載入中..."
 
 counter:
   index:
@@ -109,6 +110,7 @@ symbol:
   comma: "，"
   period: "。"
   colon: "："
+  space: " "
   year: 年
   month: 月
 

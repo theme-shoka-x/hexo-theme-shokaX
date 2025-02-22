@@ -6,7 +6,7 @@
     "repository": "https://github.com/theme-shoka-x/hexo-theme-shokaX",
     "author": "zkz098",
     "license": "AGPL-3.0-or-later",
-    "packageManager": "pnpm@9.5.0",
+    "packageManager": "pnpm@10.4.1",
     "scripts": {
         "test": "tsc --build --verbose",
         "build": "node ./toolbox/compiler.mjs"
@@ -16,34 +16,38 @@
         "@types/jquery": "^3.5.32",
         "@types/js-yaml": "^4.0.9",
         "@types/katex": "^0.16.7",
-        "@types/node": "^22.8.6",
-        "@typescript-eslint/eslint-plugin": "^8.12.2",
-        "@typescript-eslint/parser": "^8.12.2",
-        "eslint": "^9.13.0",
+        "@types/node": "^22.13.4",
+        "@types/quicklink": "^2.3.4",
+        "@typescript-eslint/eslint-plugin": "^8.24.1",
+        "@typescript-eslint/parser": "^8.24.1",
+        "eslint": "^9.20.1",
         "eslint-config-standard": "~17",
-        "eslint-plugin-vue": "^9.30.0",
-        "glob": "^11.0.0",
-        "typescript": "^5.6.3"
+        "eslint-plugin-vue": "^9.32.0",
+        "glob": "^11.0.1",
+        "typescript": "^5.7.3"
     },
     "dependencies": {
-        "@algolia/client-search": "^5.12.0",
-        "@waline/client": "^3.3.2",
-        "algoliasearch": "5.12.0",
-        "esbuild": "^0.24.0",
+        "@algolia/client-search": "^5.20.3",
+        "@waline/client": "^3.5.2",
+        "algoliasearch": "5.20.3",
+        "dompurify": "^3.2.4",
+        "esbuild": "^0.25.0",
         "hexo": "^7.3.0",
         "hexo-algoliasearch": "^2.0.1",
         "hexo-feed": "^1.1.2",
-        "hexo-fs": "^4.1.3",
+        "hexo-fs": "^5.0.0",
         "hexo-pagination": "^4.0.0",
         "hexo-renderer-pug": "^3.0.0",
         "hexo-util": "^3.3.0",
-        "instantsearch.js": "^4.75.3",
+        "instantsearch.js": "^4.77.3",
         "js-yaml": "^4.1.0",
-        "katex": "^0.16.11",
-        "mouse-firework": "^0.0.6",
-        "theme-shokax-anime": "^0.0.7",
-        "twikoo": "^1.6.39",
-        "unlazy": "^0.11.3"
+        "katex": "^0.16.21",
+        "mouse-firework": "^0.1.0",
+        "quicklink": "^2.3.0",
+        "theme-shokax-anime": "^0.0.8",
+        "theme-shokax-pjax": "^0.0.3",
+        "twikoo": "^1.6.41",
+        "unlazy": "^0.12.1"
     },
     "engines": {
         "node": ">=20.0.0"
@@ -60,6 +64,10 @@
             "object.fromentries": "npm:@nolyfill/object.fromentries@latest",
             "object.groupby": "npm:@nolyfill/object.groupby@latest",
             "object.values": "npm:@nolyfill/object.values@latest"
-        }
+        },
+        "onlyBuiltDependencies": [
+            "esbuild",
+            "hexo-util"
+        ]
     }
 }

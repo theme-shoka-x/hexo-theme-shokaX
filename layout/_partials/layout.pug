@@ -14,9 +14,11 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
         if enablePreload && enableCover
             if enableFixedCover
                 link(rel="preload" href=theme.homeConfig.fixedCover as="image" fetchpriority="high")
-            else
+            else if Array.isArray(covers)
                 each image in covers
-                    link(rel="preload" href=image as="image" fetchpriority="high")
+                    link(rel="preload" href!=image as="image" fetchpriority="high")
+            else
+                link(rel="preload" href!=covers as="image" fetchpriority="high")
 
         != partial('_partials/head/head_com.pug')
         != shokax_inject('head')
@@ -89,11 +91,13 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
         else
             - audioValue = "undefined"
 
+        - var ccIcon = '<i class="ic i-creative-commons"></i>'
+        - var ccText = theme.creative_commons.license.toUpperCase()
         script(data-config type="text/javascript").
             var LOCAL = {
                 ispost: !{is_post()},
-                    path: `#{_permapath(page.path)}`,
-                    favicon: {
+                path: `#{_permapath(page.path)}`,
+                favicon: {
                     show: `#{__('favicon.show')}`,
                     hide: `#{__('favicon.hide')}`
                 },
@@ -102,6 +106,8 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
                     empty: "!{__('search.empty')}",
                     stats: "!{__('search.stats')}"
                 },
+                nocopy: "!{!!page.nocopy}",
+                copyright: `!{page.copyright !== false ? (page.nocopy === true ? __("tips.nocopy") : __("tips.copyright", ccIcon + ccText)) : undefined}`,
                 copy_tex: #{!!page.math},
                 katex: #{!!page.math},
                 mermaid: #{!!page.mermaid},
@@ -135,6 +141,5 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
         != _js('siteInit.js')
 
         != shokax_inject('bodyEnd')
-
 
 
