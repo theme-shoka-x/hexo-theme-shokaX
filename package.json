@@ -31,6 +31,7 @@
         "@waline/client": "^3.5.2",
         "algoliasearch": "5.20.3",
         "dompurify": "^3.2.4",
+        "es-toolkit": "^1.32.0",
         "esbuild": "^0.25.0",
         "hexo": "^7.3.0",
         "hexo-algoliasearch": "^2.0.1",
