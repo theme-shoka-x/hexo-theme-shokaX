@@ -108,17 +108,15 @@ hexo.extend.generator.register('summary_ai', async function (locals: SiteLocals)
   const db = new SummaryDatabase()
   await db.readDB()
 
-  posts.forEach(async (post: PostSchema) => {
-      const content = post.content
-      const path = post.path
-      const published = post.published
-
-      if (content && path && published && content.length > 0) {
-        const summary = await db.getPostSummary(path, content)
-        post.summary = summary
-      }
+  for (const post of posts.toArray()) {
+    const content = post.content;
+    const path = post.path;
+    const published = post.published;
+    if (content && path && published && content.length > 0) {
+      const summary = await db.getPostSummary(path, content);
+      post.summary = summary;
     }
-  )
+  }
 
   await db.writeDB()
 })
