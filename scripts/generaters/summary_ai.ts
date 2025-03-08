@@ -20,7 +20,13 @@ async function getSummaryByAPI (content:string) {
     },
     body: JSON.stringify({
       model: model,
-      messages: [{ role: 'user', content: `${initalPrompt} ${content}` }],
+      messages: [{
+        role: 'system', 
+        content: `${initalPrompt}`
+      },{ 
+        role: 'user', 
+        content: `${content}` 
+      }],
       temperature: temperature
     })
   })

@@ -228,6 +228,7 @@ summary:
   apiUrl:
   temperature:
   initalPrompt:
+  concurrency: 5
 
 # Social Links
 # Usage: `Key: permalink || icon || color`
