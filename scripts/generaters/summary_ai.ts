@@ -1,6 +1,5 @@
 import { SiteLocals } from "hexo/dist/types"
 import { createHash } from "node:crypto"
-import pLimit from 'p-limit'
 import fs from 'node:fs/promises'
 
 const config = hexo.theme.config.summary
@@ -118,6 +117,7 @@ hexo.extend.generator.register('summary_ai', async function (locals: SiteLocals)
 
   const postArray = posts.toArray();
 
+  const pLimit = await import('p-limit').then(module => module.default);
   const concurrencyLimit = pLimit(config.concurrency || 5); 
 
   const processingPromises = postArray.map(post => concurrencyLimit(async () => {
