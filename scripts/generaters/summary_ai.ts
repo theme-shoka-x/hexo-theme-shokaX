@@ -117,20 +117,18 @@ hexo.extend.generator.register('summary_ai', async function (locals: SiteLocals)
 
   const postArray = posts.toArray();
 
-  const pLimit = await import('p-limit').then(module => module.default);
-  const concurrencyLimit = pLimit(config.concurrency || 5); 
+  const pLimit = require('@common.js/p-limit').default
+  const concurrencyLimit = pLimit(config?.concurrency || 5); 
 
   const processingPromises = postArray.map(post => concurrencyLimit(async () => {
     const content = post.content;
     const path = post.path;
     const published = post.published;
-    hexo.log.info(`[ShokaX Summary AI] 文章 ${path} 的摘要处理开始`);
 
     if (content && path && published && content.length > 0) {
       try {
         const summary = await db.getPostSummary(path, content);
         post.summary = summary;
-        hexo.log.info(`[ShokaX Summary AI] 文章 ${path} 的摘要处理完成`);
       } catch (error) {
         hexo.log.error(`[ShokaX Summary AI] 处理文章 ${path} 时出错:`, error.message);
         post.summary = `${error.message}`;

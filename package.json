@@ -1,6 +1,6 @@
 {
     "name": "hexo-theme-shokax",
-    "version": "0.4.23",
+    "version": "0.4.24",
     "description": "a hexo theme based on shoka",
     "main": "index.js",
     "repository": "https://github.com/theme-shoka-x/hexo-theme-shokaX",
@@ -28,6 +28,7 @@
     },
     "dependencies": {
         "@algolia/client-search": "^5.21.0",
+        "@common.js/p-limit": "^6.1.0",
         "@waline/client": "^3.5.6",
         "algoliasearch": "5.21.0",
         "dompurify": "^3.2.4",
@@ -44,7 +45,6 @@
         "js-yaml": "^4.1.0",
         "katex": "^0.16.21",
         "mouse-firework": "^0.1.0",
-        "p-limit": "^6.2.0",
         "quicklink": "^2.3.0",
         "theme-shokax-anime": "^0.0.8",
         "theme-shokax-pjax": "^0.0.3",
