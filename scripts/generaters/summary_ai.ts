@@ -2,14 +2,12 @@ import { SiteLocals } from "hexo/dist/types"
 import { createHash } from "node:crypto"
 import fs from 'node:fs/promises'
 
-const config = hexo.theme.config.summary
-
 async function getSummaryByAPI (content:string) {
-  const apiKey = config.apiKey
-  const apiUrl = config.apiUrl
-  const model = config.model
-  const temperature = config.temperature ?? 1.3
-  const initalPrompt = config.initalPrompt
+  const apiKey = hexo.theme.config.summary.apiKey
+  const apiUrl = hexo.theme.config.summary.apiUrl
+  const model = hexo.theme.config.summary.model
+  const temperature = hexo.theme.config.summary.temperature ?? 1.3
+  const initalPrompt = hexo.theme.config.summary.initalPrompt
 
   const res = await fetch(apiUrl, {
     method: 'POST',
@@ -118,7 +116,7 @@ hexo.extend.generator.register('summary_ai', async function (locals: SiteLocals)
   const postArray = posts.toArray();
 
   const pLimit = require('@common.js/p-limit').default
-  const concurrencyLimit = pLimit(config?.concurrency || 5); 
+  const concurrencyLimit = pLimit(hexo.theme.config.summary?.concurrency || 5); 
 
   const processingPromises = postArray.map(post => concurrencyLimit(async () => {
     const content = post.content;
