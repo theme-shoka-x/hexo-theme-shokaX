@@ -32,7 +32,7 @@ hexo.extend.helper.register('getCoverExt', function (path:string) {
 })
 
 
-hexo.extend.generator.register('index', function (locals) {
+hexo.extend.generator.register('index',async function (locals) {
   const covers = []
   const catlist = []
   let pages
