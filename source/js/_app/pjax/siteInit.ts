@@ -8,6 +8,7 @@ import {pagePosition} from '../globals/tools'
 import {initVue} from '../library/vue'
 import {createChild} from '../library/proto'
 import {transition} from '../library/anime'
+import { initAudioPlayer } from '../player'
 
 const siteInit = async () => {
   initVue()
@@ -69,6 +70,7 @@ const siteInit = async () => {
 }
 
 cloudflareInit()
+await initAudioPlayer()
 
 if (__shokax_antiFakeWebsite__) {
   if (window.location.origin !== CONFIG.hostname && window.location.origin !== "http://localhost:4000") {

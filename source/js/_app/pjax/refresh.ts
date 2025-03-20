@@ -24,6 +24,7 @@ export const siteRefresh = async (reload) => {
 
   // @ts-ignore
   // await import('katex/dist/katex.min.css')
+  await import('nyx-player/style')
   await import('katex/dist/contrib/copy-tex.mjs')
 
   // 懒加载背景图
