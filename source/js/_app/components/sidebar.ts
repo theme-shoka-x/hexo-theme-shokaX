@@ -59,7 +59,8 @@ export const sideBarTab = () => {
     const text = document.createTextNode(element.getAttribute('data-title'))
     span.appendChild(text)
     tab.appendChild(span)
-    tab.classList.add(item + ' item')
+    tab.classList.add(item)
+    tab.classList.add('item')
 
     if (active) {
       element.classList.add(active)

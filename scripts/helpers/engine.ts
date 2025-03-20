@@ -5,7 +5,7 @@ import { htmlTag, url_for } from 'hexo-util'
 import fs from 'node:fs'
 
 const randomBG = function (count = 1, image_server:string = null, image_list:string[] = []) {
-  let i
+  let i: number
   if (image_server) {
     if (count && count > 1) {
       const arr = new Array(count)
@@ -182,10 +182,4 @@ hexo.extend.helper.register('random_color', function () {
   }${g.toString(16).length > 1 ? g.toString(16) : '0' + g.toString(16)}${
     b.toString(16).length > 1 ? b.toString(16) : '0' + b.toString(16)
   }`
-})
-
-hexo.extend.helper.register('shokax_inject', function (point) {
-  return hexo.theme.config.injects[point]
-    .map(item => this.partial(item.layout, item.locals, item.options))
-    .join('')
 })

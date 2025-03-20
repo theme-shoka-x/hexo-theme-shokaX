@@ -11,8 +11,8 @@
 - [ ] 重构 player (暂时移除)
 - [ ] 重构并修改代码块
 - [ ] 优化 menu 配置格式
-- [ ] 优化和异步化 Smart Bundle 技术
-- [ ] 优化 CSS 结构和加载
+- [x] 优化和异步化 Smart Bundle 技术
+- [x] 优化 CSS 结构和加载
 - [x] 修复/重置 fancybox
 - [ ] 修复模板长期遗留问题
 - [ ] 修复 images 遗留问题
