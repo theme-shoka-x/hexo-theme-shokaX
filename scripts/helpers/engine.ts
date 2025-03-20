@@ -3,9 +3,6 @@
 // @ts-ignore
 import { htmlTag, url_for } from 'hexo-util'
 import fs from 'node:fs'
-import theme_env from '../../package.json'
-
-const randomServer = parseInt(String(Math.random() * 4), 10) + 1
 
 const randomBG = function (count = 1, image_server:string = null, image_list:string[] = []) {
   let i
@@ -23,13 +20,12 @@ const randomBG = function (count = 1, image_server:string = null, image_list:str
   }
 
   const parseImage = function (img:string, size:string) {
-    if (img.startsWith('//') || img.startsWith('http')) {
+    if (img.startsWith('//') || img.startsWith('https')) {
       return img
     } else if (hexo.theme.config.experiments?.usingRelative) { // support relative url
       return img
     } else {
-      console.warn("sinaimg blocked all request from outside website,so don't use this format")
-      return `https://tva${randomServer}.sinaimg.cn/` + size + '/' + img
+      throw new Error('Image URL is not valid: ' + img)
     }
   }
 

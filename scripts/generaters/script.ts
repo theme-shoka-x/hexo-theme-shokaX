@@ -83,7 +83,7 @@ hexo.extend.generator.register('script', async function (locals) {
     enterPoint = 'node_modules/hexo-theme-shokax/source/js/_app/pjax/siteInit.ts'
     patchDir = 'node_modules/hexo-theme-shokax/source/js/_app/components/cloudflare.ts'
   }
-  const result = await build({
+  await build({
     entryPoints: [enterPoint],
     bundle: true,
     outdir: 'shokaxTemp',
@@ -121,30 +121,30 @@ hexo.extend.generator.register('script', async function (locals) {
       shokax_siteURL: "'" + config.url + "'"
     }
   })
-  const res = []
+  const res = [];
 
-  result.outputFiles.forEach((file) => {
-    const fileName = file.path.split('/').pop()
-    if (fileName.endsWith('.js')) {
+  (await fs.readdir('shokaxTemp')).forEach(async (file) => {
+    const fileContent = await fs.readFile('shokaxTemp/' + file)
+    if (file.endsWith('.js')) {
       res.push({
-        path: theme.js + '/' + fileName,
-        data: file.text
+        path: theme.js + '/' + file,
+        data: fileContent
       })
-    } else if (fileName.endsWith('.css')) {
+    } else if (file.endsWith('.css')) {
       res.push({
-        path: theme.css + '/' + fileName,
-        data: file.text
+        path: theme.css + '/' + file,
+        data: fileContent
       })
     } else {
       res.push({
-        path: theme.js + '/' + fileName,
-        data: file.text
+        path:  theme.statics + '/' + file,
+        data: fileContent
       })
     }
   })
 
   if (theme.experiments.cloudflarePatch) {
-    const patchRes = await build({
+    await build({
       entryPoints: [patchDir],
       bundle: true,
       platform: "browser",
@@ -164,7 +164,7 @@ hexo.extend.generator.register('script', async function (locals) {
     })
     res.push({
       path: theme.js + '/cf-patch.js',
-      data: patchRes.outputFiles[0].text
+      data: await fs.readFile('cf-patch.js')
     })
   }
   return res

@@ -2,13 +2,34 @@
 /* global hexo */
 'use strict'
 
-import fs = require('hexo-fs')
+import { readFile } from 'node:fs/promises'
 import pagination from 'hexo-pagination'
+
+function getFileExtension(path) {
+  const filename = path.split(/[\\/]/).pop() || ''; // 处理路径分隔符并获取文件名
+  const lastDotIndex = filename.lastIndexOf('.');
+  return lastDotIndex > 0 ? filename.slice(lastDotIndex + 1) : '';
+}
 
 hexo.config.index_generator = Object.assign({
   per_page: typeof hexo.config.per_page === 'undefined' ? 10 : hexo.config.per_page,
   order_by: '-date'
 }, hexo.config.index_generator)
+
+hexo.extend.helper.register('getCoverExt', function (path:string) {
+  if (theme.homeConfig.cateCards.length > 0) {
+    const cardMap = new Map<string, string>()
+    theme.homeConfig.cateCards.forEach((card) => {
+      cardMap.set(card.slug, card.cover)
+    })
+
+    if (cardMap.has(path)) {
+      const cover = cardMap.get(path)
+      return getFileExtension(cover)
+    }
+  }
+})
+
 
 hexo.extend.generator.register('index', function (locals) {
   const covers = []
@@ -20,6 +41,7 @@ hexo.extend.generator.register('index', function (locals) {
   const paginationDir = config.pagination_dir || 'page'
   const path = config.index_generator.path || ''
   const categories = locals.categories
+  const theme = hexo.theme.config
 
   const getTopcat = function (cat) {
     if (cat.parent) {
@@ -31,53 +53,46 @@ hexo.extend.generator.register('index', function (locals) {
   }
 
   if (categories && categories.length) {
-    categories.forEach((cat) => {
+    categories.forEach(async (cat) => {
       const cover = `source/_posts/${cat.slug}`
-      if (fs.existsSync(cover + '/cover.avif')) {
-        covers.push({
-          path: cat.slug + '/cover.avif',
-          data: function () {
-            return fs.createReadStream(cover + '/cover.avif')
-          }
-        })
-      } else if (fs.existsSync(cover + '/cover.webp')) {
-        covers.push({
-          path: cat.slug + '/cover.webp',
-          data: function () {
-            return fs.createReadStream(cover + '/cover.webp')
-          }
-        })
-      } else if (fs.existsSync(cover + '/cover.jpg')) {
-        covers.push({
-          path: cat.slug + '/cover.jpg',
-          data: function () {
-            return fs.createReadStream(cover + '/cover.jpg')
-          }
+      if (theme.homeConfig.cateCards.length > 0) {
+        const cardMap = new Map<string, string>()
+        theme.homeConfig.cateCards.forEach((card) => {
+          cardMap.set(card.slug, card.cover)
         })
 
-        const topcat = getTopcat(cat)
+        if (cardMap.has(cat.slug)) {
+          const cover = cardMap.get(cat.slug)
+          const coverData = await readFile(`source/_posts/${cover}`)
+          covers.push({
+            path: `${cat.slug}/cover.${getFileExtension(cover)}`,
+            data: coverData
+          })
 
-        if (topcat._id !== cat._id) {
-          cat.top = topcat
+          const topcat = getTopcat(cat)
+
+          if (topcat._id !== cat._id) {
+            cat.top = topcat
+          }
+
+          const child = categories.find({ parent: cat._id })
+          let pl = 6
+
+          if (child.length !== 0) {
+            cat.child = child.length
+            cat.subs = child.sort({ name: 1 }).limit(6).toArray()
+            pl = Math.max(0, pl - child.length)
+            if (pl > 0) {
+              cat.subs.push(...cat.posts.sort({ title: 1 })
+                .filter(function (item, i) { return item.categories.last()._id === cat._id })
+                .limit(pl).toArray())
+            }
+          } else {
+            cat.subs = cat.posts.sort({ title: 1 }).limit(6).toArray()
+          }
+
+          catlist.push(cat)
         }
-
-        const child = categories.find({ parent: cat._id })
-        let pl = 6
-
-        if (child.length !== 0) {
-          cat.child = child.length
-          cat.subs = child.sort({ name: 1 }).limit(6).toArray()
-          pl = Math.max(0, pl - child.length)
-          if (pl > 0) {
-            cat.subs.push(...cat.posts.sort({ title: 1 })
-              .filter(function (item, i) { return item.categories.last()._id === cat._id })
-              .limit(pl).toArray())
-          }
-        } else {
-          cat.subs = cat.posts.sort({ title: 1 }).limit(6).toArray()
-        }
-
-        catlist.push(cat)
       }
     })
   }

@@ -4,7 +4,7 @@ import { rm, unlink } from 'node:fs/promises'
 hexo.on('generateBefore', async () => {
   await rm('./shokaxTemp', { force: true, recursive: true })
   try {
-    unlink('cf-patch.js')
+    await unlink('cf-patch.js')
   } catch (e) {
     // ignore error
   }

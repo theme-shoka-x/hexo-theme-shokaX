@@ -1,5 +1,5 @@
 mixin CardRender(item)
-    - cover = url_for(theme.statics + item.slug + '/cover.jpg')
+    - cover = url_for(theme.statics + item.slug + this.getCoverExt(item.slug))
     - itemname = item.name
 
     section(class="item")
