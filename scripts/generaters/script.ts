@@ -1,4 +1,3 @@
-/* global hexo */
 import env from '../../package.json'
 import fs from 'node:fs/promises'
 import { build } from 'esbuild'
