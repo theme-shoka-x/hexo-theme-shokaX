@@ -1,43 +1,100 @@
-div(class="status")
-    div(class="copyright")
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    // 聊天机器人的 CSS 样式
+    link(rel="stylesheet", crossorigin, href="https://g.alicdn.com/aliyun-documentation/web-chatbot-ui/0.0.15/index.css")
+    style.
+      :root {
+        /* webchat 工具栏的颜色 */
+        --webchat-toolbar-background-color:rgba(241,139,179,0.8);
+        /* webchat 工具栏文字和按钮的颜色 */
+        --webchat-toolbar-text-color: #FFF;
+      }
+      /* webchat 对话框如果被遮挡，可以尝试通过 z-index、bottom、right 等设置来调整位置 */
+      .webchat-container {
+        z-index: 100;
+        bottom: 10px;
+        right: 10px;
+      }
+      /* webchat 的唤起按钮如果被遮挡，可以尝试通过 z-index、bottom、right 等设置来调整位置 */
+      .webchat-bubble-tip {
+        z-index: 99;
+        bottom: 20px;
+        right: 20px;
+      }
+  body
+    // 原有的页脚部分代码
+    .status
+      .copyright
         - var copyright_year = date(null, 'YYYY')
-        if theme.footer.since && theme.footer.since !== copyright_year
-            != `&copy; ${theme.footer.since} -`
-        span(itemprop="copyrightYear")
-            != copyright_year
-        span(class="with-love")
-            i(class=`ic i-${ theme.footer.icon.name }`)
-        span(class="author" itemprop="copyrightHolder")
-            != `${author} @ ${ alternate?alternate:title}`
-    if theme.footer.count
-        div(class="count")
-            span(class="post-meta-item-icon")
-                i(class="ic i-chart-area")
-            span(title=__('symbols_count_time.count_total'))
-                != `${ symbolsCountTotal(site) } ${__('symbols_count_time.word')}`
-            span(class="post-meta-divider")
-                != " | "
-            span(class="post-meta-item-icon")
-                i(class="ic i-coffee")
-            span(title=__('symbols_count_time.time_total'))
-                != symbolsTimeTotal(site, config.symbols_count_time.awl, config.symbols_count_time.wpm, __('symbols_count_time.time_minutes'))
-            //- span(id="timeDate")
-            //- span(id="times")
-    if theme.footer.powered
-        div(class="powered-by")
-            != __('footer.powered', _url('https://hexo.io', 'Hexo') + ' & Theme.' + _url('https://github.com/theme-shoka-x/hexo-theme-shokaX/', 'ShokaX'))
-    if theme.footer.icp.enable
+        if theme.footer.since && theme.footer.since!== copyright_year
+          | &copy; #{theme.footer.since} -
+        span(itemprop="copyrightYear")= copyright_year
+        .with-love
+          i(class=`ic i-${ theme.footer.icon.name }`)
+        span(class="author", itemprop="copyrightHolder")= `${author} @ ${ alternate?alternate:title}`
+      if theme.footer.count
+        .count
+          span(class="post-meta-item-icon")
+            i(class="ic i-chart-area")
+          span(title=__('symbols_count_time.count_total'))= `${ symbolsCountTotal(site) } ${__('symbols_count_time.word')}`
+          span(class="post-meta-divider") | 
+          span(class="post-meta-item-icon")
+            i(class="ic i-coffee")
+          span(title=__('symbols_count_time.time_total'))= symbolsTimeTotal(site, config.symbols_count_time.awl, config.symbols_count_time.wpm, __('symbols_count_time.time_minutes'))
+          //- span(id="timeDate")
+          //- span(id="times")
+      if theme.footer.powered
+        .powered-by!= __('footer.powered', _url('https://hexo.io', 'Hexo') + ' & Theme.' + _url('https://github.com/theme-shoka-x/hexo-theme-shokaX/', 'ShokaX'))
+      if theme.footer.icp.enable
         br
         span(style="display:inline;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:var(--grey-5);")
-            a(href="https://beian.miit.gov.cn")
-                != theme.footer.icp.icpnumber
-            - var beianN = theme.footer.icp?.beian, RC=theme.footer.icp?.recordcode
-            if beianN && RC
-                br
-                a(target="_blank" href=`https://beian.mps.gov.cn/#/query/webSearch?code=${RC}`)
-                    img(loading="lazy" decoding="async" data-src=theme.statics + theme.assets + '/' + theme.footer.icp.icon style="max-width: 2em;display:inline;" width="20" height="20" alt="备案")
-                    != beianN
-    != shokax_inject('status')
-
-!= shokax_inject('footer')
-
+          a(href="https://beian.miit.gov.cn")= theme.footer.icp.icpnumber
+        - var beianN = theme.footer.icp?.beian, RC=theme.footer.icp?.recordcode
+        if beianN && RC
+          br
+          a(target="_blank", href=`https://beian.mps.gov.cn/#/query/webSearch?code=${RC}`)
+            img(loading="lazy", decoding="async", data-src=theme.statics + theme.assets + '/' + theme.footer.icp.icon, style="max-width: 2em;display:inline;", width="20", height="20", alt="备案")
+            = beianN
+      != shokax_inject('status')
+    != shokax_inject('footer')
+    // 聊天机器人的 JavaScript 代码
+    script(type="module", crossorigin, src="https://g.alicdn.com/aliyun-documentation/web-chatbot-ui/0.0.15/index.js")
+    script.
+      window.CHATBOT_CONFIG = {
+        endpoint: "https://chatbot.easymuzi.cn/chat", // 可以替换为 https://chatbot.easymuzi.cn/chat
+        displayByDefault: false, // 默认不展示 AI 助手聊天框
+        aiChatOptions: { // aiChatOptions 中 options 会传递 aiChat 组件，自定义取值参考：https://docs.nlkit.com/nlux/reference/ui/ai-chat
+          conversationOptions: { // 自定义取值参考：https://docs.nlkit.com/nlux/reference/ui/ai-chat#conversation-options
+            conversationStarters: [
+              { prompt: '你的主人是谁？' },
+              { prompt: '介绍一下木子小站？' },
+              { prompt: '你叫什么名字?' },
+            ]
+          },
+          displayOptions: { // 自定义取值参考：https://docs.nlkit.com/nlux/reference/ui/ai-chat#display-options
+            height: 600,
+          },
+          personaOptions: { // 自定义取值参考：https://docs.nlkit.com/nlux/reference/ui/ai-chat#chat-personas
+            assistant: {
+              name: '你好，我是小木',
+              // AI 助手的图标
+              avatar: 'https://cdn.easymuzi.cn/img/20250207113149959.apng',
+              tagline: '您可以尝试点击下方的快捷入口开启体验！',
+            }
+          }
+        },
+        dataProcessor: {
+          /**
+           * 在向后端大模型应用发起请求前改写 Prompt。
+           * 比如可以用于总结网页场景，在发送前将网页内容包含在内，同时避免在前端显示这些内容。
+           * @param {string} prompt - 用户输入的 Prompt
+           * @param {string}  - 改写后的 Prompt
+           */
+          rewritePrompt(prompt) {
+            return prompt;
+          }
+        }
+      };

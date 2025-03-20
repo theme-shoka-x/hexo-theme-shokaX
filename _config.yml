@@ -34,7 +34,7 @@ experiments:
     enablePreload: true #是否开启预加载头图
     enableNextGradientCover: false # 使用CSS渐变作为上/下一页封面
   copyrightLength: 50 # 自定义复制时显示copyright的长度
-  antiFakeWebsite: true # 防止恶意网站伪装
+  antiFakeWebsite: false  # 防止恶意网站伪装
 
 homeConfig:
   gradient: false # 使用CSS渐变作为文章封面
@@ -174,7 +174,7 @@ font:
 
 # //at.alicdn.com/t/c/font_4415496_59g1326wajd.css => 4415496_59g1326wajd
 # 自定义iconfont图标参见文档教程
-iconfont: "4415496_59g1326wajd"
+iconfont: "4815722_i2vgm0ucww"
 
 menu:
   home: / || home

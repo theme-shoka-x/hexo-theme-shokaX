@@ -11,8 +11,8 @@
 
 
   +tablet-mobile() {
-    right: 1rem;
-    left: auto;
+    left: 1rem;
+    right: auto;
   }
 
   .item {
@@ -85,12 +85,18 @@
     max-width: 25rem;
 
     +mobile() {
-      right: 2.5rem;
+      left: 2.5rem;
+      right: auto;
     }
 
     .nav {
       font-size: $font-size-smallest;
       height: 2.1875rem;
+    }
+
+    +tablet-mobile() {
+      left: 2.5rem;
+      right: auto;
     }
   }
 
@@ -149,8 +155,8 @@
       }
 
       +tablet-mobile() {
-        right: 2.5rem;
-        left: auto;
+        left: 2.5rem;
+        right: auto;
       }
 
       &.show {
@@ -161,7 +167,7 @@
           @extend .slide-left-in;
 
           +tablet-mobile() {
-            animation: slideRightIn .3s;
+            animation: slideLeftIn .3s;
           }
         }
 
@@ -196,9 +202,9 @@
     }
 
     +tablet-mobile() {
-      right: 0;
+      right: auto;
       bottom: 0;
-      left: auto;
+      left: 0;
     }
   }
 }

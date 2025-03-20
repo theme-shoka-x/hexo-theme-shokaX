@@ -21,3 +21,4 @@ test.ts
 *.tsbuildinfo
 !/toolbox/*
 *.exe
+!/scripts/**
