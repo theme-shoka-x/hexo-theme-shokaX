@@ -17,6 +17,7 @@ hexo.config.index_generator = Object.assign({
 }, hexo.config.index_generator)
 
 hexo.extend.helper.register('getCoverExt', function (path:string) {
+  const theme = hexo.theme.config
   if (theme.homeConfig.cateCards.length > 0) {
     const cardMap = new Map<string, string>()
     theme.homeConfig.cateCards.forEach((card) => {
@@ -53,48 +54,50 @@ hexo.extend.generator.register('index', function (locals) {
   }
 
   if (categories && categories.length) {
-    categories.forEach(async (cat) => {
-      const cover = `source/_posts/${cat.slug}`
-      if (theme.homeConfig.cateCards.length > 0) {
-        const cardMap = new Map<string, string>()
-        theme.homeConfig.cateCards.forEach((card) => {
-          cardMap.set(card.slug, card.cover)
-        })
-
-        if (cardMap.has(cat.slug)) {
-          const cover = cardMap.get(cat.slug)
-          const coverData = await readFile(`source/_posts/${cover}`)
-          covers.push({
-            path: `${cat.slug}/cover.${getFileExtension(cover)}`,
-            data: coverData
+    await Promise.all(
+      categories.map(async (cat) => {
+        const cover = `source/_posts/${cat.slug}`
+        if (theme.homeConfig.cateCards.length > 0) {
+          const cardMap = new Map<string, string>()
+          theme.homeConfig.cateCards.forEach((card) => {
+            cardMap.set(card.slug, card.cover)
           })
 
-          const topcat = getTopcat(cat)
+          if (cardMap.has(cat.slug)) {
+            const cover = cardMap.get(cat.slug)
+            const coverData = await readFile(`source/_posts/${cover}`)
+            covers.push({
+              path: `${cat.slug}/cover.${getFileExtension(cover)}`,
+              data: coverData
+            })
 
-          if (topcat._id !== cat._id) {
-            cat.top = topcat
-          }
+            const topcat = getTopcat(cat)
 
-          const child = categories.find({ parent: cat._id })
-          let pl = 6
-
-          if (child.length !== 0) {
-            cat.child = child.length
-            cat.subs = child.sort({ name: 1 }).limit(6).toArray()
-            pl = Math.max(0, pl - child.length)
-            if (pl > 0) {
-              cat.subs.push(...cat.posts.sort({ title: 1 })
-                .filter(function (item, i) { return item.categories.last()._id === cat._id })
-                .limit(pl).toArray())
+            if (topcat._id !== cat._id) {
+              cat.top = topcat
             }
-          } else {
-            cat.subs = cat.posts.sort({ title: 1 }).limit(6).toArray()
-          }
 
-          catlist.push(cat)
+            const child = categories.find({ parent: cat._id })
+            let pl = 6
+
+            if (child.length !== 0) {
+              cat.child = child.length
+              cat.subs = child.sort({ name: 1 }).limit(6).toArray()
+              pl = Math.max(0, pl - child.length)
+              if (pl > 0) {
+                cat.subs.push(...cat.posts.sort({ title: 1 })
+                  .filter(function (item, i) { return item.categories.last()._id === cat._id })
+                  .limit(pl).toArray())
+              }
+            } else {
+              cat.subs = cat.posts.sort({ title: 1 }).limit(6).toArray()
+            }
+
+            catlist.push(cat)
+          }
         }
-      }
-    })
+      })
+    )
   }
 
   if (posts.length > 0) {
