@@ -103,8 +103,6 @@ hexo.extend.generator.register('script', async function (locals) {
     mainFields: ['module', 'browser', 'main'],
     splitting: true,
     define: {
-      __UNLAZY_LOGGING__: 'false',
-      __UNLAZY_HASH_DECODING__: theme.modules.unlazyHash ? 'true' : 'false',
       __shokax_player__: theme.modules.player ? 'true' : 'false',
       __shokax_VL__: theme.modules.visibilityListener ? 'true' : 'false',
       __shokax_fireworks__: (theme.fireworks && theme.fireworks.enable && theme.fireworks.options && theme.modules.fireworks) ? 'true' : 'false',

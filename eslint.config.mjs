@@ -1,11 +1,10 @@
+import tsParser from "@typescript-eslint/parser";
+
 export default [
   {
-    files: ['*.ts', '*.tsx', '*.vue'],
+    files: ['*.ts', '*.tsx', '*.vue', '*.mjs'],
     languageOptions: {
-      parser: '@typescript-eslint/parser',
-      parserOptions: {
-        ecmaVersion: 2022
-      }
+      parser: tsParser
     },
     plugins: {
       '@typescript-eslint': await import('@typescript-eslint/eslint-plugin'),

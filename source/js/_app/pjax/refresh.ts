@@ -8,7 +8,6 @@ import { positionInit } from '../globals/tools'
 import { menuActive, sideBarTab, sidebarTOC } from '../components/sidebar'
 import { Loader, isOutime } from '../globals/thirdparty'
 import { tabFormat } from '../page/tab'
-import { lazyLoad } from 'unlazy'
 
 export const siteRefresh = async (reload) => {
   if (__shokax_antiFakeWebsite__) {
@@ -83,8 +82,6 @@ export const siteRefresh = async (reload) => {
 
     comment.observe(cpel)
   }
-
-  lazyLoad()
 
   if (__shokax_waline__) {
     import('../components/comments').then(async ({walineRecentComments}) => {

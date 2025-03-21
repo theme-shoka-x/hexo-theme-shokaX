@@ -19,7 +19,7 @@ export const postFancybox = (p:string) => {
 
     document.querySelectorAll(p + ' .md img:not(.emoji):not(.vemoji)').forEach((element) => {
       const $image = $(element)
-      const imageLink = DOMPurify.sanitize($image.attr('data-src') || $image.attr('src')) // 替换
+      const imageLink = DOMPurify.sanitize($image.attr('src')) // 替换
       const $imageWrapLink = $image.wrap('<a class="fancybox" href="' + imageLink + '" itemscope itemtype="https://schema.org/ImageObject" itemprop="url"></a>').parent('a')
       let info; let captionClass = 'image-info'
       if (!$image.is('a img')) {

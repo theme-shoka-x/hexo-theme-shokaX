@@ -2,6 +2,7 @@ import { transition } from './anime'
 import { BODY } from '../globals/globalVars'
 import { changeTheme } from '../globals/themeColor'
 import { createChild, setDisplay } from './proto'
+
 export function initVue () {
   function changeThemeByBtn () {
     let c: { (): void; (): void; (): void }

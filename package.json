@@ -49,8 +49,7 @@
         "quicklink": "^2.3.0",
         "theme-shokax-anime": "^0.0.8",
         "theme-shokax-pjax": "^0.0.3",
-        "twikoo": "^1.6.41",
-        "unlazy": "^0.12.3"
+        "twikoo": "^1.6.41"
     },
     "engines": {
         "node": ">=20.0.0"

@@ -8,7 +8,7 @@
 - [x] 移除 ShokaX Inject
 - [ ] 引入新的 Inject 类技术 (长期)
 - [ ] 引入新的工作流程
-- [ ] 重构 player (暂时移除)
+- [x] 重构 player (nyx-player)
 - [ ] 重构并修改代码块
 - [x] 优化和异步化 Smart Bundle 技术
 - [x] 优化 CSS 结构和加载

@@ -49,7 +49,6 @@ homeConfig:
 modules:
   player: true # 启用音乐播放器
   fireworks: true # 启用鼠标点击烟花特效
-  unlazyHash: false # 启用unlazy hash预览图支持
   visibilityListener: true # 启用可见度监听器
   tabs: true # 启用选项卡扩展支持，如需开启 summary 功能请一并开启
   quiz: true # 启用文章内问题扩展支持
