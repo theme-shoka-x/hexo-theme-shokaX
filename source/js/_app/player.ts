@@ -9,6 +9,5 @@ export const initAudioPlayer = async function () {
       url: item.list[0]
     })
   })
-  console.log(urls)
-  initPlayer("#player","#showBtn", [])
+  initPlayer("#player","#showBtn", urls)
 }
