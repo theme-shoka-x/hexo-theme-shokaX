@@ -10,5 +10,5 @@ export const initAudioPlayer = async function () {
     })
   })
   const { initPlayer } = await import('nyx-player')
-  initPlayer("#player","#showBtn", urls, "#playBtn")
+  initPlayer("#player","#showBtn", urls, "#playBtn", "html[data-theme=&quot;dark&quot;]", "shokax")
 }
