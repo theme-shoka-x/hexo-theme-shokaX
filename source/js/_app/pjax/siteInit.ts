@@ -8,7 +8,6 @@ import {pagePosition} from '../globals/tools'
 import {initVue} from '../library/vue'
 import {createChild} from '../library/proto'
 import {transition} from '../library/anime'
-import { initAudioPlayer } from '../player'
 
 const siteInit = async () => {
   initVue()

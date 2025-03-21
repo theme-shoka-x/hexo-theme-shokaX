@@ -102,9 +102,6 @@ export const siteRefresh = async (reload) => {
     tabFormat()
   }
 
-  // if (__shokax_player__) {
-  //   toolPlayer.player.load(LOCAL.audio || CONFIG.audio || {})
-  // }
   if (sessionStorage.getItem('loaded') === 'true') {
     Loader.hide(30)
   } else {

@@ -5,7 +5,6 @@ import {
   loadCat,
   menuToggle,
   quickBtn, setBackToTop, setGoToComment, setShowContents, setToolBtn,
-  setToolPlayer,
   showContents,
   siteHeader,
   siteNav,
@@ -31,8 +30,7 @@ export default async function domInit () {
     setToolBtn(createChild(siteHeader, 'div', {
       id: 'tool',
       innerHTML: `<div class="item player">
-                    <div class="play-pause btn" id="playBtn"></div>
-                    <div class="music btn btn" id="showBtn"></div>
+                    ${__shokax_player__ ? '<div class="play-pause btn" id="playBtn"></div><div class="music btn btn" id="showBtn"></div>' : ''}
                   </div>
                   <div class="item contents">
                     <i class="ic i-list-ol"></i>
@@ -47,7 +45,6 @@ export default async function domInit () {
     }))
   }
 
-  setToolPlayer(toolBtn.querySelector('.player'))
   setBackToTop(toolBtn.querySelector('.back-to-top'))
   setGoToComment(toolBtn.querySelector('.chat'))
   setShowContents(toolBtn.querySelector('.contents'))
@@ -56,7 +53,10 @@ export default async function domInit () {
   goToComment.addEventListener('click', goToCommentHandle)
   showContents.addEventListener('click', sideBarToggleHandle)
 
-  await initAudioPlayer()
+  if (__shokax_player__) {
+    await initAudioPlayer()
+  }
+  
 
   const createIntersectionObserver = () => {
     // waves在视口外时停止动画

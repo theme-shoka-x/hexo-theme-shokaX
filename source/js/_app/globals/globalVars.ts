@@ -14,7 +14,6 @@ export const quickBtn = document.getElementById('quick')
 export const sideBar = document.getElementById('sidebar')
 export const siteBrand = document.getElementById('brand')
 export let toolBtn = document.getElementById('tool')
-export let toolPlayer
 export let backToTop: HTMLElement
 export let goToComment
 export let showContents
@@ -62,10 +61,6 @@ export function setLocalUrl (value:string):void {
 
 export function setOriginTitle (value:string):void {
   originTitle = value
-}
-
-export function setToolPlayer (value:any):void {
-  toolPlayer = value
 }
 
 export function setBackToTop (value:HTMLElement):void {
