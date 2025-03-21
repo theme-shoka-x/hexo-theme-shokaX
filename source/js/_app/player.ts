@@ -1,5 +1,5 @@
-import { initPlayer } from 'nyx-player'
 import { CONFIG } from './globals/globalVars'
+import 'nyx-player/style'
 
 export const initAudioPlayer = async function () {
   const urls = []
@@ -9,5 +9,6 @@ export const initAudioPlayer = async function () {
       url: item.list[0]
     })
   })
-  initPlayer("#player","#showBtn", urls)
+  const { initPlayer } = await import('nyx-player')
+  initPlayer("#player","#showBtn", urls, "#playBtn")
 }

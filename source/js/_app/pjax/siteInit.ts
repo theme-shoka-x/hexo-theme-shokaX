@@ -70,7 +70,6 @@ const siteInit = async () => {
 }
 
 cloudflareInit()
-await initAudioPlayer()
 
 if (__shokax_antiFakeWebsite__) {
   if (window.location.origin !== CONFIG.hostname && window.location.origin !== "http://localhost:4000") {
