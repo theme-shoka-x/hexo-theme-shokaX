@@ -2,6 +2,7 @@ import env from '../../package.json'
 import fs from 'node:fs/promises'
 import { build } from 'esbuild'
 import { getVendorLink } from '../utils'
+import { htmlTag, url_for } from 'hexo-util'
 
 hexo.extend.generator.register('script', async function (locals) {
   const config = hexo.config
@@ -119,7 +120,10 @@ hexo.extend.generator.register('script', async function (locals) {
       shokax_siteURL: "'" + config.url + "'"
     }
   })
-  const res = [];
+  const res:{
+    path: string
+    data: Buffer | Uint8Array | string
+  }[] = [];
 
   resultApp.outputFiles.forEach((file) => {
     if (file.path.endsWith('.js')) {
@@ -138,6 +142,28 @@ hexo.extend.generator.register('script', async function (locals) {
         data: file.contents
       })
     }
+  })
+
+  hexo.extend.helper.register('preloadjs', function () {
+    const { statics, js } = hexo.theme.config
+    let resultHtml = ''
+    res.forEach((file) => {
+      if (file.path.endsWith('.js')) {
+        resultHtml += htmlTag('link', { rel: 'modulepreload', href: url_for.call(this, `${statics}${js}/${file}`) }, '')
+      }
+    })
+    return resultHtml
+  })
+
+  hexo.extend.helper.register('load_async_css', function (){
+    const { statics, css } = hexo.theme.config
+    let resultHtml = ''
+    res.forEach((file) => {
+      if (file.path.endsWith('.css')) {
+        resultHtml += htmlTag('link', { rel: 'stylesheet', href: url_for.call(this, `${statics}${css}/${file}`), media: 'none', onload: "this.media='all'" }, '')
+      }
+    })
+    return resultHtml
   })
 
   if (theme.experiments.cloudflarePatch) {
