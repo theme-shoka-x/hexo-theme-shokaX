@@ -26,8 +26,7 @@ hexo.extend.generator.register('script', async function (locals) {
         url: theme.css + '/mermaid.css',
         local: true,
         sri: ''
-      },
-      justifiedGallery: getVendorLink(hexo, theme.vendors.css.justifiedGallery)
+      }
     },
     loader: theme.loader,
     search: null,
