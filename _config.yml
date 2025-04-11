@@ -354,10 +354,6 @@ vendors:
   cdns:
     cdnjs: https://s4.zstatic.net/ajax/libs
   js:
-    pace:
-      source: cdnjs
-      url: pace/1.2.4/pace.min.js
-      sri: "sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8"
     jquery:
       source: cdnjs
       url: jquery/3.5.1/jquery.min.js
@@ -388,10 +384,6 @@ vendors:
       source: cdnjs
       url: KaTeX/0.16.9/katex.min.css
       sri: "sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"
-    comment:
-      source: local
-      url: css/comment.css
-      sri: ""
     fancybox:
       source: cdnjs
       url: fancybox/3.5.7/jquery.fancybox.min.css
