@@ -126,41 +126,45 @@ hexo.extend.generator.register('script', async function (locals) {
   }[] = [];
 
   resultApp.outputFiles.forEach((file) => {
-    if (file.path.endsWith('.js')) {
+    let fileName = ''
+    if (file.path.split("\\").length > 1) {
+      fileName = file.path.split("\\").pop()
+    } else {
+      fileName = file.path.split("/").pop()
+    }
+    if (file.path.endsWith(".js")) {
       res.push({
-        path: theme.js + '/' + file.path.split('/').pop(),
-        data: file.contents
-      })
-    } else if (file.path.endsWith('.css')) {
+        path: theme.js + "/" + fileName,
+        data: file.text
+      });
+    } else if (file.path.endsWith(".css")) {
       res.push({
-        path: theme.css + '/' + file.path.split('/').pop(),
-        data: file.contents
-      })
+        path: theme.css + "/" + fileName,
+        data: file.text
+      });
     } else {
       res.push({
-        path: theme.statics + '/' + file.path.split('/').pop(),
-        data: file.contents
-      })
+        path: theme.statics + "/" + fileName,
+        data: file.text
+      });
     }
   })
 
   hexo.extend.helper.register('preloadjs', function () {
-    const { statics, js } = hexo.theme.config
     let resultHtml = ''
     res.forEach((file) => {
       if (file.path.endsWith('.js')) {
-        resultHtml += htmlTag('link', { rel: 'modulepreload', href: url_for.call(this, `${statics}${js}/${file}`) }, '')
+        resultHtml += htmlTag('link', { rel: 'modulepreload', href: url_for.call(this, file.path) }, '')
       }
     })
     return resultHtml
   })
 
   hexo.extend.helper.register('load_async_css', function (){
-    const { statics, css } = hexo.theme.config
     let resultHtml = ''
     res.forEach((file) => {
       if (file.path.endsWith('.css')) {
-        resultHtml += htmlTag('link', { rel: 'stylesheet', href: url_for.call(this, `${statics}${css}/${file}`), media: 'none', onload: "this.media='all'" }, '')
+        resultHtml += htmlTag('link', { rel: 'stylesheet', href: url_for.call(this, file.path), media: 'none', onload: "this.media='all'" }, '')
       }
     })
     return resultHtml
@@ -188,7 +192,7 @@ hexo.extend.generator.register('script', async function (locals) {
     })
     res.push({
       path: theme.js + '/cf-patch.js',
-      data: resultCF.outputFiles[0].contents
+      data: resultCF.outputFiles[0].text
     })
   }
   return res
