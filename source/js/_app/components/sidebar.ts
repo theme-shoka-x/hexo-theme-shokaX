@@ -108,14 +108,16 @@ export const sidebarTOC = () => {
     }
 
     document.querySelectorAll('.toc .active').forEach((element) => {
-      element && element.classList.remove('active current')
+      element && element.classList.remove('active')
+      element && element.classList.remove('current')
     })
 
     sections.forEach((element) => {
       element && element.classList.remove('active')
     })
 
-    target.classList.add('active current')
+    target.classList.add('active')
+    target.classList.add('current')
     sections[index] && sections[index].classList.add('active')
 
     let parent = <Element> target.parentNode

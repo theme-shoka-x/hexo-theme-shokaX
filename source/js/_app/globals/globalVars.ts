@@ -16,7 +16,7 @@ export const siteBrand = document.getElementById('brand')
 export let toolBtn = document.getElementById('tool')
 export let backToTop: HTMLElement
 export let goToComment
-export let showContents
+export let showContents: HTMLElement
 export let siteSearch = document.getElementById('search')
 export let siteNavHeight: number, headerHightInner: number, headerHight: number
 export let oWinHeight = window.innerHeight

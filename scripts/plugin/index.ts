@@ -1,10 +1,9 @@
 import { version } from '../../package.json'
-import { rm, unlink } from 'node:fs/promises'
+import { unlink } from 'node:fs/promises'
 import injects from './lib/injects'
 
 hexo.on('generateBefore', async () => {
   injects(hexo)
-  // await rm('./shokaxTemp', { force: true, recursive: true })
   try {
     await unlink('cf-patch.js')
   } catch (e) {

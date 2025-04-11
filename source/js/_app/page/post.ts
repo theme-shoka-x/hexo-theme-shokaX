@@ -1,4 +1,4 @@
-import { postFancybox } from './fancybox'
+import { postImageViewer } from './imageviewer'
 import { clipBoard, showtip } from '../globals/tools'
 import { CONFIG, BODY } from '../globals/globalVars'
 import { pageScroll, transition } from '../library/anime'
@@ -7,9 +7,7 @@ import { getDisplay, setDisplay, wrapObject } from '../library/proto'
 export const postBeauty = () => {
   if (!document.querySelector('.md')) { return }
 
-  if (__shokax_fancybox__) {
-    postFancybox('.post.block')
-  }
+  postImageViewer('.post.block');
 
   (document.querySelector('.post.block') as HTMLTextAreaElement).oncopy = (event) => {
     showtip(LOCAL.copyright)

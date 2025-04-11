@@ -20,7 +20,6 @@
 ## 📚子项目
 - [ShokaX docs](https://github.com/theme-shoka-x/shokaX-docs) ShokaX 主题文档 (正在编写中，欢迎加入！)
 - [HRMNMI](https://github.com/theme-shoka-x/hexo-renderer-multi-next-markdown-it) ShokaX 正在使用的 markdown 渲染器 (等待重构)
-- [ShokaX Pjax](https://github.com/theme-shoka-x/theme-shokax-pjax) ShokaX 提供的高效 Pjax 实现
 - [ShokaX Anime](https://github.com/theme-shoka-x/theme-shokax-anime) ShokaX 提供的精简版 Anime.js 实现
 
 # [许可证](https://github.com/theme-shoka-x/hexo-theme-shokaX/blob/main/LICENSE)

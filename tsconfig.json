@@ -5,7 +5,6 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "types": ["jquery","fancybox"],
     "skipLibCheck": true
   },
   "typeAcquisition": {

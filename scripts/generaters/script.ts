@@ -27,7 +27,6 @@ hexo.extend.generator.register('script', async function (locals) {
         local: true,
         sri: ''
       },
-      fancybox: getVendorLink(hexo, theme.vendors.css.fancybox),
       justifiedGallery: getVendorLink(hexo, theme.vendors.css.justifiedGallery)
     },
     loader: theme.loader,
@@ -112,7 +111,6 @@ hexo.extend.generator.register('script', async function (locals) {
       __shokax_outime__: theme.outime.enable ? 'true' : 'false',
       __shokax_tabs__: theme.modules.tabs ? 'true' : 'false',
       __shokax_quiz__: theme.modules.quiz ? 'true' : 'false',
-      __shokax_fancybox__: theme.modules.fancybox ? 'true' : 'false',
       __shokax_waline__: theme.waline.enable ? 'true' : 'false',
       __shokax_twikoo__: theme.twikoo.enable ? 'true' : 'false',
       __shokax_antiFakeWebsite__: theme.experiments.antiFakeWebsite ? 'true' : 'false',
