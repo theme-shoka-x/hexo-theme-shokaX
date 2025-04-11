@@ -5,7 +5,6 @@
 - [x] 移除 pjax
 - [x] 移除 quicklink
 - [x] 移除 assetUrl 为基的动态 Vendor 机制
-- [x] 移除 ShokaX Inject
 - [ ] 引入新的 Inject 类技术 (长期)
 - [ ] 引入新的工作流程
 - [x] 重构 player (nyx-player)

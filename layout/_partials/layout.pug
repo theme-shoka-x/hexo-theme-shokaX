@@ -21,6 +21,7 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
                 link(rel="preload" href!=covers as="image" fetchpriority="high")
 
         != partial('_partials/head/head_com.pug')
+        != shokax_inject('head')
         block head
         title
             block title
@@ -139,5 +140,7 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
             script(src=`https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?version=4.8.0&features=${theme.polyfill.features}` defer)
 
         != _js('siteInit.js')
+
+        != shokax_inject('bodyEnd')
 
 

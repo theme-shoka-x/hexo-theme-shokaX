@@ -51,6 +51,12 @@ const randomBG = function (count = 1, image_server:string = null, image_list:str
   return parseImage(image_list[Math.floor(Math.random() * image_list.length)], 'mw690')
 }
 
+hexo.extend.helper.register('shokax_inject', function (point) {
+  return hexo.theme.config.injects[point]
+    .map((item) => this.partial(item.layout, item.locals, item.options))
+    .join('')
+})
+
 hexo.extend.helper.register('preloadjs', function () {
   const { statics, js } = hexo.theme.config
   let res = ''
