@@ -24,7 +24,6 @@ await Promise.all(
     entryPoints.map(async (entry)=>{
         await build({
             entryPoints: [entry],
-            outdir: 'scripts',
             bundle: false,
             format: 'cjs',
             target: ['esnext'],
