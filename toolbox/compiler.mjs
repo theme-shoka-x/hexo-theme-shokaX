@@ -27,6 +27,7 @@ await build({
     target: ['esnext'],
     platform: 'node',
     loader: { '.ts': 'ts' },
+    outdir: 'scripts'
 })
 
 console.log('deleting ts and json files...')
