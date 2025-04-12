@@ -1,8 +1,4 @@
-'use strict'
-
-// @ts-ignore
 import { htmlTag, url_for } from 'hexo-util'
-import fs from 'node:fs'
 
 const randomBG = function (count = 1, image_server:string = null, image_list:string[] = []) {
   let i: number
@@ -19,16 +15,6 @@ const randomBG = function (count = 1, image_server:string = null, image_list:str
     return image_server + '?' + Math.floor(Math.random() * 999999)
   }
 
-  const parseImage = function (img:string, size:string) {
-    if (img.startsWith('//') || img.startsWith('https')) {
-      return img
-    } else if (hexo.theme.config.experiments?.usingRelative) { // support relative url
-      return img
-    } else {
-      throw new Error('Image URL is not valid: ' + img)
-    }
-  }
-
   if (count && count > 1) {
     let shuffled = image_list.slice(0)
     while (shuffled.length <= 6) {
@@ -43,12 +29,10 @@ const randomBG = function (count = 1, image_server:string = null, image_list:str
       shuffled[i] = temp
     }
 
-    return shuffled.slice(min).map(function (img) {
-      return parseImage(img, 'large')
-    })
+    return shuffled.slice(min)
   }
 
-  return parseImage(image_list[Math.floor(Math.random() * image_list.length)], 'mw690')
+  return image_list[Math.floor(Math.random() * image_list.length)]
 }
 
 hexo.extend.helper.register('shokax_inject', function (point) {

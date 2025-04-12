@@ -4,8 +4,8 @@ include ../_mixin/widgets.pug
 
 - var covers = _cover_index(page, 6)
 - var enableFixedCover = theme.homeConfig?.fixedCover
-- var enablePreload = theme.experiments?.coverConfig?.enablePreload
-- var enableCover = theme.experiments?.coverConfig?.enableCover
+- var enablePreload = theme.homeConfig?.coverConfig?.enablePreload
+- var enableCover = theme.homeConfig?.coverConfig?.enableCover
 
 doctype html
 html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'filter: grayscale(1);':'' )
@@ -129,9 +129,6 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
         != partial('_partials/third-party/baidu-analytics.pug', {}, {cache: true})
         != partial('_partials/third-party/clarity.pug', {}, {cache: true})
         != partial('_partials/third-party/google-analytics.pug', {}, {cache: true})
-
-        if theme.polyfill.enable
-            script(src=`https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?version=4.8.0&features=${theme.polyfill.features}` defer)
 
         != _js('siteInit.js')
 

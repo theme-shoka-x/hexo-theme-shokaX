@@ -1,5 +1,5 @@
 mixin navpost(item, type)
-    - var enableNextGradientCover = theme?.experiments?.coverConfig?.enableNextGradientCover
+    - var enableNextGradientCover = theme?.homeConfig?.coverConfig?.enableNextGradientCover
     - var postText = item.title || item.link || __('post.untitled')
     - var lastcat = item.categories.last()
     - var itemlink = `<span class="type">${__('post.' + type)}</span>${lastcat && lastcat.name ? `<span class="category"><i class="ic i-flag"></i>${lastcat.name}</span>` : ''}<h3>${postText}</h3>`

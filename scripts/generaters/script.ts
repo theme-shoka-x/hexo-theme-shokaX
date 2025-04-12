@@ -98,7 +98,7 @@ hexo.extend.generator.register('script', async function (locals) {
     platform: 'browser',
     format: 'esm',
     target: ['es2022'],
-    minify: true,
+    minify: !theme.modules.debug,
     legalComments: 'linked',
     mainFields: ['module', 'browser', 'main'],
     splitting: true,
@@ -167,7 +167,7 @@ hexo.extend.generator.register('script', async function (locals) {
     return resultHtml
   })
 
-  if (theme.experiments.cloudflarePatch) {
+  if (theme.modules.cloudflarePatch) {
     const resultCF = await build({
       write: false,
       entryPoints: [patchDir],
@@ -184,7 +184,7 @@ hexo.extend.generator.register('script', async function (locals) {
         }
       },
       target: ['es2022'],
-      minify: true,
+      minify: !theme.modules.debug,
       outfile: 'cf-patch.js'
     })
     res.push({

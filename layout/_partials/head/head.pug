@@ -44,7 +44,7 @@ if fontConfig
 != preloadjs()
 != load_async_css()
 
-if theme.experiments.cloudflarePatch
+if theme.modules.cloudflarePatch
     != _js('cf-patch.js')
 
 include pwa.pug
