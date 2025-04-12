@@ -5,6 +5,7 @@ compatibility: ShokaX v0.5.x-dev
 import fs from 'fs/promises'
 import { buildSync } from 'esbuild'
 import { glob } from 'glob'
+import { build } from 'esbuild'
 
 const CONFIG = {
 
@@ -18,21 +19,35 @@ const jsons = await glob('./scripts/**/*.json');
 
 console.log('RUN THIS SCRIPT IN YOUR SHOKAX THEME ROOT DIRECTORY!')
 console.log('Using esbuild compiler...')
-buildSync({
-    entryPoints: entryPoints,
-    outdir: 'scripts',
-    bundle: false,
-    format: 'cjs',
-    target: ['esnext'],
-    platform: 'node',
-    loader: { '.ts': 'ts' },
-})
-entryPoints.forEach(async (entry) => {
-    await fs.unlink(entry)
-})
-jsons.forEach(async (entry)=>{
-    await fs.unlink(entry)
-})
+
+await Promise.all(
+    entryPoints.map(async (entry)=>{
+        await build({
+            entryPoints: [entry],
+            outdir: 'scripts',
+            bundle: false,
+            format: 'cjs',
+            target: ['esnext'],
+            platform: 'node',
+            loader: { '.ts': 'ts' },
+        })
+    })
+)
+
+console.log('deleting ts and json files...')
+
+await Promise.all(
+    entryPoints.map(async (entry) => {
+        await fs.unlink(entry)
+    })
+)
+
+await Promise.all(
+    jsons.map(async (entry)=>{
+        await fs.unlink(entry)
+    })
+)
+
 console.log('Finished compiling.')
 
 console.log('Done.')
