@@ -20,18 +20,14 @@ const jsons = await glob('./scripts/**/*.json');
 console.log('RUN THIS SCRIPT IN YOUR SHOKAX THEME ROOT DIRECTORY!')
 console.log('Using esbuild compiler...')
 
-await Promise.all(
-    entryPoints.map(async (entry)=>{
-        await build({
-            entryPoints: [entry],
-            bundle: false,
-            format: 'cjs',
-            target: ['esnext'],
-            platform: 'node',
-            loader: { '.ts': 'ts' },
-        })
-    })
-)
+await build({
+    entryPoints: entryPoints,
+    bundle: false,
+    format: 'cjs',
+    target: ['esnext'],
+    platform: 'node',
+    loader: { '.ts': 'ts' },
+})
 
 console.log('deleting ts and json files...')
 
