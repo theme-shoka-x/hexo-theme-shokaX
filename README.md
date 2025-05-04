@@ -1,4 +1,4 @@
-** [关于近期部分站点遭到全站复制的安全提示](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/386) **
+** 此分支为 ShokaX v0.4.x 长期维护分支 **
 # hexo-theme-shokaX
 ![LICENSE](	https://img.shields.io/github/license/theme-shoka-x/hexo-theme-shokaX)
 ![stars](https://img.shields.io/github/stars/theme-shoka-x/hexo-theme-shokaX)
