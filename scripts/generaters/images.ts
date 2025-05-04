@@ -2,23 +2,26 @@
 'use strict'
 
 // @ts-ignore
-import fs = require('hexo-fs')
+import { readdir, readFile } from 'node:fs/promises'
 
-hexo.extend.generator.register('images', function (locals) {
+hexo.extend.generator.register('images', async function (locals) {
   const theme = hexo.theme.config
   const dir = 'source/_data/' + theme.assets + '/'
 
-  if (!fs.existsSync(dir)) { return }
+  try {
+    await readdir(dir)
+  } catch (e) {
+    return
+  }
 
   const result = []
-  const files = fs.listDirSync(dir) as string[]
+  const files = await readdir(dir)
 
-  files.forEach((file) => {
+  files.forEach(async (file) => {
+    const fileContent = await readFile(dir + file)
     result.push({
       path: theme.assets + '/' + file,
-      data: function () {
-        return fs.createReadStream(dir + file)
-      }
+      data: fileContent
     })
   })
 

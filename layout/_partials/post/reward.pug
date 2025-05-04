@@ -13,6 +13,6 @@ if page.reward !== false
                 else
                     - var translation = name
                 div
-                    img(loading="lazy" data-src=`${url_for(theme.statics + theme.assets + image) }` alt=`${ author } ${ translation }`)
+                    img(loading="lazy" src=`${url_for(theme.statics + theme.assets + image) }` alt=`${ author } ${ translation }`)
                     p
                         != translation

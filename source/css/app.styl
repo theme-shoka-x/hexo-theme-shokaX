@@ -20,22 +20,6 @@ if $_iconfont = hexo-config('style.iconfont')
 else
   @import "_iconfont";
 
-// Scaffolding
-@import "_common/scaffolding";
-
-// Layout
-@import "_common/outline";
-
-// Components
-@import "_common/components";
-
 if $custom = hexo-config('style.custom')
   @import $custom;
-
-if hexo-config('injects.style')
-  for $inject_style in hexo-config('injects.style')
-    @import $inject_style;
-
-if $optimize = hexo-config('experiments.optimizeLongPosts')
-  @import "optimize.styl"
 

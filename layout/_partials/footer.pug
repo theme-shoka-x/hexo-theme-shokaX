@@ -35,7 +35,7 @@ div(class="status")
             if beianN && RC
                 br
                 a(target="_blank" href=`https://beian.mps.gov.cn/#/query/webSearch?code=${RC}`)
-                    img(loading="lazy" decoding="async" data-src=theme.statics + theme.assets + '/' + theme.footer.icp.icon style="max-width: 2em;display:inline;" width="20" height="20" alt="备案")
+                    img(loading="lazy" decoding="async" src=theme.statics + theme.assets + '/' + theme.footer.icp.icon style="max-width: 2em;display:inline;" width="20" height="20" alt="备案")
                     != beianN
     != shokax_inject('status')
 

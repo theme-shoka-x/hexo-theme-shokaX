@@ -3,6 +3,12 @@ include _mixin/sidebar.pug
 include _mixin/comment.pug
 include _mixin/postmeta.pug
 
+block head
+    != _css('post.css')
+    != _css('mermaid.css')
+    // 临时处理
+    link(rel="stylesheet" media="none" onload="this.media='all'" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css")
+
 block title
     - var page_title = page.title
     if page.categories && page.categories.length

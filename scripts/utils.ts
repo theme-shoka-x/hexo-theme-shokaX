@@ -1,7 +1,5 @@
 import type Hexo from 'hexo'
 
-declare const hexo:Hexo
-
 export interface VendorsConfig {
   cdns: {
     [index:string]: string

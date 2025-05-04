@@ -1,5 +1,8 @@
 extends ./_partials/layout.pug
 
+block head
+    != _css('page.css')
+
 block title
     != `${__('title.tag')}${__('symbol.colon')}${page.tag}`
 

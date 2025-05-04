@@ -3,6 +3,9 @@ include _mixin/card.pug
 include _mixin/postmeta.pug
 include _mixin/segment.pug
 
+block head
+    != _css('page.css')
+
 block content
     div(class="index wrap")
         if page.current === 1

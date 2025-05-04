@@ -3,14 +3,12 @@
 import { CONFIG, Container, diffY, menuToggle, showContents, sideBar } from '../globals/globalVars'
 import { clipBoard } from '../globals/tools'
 import { pageScroll, transition } from '../library/anime'
-import { $dom } from '../library/dom'
-import initProto, { getHeight, setDisplay } from '../library/proto'
+import { getHeight, setDisplay } from '../library/proto'
 
-initProto()
 export const sideBarToggleHandle = (event:Event, force?:number) => {
-  if (sideBar.hasClass('on')) {
-    sideBar.removeClass('on')
-    menuToggle.removeClass('close')
+  if (sideBar.classList.contains('on')) {
+    sideBar.classList.remove('on')
+    menuToggle.classList.remove('close')
     if (force) {
       // @ts-ignore
       // noinspection JSConstantReassignment
@@ -25,8 +23,8 @@ export const sideBarToggleHandle = (event:Event, force?:number) => {
       sideBar.style = ''
     } else {
       transition(sideBar, 'slideRightIn', () => {
-        sideBar.addClass('on')
-        menuToggle.addClass('close')
+        sideBar.classList.add('on')
+        menuToggle.classList.add('close')
       })
     }
   }
@@ -61,29 +59,30 @@ export const sideBarTab = () => {
     const text = document.createTextNode(element.getAttribute('data-title'))
     span.appendChild(text)
     tab.appendChild(span)
-    tab.addClass(item + ' item')
+    tab.classList.add(item)
+    tab.classList.add('item')
 
     if (active) {
-      element.addClass(active)
-      tab.addClass(active)
+      element.classList.add(active)
+      tab.classList.add(active)
     } else {
-      element.removeClass('active')
+      element.classList.remove('active')
     }
     tab.addEventListener('click', (event) => {
       const target = event.currentTarget as HTMLElement
-      if (target.hasClass('active')) return
+      if (target.classList.contains('active')) return
 
-      sideBar.find('.tab .item').forEach((element) => {
-        element.removeClass('active')
+      sideBar.querySelectorAll('.tab .item').forEach((element) => {
+        element.classList.remove('active')
       })
 
-      sideBar.find('.panel').forEach((element) => {
-        element.removeClass('active')
+      sideBar.querySelectorAll('.panel').forEach((element) => {
+        element.classList.remove('active')
       })
 
-      sideBar.querySelector('.panel.' + target.className.replace(' item', '')).addClass('active')
+      sideBar.querySelector('.panel.' + target.className.replace(' item', '')).classList.add('active')
 
-      target.addClass('active')
+      target.classList.add('active')
     })
 
     list.appendChild(tab)
@@ -104,39 +103,41 @@ export const sidebarTOC = () => {
 
     if (!target) return
 
-    if (target.hasClass('current')) {
+    if (target.classList.contains('current')) {
       return
     }
 
-    $dom.each('.toc .active', (element) => {
-      element && element.removeClass('active current')
+    document.querySelectorAll('.toc .active').forEach((element) => {
+      element && element.classList.remove('active')
+      element && element.classList.remove('current')
     })
 
     sections.forEach((element) => {
-      element && element.removeClass('active')
+      element && element.classList.remove('active')
     })
 
-    target.addClass('active current')
-    sections[index] && sections[index].addClass('active')
+    target.classList.add('active')
+    target.classList.add('current')
+    sections[index] && sections[index].classList.add('active')
 
     let parent = <Element> target.parentNode
 
     while (!parent.matches('.contents')) {
       if (parent.matches('li')) {
-        parent.addClass('active')
+        parent.classList.add('active')
         const t = document.getElementById(decodeURIComponent(parent.querySelector('a.toc-link').getAttribute('href').replace('#', '')))
         if (t) {
-          t.addClass('active')
+          t.classList.add('active')
         }
       }
       parent = <Element> parent.parentNode
     }
     // Scrolling to center active TOC element if TOC content is taller than viewport.
-    if (getComputedStyle(sideBar).display !== 'none' && tocElement.hasClass('active')) {
+    if (getComputedStyle(sideBar).display !== 'none' && tocElement.classList.contains('active')) {
       pageScroll((tocElement as HTMLElement), target.offsetTop - ((tocElement as HTMLElement).offsetHeight / 4))
     }
   }
-  const navItems = $dom.all('.contents li')
+  const navItems = document.querySelectorAll<HTMLElement>('.contents li')
 
   if (navItems.length < 1) {
     return
@@ -224,18 +225,19 @@ export const goToCommentHandle = () => {
 }
 
 export const menuActive = () => {
-  $dom.each('.menu .item:not(.title)', (element) => {
+  document.querySelectorAll('.menu .item:not(.title)').forEach((element) => {
     const target = <HTMLAnchorElement> element.querySelector('a[href]')
-    const parentItem = element.parentNode.parentNode
+    const parentItem = element.parentNode.parentNode as HTMLElement
     if (!target) return
     const isSamePath = target.pathname === location.pathname || target.pathname === location.pathname.replace('index.html', '')
     const isSubPath = !CONFIG.root.startsWith(target.pathname) && location.pathname.startsWith(target.pathname)
     const active = !target.onclick && target.hostname === location.hostname && (isSamePath || isSubPath)
-    element.toggleClass('active', active)
-    if (element.parentNode.querySelector('.active') && parentItem.hasClass('dropdown')) {
-      parentItem.removeClass('active').addClass('expand')
+    element.classList.toggle('active', active)
+    if (element.parentNode.querySelector('.active') && parentItem.classList.contains('dropdown')) {
+      parentItem.classList.remove('active')
+      parentItem.classList.add('expand')
     } else {
-      parentItem.removeClass('expand')
+      parentItem.classList.remove('expand')
     }
   })
 }

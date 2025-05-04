@@ -11,7 +11,7 @@ article(itemscope itemtype="http://schema.org/Article" class="post block" lang=t
         if post.photos && post.photos.length
             div(class="gallery" itemscope itemtype="http://schema.org/ImageGallery")
                 each photo in post.photos
-                    img(loading="lazy" decoding="async" data-src=_image_url(photo, post.path) itemprop="contentUrl")
+                    img(loading="lazy" decoding="async" src=_image_url(photo, post.path) itemprop="contentUrl")
         if theme.summary.enable && page.layout === 'post'
             div(class='tabs' id='summary')
                 div(class="show-btn")
@@ -38,4 +38,5 @@ article(itemscope itemtype="http://schema.org/Article" class="post block" lang=t
             != partial('_partials/post/reward.pug', {}, {cache: true})
         if theme.creative_commons.license
             != partial('_partials/post/copyright.pug')
+    
     != shokax_inject('postBodyEnd')

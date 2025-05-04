@@ -1,9 +1,4 @@
-import { $dom } from '../library/dom'
-import Pjax from 'theme-shokax-pjax'
-import initProto from '../library/proto'
-
 export const CONFIG = shokax_CONFIG
-initProto()
 export const statics = CONFIG.statics.indexOf('//') > 0 ? CONFIG.statics : CONFIG.root
 export const scrollAction: { x: number, y: number } = { x: 0, y: 0 }
 export let diffY = 0
@@ -19,17 +14,15 @@ export const quickBtn = document.getElementById('quick')
 export const sideBar = document.getElementById('sidebar')
 export const siteBrand = document.getElementById('brand')
 export let toolBtn = document.getElementById('tool')
-export let toolPlayer
 export let backToTop: HTMLElement
 export let goToComment
-export let showContents
+export let showContents: HTMLElement
 export let siteSearch = document.getElementById('search')
 export let siteNavHeight: number, headerHightInner: number, headerHight: number
 export let oWinHeight = window.innerHeight
 export let oWinWidth = window.innerWidth
 export let LOCAL_HASH = 0
 export let LOCAL_URL = window.location.href
-export let pjax:Pjax
 
 export function setSiteNavHeight (value:number):void {
   siteNavHeight = value
@@ -66,16 +59,8 @@ export function setLocalUrl (value:string):void {
   LOCAL_URL = value
 }
 
-export function setPjax (value:Pjax):void {
-  pjax = value
-}
-
 export function setOriginTitle (value:string):void {
   originTitle = value
-}
-
-export function setToolPlayer (value:any):void {
-  toolPlayer = value
 }
 
 export function setBackToTop (value:HTMLElement):void {

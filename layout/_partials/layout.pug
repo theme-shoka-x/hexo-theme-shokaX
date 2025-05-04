@@ -2,14 +2,10 @@ include ../_mixin/breadcrumb.pug
 include ../_mixin/sidebar.pug
 include ../_mixin/widgets.pug
 
-- ignores = []
-if (theme.quicklink.ignores)
-    - ignores.push(theme.quicklink.ignores)
-
 - var covers = _cover_index(page, 6)
 - var enableFixedCover = theme.homeConfig?.fixedCover
-- var enablePreload = theme.experiments?.coverConfig?.enablePreload
-- var enableCover = theme.experiments?.coverConfig?.enableCover
+- var enablePreload = theme.homeConfig?.coverConfig?.enablePreload
+- var enableCover = theme.homeConfig?.coverConfig?.enableCover
 
 doctype html
 html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'filter: grayscale(1);':'' )
@@ -26,6 +22,7 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
 
         != partial('_partials/head/head_com.pug')
         != shokax_inject('head')
+        block head
         title
             block title
                 != `${alternate?alternate + " = ":""}${title}${subtitle?" = "+subtitle:""}`
@@ -78,6 +75,7 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
                         block sidebar
                             +sidebarRender
                     div(class="dimmer")
+                div(id="player")
             footer(id="footer")
                 div(class="inner")
                     div(class="widgets")
@@ -115,7 +113,6 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
                 katex: #{!!page.math},
                 mermaid: #{!!page.mermaid},
                 audio: !{audioValue},
-                fancybox: #{page.fancybox !== false},
                 nocopy: #{!!page.nocopy},
                 outime: #{page.outime !== false},
                 template: `!{__('outime.template')}`,
@@ -126,25 +123,12 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
                     essay: `#{__('quiz.essay')}`,
                     gap_fill: `#{__('quiz.gap_fill')}`,
                     mistake: `#{__('quiz.mistake')}`
-                },
-                ignores: [
-                    (uri) => uri.includes('#'),
-                    (uri) => new RegExp(LOCAL.path + '$').test(uri),
-                        !{JSON.stringify(ignores)}
-                ]
+                }
             };
 
         != partial('_partials/third-party/baidu-analytics.pug', {}, {cache: true})
         != partial('_partials/third-party/clarity.pug', {}, {cache: true})
         != partial('_partials/third-party/google-analytics.pug', {}, {cache: true})
-
-        != vendor_js('pace')
-        != vendor_js('jquery')
-        != vendor_js('fancybox')
-        != vendor_js('justifiedGallery')
-
-        if theme.polyfill.enable
-            script(src=`https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?version=4.8.0&features=${theme.polyfill.features}` defer)
 
         != _js('siteInit.js')
 

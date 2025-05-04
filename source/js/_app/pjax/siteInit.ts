@@ -1,36 +1,17 @@
 import domInit from './domInit'
-import { pjaxReload, siteRefresh } from './refresh'
-import { cloudflareInit } from '../components/cloudflare'
-import { BODY, CONFIG, pjax, setPjax, setSiteSearch, siteSearch } from '../globals/globalVars'
-import { autoDarkmode, themeColorListener } from '../globals/themeColor'
-import { resizeHandle, scrollHandle, visibilityListener } from '../globals/handles'
-import { pagePosition } from '../globals/tools'
-import Pjax from 'theme-shokax-pjax'
-import { initVue } from '../library/vue'
-import { $dom } from '../library/dom'
-import { createChild } from '../library/proto'
-import { transition } from '../library/anime'
+import {siteRefresh} from './refresh'
+import {cloudflareInit} from '../components/cloudflare'
+import {BODY, CONFIG, setSiteSearch, siteSearch} from '../globals/globalVars'
+import {autoDarkmode, themeColorListener} from '../globals/themeColor'
+import {resizeHandle, scrollHandle, visibilityListener} from '../globals/handles'
+import {pagePosition} from '../globals/tools'
+import {initVue} from '../library/vue'
+import {createChild} from '../library/proto'
+import {transition} from '../library/anime'
 
 const siteInit = async () => {
   initVue()
   domInit()
-
-  setPjax(new Pjax({
-    selectors: [
-      'head title',
-      '.languages',
-      '.twikoo',
-      '.pjax',
-      '.leancloud-recent-comment',
-      'script[data-config]'
-    ],
-    cacheBust: false
-  }))
-
-  CONFIG.quicklink.ignores = LOCAL.ignores
-  import('quicklink').then(({listen}) => {
-    listen(CONFIG.quicklink)
-  })
 
   autoDarkmode()
 
@@ -53,19 +34,16 @@ const siteInit = async () => {
       }
 
       import('../page/search').then(({algoliaSearch}) => {
-        algoliaSearch(pjax)
+        algoliaSearch()
       })
 
       // Handle and trigger popup window
-      // TODO search 只有一个，不需要 each
-      $dom.each('.search', (element) => {
-        element.addEventListener('click', () => {
+      document.querySelector('.search').addEventListener('click', () => {
           document.body.style.overflow = 'hidden'
           transition(siteSearch, 'shrinkIn', () => {
             (document.querySelector('.search-input') as HTMLInputElement).focus()
           }) // transition.shrinkIn
         })
-      })
     }, {once: true, capture: true})
   }
 
@@ -83,18 +61,11 @@ const siteInit = async () => {
     passive: true
   })
 
-  window.addEventListener('pjax:send', pjaxReload, {
-    passive: true
-  })
-
-  window.addEventListener('pjax:success', siteRefresh, {
-    passive: true
-  }) // 默认会传入一个event参数
-
-  window.addEventListener('beforeunload', () => {
+  window.addEventListener('visibilitychange', () => {
     pagePosition()
   })
   await siteRefresh(1)
+  // TODO 修复内页跳转后重复出现加载动画的问题
 }
 
 cloudflareInit()
@@ -112,3 +83,8 @@ window.addEventListener('DOMContentLoaded', siteInit, {
 })
 
 console.log('%c Theme.ShokaX v' + CONFIG.version + ' %c https://github.com/theme-shoka-x/hexo-theme-shokaX ', 'color: white; background: #e9546b; padding:5px 0;', 'padding:4px;border:1px solid #e9546b;')
+
+if (new Date().getDate() === 5 && new Date().getMonth() === 8) {
+  console.log('🎉 ShokaX 生日快乐！\nHappy Birthday ShokaX!')
+  console.log('感谢你们的支持与陪伴！\nThanks for your support and company!')
+}

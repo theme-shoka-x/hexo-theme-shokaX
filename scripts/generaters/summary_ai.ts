@@ -92,6 +92,7 @@ class SummaryDatabase {
     if (this.data.summaries[pathHash]?.sha256 === contentHash) {
       return this.data.summaries[pathHash].summary
     } else {
+      hexo.log.info(`[ShokaX Summary AI] 正在向 API 请求 ${path} 的摘要`)
       const summaryContent = await getSummaryByAPI(content)
       this.data.summaries[pathHash] = {
         summary: summaryContent,

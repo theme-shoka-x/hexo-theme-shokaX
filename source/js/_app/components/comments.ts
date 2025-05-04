@@ -1,6 +1,7 @@
 import { CONFIG } from '../globals/globalVars'
 import { init, RecentComments } from '@waline/client'
 import { pageviewCount } from '@waline/client/pageview'
+// @ts-ignore
 await import('@waline/client/style')
 
 export const walineComment = function () {
@@ -21,7 +22,6 @@ export const walineComment = function () {
 }
 
 export const walinePageview = function () {
-  // TODO waline 上游此模块存在问题
   pageviewCount({
     serverURL: CONFIG.waline.serverURL,
     path: window.location.pathname
@@ -35,7 +35,6 @@ export const walineRecentComments = async function () {
     serverURL: CONFIG.waline.serverURL.replace(/\/+$/, ''),
     count: 10
   })
-  // TODO 疑似 waline API 返回格式与文档不一致，需要确认是否为上游问题
   // @ts-ignore
   comments.data.forEach(function (item) {
     let cText = (item.orig.length > 50) ? item.orig.substring(0, 50) + '...' : item.orig
@@ -74,7 +73,6 @@ export const walineRecentComments = async function () {
     commentTime.className = 'breadcrumb'
     commentTime.innerText = `${item.nick} @ ${item.time}`
     commentLink.href = root + item.href
-    commentLink['data-pjax-state'] = 'data-pjax-state'
     commentEl.className = 'item'
 
     commentText.appendChild(document.createElement('br'))

@@ -1,39 +1,31 @@
 {
     "name": "hexo-theme-shokax",
-    "version": "0.4.25",
+    "version": "0.5.0",
     "description": "a hexo theme based on shoka",
     "main": "index.js",
     "repository": "https://github.com/theme-shoka-x/hexo-theme-shokaX",
     "author": "zkz098",
     "license": "AGPL-3.0-or-later",
-    "packageManager": "pnpm@10.6.3",
+    "packageManager": "pnpm@10.10.0",
     "scripts": {
         "test": "tsc --build --verbose",
         "build": "node ./toolbox/compiler.mjs"
     },
     "devDependencies": {
-        "@types/fancybox": "^3.5.7",
-        "@types/jquery": "^3.5.32",
         "@types/js-yaml": "^4.0.9",
         "@types/katex": "^0.16.7",
-        "@types/node": "^22.13.10",
-        "@types/quicklink": "^2.3.4",
-        "@typescript-eslint/eslint-plugin": "^8.26.1",
-        "@typescript-eslint/parser": "^8.26.1",
-        "eslint": "^9.22.0",
-        "eslint-config-standard": "~17",
-        "eslint-plugin-vue": "^10.0.0",
-        "glob": "^11.0.1",
-        "typescript": "^5.8.2"
+        "@types/node": "^22.15.3",
+        "glob": "^11.0.2",
+        "typescript": "^5.8.3"
     },
     "dependencies": {
-        "@algolia/client-search": "^5.21.0",
+        "@algolia/client-search": "^5.24.0",
         "@common.js/p-limit": "^6.1.0",
         "@waline/client": "^3.5.6",
-        "algoliasearch": "5.21.0",
-        "dompurify": "^3.2.4",
-        "es-toolkit": "^1.33.0",
-        "esbuild": "^0.25.1",
+        "algoliasearch": "5.24.0",
+        "es-toolkit": "^1.37.2",
+        "esbuild": "^0.25.3",
+        "hana-img-viewer": "^1.2.1",
         "hexo": "^7.3.0",
         "hexo-algoliasearch": "^2.0.1",
         "hexo-feed": "^1.1.2",
@@ -41,18 +33,18 @@
         "hexo-pagination": "^4.0.0",
         "hexo-renderer-pug": "^3.0.0",
         "hexo-util": "^3.3.0",
-        "instantsearch.js": "^4.78.0",
+        "instantsearch.js": "^4.78.2",
         "js-yaml": "^4.1.0",
-        "katex": "^0.16.21",
-        "mouse-firework": "^0.1.0",
+        "katex": "^0.16.22",
+        "mouse-firework": "^0.1.1",
+        "nyx-player": "^0.1.1",
         "quicklink": "^2.3.0",
         "theme-shokax-anime": "^0.0.8",
-        "theme-shokax-pjax": "^0.0.3",
-        "twikoo": "^1.6.41",
-        "unlazy": "^0.12.3"
+        "twikoo": "^1.6.42",
+        "vue": "^3.5.13"
     },
     "engines": {
-        "node": ">=18.0.0"
+        "node": ">=20.0.0"
     },
     "engineStrict": true,
     "pnpm": {

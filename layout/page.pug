@@ -2,6 +2,11 @@ extends _partials/layout.pug
 include _mixin/sidebar.pug
 include _mixin/comment.pug
 
+block head
+    != _css('post.css')
+    // 临时处理
+    link(rel="stylesheet" media="none" onload="this.media='all'" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css")
+
 block title
     if page.type === 'categories'
         != __('title.all') + __('title.category')

@@ -12,7 +12,7 @@ mixin SMRender(item, lazy)
         else
             div(class="cover")
                 if lazy
-                    != _url(link1, '<img loading="lazy" decoding="async" data-src="'+ _cover(item) +'" alt="article cover">', {itemprop: 'url', title: postText})
+                    != _url(link1, '<img loading="lazy" decoding="async" src="'+ _cover(item) +'" alt="article cover">', {itemprop: 'url', title: postText})
                 else
                     != _url(link1, '<img loading="eager" decoding="async" src="'+ _cover(item) +'" alt="article cover">', {itemprop: 'url', title: postText})
         div(class="info")

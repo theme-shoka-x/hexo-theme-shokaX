@@ -5,7 +5,7 @@ import type { HitHighlightResult } from 'instantsearch.js/es/types/results'
 import instantsearch from 'instantsearch.js'
 import { liteClient as algoliasearch } from 'algoliasearch/lite'
 
-export function algoliaSearch (pjax) {
+export function algoliaSearch () {
   const search = instantsearch({
     indexName: CONFIG.search.indexName,
     searchClient: algoliasearch(CONFIG.search.appID, CONFIG.search.apiKey),
@@ -16,10 +16,6 @@ export function algoliaSearch (pjax) {
         helper.search()
       }
     }
-  })
-
-  search.on('render', () => {
-    pjax.refresh(document.getElementById("search-hits"))
   })
 
   // Registering Widgets
@@ -105,7 +101,6 @@ export function algoliaSearch (pjax) {
     }
   })
   document.querySelector('.close-btn').addEventListener('click', onPopupClose)
-  window.addEventListener('pjax:success', onPopupClose)
   window.addEventListener('keyup', (event) => {
     if (event.key === 'Escape') {
       onPopupClose()

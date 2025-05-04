@@ -63,12 +63,12 @@ export const scrollHandle = () => {
   }
 
   // 控制导航栏的显示隐藏
-  siteNav.toggleClass('show', SHOW)
+  siteNav.classList.toggle('show', SHOW)
   // 控制网站 logo 的显示隐藏
-  toolBtn.toggleClass('affix', startScroll)
+  toolBtn.classList.toggle('affix', startScroll)
   // 控制侧边栏的显示隐藏，当滚动高度大于 headerHight 且窗口宽度大于 991px 时显示
-  siteBrand.toggleClass('affix', startScroll)
-  sideBar.toggleClass('affix', window.scrollY > headerHight && document.body.offsetWidth >= 991)
+  siteBrand.classList.toggle('affix', startScroll)
+  sideBar.classList.toggle('affix', window.scrollY > headerHight && document.body.offsetWidth >= 991)
   // 初始化滚动时导航栏的显示方向
   if (typeof scrollAction.y === 'undefined') {
     scrollAction.y = window.scrollY
@@ -77,11 +77,11 @@ export const scrollHandle = () => {
 
   // 控制滑动时导航栏显示
   if (diffY < 0) {
-    siteNav.removeClass('up')
-    siteNav.toggleClass('down', SHOW)
+    siteNav.classList.remove('up')
+    siteNav.classList.toggle('down', SHOW)
   } else if (diffY > 0) {
-    siteNav.removeClass('down')
-    siteNav.toggleClass('up', SHOW)
+    siteNav.classList.remove('down')
+    siteNav.classList.toggle('up', SHOW)
   } else { /* empty */ }
   scrollAction.y = window.scrollY
   // 计算滚动百分比
@@ -91,7 +91,7 @@ export const scrollHandle = () => {
     backToTop.querySelector('span').innerText = scrollPercent
   }
   // 更新百分比进度条的宽度
-  if (document.getElementById('sidebar').hasClass('affix') || document.getElementById('sidebar').hasClass('on')) {
+  if (document.getElementById('sidebar').classList.contains('affix') || document.getElementById('sidebar').classList.contains('on')) {
     setWidth(document.querySelector('.percent'), scrollPercent)
   }
 }

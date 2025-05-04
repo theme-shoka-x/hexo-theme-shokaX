@@ -1,8 +1,8 @@
-import { $storage } from './storage'
 import { transition } from './anime'
 import { BODY } from '../globals/globalVars'
 import { changeTheme } from '../globals/themeColor'
 import { createChild, setDisplay } from './proto'
+
 export function initVue () {
   function changeThemeByBtn () {
     let c: { (): void; (): void; (): void }
@@ -23,19 +23,19 @@ export function initVue () {
       })
     }
 
-    if (btn.hasClass('i-sun')) {
+    if (btn.classList.contains('i-sun')) {
       c = () => {
-        neko.addClass('dark')
+        neko.classList.add('dark')
         changeTheme('dark')
-        $storage.set('theme', 'dark')
+        localStorage.setItem('theme', 'dark')
         hideNeko()
       }
     } else {
-      neko.addClass('dark')
+      neko.classList.add('dark')
       c = () => {
-        neko.removeClass('dark')
+        neko.classList.remove('dark')
         changeTheme()
-        $storage.set('theme', 'light')
+        localStorage.setItem('theme', 'light')
         hideNeko()
       }
     }

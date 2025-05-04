@@ -2,7 +2,7 @@
 - var timeNow = new Date().getTime()
 if theme.pwa.enable
     - var sworker = theme.pwa.serviceworker
-    script(data-pjax async).
+    script(async).
          if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register("/#{sworker}?time=#{timeNow}").then(async (reg) => {
                     if (window.localStorage.getItem('install') !== 'true') {
