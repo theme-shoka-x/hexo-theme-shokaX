@@ -30,11 +30,7 @@ export const postBeauty = () => {
         event.clipboardData.setData('text/html', htmlData)
         event.clipboardData.setData('text/plain', textData)
       } else {
-        // @ts-ignore
-        if (window.clipboardData) {
-          // @ts-ignore
-          return window.clipboardData.setData('text', textData)
-        }
+        throw new Error('Clipboard API not supported')
       }
     }
   }

@@ -52,9 +52,8 @@ export const siteRefresh = async (reload) => {
   sideBarTab()
   sidebarTOC()
 
-  import('../page/post').then(({postBeauty}) => {
-    postBeauty()
-  })
+  const pagePost = await import('../page/post')
+  pagePost.postBeauty()
 
   const cpel = document.getElementById('copyright')
   if (cpel) {
