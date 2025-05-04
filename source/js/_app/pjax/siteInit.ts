@@ -83,3 +83,8 @@ window.addEventListener('DOMContentLoaded', siteInit, {
 })
 
 console.log('%c Theme.ShokaX v' + CONFIG.version + ' %c https://github.com/theme-shoka-x/hexo-theme-shokaX ', 'color: white; background: #e9546b; padding:5px 0;', 'padding:4px;border:1px solid #e9546b;')
+
+if (new Date().getDate() === 5 && new Date().getMonth() === 8) {
+  console.log('🎉 ShokaX 生日快乐！\nHappy Birthday ShokaX!')
+  console.log('感谢你们的支持与陪伴！\nThanks for your support and company!')
+}

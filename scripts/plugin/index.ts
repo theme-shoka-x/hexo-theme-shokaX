@@ -40,4 +40,9 @@ hexo.on('generateAfter',async () => {
     hexo.log.warn('Failed to detect version info. Error message:')
     hexo.log.warn(e)
   }
+
+  if (new Date().getDate() === 5 && new Date().getMonth() === 8) {
+    console.log('🎉 ShokaX 生日快乐！\nHappy Birthday ShokaX!')
+    console.log('感谢你们的支持与陪伴！\nThanks for your support and company!')
+  }
 })

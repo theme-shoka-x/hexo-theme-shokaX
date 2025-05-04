@@ -8,13 +8,9 @@ export const postImageViewer = (p: string) => {
     const imgSrc = DOMPurify.sanitize(img.dataset.src);
 
     const wrapper = document.createElement('div');
-    console.log(wrapper)
     img.replaceWith(wrapper);
 
-    console.log(imgSrc)
     const app = createApp(HanaImgViewer, { src: imgSrc, maskOpacity: 0.8 });
-    console.log(app)
     app.mount(wrapper);
-    console.log(app)
   });
 };
