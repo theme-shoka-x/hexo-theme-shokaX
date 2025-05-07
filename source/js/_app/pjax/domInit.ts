@@ -5,20 +5,17 @@ import {
   loadCat,
   menuToggle,
   quickBtn, setBackToTop, setGoToComment, setShowContents, setToolBtn,
-  setToolPlayer,
   showContents,
   siteHeader,
   siteNav,
-  toolBtn,
-  toolPlayer
+  toolBtn
 } from '../globals/globalVars'
 import { Loader } from '../globals/thirdparty'
-import { $dom } from '../library/dom'
-import { mediaPlayer } from '../player'
 import { createChild } from '../library/proto'
+import { initAudioPlayer } from '../player'
 
-export default function domInit () {
-  $dom.each('.overview .menu > .item', (el) => {
+export default async function domInit () {
+  document.querySelectorAll('.overview .menu > .item').forEach((el) => {
     siteNav.querySelector('.menu').appendChild(el.cloneNode(true))
   })
 
@@ -32,11 +29,22 @@ export default function domInit () {
   if (!toolBtn) {
     setToolBtn(createChild(siteHeader, 'div', {
       id: 'tool',
-      innerHTML: '<div class="item player"></div><div class="item contents"><i class="ic i-list-ol"></i></div><div class="item chat"><i class="ic i-comments"></i></div><div class="item back-to-top"><i class="ic i-arrow-up"></i><span>0%</span></div>'
+      innerHTML: `<div class="item player">
+                    ${__shokax_player__ ? '<div class="play-pause btn" id="playBtn"></div><div class="music btn btn" id="showBtn"></div>' : ''}
+                  </div>
+                  <div class="item contents">
+                    <i class="ic i-list-ol"></i>
+                  </div>
+                  <div class="item chat">
+                    <i class="ic i-comments"></i>
+                  </div>
+                  <div class="item back-to-top">
+                    <i class="ic i-arrow-up"></i>
+                    <span>0%</span>
+                  </div>`
     }))
   }
 
-  setToolPlayer(toolBtn.querySelector('.player'))
   setBackToTop(toolBtn.querySelector('.back-to-top'))
   setGoToComment(toolBtn.querySelector('.chat'))
   setShowContents(toolBtn.querySelector('.contents'))
@@ -46,12 +54,9 @@ export default function domInit () {
   showContents.addEventListener('click', sideBarToggleHandle)
 
   if (__shokax_player__) {
-    mediaPlayer(toolPlayer)
-
-    document.querySelector('main').addEventListener('click', () => {
-      toolPlayer.player.mini()
-    })
+    await initAudioPlayer()
   }
+  
 
   const createIntersectionObserver = () => {
     // waves在视口外时停止动画

@@ -21,36 +21,33 @@ pwa:
 
 # 实验性特性
 experiments:
-  debug: false # 使用debug模式启动
-  disableThemeComment: false # 禁用主题评论系统(一般用于关闭评论或让插件接管评论系统)
-  usingRelative: false # _image.yml 使用相对路径
-  optimizeLongPosts: false # 优化长文章，这能让长文章的FPS提升70%-150%并解决假死问题，但存在一些副作用
-  # 具体见https://docs.kaitaku.xyz/guide/theme.html#%E9%95%BF%E6%96%87%E7%AB%A0%E4%BC%98%E5%8C%96
   mobileWidth: 820px # 移动版和桌面版导航栏最短切换长度
-  # 使用 Cloudflare Rocket 或其他优化功能时需开启下列补丁，否则主题无法渲染
-  cloudflarePatch: false
-  coverConfig:
-    enableCover: true # 是否开启头图
-    enablePreload: true #是否开启预加载头图
-    enableNextGradientCover: false # 使用CSS渐变作为上/下一页封面
   copyrightLength: 50 # 自定义复制时显示copyright的长度
   antiFakeWebsite: false  # 防止恶意网站伪装
 
 homeConfig:
   gradient: false # 使用CSS渐变作为文章封面
-  # fixedCover 性能比默认的更好，且开启时将启用LCP优化和预加载 TODO
+  # fixedCover 性能比默认的更好，且开启时将启用LCP优化和预加载
   fixedCover: "" # 主页面cover(为空则使用bing随机图片)
+  coverConfig:
+    enableCover: true # 是否开启头图
+    enablePreload: true #是否开启预加载头图
+    enableNextGradientCover: false # 使用CSS渐变作为上/下一页封面
+  cateCards:
+    - slug: # 分类 slug
+      cover: # 分类封面
 
 # ShokaX 模块化分包引入设置
 # 请关闭所有不使用的模块以优化主题 js 体积和性能
 modules:
+  debug: false # 启用调试模式
   player: true # 启用音乐播放器
   fireworks: true # 启用鼠标点击烟花特效
-  unlazyHash: false # 启用unlazy hash预览图支持
   visibilityListener: true # 启用可见度监听器
   tabs: true # 启用选项卡扩展支持，如需开启 summary 功能请一并开启
   quiz: true # 启用文章内问题扩展支持
-  fancybox: true # 启用 fancybox 支持（不建议禁用）
+  # 使用 Cloudflare Rocket 或其他优化功能时需开启下列补丁，否则主题无法渲染
+  cloudflarePatch: false
 
 # 优化性能区
 performance:
@@ -91,13 +88,6 @@ auto_scroll: false
 loader:
   start: true # 进入页面时显示加载动画
   switch: false # 切换页面时显示加载动画
-
-# 使用polyfill.io自动处理浏览器兼容问题
-polyfill:
-  enable: false
-  features:
-    - default
-    - fetch
 
 # 显示的动画(烟花)
 # 参阅 https://github.com/D-Sketon/mouse-firework
@@ -275,10 +265,6 @@ footer:
   # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
   count: true
   powered: true
-  lantern:
-    enable: true #是否开启
-    word1: 中 #第一个字
-    word2: 秋 #第二个字
   icp: # ICP备案
     enable: false
     # 请在登录后从 https://beian.mps.gov.cn/web/business/businessHome/website 下载对应图标
@@ -331,7 +317,6 @@ audio:
 #  - title: 列表1
 #    list:
 #      - https://music.163.com/#/playlist?id=2943811283
-#      - https://music.163.com/#/playlist?id=2297706586
 #  - title: 列表2
 #    list:
 #      - https://music.163.com/#/playlist?id=2031842656
@@ -345,21 +330,6 @@ search:
   hits:
     per_page: 10
 
-# Dependencies: https://github.com/amehime/hexo-renderer-multi-markdown-it
-pangu: false
-
-# Quicklink Support
-# For more information: https://github.com/GoogleChromeLabs/quicklink
-quicklink:
-  # Custom a time in milliseconds by which the browser must execute prefetching.
-  timeout: 3000
-  # Default (true) will attempt to use the fetch() API if supported (rather than link[rel=prefetch]).
-  priority: true
-
-  # For more flexibility you can add some patterns (RegExp, Function, or Array) to ignores.
-  # See: https://github.com/GoogleChromeLabs/quicklink#custom-ignore-patterns
-  ignores:
-
 #! ---------------------------------------------------------------
 #! DO NOT EDIT THE FOLLOWING `vendors` SETTINGS
 #! UNLESS YOU KNOW WHAT YOU ARE DOING
@@ -368,31 +338,7 @@ vendors:
   cdns:
     cdnjs: https://s4.zstatic.net/ajax/libs
   js:
-    pace:
-      source: cdnjs
-      url: pace/1.2.4/pace.min.js
-      sri: "sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8"
-    jquery:
-      source: cdnjs
-      url: jquery/3.5.1/jquery.min.js
-      sri: "sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2"
-    fancybox:
-      source: cdnjs
-      url: fancybox/3.5.7/jquery.fancybox.min.js
-      sri: "sha384-Zm+UU4tdcfAm29vg+MTbfu//q5B/lInMbMCr4T8c9rQFyOv6PlfQYpB5wItcXWe7"
-    justifiedGallery:
-      source: cdnjs
-      url: justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js
-      sri: "sha384-TOxsBplaL96/QDWPIUg+ye3v89qSE3s22XNtJMmCeZEep3cVDmXy1zEfZvVv+y2m"
   async_js:
-    fancybox:
-      source: cdnjs
-      url: fancybox/3.5.7/jquery.fancybox.min.js
-      sri: "sha384-Zm+UU4tdcfAm29vg+MTbfu//q5B/lInMbMCr4T8c9rQFyOv6PlfQYpB5wItcXWe7"
-    justifiedGallery:
-      source: cdnjs
-      url: justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js
-      sri: "sha384-TOxsBplaL96/QDWPIUg+ye3v89qSE3s22XNtJMmCeZEep3cVDmXy1zEfZvVv+y2m"
     copy_tex:
       source: cdnjs
       url: KaTeX/0.16.9/contrib/copy-tex.min.js
@@ -402,15 +348,3 @@ vendors:
       source: cdnjs
       url: KaTeX/0.16.9/katex.min.css
       sri: "sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"
-    comment:
-      source: local
-      url: css/comment.css
-      sri: ""
-    fancybox:
-      source: cdnjs
-      url: fancybox/3.5.7/jquery.fancybox.min.css
-      sri: "sha384-Q8BgkilbsFGYNNiDqJm69hvDS7NCJWOodvfK/cwTyQD4VQA0qKzuPpvqNER1UC0F"
-    justifiedGallery:
-      source: cdnjs
-      url: justifiedGallery/3.8.1/css/justifiedGallery.min.css
-      sri: "sha384-V/1Ew9pYm8xpy/L9i078ZXT6HSEOrGC6KNFYLbXOdtqb3+c6brpGqVzZtEPSQOiz"

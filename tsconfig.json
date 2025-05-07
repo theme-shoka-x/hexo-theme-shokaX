@@ -3,9 +3,8 @@
     "target": "ESNext",
     "module": "CommonJS",
     "esModuleInterop": true,
-    "moduleResolution": "Bundler",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
-    "types": ["jquery","fancybox"],
     "skipLibCheck": true
   },
   "typeAcquisition": {

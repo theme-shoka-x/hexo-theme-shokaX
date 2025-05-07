@@ -41,18 +41,10 @@ each dnsLink in dnslinks
 - var fontConfig = theme.font?.loadFromGoogle
 if fontConfig
     != _vendor_font()
-!= _css('app.css')
 != preloadjs()
 != load_async_css()
 
-if theme.experiments.cloudflarePatch
+if theme.modules.cloudflarePatch
     != _js('cf-patch.js')
 
 include pwa.pug
-
-- var qw = theme?.qweather?.enable
-if qw
-    style.
-        img[data-v-7d48daab] {
-            max-width: 2em !important;
-        }

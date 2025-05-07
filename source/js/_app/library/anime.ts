@@ -89,22 +89,33 @@ export const transition = (target: HTMLElement, type: number|string|Function, co
   }, animation)).play()
 }
 
-export const pageScroll = (target: HTMLElement|number, offset?: number, complete?: Function) => {
-  // target: 滚动到的目标元素或坐标(number)
-  // offset: 可选的偏移量
-  // complete: 可选的回调函数，在动画完成时调用
-  anime({
-    // 动画目标
-    targets: typeof offset === 'number' && typeof target !== 'number' ? target.parentNode : document.scrollingElement,
-    // 动画持续时间
-    duration: 500,
-    // 动画缓动函数
-    easing: 'easeInOutQuad',
-    // 如果 offset 存在，则滚动到 offset，如果 target 是数字，则滚动到 target，如果 target 是 DOM 元素，则滚动到下述表达式
-    scrollTop: offset || (typeof target === 'number' ? target : (target ? getTop(target) + document.documentElement.scrollTop - siteNavHeight : 0)),
-    // 完成回调函数
-    complete () {
-      complete && complete()
-    }
-  }).play()
-}
+export const pageScroll = (target: HTMLElement | number, offset?: number, complete?: Function) => {
+  // 确定滚动容器
+  const scrollContainer = (typeof offset === 'number' && typeof target !== 'number')
+    ? target.parentNode as HTMLElement
+    : document.scrollingElement || document.documentElement;
+
+  // 计算目标滚动位置
+  let scrollTop: number;
+  if (typeof offset !== 'undefined') {
+    scrollTop = offset;
+  } else if (typeof target === 'number') {
+    scrollTop = target;
+  } else if (target) {
+    const rect = target.getBoundingClientRect();
+    scrollTop = rect.top + window.scrollY - siteNavHeight;
+  } else {
+    scrollTop = 0;
+  }
+
+  // 执行平滑滚动
+  scrollContainer.scrollTo({
+    top: scrollTop,
+    behavior: 'smooth'
+  });
+
+  // 处理完成回调（模拟动画持续时间）
+  if (complete) {
+    setTimeout(() => complete(), 500); // 与原动画持续时间保持一致
+  }
+};

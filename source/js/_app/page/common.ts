@@ -1,14 +1,12 @@
-import { $dom } from '../library/dom'
-
 export const cardActive = () => {
   if (!document.querySelector('.index.wrap')) { return }
   const io = new IntersectionObserver((entries) => {
     entries.forEach((article) => {
-      if (article.target.hasClass('show')) {
+      if (article.target.classList.contains('show')) {
         io.unobserve(article.target)
       } else {
         if (article.isIntersecting || article.intersectionRatio > 0) {
-          article.target.addClass('show')
+          article.target.classList.add('show')
           io.unobserve(article.target)
         }
       }
@@ -18,25 +16,25 @@ export const cardActive = () => {
     threshold: [0.3]
   })
 
-  $dom.each('.index.wrap article.item, .index.wrap section.item', (article) => {
+  document.querySelectorAll('.index.wrap article.item, .index.wrap section.item').forEach((article) => {
     io.observe(article)
   })
 
-  document.querySelector('.index.wrap .item:first-child').addClass('show')
+  document.querySelector('.index.wrap .item:first-child').classList.add('show')
 
-  $dom.each('.cards .item', (element) => {
+  document.querySelectorAll('.cards .item').forEach((element) => {
     ['mouseenter', 'touchstart'].forEach((item) => {
       element.addEventListener(item, () => {
         const cardEle = document.querySelector('.cards .item.active')
         if (cardEle) {
-          cardEle.removeClass('active')
+          cardEle.classList.remove('active')
         }
-        element.addClass('active')
+        element.classList.add('active')
       }, { passive: true })
     });
     ['mouseleave'].forEach((item) => {
       element.addEventListener(item, () => {
-        element.removeClass('active')
+        element.classList.remove('active')
       }, { passive: true })
     })
   })

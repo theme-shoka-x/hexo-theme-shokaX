@@ -1,17 +1,13 @@
-import { $dom } from '../library/dom'
-import { postFancybox } from './fancybox'
+import { postImageViewer } from './imageviewer'
 import { clipBoard, showtip } from '../globals/tools'
 import { CONFIG, BODY } from '../globals/globalVars'
 import { pageScroll, transition } from '../library/anime'
-import { mediaPlayer } from '../player'
 import { getDisplay, setDisplay, wrapObject } from '../library/proto'
 
 export const postBeauty = () => {
   if (!document.querySelector('.md')) { return }
 
-  if (__shokax_fancybox__) {
-    postFancybox('.post.block')
-  }
+  postImageViewer('.post.block');
 
   (document.querySelector('.post.block') as HTMLTextAreaElement).oncopy = (event) => {
     showtip(LOCAL.copyright)
@@ -34,40 +30,36 @@ export const postBeauty = () => {
         event.clipboardData.setData('text/html', htmlData)
         event.clipboardData.setData('text/plain', textData)
       } else {
-        // @ts-ignore
-        if (window.clipboardData) {
-          // @ts-ignore
-          return window.clipboardData.setData('text', textData)
-        }
+        throw new Error('Clipboard API not supported')
       }
     }
   }
 
-  $dom.each('li ruby', (element) => {
-    let parent = element.parentNode
+  document.querySelectorAll('li ruby').forEach((element) => {
+    let parent = element.parentNode as HTMLElement
     // @ts-ignore
     if (element.parentNode.tagName !== 'LI') {
-      parent = element.parentNode.parentNode
+      parent = element.parentNode.parentNode as HTMLElement
     }
-    parent.addClass('ruby')
+    parent.classList.add('ruby')
   })
 
-  $dom.each('ol[start]', (element) => {
+  document.querySelectorAll('ol[start]').forEach((element) => {
     // @ts-ignore
     element.style.counterReset = 'counter ' + parseInt(element.getAttribute('start') - 1)
   })
 
-  $dom.each('.md table', (element) => {
+  document.querySelectorAll<HTMLElement>('.md table').forEach((element) => {
     wrapObject(element, {
       className: 'table-container'
     })
   })
 
-  $dom.each('.highlight > .table-container', (element) => {
+  document.querySelectorAll('.highlight > .table-container').forEach((element) => {
     element.className = 'code-container'
   })
 
-  $dom.each('figure.highlight', (element) => {
+  document.querySelectorAll<HTMLElement>('figure.highlight').forEach((element) => {
     const code_container = element.querySelector('.code-container') as HTMLElement
     const caption = element.querySelector('figcaption')
 
@@ -80,7 +72,7 @@ export const postBeauty = () => {
       copyBtn.addEventListener('click', (event) => {
         const target = <HTMLElement>event.currentTarget
         let comma = ''; let code = ''
-        code_container.find('pre').forEach((line) => {
+        code_container.querySelectorAll('pre').forEach((line) => {
           code += comma + line.innerText
           comma = '\n'
         })
@@ -101,61 +93,61 @@ export const postBeauty = () => {
     const breakBtn = element.querySelector('.breakline-btn')
     breakBtn.addEventListener('click', (event) => {
       const target = event.currentTarget as HTMLElement
-      if (element.hasClass('breakline')) {
-        element.removeClass('breakline')
+      if (element.classList.contains('breakline')) {
+        element.classList.remove('breakline')
         target.querySelector('.ic').className = 'ic i-align-left'
       } else {
-        element.addClass('breakline')
+        element.classList.add('breakline')
         target.querySelector('.ic').className = 'ic i-align-justify'
       }
     })
 
     const fullscreenBtn = element.querySelector('.fullscreen-btn')
     const removeFullscreen = () => {
-      element.removeClass('fullscreen')
+      element.classList.remove('fullscreen')
       element.scrollTop = 0
-      BODY.removeClass('fullscreen')
+      BODY.classList.remove('fullscreen')
       fullscreenBtn.querySelector('.ic').className = 'ic i-expand'
     }
     const fullscreenHandle = () => {
-      if (element.hasClass('fullscreen')) {
+      if (element.classList.contains('fullscreen')) {
         removeFullscreen()
-        if (code_container && code_container.find('tr').length > 15) {
+        if (code_container && code_container.querySelectorAll('tr').length > 15) {
           const showBtn = code_container.querySelector('.show-btn')
           code_container.style.maxHeight = '300px'
-          showBtn.removeClass('open')
+          showBtn.classList.remove('open')
         }
         pageScroll(element)
       } else {
-        element.addClass('fullscreen')
-        BODY.addClass('fullscreen')
+        element.classList.add('fullscreen')
+        BODY.classList.add('fullscreen')
         fullscreenBtn.querySelector('.ic').className = 'ic i-compress'
-        if (code_container && code_container.find('tr').length > 15) {
+        if (code_container && code_container.querySelectorAll('tr').length > 15) {
           const showBtn = code_container.querySelector('.show-btn')
           code_container.style.maxHeight = ''
-          showBtn.addClass('open')
+          showBtn.classList.add('open')
         }
       }
     }
     fullscreenBtn.addEventListener('click', fullscreenHandle)
     caption && caption.addEventListener('click', fullscreenHandle)
 
-    if (code_container && code_container.find('tr').length > 15) {
+    if (code_container && code_container.querySelectorAll('tr').length > 15) {
       code_container.style.maxHeight = '300px'
       code_container.insertAdjacentHTML('beforeend', '<div class="show-btn"><i class="ic i-angle-down"></i></div>')
       const showBtn = code_container.querySelector('.show-btn')
 
       const hideCode = () => {
         code_container.style.maxHeight = '300px'
-        showBtn.removeClass('open')
+        showBtn.classList.remove('open')
       }
       const showCode = () => {
         code_container.style.maxHeight = ''
-        showBtn.addClass('open')
+        showBtn.classList.add('open')
       }
 
       showBtn.addEventListener('click', () => {
-        if (showBtn.hasClass('open')) {
+        if (showBtn.classList.contains('open')) {
           removeFullscreen()
           hideCode()
           pageScroll(code_container)
@@ -166,12 +158,12 @@ export const postBeauty = () => {
     }
   })
 
-  $dom.each('pre.mermaid > svg', (element) => {
+  document.querySelectorAll('pre.mermaid > svg').forEach((element) => {
     const temp = <SVGAElement><unknown>element
     temp.style.maxWidth = ''
   })
 
-  $dom.each('.reward button', (element) => {
+  document.querySelectorAll('.reward button').forEach((element) => {
     element.addEventListener('click', (event) => {
       event.preventDefault()
       const qr = document.getElementById('qr')
@@ -187,59 +179,49 @@ export const postBeauty = () => {
 
   // quiz
   if (__shokax_quiz__) {
-    $dom.each('.quiz > ul.options li', (element) => {
+    document.querySelectorAll('.quiz > ul.options li').forEach((element) => {
       element.addEventListener('click', () => {
-        if (element.hasClass('correct')) {
-          element.toggleClass('right')
-          element.parentNode.parentNode.addClass('show')
+        if (element.classList.contains('correct')) {
+          element.classList.toggle('right');
+          (element.parentNode.parentNode as HTMLElement).classList.add('show')
         } else {
-          element.toggleClass('wrong')
+          element.classList.toggle('wrong')
         }
       })
     })
 
-    $dom.each('.quiz > p', (element) => {
+    document.querySelectorAll('.quiz > p').forEach((element) => {
       element.addEventListener('click', () => {
-        element.parentNode.toggleClass('show')
+        (element.parentNode as HTMLElement).classList.toggle('show')
       })
     })
 
-    $dom.each('.quiz > p:first-child', (element) => {
-      const quiz = element.parentNode
+    document.querySelectorAll('.quiz > p:first-child').forEach((element) => {
+      const quiz = element.parentNode as HTMLElement
       let type = 'choice'
-      if (quiz.hasClass('true') || quiz.hasClass('false')) {
+      if (quiz.classList.contains('true') || quiz.classList.contains('false')) {
         type = 'true_false'
       }
-      if (quiz.hasClass('multi')) {
+      if (quiz.classList.contains('multi')) {
         type = 'multiple'
       }
-      if (quiz.hasClass('fill')) {
+      if (quiz.classList.contains('fill')) {
         type = 'gap_fill'
       }
-      if (quiz.hasClass('essay')) {
+      if (quiz.classList.contains('essay')) {
         type = 'essay'
       }
       element.setAttribute('data-type', LOCAL.quiz[type])
     })
 
-    $dom.each('.quiz .mistake', (element) => {
+    document.querySelectorAll('.quiz .mistake').forEach((element) => {
       element.setAttribute('data-type', LOCAL.quiz.mistake)
     })
   }
 
-  $dom.each('div.tags a', (element) => {
+  document.querySelectorAll('div.tags a').forEach((element) => {
     element.className = ['primary', 'success', 'info', 'warning', 'danger'][Math.floor(Math.random() * 5)]
   })
-
-  if (__shokax_player__) {
-    $dom.each('.md div.player', (element) => {
-      mediaPlayer(element, {
-        type: element.getAttribute('data-type'),
-        mode: 'order',
-        btns: []
-      }).player.load(JSON.parse(element.getAttribute('data-src'))).fetch()
-    })
-  }
 
   const angleDown = document.querySelectorAll('.show-btn .i-angle-down')
   if (angleDown.length) {

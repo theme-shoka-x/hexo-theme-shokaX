@@ -1,5 +1,8 @@
 extends _partials/layout.pug
 
+block head
+    != _css('page.css')
+
 block title
     if is_month()
         != `${page.year}${__('symbol.year')}/${page.month}${__('symbol.month')}`

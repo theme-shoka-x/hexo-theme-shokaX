@@ -1,37 +1,13 @@
-import { $dom } from '../library/dom'
 import { cardActive } from '../page/common'
-import { pageScroll, transition } from '../library/anime'
-import { vendorCss, vendorJs } from '../library/loadFile'
-import { pjaxScript } from '../library/scriptPjax'
 import { resizeHandle } from '../globals/handles'
 import {
   CONFIG,
-  loadCat,
-  menuToggle,
   setLocalHash, setLocalUrl, setOriginTitle,
-  sideBar,
-  toolPlayer
 } from '../globals/globalVars'
-import { pagePosition, positionInit } from '../globals/tools'
+import { positionInit } from '../globals/tools'
 import { menuActive, sideBarTab, sidebarTOC } from '../components/sidebar'
 import { Loader, isOutime } from '../globals/thirdparty'
 import { tabFormat } from '../page/tab'
-import { lazyLoad } from 'unlazy'
-
-export const pjaxReload = () => {
-  pagePosition()
-
-  if (sideBar.hasClass('on')) {
-    transition(sideBar, 0, () => {
-      sideBar.removeClass('on')
-      menuToggle.removeClass('close')
-    }) // 'transition.slideRightOut'
-  }
-  const mainNode = document.getElementById('main')
-  mainNode.innerHTML = ''
-  mainNode.appendChild(loadCat.lastChild.cloneNode(true))
-  pageScroll(0)
-}
 
 export const siteRefresh = async (reload) => {
   if (__shokax_antiFakeWebsite__) {
@@ -45,9 +21,9 @@ export const siteRefresh = async (reload) => {
   setLocalHash(0)
   setLocalUrl(window.location.href)
 
-  vendorCss('katex');
+  // @ts-ignore
+  // await import('katex/dist/katex.min.css')
   await import('katex/dist/contrib/copy-tex.mjs')
-  vendorCss('mermaid')
 
   // 懒加载背景图
   const lazyBg = new IntersectionObserver(function (entries, observer) {
@@ -67,10 +43,6 @@ export const siteRefresh = async (reload) => {
     lazyBg.observe(el)
   })
 
-  if (reload !== 1) {
-    $dom.each('script[data-pjax]', pjaxScript)
-  }
-
   setOriginTitle(document.title)
 
   resizeHandle()
@@ -80,9 +52,8 @@ export const siteRefresh = async (reload) => {
   sideBarTab()
   sidebarTOC()
 
-  import('../page/post').then(({postBeauty}) => {
-    postBeauty()
-  })
+  const pagePost = await import('../page/post')
+  pagePost.postBeauty()
 
   const cpel = document.getElementById('copyright')
   if (cpel) {
@@ -111,8 +82,6 @@ export const siteRefresh = async (reload) => {
     comment.observe(cpel)
   }
 
-  lazyLoad()
-
   if (__shokax_waline__) {
     import('../components/comments').then(async ({walineRecentComments}) => {
       await walineRecentComments()
@@ -129,10 +98,12 @@ export const siteRefresh = async (reload) => {
     tabFormat()
   }
 
-  if (__shokax_player__) {
-    toolPlayer.player.load(LOCAL.audio || CONFIG.audio || {})
+  if (sessionStorage.getItem('loaded') === 'true') {
+    Loader.hide(30)
+  } else {
+    sessionStorage.setItem('loaded', 'true')
+    Loader.hide(500)
   }
-  Loader.hide(100)
 
   setTimeout(() => {
     positionInit()

@@ -51,15 +51,17 @@ html(lang="en")
       if theme.footer.icp.enable
         br
         span(style="display:inline;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:var(--grey-5);")
-          a(href="https://beian.miit.gov.cn")= theme.footer.icp.icpnumber
-        - var beianN = theme.footer.icp?.beian, RC=theme.footer.icp?.recordcode
-        if beianN && RC
-          br
-          a(target="_blank", href=`https://beian.mps.gov.cn/#/query/webSearch?code=${RC}`)
-            img(loading="lazy", decoding="async", data-src=theme.statics + theme.assets + '/' + theme.footer.icp.icon, style="max-width: 2em;display:inline;", width="20", height="20", alt="备案")
-            = beianN
-      != shokax_inject('status')
-    != shokax_inject('footer')
+                      a(href="https://beian.miit.gov.cn")
+                != theme.footer.icp.icpnumber
+            - var beianN = theme.footer.icp?.beian, RC=theme.footer.icp?.recordcode
+            if beianN && RC
+                br
+                a(target="_blank" href=`https://beian.mps.gov.cn/#/query/webSearch?code=${RC}`)
+                    img(loading="lazy" decoding="async" src=theme.statics + theme.assets + '/' + theme.footer.icp.icon style="max-width: 2em;display:inline;" width="20" height="20" alt="备案")
+                    != beianN
+    != shokax_inject('status')
+
+!= shokax_inject('footer')
     // 聊天机器人的 JavaScript 代码
     script(type="module", crossorigin, src="https://g.alicdn.com/aliyun-documentation/web-chatbot-ui/0.0.15/index.js")
     script.

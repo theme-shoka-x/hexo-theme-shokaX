@@ -84,13 +84,10 @@ interface configType {
   }
   js: {
     copy_tex: vendorUrl
-    fancybox: vendorUrl
   }
   css: {
-    valine: vendorUrl
     katex: vendorUrl
     mermaid: vendorUrl
-    fancybox: vendorUrl
   }
   search: any,
   waline: {
@@ -109,11 +106,6 @@ interface configType {
     region: string
   }
   walinePageView: boolean
-  quicklink: {
-    ignores: any
-    timeout: number
-    priority: boolean
-  }
   playerAPI: string
   experiments: {
     copyrightLength: number;
@@ -127,7 +119,6 @@ declare const __shokax_VL__:boolean
 declare const __shokax_outime__:boolean
 declare const __shokax_tabs__: boolean
 declare const __shokax_quiz__: boolean
-declare const __shokax_fancybox__: boolean
 declare const __shokax_waline__:boolean
 declare const __shokax_twikoo__:boolean
 declare const shokax_CONFIG:configType

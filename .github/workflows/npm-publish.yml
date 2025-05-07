@@ -10,6 +10,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: refs/tags/${{ github.event.release.tag_name }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -21,7 +23,6 @@ jobs:
       - name: Build TypeScript files
         run: |
           pnpm install
-          echo "NO_DEPS_HOIST=true" >> $GITHUB_ENV
           pnpm run build
 
       - run: npm publish
@@ -29,7 +30,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
 
-      - run: npm publish --tag dev
+      - run: npm publish --tag beta
         if: "github.event.release.prerelease"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
