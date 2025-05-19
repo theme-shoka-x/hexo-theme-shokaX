@@ -38,7 +38,7 @@
         "katex": "^0.16.22",
         "mouse-firework": "^0.1.1",
         "nyx-player": "^0.1.1",
-        "quicklink": "^2.3.0",
+        "quicklink": "^3.0.1",
         "theme-shokax-anime": "^0.0.8",
         "twikoo": "^1.6.42",
         "vue": "^3.5.13"
