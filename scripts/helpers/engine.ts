@@ -17,11 +17,16 @@ const randomBG = function (count = 1, image_server:string = null, image_list:str
 
   if (count && count > 1) {
     let shuffled = image_list.slice(0)
+    if (image_list.length < 1) {
+      console.warn('We received a report that if the image_list is less than 6 items, it will cause block on main thread, then the terminal will crash.')
+      console.warn('So we throw an error to avoid it happens.')
+      throw new Error('image_list must have at least 6 items')
+    }
     while (shuffled.length <= 6) {
       shuffled = shuffled.concat(image_list.slice(0))
     }
     i = shuffled.length
-    const min = i - count; let temp; let index
+    const min = i - count; let temp: string; let index: number
     while (i-- > min) {
       index = Math.floor((i + 1) * Math.random())
       temp = shuffled[index]
