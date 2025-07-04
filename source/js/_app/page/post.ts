@@ -5,7 +5,7 @@ import { pageScroll, transition } from '../library/anime'
 import { getDisplay, setDisplay, wrapObject } from '../library/proto'
 import { initializeCodeBlock } from 'shokax-components-lib/components/codeblock/init'
 
-export const postBeauty = () => {
+export const postBeauty = async () => {
   if (!document.querySelector('.md')) { return }
 
   postImageViewer('.post.block');
@@ -247,5 +247,6 @@ export const postBeauty = () => {
     })
   }
 
+  await import('shokax-components-lib/components/codeblock/init')
   initializeCodeBlock('.shiki')
 }
