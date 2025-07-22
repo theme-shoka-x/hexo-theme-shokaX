@@ -159,7 +159,7 @@ export const sidebarTOC = () => {
       const target = document.getElementById(decodeURI((event.currentTarget as HTMLElement).getAttribute('href').replace('#', '')))
 
       activeLock = index
-      pageScroll((target as HTMLElement), null, () => {
+      pageScroll(document.body, target.offsetTop, () => {
         activateNavByIndex(index)
         activeLock = null
       })
