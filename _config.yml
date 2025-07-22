@@ -209,6 +209,8 @@ waline:
   wordLimit: 0 # 字数限制,0为不限制
   pageSize: 10 # 每页评论条数
   pageview: false # 是否开启浏览量统计,可独立开启
+  recaptchaV3Key: # reCAPTCHA v3密钥
+  turnstileKey: # Turnstile密钥
 
 summary:
   enable: false

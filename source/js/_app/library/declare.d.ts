@@ -100,6 +100,8 @@ interface configType {
     wordLimit: number
     pageSize: number
     pageview: boolean
+    recaptchaV3Key: string
+    turnstileKey: string
   }
   twikoo: {
     envId: string

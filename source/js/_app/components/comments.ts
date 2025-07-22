@@ -17,6 +17,8 @@ export const walineComment = function () {
     pageSize: CONFIG.waline.pageSize,
     pageview: CONFIG.waline.pageview,
     path: window.location.pathname,
+    recaptchaV3Key: CONFIG.waline.recaptchaV3Key,
+    turnstileKey: CONFIG.waline.turnstileKey,
     dark: 'html[data-theme="dark"]'
   })
 }
