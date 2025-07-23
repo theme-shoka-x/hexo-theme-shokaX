@@ -1,12 +1,12 @@
 {
     "name": "hexo-theme-shokax",
-    "version": "0.5.1",
+    "version": "0.5.2",
     "description": "a hexo theme based on shoka",
     "main": "index.js",
     "repository": "https://github.com/theme-shoka-x/hexo-theme-shokaX",
     "author": "zkz098",
     "license": "AGPL-3.0-or-later",
-    "packageManager": "pnpm@10.12.4",
+    "packageManager": "pnpm@10.13.1",
     "scripts": {
         "test": "tsc --build --verbose",
         "build": "node ./toolbox/compiler.mjs"
@@ -14,18 +14,18 @@
     "devDependencies": {
         "@types/js-yaml": "^4.0.9",
         "@types/katex": "^0.16.7",
-        "@types/node": "^24.0.10",
+        "@types/node": "^24.1.0",
         "glob": "^11.0.3",
         "typescript": "^5.8.3"
     },
     "dependencies": {
-        "@algolia/client-search": "^5.30.0",
+        "@algolia/client-search": "^5.34.0",
         "@common.js/p-limit": "^6.1.0",
-        "@waline/client": "^3.5.7",
-        "algoliasearch": "5.30.0",
-        "es-toolkit": "^1.39.6",
-        "esbuild": "^0.25.5",
-        "hana-img-viewer": "^1.2.2",
+        "@waline/client": "^3.6.0",
+        "algoliasearch": "5.34.0",
+        "es-toolkit": "^1.39.7",
+        "esbuild": "^0.25.8",
+        "hana-img-viewer": "^1.2.3",
         "hexo": "^7.3.0",
         "hexo-algoliasearch": "^2.0.1",
         "hexo-feed": "^1.1.2",
@@ -33,15 +33,15 @@
         "hexo-pagination": "^4.0.0",
         "hexo-renderer-pug": "^3.0.0",
         "hexo-util": "^3.3.0",
-        "instantsearch.js": "^4.78.3",
+        "instantsearch.js": "^4.79.2",
         "js-yaml": "^4.1.0",
         "katex": "^0.16.22",
         "mouse-firework": "^0.1.1",
         "nyx-player": "^0.1.1",
-        "shokax-components-lib": "0.0.2-alpha.3",
+        "shokax-components-lib": "0.0.2-alpha.4",
         "theme-shokax-anime": "^0.0.8",
         "twikoo": "^1.6.44",
-        "vue": "^3.5.17"
+        "vue": "^3.5.18"
     },
     "engines": {
         "node": ">=20.0.0"
