@@ -3,13 +3,9 @@ ShokaX ToolBox - Compiler
 compatibility: ShokaX v0.5.x-dev
  */
 import fs from 'fs/promises'
-import { buildSync } from 'esbuild'
 import { glob } from 'glob'
 import { build } from 'esbuild'
 
-const CONFIG = {
-
-}
 
 console.log('ShokaX ToolBox - Compiler')
 console.log('Start compiling...')
