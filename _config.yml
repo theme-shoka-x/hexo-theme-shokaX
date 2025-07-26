@@ -43,7 +43,7 @@ modules:
   debug: false # 启用调试模式
   player: true # 启用音乐播放器
   fireworks: true # 启用鼠标点击烟花特效
-  visibilityListener: true # 启用可见度监听器
+  visibilityListener: true # 启用可见度监听器，当你不需要页面标题随标签页切换而变化可关闭
   tabs: true # 启用选项卡扩展支持，如需开启 summary 功能请一并开启
   quiz: true # 启用文章内问题扩展支持
   # 使用 Cloudflare Rocket 或其他优化功能时需开启下列补丁，否则主题无法渲染
