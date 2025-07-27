@@ -1,6 +1,6 @@
 {
     "name": "hexo-theme-shokax",
-    "version": "0.5.2",
+    "version": "0.5.2-hotfix.2",
     "description": "a hexo theme based on shoka",
     "main": "index.js",
     "repository": "https://github.com/theme-shoka-x/hexo-theme-shokaX",
@@ -38,7 +38,7 @@
         "katex": "^0.16.22",
         "mouse-firework": "^0.1.1",
         "nyx-player": "^0.1.1",
-        "shokax-components-lib": "0.0.2-alpha.4",
+        "shokax-uikit": "^0.0.3",
         "theme-shokax-anime": "^0.0.8",
         "twikoo": "^1.6.44",
         "vue": "^3.5.18"

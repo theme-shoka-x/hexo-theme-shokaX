@@ -3,7 +3,7 @@ import { clipBoard, showtip } from '../globals/tools'
 import { CONFIG, BODY } from '../globals/globalVars'
 import { pageScroll, transition } from '../library/anime'
 import { getDisplay, setDisplay, wrapObject } from '../library/proto'
-import { initializeCodeBlock } from 'shokax-components-lib/components/codeblock/init'
+import { initializeCodeBlock } from 'shokax-uikit/components/codeblock/init'
 
 export const postBeauty = async () => {
   if (!document.querySelector('.md')) { return }
@@ -247,6 +247,5 @@ export const postBeauty = async () => {
     })
   }
 
-  await import('shokax-components-lib/components/codeblock/init')
   initializeCodeBlock('.shiki')
 }

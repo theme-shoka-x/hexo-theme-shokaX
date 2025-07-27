@@ -19,12 +19,12 @@ hexo.on('generateBefore', async function () {
     findProblem = true
     hexo.log.error(`[SXEC 101] Highlight.js or Prismjs enabled. The code block will render incomplete.`)
   }
-  if (!(await isPackageDeclared('shokax-components-lib') && await isPackageDeclared('hexo-renderer-aether') && await isPackageDeclared('nyx-player'))) {
+  if (!(await isPackageDeclared('shokax-uikit') && await isPackageDeclared('hexo-renderer-aether') && await isPackageDeclared('nyx-player'))) {
     findSevereProblem = true
     findProblem = true
     hexo.log.error(`[SXEC 102] Critical rendering plugins are missing or incorrectly configured. 
 Some features will be disabled or render incorrectly.
-You should install shokax-components-lib, hexo-renderer-aether, and nyx-player to fix this issue.`)
+You should install shokax-uikit, hexo-renderer-aether, and nyx-player to fix this issue.`)
   }
   if (parseInt(process.version.match(/\d{2,3}/)[0]) < 20) {
     findProblem = true
