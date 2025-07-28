@@ -47,7 +47,7 @@ const siteInit = async () => {
       }, {once: true, capture: true})
   } else if (__shokax_pagefind_search__){
     const { initializePagefindSearch } = await import('shokax-uikit/components/pagefind/init')
-    initializePagefindSearch('li.item.search > i')
+    initializePagefindSearch('li.item.search')
   }
 
   if (__shokax_fireworks__) {

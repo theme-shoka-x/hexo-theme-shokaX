@@ -28,6 +28,7 @@ html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'f
                 != `${alternate?alternate + " = ":""}${title}${subtitle?" = "+subtitle:""}`
     body(itemscope itemtype="http://schema.org/WebPage")
         != partial('_partials/loading.pug', {}, {cache: true})
+        div(id="pagefind_mount")
         div(id="container")
             header(id="header" itemscope itemtype="http://schema.org/WPHeader")
                 div(class="inner")
