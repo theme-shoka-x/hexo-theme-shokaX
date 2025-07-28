@@ -1,7 +1,7 @@
 ## 公告
+**[ShokaX 现已支持 Pagefind 搜索](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/445)** \
 **[ShokaX 0.4/0.5 生命周期计划](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/426)** \
-**[ShokaX 0.5 迁移指南](https://docs.shokax.kaitaku.xyz/getting-started/migrate/)** \
-**[ShokaX 0.5 中的新代码块样式调研](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/418)**
+**[ShokaX 0.5 迁移指南](https://docs.shokax.kaitaku.xyz/getting-started/migrate/)**
 
 ## ShokaX
 
