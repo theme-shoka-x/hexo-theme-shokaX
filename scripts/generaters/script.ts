@@ -109,7 +109,7 @@ hexo.extend.generator.register('script', async function (locals) {
       __shokax_VL__: theme.modules.visibilityListener ? 'true' : 'false',
       __shokax_fireworks__: (theme.fireworks && theme.fireworks.enable && theme.fireworks.options && theme.modules.fireworks) ? 'true' : 'false',
       __shokax_algolia_search__: config?.algolia ? 'true' : 'false',
-      __shokax_pagefind_search__: theme.pagefind.enable ? 'true' : 'false',
+      __shokax_pagefind_search__: theme.pagefind?.enable ? 'true' : 'false',
       __shokax_outime__: theme.outime.enable ? 'true' : 'false',
       __shokax_tabs__: theme.modules.tabs ? 'true' : 'false',
       __shokax_quiz__: theme.modules.quiz ? 'true' : 'false',
