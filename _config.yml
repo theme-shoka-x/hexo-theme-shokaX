@@ -329,9 +329,6 @@ audio:
 #    list:
 #      - https://music.163.com/#/playlist?id=2031842656
 
-# random image api
-image_server: # "https://acg.xydwz.cn/api/api.php"
-
 # Algolia Search
 # For more information: https://www.algolia.com
 search:
