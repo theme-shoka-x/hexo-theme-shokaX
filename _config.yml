@@ -224,7 +224,7 @@ summary:
 
 # 由于 Hexo 的 ESM 模块支持存在严重缺陷，ShokaX 无法引入自动索引流程，Pagefind 构建需要通过 CLI 手动执行
 # 在每次 generate 完成后需要执行`pnpm dlx pagefind --site public`，再 deploy，否则 Pagefind 无法正常工作
-# 参见：<todo: 链接到 ShokaX 文档>
+# 参见：https://docs.shokax.kaitaku.xyz/features/search/#pagefind-%E6%90%9C%E7%B4%A2
 pagefind: # pagefind 本地搜索 https://pagefind.app/
   enable: false # 是否启用
 
@@ -321,7 +321,6 @@ creative_commons:
   language: deed.zh
 
 # bgm
-# 不使用请打开noplayer功能
 audio:
 #  - title: 列表1
 #    list:
