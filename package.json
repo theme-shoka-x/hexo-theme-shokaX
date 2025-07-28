@@ -31,6 +31,7 @@
         "hexo-feed": "^1.1.2",
         "hexo-fs": "^5.0.0",
         "hexo-pagination": "^4.0.0",
+        "hexo-renderer-aether": "^0.0.6",
         "hexo-renderer-pug": "^3.0.0",
         "hexo-util": "^3.3.0",
         "instantsearch.js": "^4.79.2",
