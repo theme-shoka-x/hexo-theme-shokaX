@@ -20,7 +20,7 @@ const siteInit = async () => {
   }
   themeColorListener()
 
-  if (__shokax_search__) {
+  if (__shokax_algolia_search__) {
     document.querySelector('li.item.search > i').addEventListener('click', () => {
       if (CONFIG.search === null) {
         return
@@ -44,7 +44,10 @@ const siteInit = async () => {
             (document.querySelector('.search-input') as HTMLInputElement).focus()
           }) // transition.shrinkIn
         })
-    }, {once: true, capture: true})
+      }, {once: true, capture: true})
+  } else if (__shokax_pagefind_search__){
+    const { initializePagefindSearch } = await import('shokax-uikit/components/pagefind/init')
+    initializePagefindSearch('li.item.search')
   }
 
   if (__shokax_fireworks__) {

@@ -2,9 +2,6 @@ name: Build and package theme
 
 on:
   push:
-    branches:
-      - main
-      - develop
   pull_request:
     branches: [ "main" ]
 
