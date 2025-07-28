@@ -1,5 +1,5 @@
 - var temp = post.lang || config.language
-article(itemscope itemtype="http://schema.org/Article" class="post block" lang=temp)
+article(itemscope itemtype="http://schema.org/Article" class="post block" data-pagefind-body lang=temp)
     link(itemprop="mainEntityOfPage" href!=post.permalink)
     span(hidden itemprop="author" itemscope itemtype="http://schema.org/Person")
         meta(itemprop="image" content=url_for(theme.statics + theme.assets + '/' + theme.sidebar.avatar))
