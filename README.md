@@ -1,4 +1,5 @@
 ## 公告
+**[EdgeOne 赞助内容公告 & 抽取 EdgeOne 兑换码活动通知](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/446)** \
 **[ShokaX 现已支持 Pagefind 搜索](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/445)** \
 **[ShokaX 0.4/0.5 生命周期计划](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/426)** \
 **[ShokaX 0.5 迁移指南](https://docs.shokax.kaitaku.xyz/getting-started/migrate/)**
