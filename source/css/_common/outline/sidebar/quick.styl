@@ -41,3 +41,12 @@
   }
 }
 
+// iPad landscape mode (not tested on macOS Safari)
+@media  screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape),
+        screen and (min-width: 768px) and (max-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2),
+        screen and (min-width: 768px) and (max-width: 1440px) and (-webkit-min-device-pixel-ratio: 1) {
+  #sidebar {
+    overflow: visible;
+  }
+}
+
