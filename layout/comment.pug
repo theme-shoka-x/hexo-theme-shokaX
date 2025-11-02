@@ -16,6 +16,7 @@ mixin CommentRender()
                         'data-reactions-enabled'=(theme.giscus.reactionsEnabled ? '1' : '0') 
                         'data-emit-metadata'=(theme.giscus.emitMetadata ? '1' : '0') 
                         'data-input-position'=(theme.giscus.inputPosition || 'bottom') 
+                        'data-lang'=(theme.giscus && theme.giscus.lang ? theme.giscus.lang : 'zh-CN') 
                         'data-theme'=(theme.giscus.theme || 'preferred_color_scheme'))
             // 如果需要其他评论系统（如 Twikoo/Waline），主题已内置对应配置，可按需启用
 
