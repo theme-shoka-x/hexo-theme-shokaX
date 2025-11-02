@@ -1,0 +1,22 @@
+mixin CommentRender()
+    != shokax_inject('comment')
+    if page.comment !== false
+        div(class="wrap" id="comments")
+            // giscus 评论区（如果在主题配置中启用）
+            if theme && theme.giscus && theme.giscus.enable
+                // giscus 容器
+                .giscus-container
+                    //- 请在站点配置中填写下列字段（repo、repoId、category、categoryId 等）
+                    script(async crossorigin="anonymous" src="https://giscus.app/client.js" 
+                        'data-repo'=theme.giscus.repo 
+                        'data-repo-id'=theme.giscus.repoId 
+                        'data-category'=theme.giscus.category 
+                        'data-category-id'=theme.giscus.categoryId 
+                        'data-mapping'=(theme.giscus.mapping || 'pathname') 
+                        'data-reactions-enabled'=(theme.giscus.reactionsEnabled ? '1' : '0') 
+                        'data-emit-metadata'=(theme.giscus.emitMetadata ? '1' : '0') 
+                        'data-input-position'=(theme.giscus.inputPosition || 'bottom') 
+                        'data-theme'=(theme.giscus.theme || 'preferred_color_scheme'))
+            // 如果需要其他评论系统（如 Twikoo/Waline），主题已内置对应配置，可按需启用
+
+

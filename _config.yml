@@ -212,6 +212,21 @@ waline:
   recaptchaV3Key: # reCAPTCHA v3密钥
   turnstileKey: # Turnstile密钥
 
+# giscus 评论系统配置（基于 GitHub Discussions）
+# 使用方法：在 https://giscus.app/ 填写配置并复制对应字段到下面，启用后主题会在文章底部渲染评论。
+giscus:
+  enable: false # 是否启用 giscus
+  repo: "" # 仓库，格式：owner/repo
+  repoId: "" # 可选：仓库 id（从 giscus 或 GitHub 获取）
+  category: "" # Discussions 分类名称，例如 General
+  categoryId: "" # 可选：分类 id
+  mapping: "" # mapping 策略：url | pathname | title | og:title | specific
+  reactionsEnabled: true # 是否启用表情反应
+  emitMetadata: false # 是否发送元数据
+  inputPosition: "top" # 评论输入框位置：top | bottom
+  lang: "zh-CN" # 语言
+  theme: "preferred_color_scheme" # giscus 主题，可设为 light/dark/transparent 或 preferred_color_scheme
+
 summary:
   enable: false
   introduce: "" # AI自我介绍
