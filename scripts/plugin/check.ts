@@ -8,8 +8,8 @@ let findProblem = false
 async function isPackageDeclared(packageName: string): Promise<boolean> {
   const pkg = JSON.parse(await fs.readFile('./package.json', 'utf-8'))
   return (
-    (pkg.dependencies && pkg.dependencies[packageName]) ||
-    (pkg.devDependencies && pkg.devDependencies[packageName])
+    (pkg?.dependencies?.[packageName]) ||
+    (pkg?.devDependencies?.[packageName])
   )
 }
 
