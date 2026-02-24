@@ -1,4 +1,5 @@
 ## 公告
+**[ShokaX Astro 已初步达到生产稳定](https://github.com/theme-shoka-x/astro-blog-shokax/discussions/11)**
 **[关于 ShokaX Hexo 生命周期方案](https://github.com/theme-shoka-x/hexo-theme-shokaX/discussions/463)**
 
 ## ShokaX
